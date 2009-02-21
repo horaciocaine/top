@@ -1,0 +1,67 @@
+<div id="sending-methods">
+
+
+  <h1 class="topictitle1">Available Methods for Sending Messages</h1>
+
+  
+  
+  <div>
+      <p>
+    The Mailer class offers two methods for sending Messages –
+    <samp class="codeph">send()</samp> and <samp class="codeph">batchSend()</samp>.  Each behaves in a slightly
+    different way.
+  </p>
+
+      <p>
+      When a message is sent in Swift Mailer, the Mailer class communicates with whichever
+      Transport class you have chosen to use (see <a href="transport-types"
+            title="A Transport is the component which actually does the sending. You need to provide a Transport object to the Mailer class and there are several possible options.">Transport Types</a>).
+    </p>
+
+      <p>
+      Each recipient in the message should either be accepted or rejected by the Transport.  For example,
+      if the domain name on the email address is not reachable the SMTP Transport may reject the address
+      because it cannot process it.  Whichever method you use – <samp class="codeph">send()</samp> or
+      <samp class="codeph">batchSend()</samp> – Swift Mailer will return an integer indicating the number
+      of accepted recipients.
+    </p>
+
+      <div class="note">
+         <span class="notetitle">Note:</span> 
+      It's possible to find out which recipients were rejected – we'll cover that later in this chapter.
+    </div>
+
+  </div>
+
+   <div>
+      <ol>
+         <li class="olchildlink">
+            <a href="send-method">Using the send() Method</a>
+            <br/>
+The send() method of the Swift_Mailer class sends a message using exactly the same logic as your Desktop mail client would use. Just pass it a Messgae and get a result.</li>
+         <li class="olchildlink">
+            <a href="batchsend-method">Using the batchSend() Method</a>
+            <br/>
+The batchSend() method of the Swift_Mailer class sends a separate message to each recipient in the To: field. Each recipient receives a message containing only their own address in the To: field.</li>
+      </ol>
+
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="sending"
+               title="Sending Messages in Swift Mailer requires the use of a Transport and the Swift_Mailer class. There are several possible Transport classes that can be used.">Sending Messages</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="transport-types"
+               title="A Transport is the component which actually does the sending. You need to provide a Transport object to the Mailer class and there are several possible options.">Transport Types</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="finding-failures"
+               title="It's possible to get a list of addresses that were rejected by the Transport by using a by-reference parameter to send() or batchSend().">Finding out Rejected Addresses</a>
+         </div>
+      </div>
+   </div>
+
+</div>

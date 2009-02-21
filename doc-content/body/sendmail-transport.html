@@ -1,0 +1,98 @@
+<div id="transport-sendmail">
+
+
+  <h1 class="topictitle1">The Sendmail Transport</h1>
+
+  
+  
+  <div>
+      <p>
+    The Sendmail Transport sends messages by communicating with a locally installed MTA –
+    such as <span class="cmdname">sendmail</span>.
+  </p>
+
+      <div class="section" id="transport-sendmail__about">
+         <p>
+        The Sendmail Transport, <samp class="codeph">Swift_SendmailTransport</samp> does not directly connect to
+        any remote services.  It is designed for Linux servers that have <span class="cmdname">sendmail</span>
+        installed.  The Transport starts a local <span class="cmdname">sendmail</span> process and sends messages
+        to it.  Usually the <span class="cmdname">sendmail</span> process will respond quickly as it spools your
+        messages to disk before sending them.
+      </p>
+
+         <p>
+        The Transport is named the Sendmail Transport for historical reasons (<span class="cmdname">sendmail</span>
+        was the "standard" UNIX tool for sending e-mail for years).  It will send
+        messages using other transfer agents such as Exim or Postfix despite its name, provided
+        they have the relevant sendmail wrappers so that they can be started with the
+        correct command-line flags.
+      </p>
+
+         <p>
+        It's a common misconception that because the Sendmail Transport returns a result
+        very quickly it must therefore deliver messages to recipients quickly – this
+        is not true.  It's not slow by any means, but it's certainly not faster than SMTP
+        when it comes to getting messages to the intended recipients.  This is because
+        sendmail itself sends the messages over SMTP once they have been quickly spooled
+        to disk.
+      </p>
+
+         <p>
+        The Sendmail Transport has the potential to be just as smart of the SMTP Transport
+        when it comes to notifying Swift Mailer about which recipients were rejected, but
+        in reality the majority of locally installed <span class="cmdname">sendmail</span> instances are not configured
+        well enough to provide any useful feedback.  As such Swift Mailer may report
+        successful deliveries where they did in fact fail before they even left your server.
+      </p>
+
+         <div class="p">
+        You can run the Sendmail Transport in two different modes specified by command line flags:
+        <br/>
+            <ol>
+               <li>"<span class="cmdname">-bs</span>" runs in SMTP mode so theoretically it will act like the SMTP Transport</li>
+
+               <li>"<span class="cmdname">-t</span>" runs in piped mode with no feedback, but theoretically faster, though not advised</li>
+
+            </ol>
+
+         </div>
+
+         <p>
+        You can think of the Sendmail Transport as a sort of asynchronous SMTP Transport –
+        though if you have problems with delivery failures you should try using the
+        SMTP Transport instead.  Swift Mailer isn't doing the work here, it's simply passing
+        the work to somebody else (i.e. <span class="cmdname">sendmail</span>).
+      </p>
+
+      </div>
+
+  </div>
+
+   <div>
+      <ol>
+         <li class="olchildlink">
+            <a href="sendmail-howto">Using the Sendmail Transport</a>
+            <br/>
+To use the Sendmail Transport you simply need to call Swift_SendmailTransport::newInstance() with the command as a parameter.</li>
+      </ol>
+
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="transport-types"
+               title="A Transport is the component which actually does the sending. You need to provide a Transport object to the Mailer class and there are several possible options.">Transport Types</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="smtp-transport"
+               title="The SMTP Transport sends messages over the (standardized) Simple Message Transfer Protocol. It can deal with encryption and authentication.">The SMTP Transport</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="mail-transport"
+               title="The Mail Transport sends messages by delegating to PHP's internal mail() function.">The Mail Transport</a>
+         </div>
+      </div>
+   </div>
+
+</div>

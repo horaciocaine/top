@@ -1,0 +1,141 @@
+<div id="sending">
+
+
+  <h1 class="topictitle1">Quick Reference for Sending a Message</h1>
+
+  
+  
+  <div>
+      <p>
+    Sending a message is very straightforward.  You create a Transport, use it to
+    create the Mailer, then you use the Mailer to send the message.
+  </p>
+
+      <div class="section">
+         <p>
+        To send a Message:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Create a Transport from one of the provided Transports –
+          <samp class="codeph">Swift_SmtpTransport</samp>, <samp class="codeph">Swift_SendmailTransport</samp>,
+          <samp class="codeph">Swift_MailTransport</samp> or one of the aggregate Transports.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Create an instance of the <samp class="codeph">Swift_Mailer</samp> class, using the Transport
+          as it's constructor parameter.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Create a Message according to the instructions laid out in
+          <a href="messages"
+                  title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
+            </span>
+         </li>
+
+         <li>
+            <span>
+          Send the message via the <samp class="codeph">send()</samp> or the <samp class="codeph">batchSend()</samp>
+          methods on the Mailer object.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="section">
+         <p>
+        When using <samp class="codeph">send()</samp> the message will be sent just like it would
+        be sent if you used your mail client.  An integer is returned which includes the
+        number of successful recipients.  If none of the recipients could be sent to then
+        zero will be returned, which equates to a boolean <samp class="codeph">false</samp>.  If you
+        set two <samp class="codeph">To:</samp> recipients and three <samp class="codeph">Bcc:</samp> recipients in
+        the message and all of the recipients are delivered to successfully then the value
+        5 will be returned.
+      </p>
+
+         <p>
+            <samp class="codeph">batchSend()</samp> returns a number just like <samp class="codeph">send()</samp>,
+        except that it does not include all of the <samp class="codeph">To:</samp> recipients in the
+        Headers.  Each recipient is sent a unique copy of the message with only their address
+        in the headers.  This is advised for newsletter systems.
+      </p>
+
+      </div>
+
+    
+      <div class="example" id="sending__quickexample">
+         <h2 class="sectiontitle">Sending a Message</h2>
+      
+         <pre class="codeblock">
+&lt;?php
+
+require_once 'lib/swift_required.php';
+
+//Create the Transport
+$transport = Swift_SmtpTransport::newInstance('smtp.example.org', 25)
+  -&gt;setUsername('your username')
+  -&gt;setPassword('your password')
+  ;
+
+/*
+You could alternatively use a different transport such as Sendmail or Mail:
+
+//Sendmail
+$transport = Swift_SendmailTransport::newInstance('/usr/sbin/sendmail -bs');
+
+//Mail
+$transport = Swift_MailTransport::newInstance();
+*/
+
+//Create the Mailer using your created Transport
+$mailer = Swift_Mailer::newInstance($transport);
+
+//Create a message
+$message = Swift_Message::newInstance('Wonderful Subject')
+  -&gt;setFrom(array('john@doe.com' =&gt; 'John Doe'))
+  -&gt;setTo(array('receiver@domain.org', 'other@domain.org' =&gt; 'A name'))
+  -&gt;setBody('Here is the message itself')
+  ;
+  
+//Send the message
+$result = $mailer-&gt;send($message);
+
+/*
+You can alternatively use batchSend() to send the message
+
+$result = $mailer-&gt;batchSend($message);
+*/
+
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="sending"
+               title="Sending Messages in Swift Mailer requires the use of a Transport and the Swift_Mailer class. There are several possible Transport classes that can be used.">Sending Messages</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="transport-types"
+               title="A Transport is the component which actually does the sending. You need to provide a Transport object to the Mailer class and there are several possible options.">Transport Types</a>
+         </div>
+      </div>
+   </div>
+
+</div>

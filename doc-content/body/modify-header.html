@@ -1,0 +1,103 @@
+<div id="modify-header">
+
+
+  <h1 class="topictitle1">Modifying a Header's Content</h1>
+
+  
+  
+  <div>
+      <p>
+    To change a Header's content you should know what type of header it is and then
+    call it's appropriate setter method.  All headers also have a <samp class="codeph">setFieldBodyModel()</samp>
+    method that accepts a mixed parameter and delegates to the correct setter.
+  </p>
+
+      <div class="section">
+         <p>
+        To modify an existing header:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Get the HeaderSet from the entity by via its <samp class="codeph">getHeaders()</samp>
+          method.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Get the Header by using the HeaderSet's <samp class="codeph">get()</samp> as described
+          in <a href="get-header"
+                  title="Headers are retrieved through the HeaderSet's get() and getAll() methods.">Retrieving Headers</a>.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Call the Header's appropriate setter method as described in <a href="header-types"
+                  title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+          or call the header's <samp class="codeph">setFieldBodyModel()</samp> method.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="section">
+         <p>
+        The header will be updated inside the HeaderSet and the changes will be seen when the
+        message is sent.
+      </p>
+
+      </div>
+
+    
+      <div class="example" id="modify-header__modifyheader">
+         <pre class="codeblock">
+
+$headers = $message-&gt;getHeaders();
+
+//Change the Subject: header
+$subj = $headers-&gt;get('Subject');
+$subj-&gt;setValue('new subject here');
+
+//Change the To: header
+$to = $headers-&gt;get('To');
+$to-&gt;setNameAddresses(array(
+  'person@example.org' =&gt; 'Person',
+  'thing@example.org'
+));
+
+//Using the setFieldBodyModel() just delegates to the correct method
+// So here to calls setNameAddresses()
+$to-&gt;setFieldBodyModel(array(
+  'person@example.org' =&gt; 'Person',
+  'thing@example.org'
+));
+
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="header-operations"
+               title="Working with the headers in a message involves knowing how to use the methods on the HeaderSet and on the individual Headers within the HeaderSet.">Header Operations</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="remove-header"
+               title="Removing a Header from the HeaderSet is done by calling the HeaderSet's remove() or removeAll() methods.">Removing Headers</a>
+         </div>
+      </div>
+   </div>
+
+</div>

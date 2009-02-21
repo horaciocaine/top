@@ -1,0 +1,115 @@
+<div id="creating">
+
+
+  <h1 class="topictitle1">Quick Reference for Creating a Message</h1>
+
+  
+  
+  <div>
+      <p>
+    You can think of creating a Message as being similar to the steps you perform
+    when you click the Compose button in your mail client.  You give it a subject,
+    specify some recipients, add any attachments and write your message.
+  </p>
+
+      <div class="section">
+         <p>
+        To create a Message:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Call the <samp class="codeph">newInstance()</samp> method of <samp class="codeph">Swift_Message</samp>.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Set your sender address (<samp class="codeph">From:</samp>) with <samp class="codeph">setFrom()</samp>
+          or <samp class="codeph">setSender()</samp>.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Set a subject line with <samp class="codeph">setSubject()</samp>.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Set recipients with <samp class="codeph">setTo()</samp>, <samp class="codeph">setCc()</samp> and/or
+          <samp class="codeph">setBcc()</samp>.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Set a body with <samp class="codeph">setBody()</samp>.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Add attachments with <samp class="codeph">attach()</samp>.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="example" id="creating__quickexample">
+         <h2 class="sectiontitle">Creating a Message</h2>
+      
+         <pre class="codeblock">
+&lt;?php
+
+require_once 'lib/swift_required.php';
+
+//Create the message
+$message = Swift_Message::newInstance()
+
+  //Give the message a subject
+  -&gt;setSubject('Your subject')
+
+  //Set the From address with an associative array
+  -&gt;setFrom(array('john@doe.com' =&gt; 'John Doe'))
+
+  //Set the To addresses with an associative array
+  -&gt;setTo(array('receiver@domain.org', 'other@domain.org' =&gt; 'A name'))
+
+  //Give it a body
+  -&gt;setBody('Here is the message itself')
+
+  //And optionally an alternative body
+  -&gt;addPart('&lt;q&gt;Here is the message itself&lt;/q&gt;', 'text/html')
+
+  //Optionally add any attachments
+  -&gt;attach(Swift_Attachment::fromPath('my-document.pdf'))
+  ;
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="messages"
+               title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="message-basics"
+               title="A message is a container for anything you want to send to somebody else. There are several basic aspects of a message that you should know.">Message Basics</a>
+         </div>
+      </div>
+   </div>
+
+</div>

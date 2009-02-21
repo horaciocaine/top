@@ -1,0 +1,106 @@
+<div id="attaching-dynamic">
+
+
+  <h1 class="topictitle1">Attaching Dynamic Content</h1>
+
+  
+  
+  <div>
+      <p>
+    Files that are generated at runtime, such as PDF documents or images created via
+    GD can be attached directly to a message without writing them out to disk.  Use the
+    standard Swift_Attachment::newInstance() method.
+  </p>
+
+      <div class="section">
+         <p>
+        To attach dynamically created content:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Create your content as you normally would.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Create an attachment with <samp class="codeph">Swift_Attachment::newInstance()</samp>, specifying the source
+          data of your content along with a name and the content-type.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Add the attachment to the message with <samp class="codeph">attach()</samp>.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="section">
+         <p>
+        The attachment will be presented to the recipient as a downloadable file
+        with the filename and content-type you specify.
+      </p>
+
+         <div class="note">
+            <span class="notetitle">Note:</span> 
+        If you would usually write the file to disk anyway you should just attach it with
+        <samp class="codeph">Swift_Attachment::fromPath()</samp> since this will use less memory.
+      </div>
+
+      </div>
+
+    
+      <div class="example" id="attaching-dynamic__attach_dynamic">
+         <pre class="codeblock">
+//Create your file contents in the normal way, but don't write them to disk
+$data = create_my_pdf_data();
+
+//Create the attachment with your data
+$attachment = Swift_Attachment::newInstance($data, 'my-file.pdf', 'application/pdf');  
+
+//Attach it to the message
+$message-&gt;attach($attachment);
+
+
+//You can alternatively use method chaining to build the attachment
+$attachment = Swift_Attachment::newInstance()
+  -&gt;setFilename('my-file.pdf')
+  -&gt;setContentType('application/pdf')
+  -&gt;setBody($data)
+  ;
+
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="message-attachments"
+               title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="attachment-filename"
+               title="Usually you don't need to explicitly set the filename of an attachment because the name of the attached file will be used by default, but if you want to set the filename you use the setFilename() method of the Attachment.">Setting the Filename</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="attachment-disposition"
+               title="Attachments just appear as files that can be saved to the Desktop if desired. You can make attachment appear inline where possible by using the setDisposition() method of an attachment.">Changing the Disposition</a>
+         </div>
+      </div>
+   </div>
+
+</div>

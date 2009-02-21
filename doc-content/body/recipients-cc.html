@@ -1,0 +1,75 @@
+<div id="setting-cc">
+
+
+  <h1 class="topictitle1">Setting <samp class="codeph">Cc:</samp> Recipients</h1>
+
+  
+  
+  <div>
+      <p>
+         <samp class="codeph">Cc:</samp> recipients receive a copy of the message and are set with the
+    <samp class="codeph">setCc()</samp> method of the message.
+  </p>
+
+      <div class="section">
+         <p>
+        To set <samp class="codeph">Cc:</samp> recipients:
+      </p>
+
+      </div>
+
+    
+      <div class="p">
+        <span>
+          Call the <samp class="codeph">setCc()</samp> method on the Message.
+        </span>
+      </div>
+
+    
+    
+      <div class="section">
+         <p>
+            <samp class="codeph">Cc:</samp> recipients are visible in the message headers and will
+        be seen by the other recipients.
+      </p>
+
+      </div>
+
+    
+      <div class="example" id="setting-cc__setcc">
+         <pre class="codeblock">
+$message-&gt;setCc(array(
+  'person1@example.org',
+  'person2@otherdomain.org' =&gt; 'Person 2 Name',
+  'person3@example.org',
+  'person4@example.org',
+  'person5@example.org' =&gt; 'Person 5 Name'
+));
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="recipients"
+               title="Recipients are specified within the message itself via setTo(), setCc() and setBcc(). Swift Mailer reads these recipients from the message when it gets sent so that it knows where to send the message to.">Adding Recipients to Your Message</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="recipients-to"
+               title="To: recipients are required in a message and are set with the setTo() method of the message.">Setting To: Recipients</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="recipients-bcc"
+               title="Bcc: recipients receive a copy of the message without anybody else knowing it, and are set with the setBcc() method of the message.">Setting Bcc: Recipients</a>
+         </div>
+      </div>
+   </div>
+
+</div>

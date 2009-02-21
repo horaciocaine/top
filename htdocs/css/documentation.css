@@ -1,0 +1,72 @@
+div#topicmap {
+  font-size: 0.8em;
+  line-height: 1.5em;
+}
+
+div#topicmap a {
+  text-decoration: none;
+}
+
+div#topicmap ul {
+  margin: 0;
+}
+
+div#topicmap li {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+
+div#topicmap li li {
+  margin-left: 2em;
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+div#topicmap ul ul {
+  /*display: none;*/
+}
+
+div.familylinks {
+  margin-top: 2em;
+  border-top: 1px solid #aaa;
+}
+
+div.parentlink {
+  padding: 1em 0;
+}
+
+div.parentlink strong {
+  color: #666;
+}
+
+div.previouslink {
+  float: left;
+}
+
+div.nextlink {
+  float: right;
+}
+
+div.previouslink strong, div.nextlink strong {
+  text-transform: uppercase;
+}
+
+div.previouslink a, div.nextlink a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+div.relinfo {
+  clear: both;
+  padding: 1em 0;
+}
+
+div.relinfo strong {
+  color: #888;
+}
+
+div.relinfo div {
+  margin-left: 2em;
+}

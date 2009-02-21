@@ -1,0 +1,110 @@
+<div id="antiflood-ref">
+
+
+  <h1 class="topictitle1">Using the AntiFlood Plugin</h1>
+
+  
+  
+  <div>
+      <p>
+    The AntiFlood Plugin – like all plugins – is added with the Mailer
+    class' <samp class="codeph">registerPlugin()</samp> method.  It takes two constructor parameters:
+    the number of emails to pause after, and optionally the number of seconds to pause for.
+  </p>
+
+      <div class="section">
+         <p>
+        To use the AntiFlood plugin:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Create an instance of the Mailer using any Transport you choose.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Create an instance of the <samp class="codeph">Swift_Plugins_AntiFloodPlugin</samp>
+          class, passing in one or two constructor parameters.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Register the plugin using the Mailer's <samp class="codeph">registerPlugin()</samp> method.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Continue using Swift Mailer to send messages as normal.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="section">
+         <p>
+        When Swift Mailer sends messages it will count the number of messages that
+        have been sent since the last re-connect.  Once the number hits your specified
+        threshold it will disconnect and re-connect, optionally pausing for a specified
+        amount of time.
+      </p>
+
+         <p>
+        Both <samp class="codeph">batchSend()</samp> and <samp class="codeph">send()</samp> methods will
+        work with this plugin.
+      </p>
+
+      </div>
+
+    
+      <div class="example" id="antiflood-ref__quickexample">
+         <pre class="codeblock">
+&lt;?php
+
+require_once 'lib/swift_required.php';
+
+//Create the Mailer using any Transport
+$mailer = Swift_Mailer::newInstance(
+  Swift_SmtpTransport::newInstance('smtp.example.org', 25)
+);
+
+//Use AntiFlood to re-connect after 100 emails
+$mailer-&gt;registerPlugin(new Swift_Plugins_AntiFloodPlugin(100));
+
+//Or specify a time in seconds to pause for (30 secs)
+$mailer-&gt;registerPlugin(new Swift_Plugins_AntiFloodPlugin(100, 30));
+
+//Continue sending as normal  
+for ($lotsOfRecipients as $recipient) {
+  ...
+  
+  $mailer-&gt;send( ... );
+}
+
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="antiflood-plugin"
+               title="Many SMTP servers have limits on the number of messages that may be sent during any single SMTP connection. The AntiFlood plugin provides a way to stay within this limit while still managing a large number of emails.">AntiFlood Plugin</a>
+         </div>
+      </div>
+   </div>
+
+</div>

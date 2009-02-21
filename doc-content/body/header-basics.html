@@ -1,0 +1,187 @@
+<div id="header-basics">
+
+
+  <h1 class="topictitle1">Header Basics</h1>
+
+  
+  
+  <div>
+      <p>
+    All MIME entities in Swift Mailer – including the message itself –
+    store their headers in a single object called a HeaderSet.  This HeaderSet is
+    retrieved with the <samp class="codeph">getHeaders()</samp> method.
+  </p>
+
+    
+      <p>
+      As mentioned in <a href="mime-components"
+            title="Everything that forms part of a Message is called a MIME Entity. All MIME entities in Swift Mailer share a common set of features. There are various types of MIME entity that serve different purposes such as Attachments and MIME parts.">MIME Entities</a>,
+      everything that forms a part of a message in Swift Mailer is a MIME entity that
+      is represented by an instance of <samp class="codeph">Swift_Mime_MimeEntity</samp>.  This includes
+      – most notably – the message object itself, attachments, MIME parts and
+      embedded images.  Each of these MIME entities consists of a body and a set of headers
+      that describe the body.
+    </p>
+
+      <p>
+      For all of the "standard" headers in these MIME entities, such as the
+      <samp class="codeph">Content-Type</samp>, there are named methods for working with them, such
+      as <samp class="codeph">setContentType()</samp> and <samp class="codeph">getContentType()</samp>.  This is
+      because headers are a moderately complex area of the library.  Each header has a slightly
+      different required structure that it must meet in order to comply with the standards that
+      govern email (and that are checked by spam blockers etc).
+    </p>
+
+      <p>
+      You fetch the HeaderSet from a MIME entity like so:
+    </p>
+
+      <pre class="codeblock">
+
+$message = Swift_Message::newInstance();
+
+//Fetch the HeaderSet from a Message object
+$headers = $message-&gt;getHeaders();
+
+$attachment = Swift_Attachment::fromPath('document.pdf');
+
+//Fetch the HeaderSet from an attachment object
+$headers = $attachment-&gt;getHeaders();
+
+</pre>
+
+    
+      <p>
+      The job of the HeaderSet is to contain and manage instances of Header objects.  Depending
+      upon the MIME entity the HeaderSet came from, the contents of the HeaderSet will be different,
+      since an attachment for example has a different set of headers to those in a message.
+    </p>
+
+      <p>
+      You can find out what the HeaderSet contains with a quick loop, dumping out the names of the
+      headers:
+    </p>
+
+    
+      <pre class="codeblock">
+
+foreach ($headers-&gt;getAll() as $header) {
+  printf("%s&lt;br /&gt;\n", $header-&gt;getFieldName());
+}
+
+/*
+Content-Transfer-Encoding
+Content-Type
+MIME-Version
+Date
+Message-ID
+From
+Subject
+To
+*/
+
+</pre>
+
+      <p>
+      You can also dump out the rendered HeaderSet by calling its <samp class="codeph">toString()</samp>
+      method:
+    </p>
+
+    
+      <pre class="codeblock">
+
+echo $headers-&gt;toString();
+
+/*
+Message-ID: &lt;1234869991.499a9ee7f1d5e@swift.generated&gt;
+Date: Tue, 17 Feb 2009 22:26:31 +1100
+Subject: Awesome subject!
+From: sender@example.org
+To: recipient@example.org
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+*/
+
+</pre>
+
+    
+      <p>
+      Where the complexity comes in is when you want to modify an existing header.  This complexity
+      comes from the fact that each header can be of a slightly different type (such as a Date header,
+      or a header that contains email addresses, or a header that has key-value parameters on it…).
+      Each header in the HeaderSet is an instance of <samp class="codeph">Swift_Mime_Header</samp>.  They all have common
+      functionality, but knowing exactly what type of header you're working with will allow you a little
+      more control.
+    </p>
+
+      <p>
+      You can determine the type of header by comparing the return value of its <samp class="codeph">getFieldType()</samp>
+      method with the constants <samp class="codeph">TYPE_TEXT</samp>, <samp class="codeph">TYPE_PARAMETERIZED</samp>,
+      <samp class="codeph">TYPE_DATE</samp>, <samp class="codeph">TYPE_MAILBOX</samp>, <samp class="codeph">TYPE_ID</samp> and
+      <samp class="codeph">TYPE_PATH</samp> which are defined in <samp class="codeph">Swift_Mime_Header</samp>.
+    </p>
+
+    
+      <pre class="codeblock">
+
+foreach ($headers-&gt;getAll() as $header) {
+  switch ($header-&gt;getFieldType()) {
+    case Swift_Mime_Header::TYPE_TEXT: $type = 'text';
+      break;
+    case Swift_Mime_Header::TYPE_PARAMETERIZED: $type = 'parameterized';
+      break;
+    case Swift_Mime_Header::TYPE_MAILBOX: $type = 'mailbox';
+      break;
+    case Swift_Mime_Header::TYPE_DATE: $type = 'date';
+      break;
+    case Swift_Mime_Header::TYPE_ID: $type = 'ID';
+      break;
+    case Swift_Mime_Header::TYPE_PATH: $type = 'path';
+      break;
+  }
+  printf("%s: is a %s header&lt;br /&gt;\n", $header-&gt;getFieldName(), $type);
+}
+
+/*
+Content-Transfer-Encoding: is a text header
+Content-Type: is a parameterized header
+MIME-Version: is a text header
+Date: is a date header
+Message-ID: is a ID header
+From: is a mailbox header
+Subject: is a text header
+To: is a mailbox header
+*/
+
+</pre>
+
+      
+      <p>  
+      Headers can be removed from the set, modified within the set, or added to the set.
+    </p>
+
+    
+      <p>
+      The following sections show you how to work with the HeaderSet and explain the details of each
+      implementation of <samp class="codeph">Swift_Mime_Header</samp> that may exist within the HeaderSet.
+    </p>
+
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="headers"
+               title="Sometimes you'll want to add your own headers to a message or modify/remove headers that are already present. You work with the message's HeaderSet to do this.">Message Headers</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="header-types"
+               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+         </div>
+      </div>
+   </div>
+
+</div>

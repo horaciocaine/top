@@ -1,0 +1,217 @@
+/* Eric Meyer's White-space Reset */
+html, body, div, span,
+applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dd, dl, dt, li, ol, ul,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  text-align: left;
+  vertical-align: baseline;
+}
+a img, :link img, :visited img {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol, ul {
+  list-style: none;
+}
+q:before, q:after,
+blockquote:before, blockquote:after {
+  content: "";
+}
+/* End White-space Reset */
+
+/* Overall Site Styles */
+body {
+  background: #111122;
+  font-family: 'Lucida Grande',Trebuchet;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 1em 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+ul, ol {
+  margin: 1em 0;
+}
+
+li {
+  margin-left: 4em;
+  margin-bottom: 1em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+samp, code, pre {
+  font-family: monaco,monospace,courier;
+  font-size: 1em;
+}
+
+ol {
+  list-style: decimal;
+}
+
+pre {
+  margin: 2em 1em;
+  padding: 1em;
+}
+
+table {
+  margin: 1em 1em 2em 1em;
+}
+
+table th, td {
+  padding: 2px;
+  border: 1px solid #aaa;
+}
+
+table th {
+  background: #eee;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#layout {
+  padding: 50px 40px 0 40px;
+}
+
+#header {
+  background: transparent url(../images/header-bg-texture.png);
+}
+
+#headercontent {
+  height: 235px;
+  background: transparent url(../images/header-swooshlines.png) top right no-repeat;
+}
+
+#logo {
+  margin: 20px 15px 0 0;
+  float: right;
+}
+
+#wrapper {
+  float: left;
+  width: 100%;
+  margin: 8px 0 40px 0;
+  background: #ffffff;
+}
+
+#container {
+  float: left;
+  width: 100%;
+  margin-right: -390px;
+}
+
+#content {
+  margin-right: 390px;
+  padding: 15px;
+  color: #222;
+  line-height: 1.4em;
+  font-size: 0.8em;
+}
+
+#content p {
+  text-align: justify;
+}
+
+#sidepanel {
+  float: right;
+  width: 390px;
+}
+
+#sidepanel .supplementary {
+  margin: 15px 15px 15px 0;
+  padding: 15px;
+  background: #eee;
+}
+
+#footer {
+  float: left;
+  clear: both;
+  width: 100%;
+  font-size: 0.8em;
+  color: #444;
+  line-height: 1.6em;
+}
+
+#footercontent {
+  margin: 15px;
+  padding: 15px 0;
+  border-top: 2px solid #ddd;
+}
+
+#footer #about {
+  float: left;
+}
+
+#footer #support {
+  float: right;
+}
+
+#footer dl {
+  display: block;
+  float: left;
+  padding: 0 0 20px 20px;
+}
+
+#footer dl dt {
+  display: block;
+  font-weight: bold;
+  padding: 2px 0;
+}
+
+#footer dl dd  {
+  display: block;
+  padding: 2px 0;
+}
+
+#footer ul, #footer li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#footer ul li {
+  padding: 4px 0;
+}
+
+.corners.top.right {
+  -moz-border-radius-topright: 10px;
+}
+
+.corners.top.left {
+  -moz-border-radius-topleft: 10px;
+}
+
+.corners.bottom.right {
+  -moz-border-radius-bottomright: 10px;
+}
+
+.corners.bottom.left {
+  -moz-border-radius-bottomleft: 10px;
+}

@@ -1,0 +1,25 @@
+<?php $this->headScript()->appendFile('/js/jquery-1.3.min.js'); ?>
+<?php $this->headScript()->appendFile('/kodify/js/lx_analyzer.js'); ?>
+<?php $this->headScript()->appendFile('/kodify/js/kodify.js'); ?>
+<?php $this->headScript()->appendFile('/kodify/js/lang/php.js'); ?>
+<?php $this->headLink()->appendStylesheet('/kodify/themes/blackboard.css'); ?>
+<?php $this->headScript()->appendFile('/js/documentation.js'); ?>
+<?php $this->headLink()->appendStylesheet('/css/documentation.css'); ?>
+
+<div id="container">
+  <div id="content">
+    
+    <?php echo $this->topicBody; ?>
+    
+  </div>
+</div>
+
+<div id="sidepanel">
+  <div class="supplementary corners top right bottom left">
+    
+    <div id="topicmap">
+      <?php echo $this->topicMap; ?>
+    </div>
+    
+  </div>
+</div>

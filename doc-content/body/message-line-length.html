@@ -1,0 +1,79 @@
+<div id="setting-linelength">
+
+
+  <h1 class="topictitle1">Setting the Line Length</h1>
+
+  
+  
+  <div>
+      <p>
+    The length of lines in a message can be changed by using the <samp class="codeph">setMaxLineLength()</samp>
+    method on the message.  It should be kept to less than 1000 characters.
+  </p>
+
+      <div class="section">
+         <p>
+        Swift Mailer defaults to using 78 characters per line in a message.  This is done
+        for historical reasons and so that the message can be easily viewed in plain-text
+        terminals.
+      </p>
+
+         <p>
+        To change the maximum length of lines in your Message:
+      </p>
+
+      </div>
+
+    
+      <div class="p">
+        <span>
+          Call the <samp class="codeph">setMaxLineLength()</samp> method on the Message.
+        </span>
+      </div>
+
+    
+    
+      <div class="section">
+         <p>
+        Lines that are longer than the line length specified will be wrapped
+        between words.
+      </p>
+
+         <div class="note">
+            <span class="notetitle">Note:</span> 
+        You should never set a maximum length longer than 1000 characters according
+        to RFC 2822.  Doing so could have unspecified side-effects such as truncating
+        parts of your message when it is transported between SMTP servers.
+      </div>
+
+      </div>
+
+    
+      <div class="example" id="setting-linelength__setmaxlinelength">
+         <h2 class="sectiontitle">Setting the Line Length</h2>
+      
+         <pre class="codeblock">
+$message-&gt;setMaxLineLength(1000);
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="message-content"
+               title="Rich content can be added to messages in Swift Mailer with relative ease by calling methods such as setSubject(), setBody(), addPart() and attach().">Adding Content to Your Message</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="message-charset"
+               title="The character set of the message (and it's MIME parts) is set with the setCharset() method. You can also change the global default of UTF-8 by working with the Swift_Preferences class.">Setting the Character Set</a>
+         </div>
+      </div>
+   </div>
+
+</div>

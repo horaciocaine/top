@@ -1,0 +1,102 @@
+<div id="header-date">
+
+
+  <h1 class="topictitle1">Date Headers</h1>
+
+  
+  
+  <div>
+      <p>
+    Date headers contains an RFC 2822 formatted date (i.e. what PHP's <samp class="codeph">date('r')</samp>
+    returns).  They are used anywhere a date or time is needed to be presented as a
+    message header.
+  </p>
+
+      <p>
+      The data on which a date header is modeled is simply a UNIX timestamp such as that
+      returned by <samp class="codeph">time()</samp> or <samp class="codeph">strtotime()</samp>.  The timestamp
+      is used to create a correctly structured RFC 2822 formatted date such as
+      <samp class="codeph">Tue, 17 Feb 2009 22:26:31 +1100</samp>.
+    </p>
+
+      <p>
+      The obvious place this header type is used is in the <samp class="codeph">Date:</samp> header
+      of the message itself.
+    </p>
+
+      <p>
+      It's easy to add a new date header to a HeaderSet.  You do this by calling
+      the HeaderSet's <samp class="codeph">addDateHeader()</samp> method.
+    </p>
+
+      <pre class="codeblock">
+&lt;?php
+
+$message = Swift_Message::newInstance();
+
+$headers = $message-&gt;getHeaders();
+
+$headers-&gt;addDateHeader('Your-Header-Name', strtotime('3 days ago'));
+
+</pre>
+
+    
+      <p>
+      Changing the value of an existing date header is done by calling it's <samp class="codeph">setTimestamp()</samp>
+      method.
+    </p>
+
+      <pre class="codeblock">
+&lt;?php
+
+$date = $message-&gt;getHeaders()-&gt;getHeader('Date');
+
+$date-&gt;setTimestamp(time());
+
+</pre>
+
+
+      <p>
+      When output via <samp class="codeph">toString()</samp>, a date header produces something like the following:
+    </p>
+
+    
+      <pre class="codeblock">
+&lt;?php
+
+$date = $message-&gt;getHeaders()-&gt;getHeader('Date');
+
+echo $date-&gt;toString();
+
+/*
+
+Date: Wed, 18 Feb 2009 13:35:02 +1100
+
+*/
+
+</pre>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="header-types"
+               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="header-parameterized"
+               title="Parameterized headers are text headers that contain key-value parameters following the textual content. The Content-Type header of a message is a parameterized header since it contains charset information after the content type.">Parameterized Headers</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="header-mailbox"
+               title="Mailbox headers contain one or more email addresses, possibly with personalized names attached to them. The data on which they are modeled is represented by an associative array of email addresses and names.">Mailbox (e-mail address) Headers</a>
+         </div>
+      </div>
+   </div>
+
+</div>

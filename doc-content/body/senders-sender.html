@@ -1,0 +1,84 @@
+<div id="setting-sender">
+
+
+  <h1 class="topictitle1">Setting the <samp class="codeph">Sender:</samp> Address</h1>
+
+  
+  
+  <div>
+      <p>
+    A <samp class="codeph">Sender:</samp> address specifies who sent the message and is set with the
+    <samp class="codeph">setSender()</samp> method of the message.
+  </p>
+
+      <div class="section">
+         <p>
+        To set the <samp class="codeph">Sender:</samp> address:
+      </p>
+
+      </div>
+
+    
+      <div class="p">
+        <span>
+          Call the <samp class="codeph">setSender()</samp> method on the Message.
+        </span>
+      </div>
+
+    
+    
+      <div class="section">
+         <p>
+        The <samp class="codeph">Sender:</samp> address is visible in the message headers and will
+        be seen by the recipients.
+      </p>
+
+         <p>
+        This address will be used as the <samp class="codeph">Return-Path:</samp> unless otherwise
+        specified.
+      </p>
+
+         <div class="note">
+            <span class="notetitle">Note:</span> 
+        If you set multiple <samp class="codeph">From:</samp> addresses then you absolutely must
+        set a <samp class="codeph">Sender:</samp> address to indicate who physically sent the message.
+      </div>
+
+         <div class="note" id="setting-sender__single_sender">
+            <span class="notetitle">Note:</span> 
+        You must not set more than one sender address on a message because it's not
+        possible for more than one person to send a single message.
+      </div>
+
+      </div>
+
+    
+      <div class="example" id="setting-sender__setsender">
+         <pre class="codeblock">$message-&gt;setSender('your@address.tld');</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="senders"
+               title="An email must include information about who sent it. Usually this is managed by the From: address, however there are other options.">Specifying Sender Details</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="senders-from"
+               title="A From: address is required and is set with the setFrom() method of the message.">Setting the From: Address</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="return-path"
+               title="The Return-Path: address specifies where bounce notifications should be sent and is set with the setReturnPath() method of the message.">Setting the Return-Path: (Bounce) Address</a>
+         </div>
+      </div>
+   </div>
+
+</div>

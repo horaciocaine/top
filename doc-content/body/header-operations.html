@@ -1,0 +1,56 @@
+<div id="header-operations">
+
+
+  <h1 class="topictitle1">Header Operations</h1>
+
+  
+  
+  <div>
+      <p>
+    Working with the headers in a message involves knowing how to use the methods
+    on the HeaderSet and on the individual Headers within the HeaderSet.
+  </p>
+
+      <p/>
+
+  </div>
+
+   <div>
+      <ol>
+         <li class="olchildlink">
+            <a href="add-header">Adding new Headers</a>
+            <br/>
+New headers can be added to the HeaderSet by using one of the provided add..Header() methods.</li>
+         <li class="olchildlink">
+            <a href="get-header">Retrieving Headers</a>
+            <br/>
+Headers are retrieved through the HeaderSet's get() and getAll() methods.</li>
+         <li class="olchildlink">
+            <a href="has-header">Check if a Header Exists</a>
+            <br/>
+You can check if a named header is present in a HeaderSet by calling its has() method.</li>
+         <li class="olchildlink">
+            <a href="remove-header">Removing Headers</a>
+            <br/>
+Removing a Header from the HeaderSet is done by calling the HeaderSet's remove() or removeAll() methods.</li>
+         <li class="olchildlink">
+            <a href="modify-header">Modifying a Header's Content</a>
+            <br/>
+To change a Header's content you should know what type of header it is and then call it's appropriate setter method. All headers also have a setFieldBodyModel() method that accepts a mixed parameter and delegates to the correct setter.</li>
+      </ol>
+
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="headers"
+               title="Sometimes you'll want to add your own headers to a message or modify/remove headers that are already present. You work with the message's HeaderSet to do this.">Message Headers</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="header-types"
+               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+         </div>
+      </div>
+   </div>
+
+</div>

@@ -1,0 +1,99 @@
+<div id="using-sendmail">
+
+
+  <h1 class="topictitle1">Using the Sendmail Transport</h1>
+
+  
+  
+  <div>
+      <p>
+    To use the Sendmail Transport you simply need to call
+    <samp class="codeph">Swift_SendmailTransport::newInstance()</samp> with the command as a parameter.
+  </p>
+
+      <div class="p">
+         <p>
+        To use the Sendmail Transport you need to know where <span class="cmdname">sendmail</span> or
+        another MTA exists on the server.  Swift Mailer uses a default value of
+        <span class="cmdname">/usr/sbin/sendmail</span>, which should work on most systems.
+      </p>
+
+         <p>
+        You specify the entire command as a parameter (i.e. including the command line flags).
+        Swift Mailer supports operational modes of "<span class="cmdname">-bs</span>" (default) and "<span class="cmdname">-t</span>".
+      </p>
+
+         <div class="note">
+            <span class="notetitle">Note:</span> 
+        If you run sendmail in "<span class="cmdname">-t</span>" mode you will get no feedback as to whether or
+        not sending has succeeded.  Use "<span class="cmdname">-bs</span>" unless you have a reason not to.
+      </div>
+
+      </div>
+
+      <div class="section">
+         <p>
+        To use the Sendmail Transport:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Call <samp class="codeph">Swift_SendmailTransport::newInstance()</samp> with the
+          command, including the correct command line flags.  The default is to use
+          <span class="cmdname">/usr/sbin/sendmail -bs</span> if this is not specified.
+        </span>
+         </li>
+
+         <li>
+            <span>
+          Use the returned object to create the Mailer.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="section">
+         <p>
+        A sendmail process will be started upon the first call to
+        <samp class="codeph">send()</samp> or <samp class="codeph">batchSend()</samp>.  If the process cannot
+        be started successfully an Exception of type <samp class="codeph">Swift_Transport_TransportException</samp>
+        will be thrown.
+      </p>
+
+      </div>
+
+    
+      <div class="example" id="using-sendmail__using_sendmail">
+         <pre class="codeblock">
+&lt;?php
+
+require_once 'lib/swift_required.php';
+
+//Create the Transport
+$transport = Swift_SendmailTransport::newInstance('/usr/sbin/exim -bs');
+
+//Create the Mailer using your created Transport
+$mailer = Swift_Mailer::newInstance($transport);
+
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="sendmail-transport"
+               title="The Sendmail Transport sends messages by communicating with a locally installed MTA – such as sendmail.">The Sendmail Transport</a>
+         </div>
+      </div>
+   </div>
+
+</div>

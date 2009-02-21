@@ -1,0 +1,78 @@
+<div id="setting-bcc">
+
+
+  <h1 class="topictitle1">Setting <samp class="codeph">Bcc:</samp> Recipients</h1>
+
+  
+  
+  <div>
+      <p>
+         <samp class="codeph">Bcc:</samp> recipients receive a copy of the message without anybody
+    else knowing it, and are set with the <samp class="codeph">setBcc()</samp> method of the message.
+  </p>
+
+      <div class="section">
+         <p>
+        To set <samp class="codeph">Bcc:</samp> recipients:
+      </p>
+
+      </div>
+
+    
+      <div class="p">
+        <span>
+          Call the <samp class="codeph">setBcc()</samp> method on the Message.
+        </span>
+      </div>
+
+    
+    
+      <div class="section">
+         <p>
+        Only the individual <samp class="codeph">Bcc:</samp> recipient will see their address in
+        the message headers.  Other recipients (including other <samp class="codeph">Bcc:</samp>
+        recipients) will not see the address.
+      </p>
+
+         <div class="note">
+            <span class="notetitle">Note:</span> 
+        You should not use <samp class="codeph">Bcc:</samp> recipients as a mechanism for sending
+        bulk email with undisclosed recipients.  You should perform a <samp class="codeph">batchSend()</samp>
+        instead.
+      </div>
+
+      </div>
+
+    
+      <div class="example" id="setting-bcc__setbcc">
+         <pre class="codeblock">
+$message-&gt;setBcc(array(
+  'person1@example.org',
+  'person2@otherdomain.org' =&gt; 'Person 2 Name',
+  'person3@example.org',
+  'person4@example.org',
+  'person5@example.org' =&gt; 'Person 5 Name'
+));
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="recipients"
+               title="Recipients are specified within the message itself via setTo(), setCc() and setBcc(). Swift Mailer reads these recipients from the message when it gets sent so that it knows where to send the message to.">Adding Recipients to Your Message</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="recipients-cc"
+               title="Cc: recipients receive a copy of the message and are set with the setCc() method of the message.">Setting Cc: Recipients</a>
+         </div>
+      </div>
+   </div>
+
+</div>

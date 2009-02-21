@@ -1,0 +1,95 @@
+<div id="logger-plugin">
+
+
+  <h1 class="topictitle1">Logger Plugin</h1>
+
+  
+  
+  <div>
+      <p>
+    The Logger plugins helps with debugging during the process of sending.  It can
+    help to identify why an SMTP server is rejecting addresses, or any other
+    hard-to-find problems that may arise.
+  </p>
+
+      <p>
+      The Logger plugin comes in two parts.  There's the plugin itself, along with
+      one of a number of possible Loggers that you may choose to use.  For example,
+      the logger may output messages directly in realtime, or it may capture messages
+      in an array.
+    </p>
+
+    
+      <p>
+      One other notable feature is the way in which the Logger plugin changes Exception
+      messages.  If Exceptions are being thrown but the error message does not provide
+      conclusive information as to the source of the problem (such as an ambiguous
+      SMTP error) the Logger plugin includes the entire SMTP transcript in the error
+      message so that debugging becomes a simpler task.
+    </p>
+
+    
+      <p>
+      There are a few available Loggers included with Swift Mailer, but writing
+      your own implementation is incredibly simple and is achieved by creating a
+      short class that implements the <samp class="codeph">Swift_Plugins_Logger</samp> interface.
+    </p>
+
+    
+      <table cellpadding="4" cellspacing="0" summary="" border="1" class="simpletableborder">
+    
+         <tr>
+            <th valign="bottom" align="left" id="d2770e74">Logger Class</th>
+
+            <th valign="bottom" align="left" id="d2770e77">Description</th>
+
+         </tr>
+
+    
+         <tr>
+            <td valign="top" headers="d2770e74">
+               <samp class="codeph">Swift_Plugins_Loggers_ArrayLogger</samp>
+            </td>
+
+            <td valign="top" headers="d2770e77">Keeps a collection of log messages inside an array.  The array content can be cleared or dumped out to the screen.</td>
+
+         </tr>
+
+    
+         <tr>
+            <td valign="top" headers="d2770e74">
+               <samp class="codeph">Swift_Plugins_Loggers_EchoLogger</samp>
+            </td>
+
+            <td valign="top" headers="d2770e77">Prints output to the screen in realtime. Handy for very rudimentary debug output.</td>
+
+         </tr>
+
+    
+      </table>
+
+  </div>
+
+   <div>
+      <ol>
+         <li class="olchildlink">
+            <a href="logger-plugin-howto">Using the Logger Plugin</a>
+            <br/>
+The Logger Plugin – like all plugins – is added with the Mailer class' registerPlugin() method. It accepts an instance of Swift_Plugins_Logger in its constructor.</li>
+      </ol>
+
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="plugins"
+               title="Plugins are provided with Swift Mailer and can be used to extend the behavior of the library in ways that simple class inheritance would be more complex.">Plugins</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="throttler-plugin"
+               title="If your SMTP server has restrictions in place to limit the rate at which you send emails, then your code will need to be aware of this rate-limiting. The Throttler plugin makes Swift Mailer run at a rate-limited speed.">Throttler Plugin</a>
+         </div>
+      </div>
+   </div>
+
+</div>

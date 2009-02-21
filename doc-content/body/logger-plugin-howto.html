@@ -1,0 +1,127 @@
+<div id="logger-ref">
+
+
+  <h1 class="topictitle1">Using the Logger Plugin</h1>
+
+  
+  
+  <div>
+      <p>
+    The Logger Plugin – like all plugins – is added with the Mailer
+    class' <samp class="codeph">registerPlugin()</samp> method.  It accepts an instance of
+    <samp class="codeph">Swift_Plugins_Logger</samp> in its constructor.
+  </p>
+
+      <div class="section">
+         <p>
+        To use the Logger plugin:
+      </p>
+
+      </div>
+
+      <ol>
+         <li>
+            <span>
+          Create an instance of the Mailer using any Transport you choose.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Create an instance of the a Logger implementation of <samp class="codeph">Swift_Plugins_Logger</samp>.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Create an instance of the <samp class="codeph">Swift_Plugins_LoggerPlugin</samp>
+          class, passing the created Logger instance to its constructor.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Register the plugin using the Mailer's <samp class="codeph">registerPlugin()</samp> method.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Continue using Swift Mailer to send messages as normal.
+        </span>
+         </li>
+
+      
+         <li>
+            <span>
+          Dump the contents of the log with the logger's <samp class="codeph">dump()</samp> method.
+        </span>
+         </li>
+
+      </ol>
+
+    
+      <div class="section">
+         <p>
+        When Swift Mailer sends messages it will keep a log of all the interactions with
+        the underlying Transport being used.  Depending upon the Logger that has been
+        used the behaviour will differ, but all implementations offer a way to get the
+        contents of the log.
+      </p>
+
+      </div>
+
+    
+      <div class="example" id="logger-ref__quickexample">
+         <pre class="codeblock">
+&lt;?php
+
+require_once 'lib/swift_required.php';
+
+//Create the Mailer using any Transport
+$mailer = Swift_Mailer::newInstance(
+  Swift_SmtpTransport::newInstance('smtp.example.org', 25)
+);
+
+//To use the ArrayLogger
+$logger = new Swift_Plugins_Loggers_ArrayLogger();
+$mailer-&gt;registerPlugin(new Swift_Plugins_LoggerPlugin($logger));
+
+//Or to use the Echo Logger
+$logger = new Swift_Plugins_Loggers_EchoLogger();
+$mailer-&gt;registerPlugin(new Swift_Plugins_LoggerPlugin($logger));
+
+//Continue sending as normal
+for ($lotsOfRecipients as $recipient) {
+  ...
+  
+  $mailer-&gt;send( ... );
+}
+
+// Dump the log contents
+// NOTE: The EchoLogger dumps in realtime so dump() does nothing for it
+echo $logger-&gt;dump();
+
+
+</pre>
+
+      </div>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="logger-plugin"
+               title="The Logger plugins helps with debugging during the process of sending. It can help to identify why an SMTP server is rejecting addresses, or any other hard-to-find problems that may arise.">Logger Plugin</a>
+         </div>
+      </div>
+   </div>
+
+</div>

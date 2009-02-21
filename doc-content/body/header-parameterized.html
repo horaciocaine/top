@@ -1,0 +1,148 @@
+<div id="header-parameterized">
+
+
+  <h1 class="topictitle1">Parameterized Headers</h1>
+
+  
+  
+  <div>
+      <p>
+    Parameterized headers are text headers that contain key-value parameters following
+    the textual content.  The Content-Type header of a message is a parameterized
+    header since it contains charset information after the content type.
+  </p>
+
+      <p>
+      The parameterized header type is a special type of text header (see
+      <a href="header-text"
+            title="Text headers are the simplest type of Header. They contain textual information with no special information included within it – for example the Subject header in a message.">Text Headers</a>).  It extends the text header
+      by allowing additional information to follow it. All of the methods from text
+      headers are available in addition to the methods described here.
+    </p>
+
+      <p>
+      Adding a parameterized header to a HeaderSet is done by using the
+      <samp class="codeph">addParameterizedHeader()</samp> method which takes a text value
+      like <samp class="codeph">addTextHeader()</samp> but it also accepts an associative array
+      of key-value parameters.
+    </p>
+
+      <pre class="codeblock">
+&lt;?php
+
+$message = Swift_Message::newInstance();
+
+$headers = $message-&gt;getHeaders();
+
+$headers-&gt;addParameterizedHeader(
+  'Header-Name', 'header value',
+  array('foo' =&gt; 'bar')
+  );
+
+</pre>
+
+    
+      <p>
+      To change the text value of the header, call it's <samp class="codeph">setValue()</samp>
+      method just as you do with text headers.
+    </p>
+
+      <p>
+      To change the parameters in the header, call the header's <samp class="codeph">setParameters()</samp>
+      method or the <samp class="codeph">setParameter()</samp> method (note the pluralization).
+    </p>
+
+      <pre class="codeblock">
+&lt;?php
+
+$type = $message-&gt;getHeaders()-&gt;getHeader('Content-Type');
+
+//setParameters() takes an associative array
+$type-&gt;setParameters(array(
+  'name' =&gt; 'file.txt',
+  'charset' =&gt; 'iso-8859-1'
+  ));
+
+//setParameter() takes two args for $key and $value
+$type-&gt;setParameter('charset', 'iso-8859-1');
+
+</pre>
+
+
+      <p>
+      When output via <samp class="codeph">toString()</samp>, a parameterized header produces something like the following:
+    </p>
+
+    
+      <pre class="codeblock">
+&lt;?php
+
+$type = $message-&gt;getHeaders()-&gt;getHeader('Content-Type');
+
+$type-&gt;setValue('text/html');
+$type-&gt;setParameter('charset', 'utf-8');
+
+echo $type-&gt;toString();
+
+/*
+
+Content-Type: text/html; charset=utf-8
+
+*/
+
+</pre>
+
+
+      <p>
+      If the header contains any characters that are outside of the US-ASCII range
+      however, they will be encoded, just like they are for text headers.  This is
+      nothing to be concerned about since mail clients will decode them back. Likewise,
+      if the parameters contain any non-ascii characters they will be encoded so that they
+      can be transmitted safely.
+    </p>
+
+    
+      <pre class="codeblock">
+&lt;?php
+
+$attachment = Swift_Attachment::newInstance();
+
+$disp = $attachment-&gt;getHeaders()-&gt;getHeader('Content-Disposition');
+
+$disp-&gt;setValue('attachment');
+$disp-&gt;setParameter('filename', 'report–may.pdf');
+
+echo $disp-&gt;toString();
+
+/*
+
+Content-Disposition: attachment; filename*=utf-8''report%E2%80%93may.pdf
+
+*/
+
+</pre>
+
+    
+  </div>
+
+   <div>
+      <div class="familylinks">
+         <div class="parentlink">
+            <strong>Parent topic:</strong> 
+            <a href="header-types"
+               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+         </div>
+         <div class="previouslink">
+            <strong>Previous topic:</strong> 
+            <a href="header-text"
+               title="Text headers are the simplest type of Header. They contain textual information with no special information included within it – for example the Subject header in a message.">Text Headers</a>
+         </div>
+         <div class="nextlink">
+            <strong>Next topic:</strong> 
+            <a href="header-date"
+               title="Date headers contains an RFC 2822 formatted date (i.e. what PHP's date('r') returns). They are used anywhere a date or time is needed to be presented as a message header.">Date Headers</a>
+         </div>
+      </div>
+   </div>
+
+</div>

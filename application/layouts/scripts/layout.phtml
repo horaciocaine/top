@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xml:lang="en" >
+  <head>
+    
+    <?php echo $this->headLink()->appendStylesheet('/css/global.css'); ?>
+    
+    <?php echo $this->headScript(); ?>
+    
+    <?php if (empty($this->headHtml)): ?>
+      <title>
+        <?php if (!empty($this->title)): ?>
+          <?php $this->escape($this->title); ?> &#8211;
+        <?php endif; ?>
+        Swift Mailer
+      </title>
+    <?php else: ?>
+      <?php echo $this->headHtml; ?>
+    <?php endif; ?>
+    
+  </head>
+  <body>
+    <div id="layout">
+      
+      <div id="header" class="corners top right left">
+        <div id="headercontent">
+          <img id="logo" src="/images/logo.png" alt="Swift Mailer" />
+        </div>
+      </div>
+
+      <div id="wrapper" class="corners bottom right left">
+        
+        <div>
+          <?php echo $this->layout()->content; ?>
+          
+        </div>
+      
+        <div id="footer">
+          <div id="footercontent">
+            
+            <div id="about">
+              <p><strong>&copy; 2009 Chris Corbyn</strong></p>
+            </div>
+        
+        <div id="support">
+          
+          <dl class="contact">
+            <dt>Swift Mailer</dt>
+            <dd>
+              <ul>
+                <li>About</li>
+                <li>Contact Information</li>
+              </ul>
+            </dd>
+          </dl>
+          
+          <dl class="getstarted">
+            <dt>Get Started</dt>
+            <dd>
+              <ul>
+                <li>Download</li>
+                <li>Tutorials</li>
+                <li>User Guide &amp; Book</li>
+              </ul>
+            </dd>
+          </dl>
+
+          <dl class="related">
+            <dt>Get Help</dt>
+            <dd>
+              <ul>
+                <li>Documentation</li>
+                <li>Contact</li>
+                <li>Report a Bug</li>
+                <li>Google Group</li>
+              </ul>
+            </dd>
+          </dl>
+          
+          <dl class="thanks">
+            <dt>Thanks to</dt>
+            <dd>
+              <ul>
+                <li>github</li>
+                <li>Lighthouse</li>
+                <li>devnetwork.net</li>
+              </ul>
+            </dd>
+          </dl>
+            
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+  </body>
+</html>
