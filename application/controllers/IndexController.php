@@ -15,7 +15,6 @@ class IndexController extends Zend_Controller_Action
   /** The home page */
   public function indexAction()
   {
-    $message = Swift_Message::newInstance();
   }
   
 }

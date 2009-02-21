@@ -27,6 +27,17 @@
       <div id="header" class="corners top right left">
         <div id="headercontent">
           <img id="logo" src="/images/logo.png" alt="Swift Mailer" />
+          
+          <div id="navigation">
+            <ul>
+              <li><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'), null, true); ?>">home</a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), null, true); ?>">download</a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'start'), null, true); ?>">documentation</a></li>
+              <li><a href="#">bugs</a></li>
+              <li><a href="#">contact</a></li>
+              <li class="tab corners top right left"><a href="#">download 4.0.0</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 

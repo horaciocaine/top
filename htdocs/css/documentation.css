@@ -24,8 +24,8 @@ div#topicmap li li {
   font-weight: normal;
 }
 
-div#topicmap ul ul {
-  /*display: none;*/
+div#topicmap ul ul ul {
+  display: none;
 }
 
 div.familylinks {

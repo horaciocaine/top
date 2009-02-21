@@ -114,6 +114,49 @@ table th {
   float: right;
 }
 
+#navigation {
+  float: right;
+  position: relative;
+  top: 215px;
+  left: 181px;
+}
+
+#navigation ul {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+#navigation li {
+  float: left;
+  padding: 0;
+  margin: 0;
+  margin-left: 1em;
+  line-height: 1em;
+}
+
+#navigation a {
+  font-size: 1em;
+  /*font-weight: bold;*/
+  color: #fff;
+  text-decoration: none;
+}
+
+#navigation .tab {
+  background: #fff;
+  padding: 15px 10px 15px 10px;
+  color: #61991c;
+  font-size: 0.9em;
+  position: relative;
+  top: -15px;
+}
+
+#navigation .tab a {
+  color: #61991c;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 #wrapper {
   float: left;
   width: 100%;
