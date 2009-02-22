@@ -60,7 +60,6 @@ ul, ol {
 
 li {
   margin-left: 4em;
-  margin-bottom: 1em;
 }
 
 p {
@@ -137,22 +136,26 @@ table th {
 
 #navigation a {
   font-size: 1em;
-  /*font-weight: bold;*/
   color: #fff;
   text-decoration: none;
+}
+
+#navigation a:hover {
+  color: #99e934;
 }
 
 #navigation .tab {
   background: #fff;
   padding: 15px 10px 15px 10px;
-  color: #61991c;
+  color: #99e934;
   font-size: 0.9em;
   position: relative;
   top: -15px;
 }
 
 #navigation .tab a {
-  color: #61991c;
+  /*color: #64a314;*/
+  color: #de5b0b;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -191,6 +194,10 @@ table th {
   margin: 15px 15px 15px 0;
   padding: 15px;
   background: #eee;
+}
+
+#sidepanel .supplementary.secondary {
+  background: #fff;
 }
 
 #footer {
@@ -237,10 +244,6 @@ table th {
   list-style: none;
   padding: 0;
   margin: 0;
-}
-
-#footer ul li {
-  padding: 4px 0;
 }
 
 .corners.top.right {

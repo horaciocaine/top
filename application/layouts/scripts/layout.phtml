@@ -12,7 +12,7 @@
     <?php if (empty($this->headHtml)): ?>
       <title>
         <?php if (!empty($this->title)): ?>
-          <?php $this->escape($this->title); ?> &#8211;
+          <?php echo $this->escape($this->title); ?> &#8211;
         <?php endif; ?>
         Swift Mailer
       </title>
@@ -30,12 +30,12 @@
           
           <div id="navigation">
             <ul>
-              <li><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'), null, true); ?>">home</a></li>
-              <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), null, true); ?>">download</a></li>
-              <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'start'), null, true); ?>">documentation</a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'), 'default'); ?>">home</a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), 'default'); ?>">download</a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'start'), 'docs-file'); ?>">documentation</a></li>
               <li><a href="#">bugs</a></li>
               <li><a href="#">contact</a></li>
-              <li class="tab corners top right left"><a href="#">download 4.0.0</a></li>
+              <li class="tab corners top right left"><a href="#">current 4.0.0</a></li>
             </ul>
           </div>
         </div>

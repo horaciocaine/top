@@ -17,6 +17,7 @@ class DownloadController extends Zend_Controller_Action
   /** The download page */
   public function indexAction()
   {
+    $this->view->title = 'Downloads';
   }
   
 }

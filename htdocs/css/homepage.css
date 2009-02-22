@@ -1,0 +1,122 @@
+h1 {
+  font-weight: bold;
+}
+
+#downloadbox img,
+#docbox img {
+  float: left;
+  margin-right: 15px;
+}
+
+#downloadbox dl,
+#docbox dl {
+  height: 64px;
+  padding-left: 15px;
+}
+
+#downloadbox dt,
+#docbox dt {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#downloadbox dt a,
+#docbox dt a {
+  color: #222;
+  text-decoration: none;
+}
+
+#downloadbox dt a:hover,
+#docbox dt a:hover {
+  text-decoration: underline;
+}
+
+#downloadbox dd,
+#docbox dd {
+  display: block;
+  padding-top: 4px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+#downloadbox dd .downloadsize {
+  display: inline;
+}
+
+#downloadbox a {
+  color: #596b80;
+}
+
+#newsbox h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+#newsbox p {
+  line-height: 1.5em;
+  font-size: 0.8em;
+}
+
+.homepageintro {
+  font-size: 1.1em;
+}
+
+.featurelist {
+  padding: 20px 0;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.featurelist li {
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  margin: 0 2.5em 20px 2.5em;
+  display: block;
+  background: #a1e34d;
+  color: #111;
+  padding: 10px;
+  width: auto;
+  clear: both;
+}
+
+.featurelist li.feature1,
+.featurelist li.feature3,
+.featurelist li.feature5 {
+  float: left;
+}
+
+.featurelist li.feature2,
+.featurelist li.feature4,
+.featurelist li.feature6 {
+  float: right;
+}
+
+.featurelist li.feature1 {
+  background: #99e934;
+}
+
+.featurelist li.feature2 {
+  background: #a2ea47;
+}
+
+.featurelist li.feature3 {
+  background: #b9eb79;
+}
+
+.featurelist li.feature4 {
+  background: #bcec81;
+}
+
+.featurelist li.feature5 {
+  background: #c8eb9d;
+}
+
+.featurelist li.feature6 {
+  background: #d2ebb3;
+}
