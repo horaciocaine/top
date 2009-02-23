@@ -13,10 +13,13 @@ defined('SWIFT_ROOT_DIR')
   
 defined('SWIFT_APPLICATION_ENVIRONMENT')
   or define('SWIFT_APPLICATION_ENVIRONMENT', 'production');
+
+define('SWIFT_EXTERNALS_DIR', SWIFT_ROOT_DIR . '/externals');
   
 require_once SWIFT_APPLICATION_DIR . '/routemap.php';
 require_once SWIFT_APPLICATION_DIR . '/registry.php';
-  
+require_once SWIFT_APPLICATION_DIR . '/doctrine.php';
+
 Zend_Controller_Front::getInstance()
   ->setControllerDirectory(SWIFT_APPLICATION_DIR . '/controllers');
   

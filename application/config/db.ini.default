@@ -1,0 +1,7 @@
+[production]
+
+db.dsn = mysql://username:password@tcp(127.0.0.1)/swiftmailer_org?charset=utf8
+
+[development : production]
+
+[test : development]
