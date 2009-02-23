@@ -18,6 +18,13 @@ interface Swift_Website_Download
   const SOURCE_GITHUB = 'github';
   
   /**
+   * Get the unique ID for this download.
+   * 
+   * @return int
+   */
+  public function getDownloadId();
+  
+  /**
    * Set the name of the file.
    * 
    * @param string $name
