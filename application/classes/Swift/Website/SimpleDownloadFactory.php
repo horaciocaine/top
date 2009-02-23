@@ -12,8 +12,8 @@ class Swift_Website_SimpleDownloadFactory
   /** Maximum number of times the request can be redirected */
   const MAX_REDIRECTS = 5;
   
-  /** Array of {@link Swift_Website_DownloadSource} of objects */
-  private $_sources;
+  /** The DownloadResolver that is used to look up URLs */
+  private $_resolver;
   
   /** HTTP client used for retrieving data from the remote source */
   private $_client;
@@ -25,13 +25,10 @@ class Swift_Website_SimpleDownloadFactory
    * @param Swift_Website_DownloadSource[] $sources
    * @param Swift_Website_HttpClient $client
    */
-  public function __construct($sources, Swift_Website_HttpClient $client)
+  public function __construct(Swift_Website_DownloadResolver $resolver,
+    Swift_Website_HttpClient $client)
   {
-    $this->_sources = array();
-    foreach ($sources as $source)
-    {
-      $this->_sources[$source->getSourceName()] = $source;
-    }
+    $this->_resolver = $resolver;
     $this->_client = $client;
   }
   
@@ -55,14 +52,7 @@ class Swift_Website_SimpleDownloadFactory
   public function createDownload($filename, $sourceName,
     Swift_Website_Download $download)
   {
-    if (!array_key_exists($sourceName, $this->_sources))
-    {
-      throw new Swift_WebsiteException(
-        sprintf('Unknown source %s', $sourceName)
-      );
-    }
-    
-    $url = $this->_sources[$sourceName]->getDownloadUrl($filename);
+    $url = $this->_resolver->getDownloadUrl($filename, $sourceName);
     $redirects = 0;
     do
     {

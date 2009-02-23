@@ -4,39 +4,34 @@ class Swift_Website_SimpleDownloadFactoryTest
   extends Swift_Website_UnitTestCase
 {
   
-  public function testFactoryLooksUpUrlFromCorrectDownloadSource()
+  public function testFactoryLooksUpUrlFromResolver()
   {
-    $sourceA = $this->_createMockSource();
-    $sourceB = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($sourceA)->getSourceName() -> returns('A')
-      -> ignoring($sourceB)->getSourceName() -> returns('B')
-      -> one($sourceB)->getDownloadUrl('file.zip') -> returns('http://site-a.tld/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'B') -> returns('http://site-a.tld/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://site-a.tld/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '200 OK'))
-      -> never($sourceA)->getDownloadUrl(any())
       -> ignoring($client)
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($sourceA, $sourceB), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'B', $download);
   }
   
   public function testFactoryGetsHeadersFromHttpClient()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '200 OK', 'Content-Length' => 1234))
@@ -44,20 +39,19 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
   public function testFactoryResolvesHeadersWhileLocationHeaderIsPresent()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> one($client)->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '302 OK', 'Location' => 'http://b.c/file.zip'))
       -> one($client)->getHeaders('http://b.c/file.zip')
@@ -68,20 +62,19 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
   public function testFactoryWritesSourceNameToDownload()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '200 OK'))
@@ -90,20 +83,19 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
   public function testFactoryAssignsTimeCreated()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '200 OK'))
@@ -112,20 +104,19 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
   public function testFactoryAssignsFilename()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '200 OK'))
@@ -134,20 +125,19 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
   public function testFactorySetsFilesizeAsContentLengthIfPresent()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> one($client)->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '302 OK', 'Location' => 'http://b.c/file.zip'))
       -> one($client)->getHeaders('http://b.c/file.zip')
@@ -159,20 +149,19 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
   public function testFactoryDownloadsBodyToGetFilesizeIfNoContentLengthHeaderPresent()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '200 OK'))
@@ -183,30 +172,30 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     $factory->createDownload('file.zip', 'X', $download);
   }
   
-  public function testExceptionIsThrownIfDownloadSourceDoesNotExist()
+  public function testExceptionIsThrownIfResolverThrowsException()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> never($source)->getDownloadUrl('file.zip')
+      -> ignoring($resolver)->getDownloadUrl('file.zip', 'X')
+        -> throws(new Swift_WebsiteException('test'))
       -> never($client)
       -> never($download)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     try
     {
-      $factory->createDownload('file.zip', 'Y', $download);
-      $this->fail('Exception should be thrown since download source Y does not exist');
+      $factory->createDownload('file.zip', 'X', $download);
+      $this->fail('Exception should be thrown since resolver throws Exception');
     }
     catch (Swift_WebsiteException $e)
     {
@@ -215,13 +204,12 @@ class Swift_Website_SimpleDownloadFactoryTest
   
   public function testExceptionIsThrownIfHttpClientThrowsException()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> throws(new Swift_Website_HttpClientException('test'))
@@ -229,7 +217,7 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($client)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     try
     {
@@ -243,13 +231,12 @@ class Swift_Website_SimpleDownloadFactoryTest
   
   public function testExceptionIsThrownIfStatusIsNotOk()
   {
-    $source = $this->_createMockSource();
+    $resolver = $this->_createMockResolver();
     $download = $this->_createMockDownload();
     $client = $this->_createMockHttpClient();
     
     $this->_checking(Expectations::create()
-      -> ignoring($source)->getSourceName() -> returns('X')
-      -> one($source)->getDownloadUrl('file.zip') -> returns('http://a.b/files/file.zip')
+      -> one($resolver)->getDownloadUrl('file.zip', 'X') -> returns('http://a.b/files/file.zip')
       -> atLeast(1)->of($client)
         ->getHeaders('http://a.b/files/file.zip', Swift_Website_HttpClient::METHOD_GET)
         -> returns(array('Status' => '400 Not Found'))
@@ -257,7 +244,7 @@ class Swift_Website_SimpleDownloadFactoryTest
       -> ignoring($client)
       );
     
-    $factory = $this->_createDownloadFactory(array($source), $client);
+    $factory = $this->_createDownloadFactory($resolver, $client);
     
     try
     {
@@ -271,14 +258,14 @@ class Swift_Website_SimpleDownloadFactoryTest
   
   // -- Creation Methods
   
-  private function _createDownloadFactory($sources, $httpClient)
+  private function _createDownloadFactory($resolver, $httpClient)
   {
-    return new Swift_Website_SimpleDownloadFactory($sources, $httpClient);
+    return new Swift_Website_SimpleDownloadFactory($resolver, $httpClient);
   }
   
-  private function _createMockSource()
+  private function _createMockResolver()
   {
-    return $this->_mock('Swift_Website_DownloadSource');
+    return $this->_mock('Swift_Website_DownloadResolver');
   }
   
   private function _createMockDownload()
