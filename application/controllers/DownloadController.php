@@ -17,7 +17,19 @@ class DownloadController extends Zend_Controller_Action
   /** The download page */
   public function indexAction()
   {
-    $this->view->title = 'Downloads';
+    $this->view->assign(array(
+      'title' => 'Downloads'
+    ));
+  }
+  
+  /** Show all downloads available */
+  public function downloadArchiveAction()
+  {
+  }
+  
+  /** Download a specific file */
+  public function downloadFile()
+  {
   }
   
 }

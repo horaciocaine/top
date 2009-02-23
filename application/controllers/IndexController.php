@@ -15,6 +15,9 @@ class IndexController extends Zend_Controller_Action
   /** The home page */
   public function indexAction()
   {
+    $this->view->assign(array(
+      'title' => 'Powerful component based mailing library for PHP'
+    ));
   }
   
 }

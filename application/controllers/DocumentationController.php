@@ -39,9 +39,11 @@ class DocumentationController extends Zend_Controller_Action
       $this->getRequest()->get('topic')
     );
     
-    $this->view->headHtml = $topic->getHeadContent();
-    $this->view->topicBody = $topic->getBodyContent();
-    $this->view->topicMap = $this->_getTopicMap();
+    $this->view->assign(array(
+      'headHtml' => $topic->getHeadContent(),
+      'topicBody' => $topic->getBodyContent(),
+      'topicMap' => $this->_getTopicMap()
+    ));
   }
   
   // -- Private Methods
