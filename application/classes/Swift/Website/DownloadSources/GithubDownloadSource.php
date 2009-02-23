@@ -44,6 +44,7 @@ class Swift_Website_DownloadSources_GithubDownloadSource
    * Gets the URL where the file resides at github.com.
    * 
    * @param string $filename
+   * 
    * @return string
    */
   public function getDownloadUrl($filename)

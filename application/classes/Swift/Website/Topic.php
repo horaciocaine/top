@@ -22,6 +22,7 @@ class Swift_Website_Topic
    * 
    * @param string $topicDir
    * @param string $topicName
+   * 
    * @throws Swift_Website_TopicNotFoundException
    */
   public function __construct($topicDir, $topicName)

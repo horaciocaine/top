@@ -39,6 +39,7 @@ class Swift_Website_DownloadSources_SourceforgeDownloadSource
    * Gets the URL where the file resides at sourceforge.com.
    * 
    * @param string $filename
+   * 
    * @return string
    */
   public function getDownloadUrl($filename)

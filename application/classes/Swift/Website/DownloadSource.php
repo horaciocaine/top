@@ -22,6 +22,7 @@ interface Swift_Website_DownloadSource
    * Get the download URL for $filename at this source.
    * 
    * @param string $filename
+   * 
    * @return string
    */
   public function getDownloadUrl($filename);

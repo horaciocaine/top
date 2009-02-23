@@ -36,6 +36,7 @@ class Swift_Website_DownloadSources_GoogleCodeDownloadSource
    * Gets the URL where the file resides at code.google.com.
    * 
    * @param string $filename
+   * 
    * @return string
    */
   public function getDownloadUrl($filename)
