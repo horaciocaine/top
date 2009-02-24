@@ -43,7 +43,7 @@ Download:
     collate: utf8_general_ci
     charset: utf8
 
-#Download hits (fot stats tracking)
+#Download hits (for stats tracking)
 DownloadEvent:
   columns:
     id:

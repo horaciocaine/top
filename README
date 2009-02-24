@@ -1,5 +1,22 @@
 This is the source code for the Swift Mailer Web Site at swiftmailer.org.
 
+If you really want to install it on your own server:
+
+  1. Checkout the source from git
+  2. Create a blank database with some known credentials
+  3. Copy application/config/environment.ini.default to application/config/environment.ini
+  4. Copy application/config/db.ini.default to application/config/db.ini
+  5. Edit application/config/db.ini to reference your database
+  6. Run the script (from the command line) application/scripts/install.php
+  7. Make sure the site will be running at the root directory of the domain (i.e. at /)
+  8. Point your document root in apache to the htdocs folder
+
+A root user will be created for you that you can log in as at http://your-site.tld/admin.
+
+  Username: admin
+  Password: everest
+
+You can change this password when you first log in.
+
 Feel free to browse and nosey around.  You'll find Swift Mailer integrated
 throughout the code base.
-

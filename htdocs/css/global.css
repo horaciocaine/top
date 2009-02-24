@@ -95,6 +95,74 @@ table th {
   text-transform: uppercase;
 }
 
+form {
+  display: block;
+  width: 100%;
+  float: left;
+  clear: both;
+  font-size: 1.1em;
+}
+
+form fieldset {
+  display: block;
+  width: 500px;
+  padding: 10px 0;
+  float: left;
+  clear: both;
+}
+
+form fieldset.buttons {
+  padding: 20px 0;
+}
+
+form fieldset.buttons input.button {
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-topleft: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  padding: 3px;
+  border: 1px solid #fff;
+  float: right;
+  margin: 0 10px;
+}
+
+form fieldset.buttons input.primary {
+  text-transform: uppercase;
+  background: #2a4fb7;
+  color: #fff;
+}
+
+form fieldset.buttons input.secondary {
+  text-transform: uppercase;
+  background: #ccc;
+  color: #666;
+}
+
+form label {
+  width: 33%;
+  margin: 5px;
+  display: block;
+  float: left;
+  clear: left;
+}
+
+form label strong {
+  color: #2a4fb7;
+}
+
+form input {
+  margin: 5px;
+  font-size: 1.1em;
+}
+
+form input.text {
+  display: block;
+  float: right;
+  border: 1px solid #aaa;
+  padding: 2px;
+  font-family: 'Lucida Grande', Trebuchet;
+}
+
 #layout {
   padding: 50px 40px 0 40px;
 }
