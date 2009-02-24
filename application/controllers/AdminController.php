@@ -127,15 +127,27 @@ class AdminController extends Zend_Controller_Action
       array('newpassword0', 'newpassword1'), 'New Password and Repeat Password'
     ));
     
-    if (!$validator->isValid($this->getRequest()->getParams()))
+    if ($validator->isValid($this->getRequest()->getParams()))
     {
-      $this->view->assign(array(
-        'validationErrors' => $validator->getValidationErrors()
-      ));
-      return;
+      $user = $this->_getAuthenticator()->getIdentity();
+
+      if (!$user->isCorrectPassword($this->getRequest()->get('currentpassword')))
+      {
+        $validator->addValidationError('The current password is not correct');
+      }
+      else
+      {
+        //Change the password
+        $user->setPassword($this->getRequest()->get('newpassword0'));
+        $user->save();
+        
+        return $this->_redirectToAdminIndex();
+      }
     }
     
-    //
+    $this->view->assign(array(
+      'validationErrors' => $validator->getValidationErrors()
+    ));
   }
   
   // -- Private Methods

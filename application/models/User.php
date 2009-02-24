@@ -20,6 +20,18 @@ class User extends BaseUser
     $this->setPasswordHash(md5(md5($password) . $salt));
   }
   
+  /**
+   * Check if the given password is the correct password for this user.
+   * 
+   * @param string $password
+   * 
+   * @return boolean
+   */
+  public function isCorrectPassword($password)
+  {
+    return md5(md5($password) . $this->getPasswordSalt()) == $this->getPasswordHash();
+  }
+  
   // -- Private Methods
   
   private function _getSalt()
