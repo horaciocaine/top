@@ -14,7 +14,7 @@ abstract class BaseDownloadEvent extends Doctrine_Record
         $this->hasColumn('ip_address', 'string', 15, array('type' => 'string', 'length' => '15'));
 
 
-        $this->index('time_index', array(0 => 'time_created'));
+        $this->index('time_index', array('fields' => array(0 => 'time_created')));
         $this->option('type', 'INNODB');
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');

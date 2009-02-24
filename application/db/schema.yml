@@ -57,7 +57,8 @@ DownloadEvent:
     Download:
       foreignType: one
   indexes:
-    time_index: ['time_created']
+    time_index:
+      fields: ['time_created']
   options:
     type: INNODB
     collate: utf8_general_ci

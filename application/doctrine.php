@@ -6,7 +6,9 @@
 
 set_include_path(
   get_include_path() .
-  PATH_SEPARATOR . SWIFT_EXTERNALS_DIR . '/doctrine/lib'
+  PATH_SEPARATOR . SWIFT_EXTERNALS_DIR . '/doctrine/lib' .
+  PATH_SEPARATOR . SWIFT_MODEL_DIR .
+  PATH_SEPARATOR . SWIFT_MODEL_DIR . '/generated'
 );
 
 require_once SWIFT_EXTERNALS_DIR . '/doctrine/lib/Doctrine.php';
