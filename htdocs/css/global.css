@@ -150,6 +150,12 @@ form label strong {
   color: #2a4fb7;
 }
 
+form label .instruction {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+}
+
 form input {
   margin: 5px;
   font-size: 1.1em;
@@ -274,6 +280,38 @@ form input.text {
 
 #sidepanel .supplementary.secondary {
   background: #fff;
+}
+
+#sidepanel .supplementary.iconbox img {
+  float: left;
+  margin-right: 15px;
+}
+
+#sidepanel .supplementary.iconbox dl {
+  height: 64px;
+  padding-left: 15px;
+}
+
+#sidepanel .supplementary.iconbox dt {
+  display: block;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#sidepanel .supplementary.iconbox dt a {
+  color: #222;
+  text-decoration: none;
+}
+
+#sidepanel .supplementary.iconbox dt a:hover {
+  text-decoration: underline;
+}
+
+#sidepanel .supplementary.iconbox dd {
+  display: block;
+  padding-top: 4px;
+  font-size: 0.8em;
+  color: #666;
 }
 
 #footer {

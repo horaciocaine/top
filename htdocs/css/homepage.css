@@ -2,44 +2,6 @@ h1 {
   font-weight: bold;
 }
 
-#downloadbox img,
-#docbox img {
-  float: left;
-  margin-right: 15px;
-}
-
-#downloadbox dl,
-#docbox dl {
-  height: 64px;
-  padding-left: 15px;
-}
-
-#downloadbox dt,
-#docbox dt {
-  display: block;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-#downloadbox dt a,
-#docbox dt a {
-  color: #222;
-  text-decoration: none;
-}
-
-#downloadbox dt a:hover,
-#docbox dt a:hover {
-  text-decoration: underline;
-}
-
-#downloadbox dd,
-#docbox dd {
-  display: block;
-  padding-top: 4px;
-  font-size: 0.8em;
-  color: #666;
-}
-
 #downloadbox dd .downloadsize {
   display: inline;
 }

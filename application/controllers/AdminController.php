@@ -23,7 +23,8 @@ class AdminController extends Zend_Controller_Action
     }
     
     $this->view->assign(array(
-      'title' => 'Admin Panel'
+      'title' => 'Admin Panel',
+      'user' => $this->_getAuthenticator()->getIdentity()
     ));
   }
   
@@ -44,6 +45,11 @@ class AdminController extends Zend_Controller_Action
       'title' => 'Login'
     ));
     
+    if (!$this->getRequest()->isPost())
+    {
+      return;
+    }
+    
     $validator = new Swift_Website_SimpleValidator();
     $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
       'username', 'Username'
@@ -52,32 +58,29 @@ class AdminController extends Zend_Controller_Action
       'password', 'Password'
     ));
     
-    if ($this->getRequest()->isPost())
+    if (!$validator->isValid($this->getRequest()->getParams()))
     {
-      if (!$validator->isValid($this->getRequest()->getParams()))
-      {
-        $this->view->assign(array(
-          'validationErrors' => $validator->getValidationErrors()
-        ));
-        return;
-      }
-      
-      $result = $this->_authenticate(
-        $this->getRequest()->get('username'),
-        $this->getRequest()->get('password')
-      );
-      
-      if (!$result->isValid())
-      {
-        $validator->addValidationError('Incorrect username or password');
-        $this->view->assign(array(
-          'validationErrors' => $validator->getValidationErrors()
-        ));
-        return;
-      }
-      
-      return $this->_redirectToAdminIndex();
+      $this->view->assign(array(
+        'validationErrors' => $validator->getValidationErrors()
+      ));
+      return;
     }
+    
+    $result = $this->_authenticate(
+      $this->getRequest()->get('username'),
+      $this->getRequest()->get('password')
+    );
+    
+    if (!$result->isValid())
+    {
+      $validator->addValidationError('Incorrect username or password');
+      $this->view->assign(array(
+        'validationErrors' => $validator->getValidationErrors()
+      ));
+      return;
+    }
+    
+    return $this->_redirectToAdminIndex();
   }
   
   /** End login session */
@@ -85,6 +88,54 @@ class AdminController extends Zend_Controller_Action
   {
     Zend_Auth::getInstance()->clearIdentity();
     return $this->_redirectToLoginPage();
+  }
+  
+  /** Update the currently logged in user's password */
+  public function passwordSettingsAction()
+  {
+    if (!$this->_getAuthenticator()->hasIdentity())
+    {
+      return $this->_redirectToLoginPage();
+    }
+    
+    if ($this->getRequest()->get('cancel'))
+    {
+      return $this->_redirectToAdminIndex();
+    }
+    
+    $this->view->assign(array(
+      'title' => 'Password Change',
+      'user' => $this->_getAuthenticator()->getIdentity()
+    ));
+    
+    if (!$this->getRequest()->isPost())
+    {
+      return;
+    }
+    
+    $validator = new Swift_Website_SimpleValidator();
+    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
+      'currentpassword', 'Current Password'
+    ));
+    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
+      'newpassword0', 'New Password'
+    ));
+    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
+      'newpassword1', 'Repeat Password'
+    ));
+    $validator->addRule(new Swift_Website_Validation_Rules_MatchedFieldsRule(
+      array('newpassword0', 'newpassword1'), 'New Password and Repeat Password'
+    ));
+    
+    if (!$validator->isValid($this->getRequest()->getParams()))
+    {
+      $this->view->assign(array(
+        'validationErrors' => $validator->getValidationErrors()
+      ));
+      return;
+    }
+    
+    //
   }
   
   // -- Private Methods
