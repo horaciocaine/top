@@ -150,6 +150,20 @@ class AdminController extends Zend_Controller_Action
     ));
   }
   
+  /** Add packages for public download, revoke existing packages */
+  public function downloadManagerAction()
+  {
+    if (!$this->_getAuthenticator()->hasIdentity())
+    {
+      return $this->_redirectToLoginPage();
+    }
+    
+    $this->view->assign(array(
+      'title' => 'Download Manager',
+      'user' => $this->_getAuthenticator()->getIdentity()
+    ));
+  }
+  
   // -- Private Methods
   
   private function _authenticate($username, $password)

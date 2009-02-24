@@ -1,0 +1,23 @@
+<?php $this->headLink()->appendStylesheet('/css/admin.css'); ?>
+
+<div id="container">
+  <div id="content">
+    
+    <h1>Download Manager</h1>
+    
+    <p>
+      From here you can view the list of downloads added for public consumption.  You
+      can revoke these downloads (in the event of say a really critical bug) and you
+      can add to them.
+    </p>
+    
+    <p>
+      In order to add a download it must first exist at either SourceForge, Google Code
+      or GitHub.  This Download Manager will lookup the details of the package from
+      the remote resource.
+    </p>
+    
+  </div>
+</div>
+
+<?php require('fragments/_admin-menu.phtml'); ?>
