@@ -20,6 +20,8 @@ class DownloadController extends Zend_Controller_Action
     $this->view->assign(array(
       'title' => 'Downloads'
     ));
+    
+    $db = Zend_Registry::getInstance()->get('db')->getCurrentConnection();
   }
   
   /** Show all downloads available */

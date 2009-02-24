@@ -1,0 +1,64 @@
+---
+#Users who can administer the site
+User:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    username: string(255)
+    password_hash: string(32)
+    password_salt: blob(3)
+    email: string(255)
+    time_created: timestamp
+  indexes:
+    name_index:
+      fields: ['username']
+  options:
+    type: INNODB
+    collate: utf8_general_ci
+    charset: utf8
+
+#Available downloads
+Download:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    filename: string(255)
+    time_created: timestamp
+    filesize: integer
+    source:
+      type: enum
+      values: ['sourceforge', 'googlecode', 'github']
+    revoked: boolean
+  indexes:
+    time_index:
+      fields: ['time_created']
+    revoke_index:
+      fields: ['revoked']
+  options:
+    type: INNODB
+    collate: utf8_general_ci
+    charset: utf8
+
+#Download hits (fot stats tracking)
+DownloadEvent:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    download_id: integer
+    time_created: timestamp
+    ip_address: string(15)
+  relations:
+    Download:
+      foreignType: one
+  indexes:
+    time_index: ['time_created']
+  options:
+    type: INNODB
+    collate: utf8_general_ci
+    charset: utf8
