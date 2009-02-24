@@ -1,0 +1,10 @@
+<?php if (!empty($this->validationErrors)): ?>
+  <div class="errors">
+    <strong>Errors occurred:</strong>
+    <ul>
+      <?php foreach ($this->validationErrors as $validationError): ?>
+        <li><?php echo $this->escape($validationError); ?></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+<?php endif; ?>

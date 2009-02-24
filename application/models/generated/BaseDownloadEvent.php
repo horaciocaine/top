@@ -10,7 +10,7 @@ abstract class BaseDownloadEvent extends Doctrine_Record
         $this->setTableName('download_event');
         $this->hasColumn('id', 'integer', null, array('type' => 'integer', 'primary' => true, 'autoincrement' => true));
         $this->hasColumn('download_id', 'integer', null, array('type' => 'integer'));
-        $this->hasColumn('time_created', 'timestamp', null, array('type' => 'timestamp'));
+        $this->hasColumn('time_created', 'integer', null, array('type' => 'integer'));
         $this->hasColumn('ip_address', 'string', 15, array('type' => 'string', 'length' => '15'));
 
 

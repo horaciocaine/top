@@ -46,6 +46,16 @@ class Swift_Website_SimpleValidator implements Swift_Website_Validator
   }
   
   /**
+   * Add an error to the list of errors.
+   * 
+   * @param string $error
+   */
+  public function addValidationError($error)
+  {
+    $this->_errors[] = $error;
+  }
+  
+  /**
    * Get an array of validation errors.
    * 
    * @return array

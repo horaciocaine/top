@@ -158,9 +158,17 @@ form input {
 form input.text {
   display: block;
   float: right;
-  border: 1px solid #aaa;
+  border: 1px solid #888;
   padding: 2px;
   font-family: 'Lucida Grande', Trebuchet;
+}
+
+.errors {
+  margin: 20px 0;
+  background: #cc8888;
+  border: 1px solid #881111;
+  color: #441111;
+  padding: 10px;
 }
 
 #layout {

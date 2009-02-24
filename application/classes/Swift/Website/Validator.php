@@ -25,6 +25,13 @@ interface Swift_Website_Validator
   public function isValid($requestParams);
   
   /**
+   * Add an error to the list of errors.
+   * 
+   * @param string $error
+   */
+  public function addValidationError($error);
+  
+  /**
    * Get an array of validation errors.
    * 
    * @return array

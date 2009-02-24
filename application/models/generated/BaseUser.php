@@ -13,7 +13,7 @@ abstract class BaseUser extends Doctrine_Record
         $this->hasColumn('password_hash', 'string', 32, array('type' => 'string', 'length' => '32'));
         $this->hasColumn('password_salt', 'blob', 3, array('type' => 'blob', 'length' => '3'));
         $this->hasColumn('email', 'string', 255, array('type' => 'string', 'length' => '255'));
-        $this->hasColumn('time_created', 'timestamp', null, array('type' => 'timestamp'));
+        $this->hasColumn('time_created', 'integer', null, array('type' => 'integer'));
 
 
         $this->index('name_index', array('fields' => array(0 => 'username')));

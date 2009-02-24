@@ -10,7 +10,7 @@ abstract class BaseDownload extends Doctrine_Record
         $this->setTableName('download');
         $this->hasColumn('id', 'integer', null, array('type' => 'integer', 'primary' => true, 'autoincrement' => true));
         $this->hasColumn('filename', 'string', 255, array('type' => 'string', 'length' => '255'));
-        $this->hasColumn('time_created', 'timestamp', null, array('type' => 'timestamp'));
+        $this->hasColumn('time_created', 'integer', null, array('type' => 'integer'));
         $this->hasColumn('filesize', 'integer', null, array('type' => 'integer'));
         $this->hasColumn('source', 'enum', null, array('type' => 'enum', 'values' => array(0 => 'sourceforge', 1 => 'googlecode', 2 => 'github')));
         $this->hasColumn('revoked', 'boolean', null, array('type' => 'boolean'));

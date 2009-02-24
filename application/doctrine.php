@@ -33,6 +33,10 @@ Doctrine_Manager::getInstance()->setAttribute(
   Doctrine::ATTR_MODEL_LOADING, Doctrine::MODEL_LOADING_CONSERVATIVE
 );
 
+Doctrine_Manager::getInstance()->setAttribute(
+  Doctrine::ATTR_AUTOLOAD_TABLE_CLASSES, true
+);
+
 Doctrine::loadModels(SWIFT_MODEL_DIR);
 
 Zend_Registry::getInstance()->set('db', Doctrine_Manager::getInstance());

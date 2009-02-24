@@ -2125,6 +2125,26 @@ abstract class Doctrine_Record extends Doctrine_Record_Abstract implements Count
                 return call_user_func_array(array($template, $method), $args);
             }
         }
+        
+        //Patch to add accessors (Chris Corbyn)
+        $accessor = substr($method, 0, 3);
+        if ($accessor == 'get' || $accessor == 'set') {
+          $transformedName = substr($method, 3);
+          foreach ($this->_table->getColumnNames() as $column) {
+            $columnParts = explode('_', $column);
+            foreach ($columnParts as $i => $part) {
+              $columnParts[$i] = ucfirst($part);
+            }
+            if (implode('', $columnParts) == $transformedName) {
+              if ($accessor == 'get') {
+                return $this->get($column);
+              } else {
+                return $this->set($column, array_shift($args));
+              }
+            }
+          }
+        }
+        //End patching
 
         throw new Doctrine_Record_Exception(sprintf('Unknown method %s::%s', get_class($this), $method));
     }

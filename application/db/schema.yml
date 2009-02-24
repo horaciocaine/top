@@ -10,7 +10,7 @@ User:
     password_hash: string(32)
     password_salt: blob(3)
     email: string(255)
-    time_created: timestamp
+    time_created: integer
   indexes:
     name_index:
       fields: ['username']
@@ -27,7 +27,7 @@ Download:
       primary: true
       autoincrement: true
     filename: string(255)
-    time_created: timestamp
+    time_created: integer
     filesize: integer
     source:
       type: enum
@@ -51,7 +51,7 @@ DownloadEvent:
       primary: true
       autoincrement: true
     download_id: integer
-    time_created: timestamp
+    time_created: integer
     ip_address: string(15)
   relations:
     Download:
