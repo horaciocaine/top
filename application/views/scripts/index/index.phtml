@@ -25,10 +25,13 @@
   <div id="downloadbox" class="supplementary iconbox corners top right bottom left">
     <a href="#"><img src="/images/download.png" alt="download" /></a>
     <dl>
-      <dt><a href="#">Swift-4.0.0.tar.gz</a></dt>
+      <dt><a rel="nofollow" href="#"><?php echo $this->escape($this->currentDownload()->getName()); ?></a></dt>
       <dd>
-        <div class="releasedate">22 February 2009</div>
-        <div class="downloadsize">384KB</div> <a href="#">Download</a>
+        <div class="releasedate"><?php echo $this->escape(date('j F Y', $this->currentDownload()->getTimeCreated())); ?></div>
+        <div class="downloadsize">
+          <?php echo $this->escape(number_format($this->currentDownload()->getSize())); ?> bytes
+        </div>
+        <a rel="nofollow" href="#">Download</a>
       </dd>
     </dl>
   </div>

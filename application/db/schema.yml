@@ -32,12 +32,21 @@ Download:
     source:
       type: enum
       values: ['sourceforge', 'googlecode', 'github']
-    revoked: boolean
+    revoked:
+      type: boolean
+      notnull: true
+    stable:
+      type: boolean
+      default: true
+      notnull: true
+    version_number: string(255)
   indexes:
     time_index:
       fields: ['time_created']
     revoke_index:
       fields: ['revoked']
+    version_index:
+      fields: ['version_number(18)']
   options:
     type: INNODB
     collate: utf8_general_ci

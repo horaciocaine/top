@@ -4,5 +4,47 @@
  */
 class DownloadTable extends Doctrine_Table
 {
-
+  
+  /**
+   * Find all downloads, ordered in a descending order by version.
+   * 
+   * @return Doctrine_Collection of Download objects
+   */
+  public function findAllDescendingByVersion()
+  {
+    return $this->createQuery('dctrn_find')
+      ->orderby('version_number DESC, time_created DESC')
+      ->execute()
+      ;
+  }
+  
+  /**
+   * Get the latest version that is available for download.
+   * 
+   * @return Download
+   */
+  public function getCurrentDownload()
+  {
+    return $this->createQuery('dctrn_find')
+      ->where('revoked != 1 AND stable = 1')
+      ->orderby('version_number DESC, time_created DESC')
+      ->limit(1)
+      ->fetchOne()
+      ;
+  }
+  
+  /**
+   * Find a download file based on its name.
+   * 
+   * @return Download
+   */
+  public function findAvailableByName($name)
+  {
+    return $this->createQuery('dctrn_find')
+      ->where('revoked != 1 AND filename = ?')
+      ->limit(1)
+      ->fetchOne(array($name))
+      ;
+  }
+  
 }

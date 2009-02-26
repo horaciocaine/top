@@ -16,5 +16,10 @@ $router->addRoute('docs-file', new Zend_Controller_Router_Route(
   '/docs/:topic',
   array('controller'=>'documentation', 'action'=>'load-file')
   ));
+  
+$router->addRoute('edit-download', new Zend_Controller_Router_Route(
+  '/admin/download-manager/edit/:downloadid',
+  array('controller'=>'admin', 'action'=>'edit-download')
+  ));
 
 unset($router);

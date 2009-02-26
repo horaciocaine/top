@@ -101,9 +101,9 @@ class Swift_Website_SimpleFormHandler implements Swift_Website_FormHandler
     if ($this->isSubmitted())
     {
       $params = $this->_request->getParams();
-      $value = isset($params[$name]) ?
-        $params[$name]
-        : $this->_getDefaultValue($name)
+      $value = isset($params[$name])
+        ? $params[$name]
+        : null
         ;
     }
     else

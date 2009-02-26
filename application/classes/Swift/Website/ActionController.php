@@ -26,4 +26,25 @@ abstract class Swift_Website_ActionController extends Zend_Controller_Action
       );
   }
   
+  // -- Protected Methods
+  
+  protected function _getForm($fields = array(), $defaultValues = array(),
+    $options = array())
+  {
+    return new Swift_Website_SimpleFormHandler(
+      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+      $fields, $defaultValues, $options
+    );
+  }
+  
+  protected function _getValidator($rules = array())
+  {
+    $validator = new Swift_Website_SimpleValidator();
+    foreach ($rules as $rule)
+    {
+      $validator->addRule($rule);
+    }
+    return $validator;
+  }
+  
 }

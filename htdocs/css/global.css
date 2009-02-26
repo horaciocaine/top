@@ -82,6 +82,7 @@ pre {
 
 table {
   margin: 1em 1em 2em 1em;
+  width: 90%;
 }
 
 table th, td {
@@ -93,6 +94,21 @@ table th {
   background: #eee;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+dl {
+  display: block;
+  margin-bottom: 1em;
+}
+
+dt {
+  display: block;
+  font-weight: bold;
+}
+
+dd {
+  display: block;
+  margin-bottom: 5px;
 }
 
 form {
@@ -129,7 +145,8 @@ form label .instruction {
   color: #666;
 }
 
-form fieldset.radios {
+form fieldset.radios,
+form fieldset.checkboxes {
   display: block;
   float: right;
   clear: none;
@@ -138,7 +155,8 @@ form fieldset.radios {
   width: 220px;
 }
 
-form fieldset.radios label {
+form fieldset.radios label,
+form fieldset.checkboxes label {
   display: block;
   width: 100%;
   margin: 5px 0;
@@ -306,6 +324,7 @@ form input.text {
 #sidepanel .supplementary.iconbox dl {
   height: 64px;
   padding-left: 15px;
+  margin-bottom: 0;
 }
 
 #sidepanel .supplementary.iconbox dt {
@@ -326,6 +345,7 @@ form input.text {
 #sidepanel .supplementary.iconbox dd {
   display: block;
   padding-top: 4px;
+  margin-bottom: 0;
   font-size: 0.8em;
   color: #666;
 }

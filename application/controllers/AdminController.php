@@ -14,6 +14,9 @@
 class AdminController extends Swift_Website_ActionController
 {
   
+  /** Lazy-loaded Download object */
+  private $_download;
+  
   /** The download page */
   public function indexAction()
   {
@@ -40,8 +43,7 @@ class AdminController extends Swift_Website_ActionController
       'title' => 'Login'
     ));
     
-    $form = new Swift_Website_SimpleFormHandler(
-      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+    $form = $this->_getForm(
       array('username', 'password'),
       array(),
       array('cancel_field'=>'cancel')
@@ -57,12 +59,9 @@ class AdminController extends Swift_Website_ActionController
       return $this->_redirectToHomePage();
     }
     
-    $validator = new Swift_Website_SimpleValidator();
-    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
-      'username', 'Username'
-    ));
-    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
-      'password', 'Password'
+    $validator = $this->_getValidator(array(
+      new Swift_Website_Validation_Rules_RequiredRule('username', 'Username'),
+      new Swift_Website_Validation_Rules_RequiredRule('password', 'Password')
     ));
     
     if ($validator->isValid($form->getValues()))
@@ -106,8 +105,7 @@ class AdminController extends Swift_Website_ActionController
       'user' => $this->_getAuthenticator()->getIdentity()
     ));
     
-    $form = new Swift_Website_SimpleFormHandler(
-      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+    $form = $this->_getForm(
       array('currentpassword', 'newpassword0', 'newpassword1'),
       array(),
       array('cancel_field'=>'cancel')
@@ -123,18 +121,19 @@ class AdminController extends Swift_Website_ActionController
       return $this->_redirectToAdminIndex();
     }
     
-    $validator = new Swift_Website_SimpleValidator();
-    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
-      'currentpassword', 'Current Password'
-    ));
-    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
-      'newpassword0', 'New Password'
-    ));
-    $validator->addRule(new Swift_Website_Validation_Rules_RequiredRule(
-      'newpassword1', 'Repeat Password'
-    ));
-    $validator->addRule(new Swift_Website_Validation_Rules_MatchedFieldsRule(
-      array('newpassword0', 'newpassword1'), 'New Password and Repeat Password'
+    $validator = $this->_getValidator(array(
+      new Swift_Website_Validation_Rules_RequiredRule(
+        'currentpassword', 'Current Password'
+      ),
+      new Swift_Website_Validation_Rules_RequiredRule(
+        'newpassword0', 'New Password'
+      ),
+      new Swift_Website_Validation_Rules_RequiredRule(
+        'newpassword1', 'Repeat Password'
+      ),
+      new Swift_Website_Validation_Rules_MatchedFieldsRule(
+        array('newpassword0', 'newpassword1'), 'New Password and Repeat Password'
+      )
     ));
     
     if ($validator->isValid($form->getValues()))
@@ -170,15 +169,18 @@ class AdminController extends Swift_Website_ActionController
       return $this->_redirectToLoginPage();
     }
     
-    $form = new Swift_Website_SimpleFormHandler(
-      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+    $form = $this->_getForm(
       array('filename', 'source'),
-      array('filename'=>'Swift-4.0.1.tar.gz', 'source'=>'googlecode')
+      array(
+        'filename' => $this->_getCurrentDownload()->getName(),
+        'source' => $this->_getCurrentDownload()->getSource()
+      )
     );
     
     $this->view->assign(array(
       'title' => 'Download Manager',
       'user' => $this->_getAuthenticator()->getIdentity(),
+      'downloads' => $this->_getAllDownloads(),
       'formValues' => $form->getValues()
     ));
     
@@ -186,6 +188,117 @@ class AdminController extends Swift_Website_ActionController
     {
       return;
     }
+    
+    $validator = $this->_getValidator(array(
+      new Swift_Website_Validation_Rules_RequiredRule('filename', 'Filename'),
+      new Swift_Website_Validation_Rules_RequiredRule('source', 'Download Location'),
+      new Swift_Website_Validation_Rules_RequiredRule(
+        'source', array('sourceforge', 'googlecode', 'github'), 'Download Location'
+      )
+    ));
+    
+    if ($validator->isValid($form->getValues()))
+    {
+      $values = $form->getValues();
+      
+      if (Doctrine::getTable('Download')->findAvailableByName($values['filename']))
+      {
+        $validator->addValidationError(
+          'This file already exists.  Perhaps you need to revoke it?'
+        );
+      }
+      else
+      {
+        $download = new Download();
+      
+        try
+        {
+          Zend_Registry::getInstance()->get('download_factory')
+            ->createDownload($values['filename'], $values['source'], $download)
+            ;
+          $download->setStable(false);
+          $download->save();
+          
+          return $this->_helper->getHelper('Redirector')
+            ->gotoRoute(
+              array(
+                'action'=>'edit-download',
+                'controller'=>'admin',
+                'downloadid' => $download->getDownloadId()
+              ),
+              'edit-download'
+          );
+        }
+        catch (Swift_Website_DownloadNotFoundException $e)
+        {
+          $validator->addValidationError(
+            'This file could not be found at the remote location'
+          );
+        }
+      }
+    }
+    
+    $this->view->assign(array(
+      'validationErrors' => $validator->getValidationErrors()
+    ));
+  }
+  
+  /** Edit a download that exists in the system */
+  public function editDownloadAction()
+  {
+    if (!$this->_getAuthenticator()->hasIdentity())
+    {
+      return $this->_redirectToLoginPage();
+    }
+    
+    $form = $this->_getForm(
+      array('unstable', 'revoked', 'releasedate'),
+      array(
+        'unstable' => (int) !$this->_getDownload()->isStable(),
+        'revoked' => (int) $this->_getDownload()->isRevoked(),
+        'releasedate' => date('j F Y', $this->_getDownload()->getTimeCreated())
+      ),
+      array('cancel_field'=>'cancel')
+    );
+    
+    $this->view->assign(array(
+      'title' => 'Edit Download',
+      'user' => $this->_getAuthenticator()->getIdentity(),
+      'download' => $this->_getDownload(),
+      'formValues' => $form->getValues()
+    ));
+    
+    if (!$form->isSubmitted())
+    {
+      return;
+    }
+    
+    if ($form->isCancelled())
+    {
+      return $this->_redirectToDownloadManager();
+    }
+    
+    $validator = $this->_getValidator(array(
+      new Swift_Website_Validation_Rules_RequiredRule('releasedate', 'Release Date'),
+      new Swift_Website_Validation_Rules_DateStringRule('releasedate', 'Release Date')
+    ));
+    
+    if ($validator->isValid($form->getValues()))
+    {
+      $values = $form->getValues();
+      
+      $download = $this->_getDownload();
+      $download->setStable(empty($values['unstable']));
+      $download->setRevoked(!empty($values['revoked']));
+      $download->setTimeCreated(strtotime($values['releasedate']));
+      $download->save();
+      
+      return $this->_redirectToDownloadManager();
+    }
+    
+    $this->view->assign(array(
+      'validationErrors' => $validator->getValidationErrors()
+    ));
   }
   
   // -- Private Methods
@@ -236,6 +349,50 @@ class AdminController extends Swift_Website_ActionController
         ),
         'default'
     );
+  }
+  
+  private function _redirectToDownloadManager()
+  {
+    return $this->_helper->getHelper('Redirector')
+      ->gotoRoute(
+        array(
+          'action'=>'download-manager',
+          'controller'=>'admin'
+        ),
+        'default'
+    );
+  }
+  
+  private function _getAllDownloads()
+  {
+    return Doctrine::getTable('Download')->findAllDescendingByVersion();
+  }
+  
+  private function _getDownload()
+  {
+    if (!isset($this->_download))
+    {
+      $this->_download = Doctrine::getTable('Download')->find(
+        $this->getRequest()->get('downloadid')
+      );
+    }
+    return $this->_download;
+  }
+  
+  private function _getCurrentDownload()
+  {
+    if (!isset($this->_currentDownload))
+    {
+      if (!$currentDownload = Doctrine::getTable('Download')->getCurrentDownload())
+      {
+        $currentDownload = new Download();
+        $currentDownload->setName('Swift-0.0.0.tar.gz');
+        $currentDownload->setSource('github');
+      }
+      $this->_currentDownload = $currentDownload;
+    }
+    
+    return $this->_currentDownload;
   }
   
 }

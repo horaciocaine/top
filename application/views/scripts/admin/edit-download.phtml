@@ -1,0 +1,77 @@
+<?php $this->headLink()->appendStylesheet('/css/admin.css'); ?>
+
+<div id="container">
+  <div id="content">
+    
+    <h1>Edit Download (<?php echo $this->escape($this->download->getName()); ?>)</h1>
+    
+    <dl>
+      <dt>Download URL:</dt>
+      <dd><?php echo $this->escape($this->download->getUrl()); ?></dd>
+      
+      <dt>Filename:</dt>
+      <dd><?php echo $this->escape($this->download->getName()); ?></dd>
+      
+      <dt>File Size:</dt>
+      <dd><?php echo $this->escape(number_format($this->download->getSize())); ?> bytes</dd>
+    </dl>
+    
+    <p>
+      It's not possible to change the filename or the location of the download.  If you need to do this,
+      revoke the download and add a new one.  This is intentional.
+    </p>
+    
+    <?php require('fragments/_validation-errors.phtml'); ?>
+    
+    <form id="editdownloadform" action="" method="post">
+      <fieldset class="downloadfields">
+        <label for="field_releasedate">
+          <strong>Release Date</strong>
+          <span class="instruction">
+            Any format that <samp>strtotime()</samp> will accept
+          </span>
+        </label>
+        <input type="text" class="text" id="field_releasedate" <?php echo $this->formAttributes('input', 'releasedate'); ?> />
+      </fieldset>
+      
+      <fieldset class="stablityfields">
+        <label for="field_stable">
+          <strong>Unstable Version</strong>
+          <span class="instruction">
+            If this download is not considered stable it won't be featured on the front page
+            of the site.
+          </span>
+        </label>
+        <fieldset class="checkboxes">
+          <label for="field_unstable">
+            <input type="checkbox" class="checkbox" id="field_unstable" <?php echo $this->formAttributes('checkbox', 'unstable', '1'); ?> />
+            Unstable
+          </label>
+        </fieldset>
+        
+        <label for="field_revoked">
+          <strong>Revoked from Public Use</strong>
+          <span class="instruction">
+            If this download should not be offered to the public any longer, revoke it.
+          </span>
+        </label>
+        <fieldset class="checkboxes">
+          <label for="field_revoked">
+            <input type="checkbox" class="checkbox" id="field_revoked" <?php echo $this->formAttributes('checkbox', 'revoked', '1'); ?> />
+            Revoked
+          </label>
+        </fieldset>
+      </fieldset>
+      
+      <fieldset class="buttons">
+        
+        <input type="submit" class="primary button" name="update" value="Update" />
+        <input type="submit" class="secondary button" name="cancel" value="Cancel" />
+        
+      </fieldset>
+    </form>
+    
+  </div>
+</div>
+
+<?php require('fragments/_admin-menu.phtml'); ?>

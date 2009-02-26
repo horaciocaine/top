@@ -63,6 +63,49 @@
     
     <h2>All downloads</h2>
     
+    <?php if (count($this->downloads) == 0): ?>
+      <p>
+        There are currently no downloads in the system.  You may add one using the form shown above.
+      </p>
+    <?php else: ?>
+      <table id="downloadadmin">
+        <thead>
+          <tr>
+            <th>Filename</th>
+            <th>Release Date</th>
+            <th>File Size</th>
+            <th>Location</th>
+            <th>Stable?</th>
+            <th>Revoked?</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($this->downloads as $download): ?>
+            <tr id="download_<?php echo $this->escape($download->getDownloadId()); ?>">
+              <td><?php echo $this->escape($download->getName()); ?></td>
+              <td><?php echo $this->escape(date('j M Y', $download->getTimeCreated())); ?></td>
+              <td><?php echo $this->escape(number_format($download->getSize())); ?> bytes</td>
+              <td>
+                <?php if ($download->getSource() == 'sourceforge'): ?>
+                  SourceForge
+                <?php elseif ($download->getSource() == 'googlecode'): ?>
+                  Google Code
+                <?php elseif ($download->getSource() == 'github'): ?>
+                  GitHub
+                <?php else: ?>
+                  Unknown
+                <?php endif; ?>
+              </td>
+              <td><?php echo $this->escape($download->isStable() ? 'Yes' : 'No'); ?></td>
+              <td><?php echo $this->escape($download->isRevoked() ? 'Yes' : 'No'); ?></td>
+              <td><a href="<?php echo $this->url(array('controller'=>'admin', 'action'=>'edit-download', 'downloadid'=>$download->getDownloadId()), 'edit-download'); ?>">Edit</a></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    <?php endif; ?>
+    
   </div>
 </div>
 

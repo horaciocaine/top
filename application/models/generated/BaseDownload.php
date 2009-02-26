@@ -13,11 +13,14 @@ abstract class BaseDownload extends Doctrine_Record
         $this->hasColumn('time_created', 'integer', null, array('type' => 'integer'));
         $this->hasColumn('filesize', 'integer', null, array('type' => 'integer'));
         $this->hasColumn('source', 'enum', null, array('type' => 'enum', 'values' => array(0 => 'sourceforge', 1 => 'googlecode', 2 => 'github')));
-        $this->hasColumn('revoked', 'boolean', null, array('type' => 'boolean'));
+        $this->hasColumn('revoked', 'boolean', null, array('type' => 'boolean', 'notnull' => true));
+        $this->hasColumn('stable', 'boolean', null, array('type' => 'boolean', 'default' => true, 'notnull' => true));
+        $this->hasColumn('version_number', 'string', 255, array('type' => 'string', 'length' => '255'));
 
 
         $this->index('time_index', array('fields' => array(0 => 'time_created')));
         $this->index('revoke_index', array('fields' => array(0 => 'revoked')));
+        $this->index('version_index', array('fields' => array(0 => 'version_number(18)')));
         $this->option('type', 'INNODB');
         $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
