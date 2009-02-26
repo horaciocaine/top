@@ -11,7 +11,7 @@
  * 
  * @author Chris Corbyn
  */
-class DownloadController extends Zend_Controller_Action
+class DownloadController extends Swift_Website_ActionController
 {
   
   /** The download page */

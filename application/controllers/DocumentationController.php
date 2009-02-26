@@ -14,7 +14,7 @@
  * 
  * @author Chris Corbyn
  */
-class DocumentationController extends Zend_Controller_Action
+class DocumentationController extends Swift_Website_ActionController
 {
   
   /** The docs page */

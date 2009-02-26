@@ -9,7 +9,7 @@
  * Invoked when an error occurs such as a 404 or an uncaught exception.
  * @author Chris Corbyn
  */
-class ErrorController extends Zend_Controller_Action
+class ErrorController extends Swift_Website_ActionController
 {
   
   /** Handles system errors and 404 pages */

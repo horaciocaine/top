@@ -1,6 +1,6 @@
 <?php
 
-class Swift_Website_View_FormViewHelperTest
+class Swift_Website_View_Helpers_FormAttributesTest
   extends Swift_Website_UnitTestCase
 {
   
@@ -107,7 +107,7 @@ class Swift_Website_View_FormViewHelperTest
   
   private function _createHelper($params, $encoding = 'utf-8')
   {
-    return new Swift_Website_View_FormViewHelper($params, $encoding);
+    return new Swift_Website_View_Helpers_FormAttributes($params, $encoding);
   }
   
 }

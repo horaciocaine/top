@@ -29,7 +29,7 @@
             You need to specify the full name of the file that is available for download
           </span>
         </label>
-        <input type="text" class="text" name="filename" id="field_filename" value="" />
+        <input type="text" class="text" id="field_filename" <?php echo $this->formAttributes('input', 'filename'); ?> />
         
         <label for="field_sources">
           <strong>Download Location</strong>
@@ -40,15 +40,15 @@
         </label>
         <fieldset id="field_sources" class="radios">
           <label for="field_source_sourceforge">
-            <input type="radio" class="radio" name="source" id="field_source_sourceforge" value="sourceforge" />
+            <input type="radio" class="radio" id="field_source_sourceforge" <?php echo $this->formAttributes('radio', 'source', 'sourceforge'); ?> />
             SourceForge
           </label>
           <label for="field_source_googlecode">
-            <input type="radio" class="radio" name="source" id="field_source_googlecode" value="googlecode" />
+            <input type="radio" class="radio" id="field_source_googlecode" <?php echo $this->formAttributes('radio', 'source', 'googlecode'); ?> />
             Google Code
           </label>
           <label for="field_source_github">
-            <input type="radio" class="radio" name="source" id="field_source_github" value="github" />
+            <input type="radio" class="radio" id="field_source_github" <?php echo $this->formAttributes('radio', 'source', 'github'); ?> />
             GitHub
           </label>
         </fieldset>

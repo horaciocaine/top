@@ -11,7 +11,7 @@
  * 
  * @author Chris Corbyn
  */
-class AdminController extends Zend_Controller_Action
+class AdminController extends Swift_Website_ActionController
 {
   
   /** The download page */
@@ -36,18 +36,25 @@ class AdminController extends Zend_Controller_Action
       return $this->_redirectToAdminIndex();
     }
     
-    if ($this->getRequest()->get('cancel'))
-    {
-      return $this->_redirectToHomePage();
-    }
-    
     $this->view->assign(array(
       'title' => 'Login'
     ));
     
-    if (!$this->getRequest()->isPost())
+    $form = new Swift_Website_SimpleFormHandler(
+      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+      array('username', 'password'),
+      array(),
+      array('cancel_field'=>'cancel')
+    );
+    
+    if (!$form->isSubmitted())
     {
       return;
+    }
+    
+    if ($form->isCancelled())
+    {
+      return $this->_redirectToHomePage();
     }
     
     $validator = new Swift_Website_SimpleValidator();
@@ -58,29 +65,25 @@ class AdminController extends Zend_Controller_Action
       'password', 'Password'
     ));
     
-    if (!$validator->isValid($this->getRequest()->getParams()))
+    if ($validator->isValid($form->getValues()))
     {
-      $this->view->assign(array(
-        'validationErrors' => $validator->getValidationErrors()
-      ));
-      return;
+      $values = $form->getValues();
+      
+      $result = $this->_authenticate($values['username'], $values['password']);
+      
+      if (!$result->isValid())
+      {
+        $validator->addValidationError('Incorrect username or password');
+      }
+      else
+      {
+        return $this->_redirectToAdminIndex();
+      }
     }
     
-    $result = $this->_authenticate(
-      $this->getRequest()->get('username'),
-      $this->getRequest()->get('password')
-    );
-    
-    if (!$result->isValid())
-    {
-      $validator->addValidationError('Incorrect username or password');
-      $this->view->assign(array(
-        'validationErrors' => $validator->getValidationErrors()
-      ));
-      return;
-    }
-    
-    return $this->_redirectToAdminIndex();
+    $this->view->assign(array(
+      'validationErrors' => $validator->getValidationErrors()
+    ));
   }
   
   /** End login session */
@@ -98,19 +101,26 @@ class AdminController extends Zend_Controller_Action
       return $this->_redirectToLoginPage();
     }
     
-    if ($this->getRequest()->get('cancel'))
-    {
-      return $this->_redirectToAdminIndex();
-    }
-    
     $this->view->assign(array(
       'title' => 'Password Change',
       'user' => $this->_getAuthenticator()->getIdentity()
     ));
     
-    if (!$this->getRequest()->isPost())
+    $form = new Swift_Website_SimpleFormHandler(
+      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+      array('currentpassword', 'newpassword0', 'newpassword1'),
+      array(),
+      array('cancel_field'=>'cancel')
+    );
+    
+    if (!$form->isSubmitted())
     {
       return;
+    }
+    
+    if ($form->isCancelled())
+    {
+      return $this->_redirectToAdminIndex();
     }
     
     $validator = new Swift_Website_SimpleValidator();
@@ -127,18 +137,20 @@ class AdminController extends Zend_Controller_Action
       array('newpassword0', 'newpassword1'), 'New Password and Repeat Password'
     ));
     
-    if ($validator->isValid($this->getRequest()->getParams()))
+    if ($validator->isValid($form->getValues()))
     {
+      $values = $form->getValues();
+      
       $user = $this->_getAuthenticator()->getIdentity();
 
-      if (!$user->isCorrectPassword($this->getRequest()->get('currentpassword')))
+      if (!$user->isCorrectPassword($values['currentpassword']))
       {
         $validator->addValidationError('The current password is not correct');
       }
       else
       {
         //Change the password
-        $user->setPassword($this->getRequest()->get('newpassword0'));
+        $user->setPassword($values['newpassword0']);
         $user->save();
         
         return $this->_redirectToAdminIndex();
@@ -158,10 +170,22 @@ class AdminController extends Zend_Controller_Action
       return $this->_redirectToLoginPage();
     }
     
+    $form = new Swift_Website_SimpleFormHandler(
+      new Swift_Website_Form_ZendRequestWrapper($this->getRequest()),
+      array('filename', 'source'),
+      array('filename'=>'Swift-4.0.1.tar.gz', 'source'=>'googlecode')
+    );
+    
     $this->view->assign(array(
       'title' => 'Download Manager',
-      'user' => $this->_getAuthenticator()->getIdentity()
+      'user' => $this->_getAuthenticator()->getIdentity(),
+      'formValues' => $form->getValues()
     ));
+    
+    if (!$form->isSubmitted())
+    {
+      return;
+    }
   }
   
   // -- Private Methods

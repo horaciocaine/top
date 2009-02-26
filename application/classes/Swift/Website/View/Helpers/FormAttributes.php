@@ -5,7 +5,8 @@
  * 
  * @author Chris Corbyn
  */
-class Swift_Website_View_FormViewHelper
+class Swift_Website_View_Helpers_FormAttributes
+  implements Zend_View_Helper_Interface
 {
   
   /** The values provided by the user from the form */
@@ -15,14 +16,14 @@ class Swift_Website_View_FormViewHelper
   private $_encoding;
   
   /**
-   * Create a new FormViewHelper for the $values from the form.
+   * Create a new form helper with $values.
    * 
    * @param array $values
-   * @param string $encoding defaults to UTF-8
+   * @param string $encoding, optional
    */
-  public function __construct(array $values, $encoding = 'UTF-8')
+  public function __construct($values = array(), $encoding = 'utf-8')
   {
-    $this->_values = (array) $values;
+    $this->_values = $values;
     $this->_encoding = $encoding;
   }
   
@@ -69,17 +70,26 @@ class Swift_Website_View_FormViewHelper
   }
   
   /**
-   * Get the value of the data from $fieldName.
+   * Set the Zend_View instance.
    * 
-   * If no $fieldName is found in the data, the standard E_NOTICE will be raised.
+   * This tries to get the form values from the view.
    * 
-   * @param string $fieldName
-   * 
-   * @return mixed
+   * @param Zend_View_Interface
    */
-  public function formValue($fieldName)
+  public function setView(Zend_View_Interface $view)
   {
-    return $this->_values[$fieldName];
+    $this->_values = $view->formValues;
+    $this->_encoding = $view->formEncoding
+      ? $view->formEncoding
+      : 'utf-8'
+      ;
+  }
+  
+  /**
+   * Not currently used.
+   */
+  public function direct()
+  {
   }
   
   // -- Private Methods

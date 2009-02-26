@@ -9,7 +9,7 @@
  * Provides controller log for the front page.
  * @author Chris Corbyn
  */
-class IndexController extends Zend_Controller_Action
+class IndexController extends Swift_Website_ActionController
 {
   
   /** The home page */
