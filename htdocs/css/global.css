@@ -105,10 +105,43 @@ form {
 
 form fieldset {
   display: block;
-  width: 500px;
+  width: 85%;
   padding: 10px 0;
   float: left;
   clear: both;
+}
+
+form label {
+  width: 40%;
+  margin: 5px;
+  display: block;
+  float: left;
+  clear: left;
+}
+
+form label strong {
+  color: #2a4fb7;
+}
+
+form label .instruction {
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+}
+
+form fieldset.radios {
+  display: block;
+  float: right;
+  clear: none;
+  padding: 2px;
+  margin: 5px;
+  width: 220px;
+}
+
+form fieldset.radios label {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
 }
 
 form fieldset.buttons {
@@ -138,24 +171,6 @@ form fieldset.buttons input.secondary {
   color: #666;
 }
 
-form label {
-  width: 33%;
-  margin: 5px;
-  display: block;
-  float: left;
-  clear: left;
-}
-
-form label strong {
-  color: #2a4fb7;
-}
-
-form label .instruction {
-  display: block;
-  font-size: 0.8em;
-  color: #666;
-}
-
 form input {
   margin: 5px;
   font-size: 1.1em;
@@ -164,6 +179,7 @@ form input {
 form input.text {
   display: block;
   float: right;
+  width: 210px;
   border: 1px solid #888;
   padding: 2px;
   font-family: 'Lucida Grande', Trebuchet;

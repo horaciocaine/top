@@ -47,7 +47,7 @@ class Swift_Website_Validation_Rules_PatternRule
   public function isValid($requestParams)
   {
     return !array_key_exists($this->_field, $requestParams)
-      || ($requestParams[$this->_field] === '')
+      || $requestParams[$this->_field] === ''
       || preg_match($this->_pattern, $requestParams[$this->_field]);
   }
   

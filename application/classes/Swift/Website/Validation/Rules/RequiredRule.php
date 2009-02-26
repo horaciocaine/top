@@ -42,7 +42,9 @@ class Swift_Website_Validation_Rules_RequiredRule
   public function isValid($requestParams)
   {
     return array_key_exists($this->_field, $requestParams)
-      && $requestParams[$this->_field] !== '';
+      && $requestParams[$this->_field] !== ''
+      && $requestParams[$this->_field] !== array()
+      ;
   }
   
   /**

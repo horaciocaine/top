@@ -17,6 +17,52 @@
       the remote resource.
     </p>
     
+    <h2>Add a new download</h2>
+    
+    <?php require('fragments/_validation-errors.phtml'); ?>
+    
+    <form id="adddownloadform" action="" method="post">
+      <fieldset class="downloadfields">
+        <label for="field_filename">
+          <strong>Package Filename</strong>
+          <span class="instruction">
+            You need to specify the full name of the file that is available for download
+          </span>
+        </label>
+        <input type="text" class="text" name="filename" id="field_filename" value="" />
+        
+        <label for="field_sources">
+          <strong>Download Location</strong>
+          <span class="instruction">
+            Downloads must be hosted at a third-party site. The download manager will determine
+            the correct link for the remote file.
+          </span>
+        </label>
+        <fieldset id="field_sources" class="radios">
+          <label for="field_source_sourceforge">
+            <input type="radio" class="radio" name="source" id="field_source_sourceforge" value="sourceforge" />
+            SourceForge
+          </label>
+          <label for="field_source_googlecode">
+            <input type="radio" class="radio" name="source" id="field_source_googlecode" value="googlecode" />
+            Google Code
+          </label>
+          <label for="field_source_github">
+            <input type="radio" class="radio" name="source" id="field_source_github" value="github" />
+            GitHub
+          </label>
+        </fieldset>
+      </fieldset>
+      
+      <fieldset class="buttons">
+        
+        <input type="submit" class="primary button" name="add" value="Add Download" />
+        
+      </fieldset>
+    </form>
+    
+    <h2>All downloads</h2>
+    
   </div>
 </div>
 
