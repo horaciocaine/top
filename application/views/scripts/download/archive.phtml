@@ -17,7 +17,6 @@
             <th>Version</th>
             <th>Released</th>
             <th>Size</th>
-            <th>Stable?</th>
           </tr>
         </thead>
         <tbody>
@@ -32,7 +31,6 @@
               <td><?php echo $this->escape($download->getVersion()); ?></td>
               <td><?php echo $this->escape(date('j M Y', $download->getTimeCreated())); ?></td>
               <td><?php echo $this->escape(number_format($download->getSize())); ?> bytes</td>
-              <td><?php echo $this->escape($download->isStable() ? 'Yes' : 'No'); ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
