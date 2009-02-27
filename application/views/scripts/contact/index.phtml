@@ -1,0 +1,75 @@
+<?php $this->headLink()->appendStylesheet('/css/contact.css'); ?>
+<div id="container">
+  <div id="content">
+    
+    <h1>Contact the Developers</h1>
+    
+    <p>
+      Swift Mailer is a 100% volunteer-managed project.  That is, we don't have a support
+      team that you can contact by telephone for immediate assistance and we don't get paid
+      for supporting our users.  We do however make sure that we respond to every request in
+      a friendly and timely fashion.
+    </p>
+    
+    <h2>Send an e-mail</h2>
+    
+    <p>
+      Use the form below to send an email to the developers.  You should consider using the
+      <a href="<?php echo $this->escape($this->googleGroupUrl); ?>">Google Group</a> before contacting us directly.  Please <strong>do not</strong> use this
+      contact form to notify us of bugs.  We use <a href="<?php echo $this->escape($this->lighthouseUrl); ?>">LightHouse</a> for bug tracking for our project
+      management workflow so we'd prefer if you submit your bug reports there.
+    </p>
+    
+    <?php require('fragments/_validation-errors.phtml'); ?>
+    
+    <form id="contactform" action="" method="post">
+      <fieldset class="contactfields">
+        <label for="field_subject">
+          <strong>Subject</strong>
+          <span class="instruction">
+            Briefly describe what your message is about
+          </span>
+        </label>
+        <input type="text" class="text" name="subject" id="field_subject" value="" />
+        
+        <label for="field_email">
+          <strong>E-mail Address</strong>
+          <span class="instruction">
+            Please provide a valid e-mail address
+          </span>
+        </label>
+        <input type="text" class="text" name="email" id="field_email" value="" />
+        
+        <label for="field_message">
+          <strong>Message</strong>
+          <span class="instruction">
+            Enter your message, being as detailed as you can be
+          </span>
+        </label>
+        <textarea class="textarea" rows="5" cols="40" name="message" id="field_message"></textarea>
+      </fieldset>
+      
+      <fieldset class="buttons">
+        
+        <input type="submit" class="primary button" name="login" value="Send Message" />
+        
+      </fieldset>
+    </form>
+    
+  </div>
+</div>
+
+<div id="sidepanel">
+  <div class="supplementary corners top right bottom left">
+    <h2>Ask on the Google Group</h2>
+    <p>
+      If you're contacting us to get some support, we'd strongly advise that you use the <a href="<?php echo $this->escape($this->googleGroupUrl); ?>">Google Group</a>
+      since you'll get a faster response and others will be able to benefit from any solutions
+      that arise from the discussion.
+    </p>
+    <p>
+      The Swift Mailer group on Google is <a href="<?php echo $this->escape($this->googleGroupUrl); ?>"><?php echo $this->escape($this->googleGroupName); ?></a> which you can access
+      <a href="<?php echo $this->escape($this->googleGroupUrl); ?>">here</a>.
+    </p>
+  </div>
+</div>

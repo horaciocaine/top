@@ -1,6 +1,9 @@
+;; Database Connection Settings
+
 [production]
 
-db.dsn = mysql://username:password@localhost/swiftmailer_org?charset=utf8
+;; DSN to connect to the database (PDO style)
+db_dsn = mysql://username:password@localhost/swiftmailer_org?charset=utf8
 
 [development : production]
 

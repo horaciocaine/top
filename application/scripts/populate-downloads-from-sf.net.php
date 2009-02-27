@@ -58,7 +58,7 @@ printf("Scraped page contents and found %d files %s", count($files), PHP_EOL);
 
 foreach ($files as $name => $details)
 {
-  printf("Adding file: Name=%s, Date=%d, Size=%d %s", $name, $date, $size, PHP_EOL);
+  printf("Adding file: Name=%s, Date=%d, Size=%d %s", $name, $details['date'], $details['size'], PHP_EOL);
   
   $download = new Download();
   $download->setName($name);

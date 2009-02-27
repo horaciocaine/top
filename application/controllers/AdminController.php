@@ -192,7 +192,7 @@ class AdminController extends Swift_Website_ActionController
     $validator = $this->_getValidator(array(
       new Swift_Website_Validation_Rules_RequiredRule('filename', 'Filename'),
       new Swift_Website_Validation_Rules_RequiredRule('source', 'Download Location'),
-      new Swift_Website_Validation_Rules_RequiredRule(
+      new Swift_Website_Validation_Rules_EnumRule(
         'source', array('sourceforge', 'googlecode', 'github'), 'Download Location'
       )
     ));
@@ -218,6 +218,12 @@ class AdminController extends Swift_Website_ActionController
             ;
           $download->setStable(false);
           $download->save();
+          
+          Zend_Registry::getInstance()->get('notification_queue')
+            ->addNotification(
+              'The download was created but is marked as unstable. You may edit it.'
+            )
+            ;
           
           return $this->_helper->getHelper('Redirector')
             ->gotoRoute(
@@ -292,6 +298,10 @@ class AdminController extends Swift_Website_ActionController
       $download->setRevoked(!empty($values['revoked']));
       $download->setTimeCreated(strtotime($values['releasedate']));
       $download->save();
+      
+      Zend_Registry::getInstance()->get('notification_queue')
+        ->addNotification('The download was updated successfully')
+        ;
       
       return $this->_redirectToDownloadManager();
     }

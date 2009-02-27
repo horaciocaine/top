@@ -5,6 +5,8 @@
     
     <h1>Edit Download (<?php echo $this->escape($this->download->getName()); ?>)</h1>
     
+    <?php require('fragments/_notifications.phtml'); ?>
+    
     <dl>
       <dt>Download URL:</dt>
       <dd><?php echo $this->escape($this->download->getUrl()); ?></dd>

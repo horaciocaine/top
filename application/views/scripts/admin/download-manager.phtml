@@ -5,6 +5,8 @@
     
     <h1>Download Manager</h1>
     
+    <?php require('fragments/_notifications.phtml'); ?>
+    
     <p>
       From here you can view the list of downloads added for public consumption.  You
       can revoke these downloads (in the event of say a really critical bug) and you
@@ -73,11 +75,11 @@
           <tr>
             <th>Filename</th>
             <th>Released</th>
-            <th>Size</th>
+            <th>Bytes</th>
             <th>Location</th>
             <th>Downloads</th>
-            <th>Stable?</th>
-            <th>Revoked?</th>
+            <th>Stable</th>
+            <th>Revoked</th>
             <th>Edit</th>
           </tr>
         </thead>
@@ -86,7 +88,7 @@
             <tr id="download_<?php echo $this->escape($download->getDownloadId()); ?>">
               <td><?php echo $this->escape($download->getName()); ?></td>
               <td><?php echo $this->escape(date('j M Y', $download->getTimeCreated())); ?></td>
-              <td><?php echo $this->escape(number_format($download->getSize())); ?> bytes</td>
+              <td><?php echo $this->escape(number_format($download->getSize())); ?></td>
               <td>
                 <?php if ($download->getSource() == 'sourceforge'): ?>
                   SourceForge

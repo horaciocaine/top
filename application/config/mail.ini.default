@@ -1,0 +1,31 @@
+;; Settings for sending emails
+
+[production]
+
+;; Email address for the contact form
+developer_email = 
+
+;; Mailer type to use (sendmail, smtp, or mail)
+mailer_type = smtp
+
+;; Hostname to use for SMTP
+smtp_host = localhost
+
+;; Post number to use for SMTP
+smtp_port = 25
+
+;; Username to use for SMTP (blank if not used)
+;smtp_username = 
+
+;; Password to use for SMTP (blank if not used)
+;smtp_password =
+
+;; Encryption settings for SMTP (off, ssl or tls)
+;smtp_crypto = off
+
+;; Command to use for sendmail
+;sendmail_command = /usr/sbin/sendmail -bs
+
+[development : production]
+
+[testing : development]

@@ -10,13 +10,13 @@ class Swift_Website_Validation_Rules_PatternRule
 {
   
   /** The error message */
-  private $_error;
+  protected $_error;
   
   /** The field to check */
-  private $_field;
+  protected $_field;
   
   /** The field name shown to the user (rather than the request data name) */
-  private $_fieldName;
+  protected $_fieldName;
   
   /** The pattern to match */
   private $_pattern;

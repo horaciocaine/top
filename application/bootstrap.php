@@ -31,6 +31,8 @@ Zend_Registry::getInstance()->set(
 require_once SWIFT_APPLICATION_DIR . '/routemap.php';
 require_once SWIFT_APPLICATION_DIR . '/doctrine.php';
 require_once SWIFT_APPLICATION_DIR . '/download-factory.php';
+require_once SWIFT_APPLICATION_DIR . '/mail.php';
+require_once SWIFT_APPLICATION_DIR . '/notifications.php';
 
 Zend_Controller_Front::getInstance()
   ->setControllerDirectory(SWIFT_APPLICATION_DIR . '/controllers');

@@ -1,2 +1,2 @@
-; Changes the overall behaviour of the app
+;; Changes the overall behaviour of the app
 environment = production

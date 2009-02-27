@@ -26,7 +26,8 @@ class DownloadController extends Swift_Website_ActionController
     $this->view->assign(array(
       'title' => 'Latest Downloads',
       'stableDownload' => $this->_getCurrentStableDownload(),
-      'unstableDownload' => $this->_getCurrentUnstableDownload()
+      'unstableDownload' => $this->_getCurrentUnstableDownload(),
+      'githubUrl' => $this->_getGithubUrl()
     ));
   }
   
@@ -35,7 +36,8 @@ class DownloadController extends Swift_Website_ActionController
   {
     $this->view->assign(array(
       'title' => 'Download Archive',
-      'downloads' => $this->_getArchivedDownloads()
+      'downloads' => $this->_getArchivedDownloads(),
+      'githubUrl' => $this->_getGithubUrl()
     ));
   }
   
@@ -87,6 +89,11 @@ class DownloadController extends Swift_Website_ActionController
   private function _getArchivedDownloads()
   {
     return Doctrine::getTable('Download')->findAllAvailableDescendingByVersion();
+  }
+  
+  private function _getGithubUrl()
+  {
+    return Zend_Registry::getInstance()->get('config')->get('github_page');
   }
   
 }

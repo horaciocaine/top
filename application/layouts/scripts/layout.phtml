@@ -34,8 +34,13 @@
               <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), 'default'); ?>">download</a></li>
               <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'start'), 'docs-file'); ?>">documentation</a></li>
               <li><a href="#">bugs</a></li>
-              <li><a href="#">contact</a></li>
-              <li class="tab corners top right left"><a href="#">current <?php echo $this->escape($this->currentDownload()->getVersion()); ?></a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index'), 'default'); ?>">contact</a></li>
+              <li class="tab corners top right left"><a href="<?php echo $this->url(array(
+                'controller'=>'download',
+                'action'=>'download-file',
+                'filename'=>$this->currentDownload()->getName()),
+                'get-download'
+              ); ?>">current <?php echo $this->escape($this->currentDownload()->getVersion()); ?></a></li>
             </ul>
           </div>
         </div>
