@@ -21,7 +21,7 @@ class Swift_Website_View_Helpers_CurrentDownload
   {
     if (!isset($this->_download))
     {
-      if (!$download = Doctrine::getTable('Download')->getCurrentDownload())
+      if (!$download = Doctrine::getTable('Download')->getCurrentStableDownload())
       {
         $download = new Download();
         $download->setFilename('Swift-0.0.0.tar.gz');

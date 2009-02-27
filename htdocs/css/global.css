@@ -80,6 +80,15 @@ pre {
   padding: 1em;
 }
 
+br.clear {
+  display: block;
+  clear: both;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+}
+
 table {
   margin: 1em 1em 2em 1em;
   width: 90%;
@@ -348,6 +357,19 @@ form input.text {
   margin-bottom: 0;
   font-size: 0.8em;
   color: #666;
+}
+
+#sidepanel .supplementary h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+#sidepanel .supplementary p {
+  line-height: 1.5em;
+  font-size: 0.8em;
 }
 
 #footer {

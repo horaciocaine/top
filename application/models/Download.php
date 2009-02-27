@@ -172,6 +172,16 @@ class Download extends BaseDownload implements Swift_Website_Download
   }
   
   /**
+   * Get a numeric string that can be sorted.
+   * 
+   * @return string
+   */
+  public function getVersionNumber()
+  {
+    return $this->get('version_number');
+  }
+  
+  /**
    * Get the URL of this download.
    * 
    * @return string

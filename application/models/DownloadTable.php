@@ -19,17 +19,51 @@ class DownloadTable extends Doctrine_Table
   }
   
   /**
+   * Find all non-revoked downloads, ordered in a descending order by version.
+   * 
+   * @return Doctrine_Collection of Download objects
+   */
+  public function findAllAvailableDescendingByVersion()
+  {
+    return $this->createQuery('dctrn_find')
+      ->where('revoked != 1')
+      ->orderby('version_number DESC, time_created DESC')
+      ->execute()
+      ;
+  }
+  
+  /**
    * Get the latest version that is available for download.
    * 
    * @return Download
    */
-  public function getCurrentDownload()
+  public function getCurrentStableDownload()
   {
     return $this->createQuery('dctrn_find')
       ->where('revoked != 1 AND stable = 1')
       ->orderby('version_number DESC, time_created DESC')
       ->limit(1)
       ->fetchOne()
+      ;
+  }
+  
+  /**
+   * Get the latest version that is available for download.
+   * 
+   * @return Download
+   */
+  public function getCurrentUnstableDownload()
+  {
+    if (!$this->getCurrentStableDownload())
+    {
+      return false;
+    }
+    
+    return $this->createQuery('dctrn_find')
+      ->where('revoked != 1 AND stable != 1 AND version_number > ?')
+      ->orderby('version_number DESC, time_created DESC')
+      ->limit(1)
+      ->fetchOne($this->getCurrentStableDownload()->getVersionNumber())
       ;
   }
   

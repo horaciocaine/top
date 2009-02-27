@@ -383,7 +383,7 @@ class AdminController extends Swift_Website_ActionController
   {
     if (!isset($this->_currentDownload))
     {
-      if (!$currentDownload = Doctrine::getTable('Download')->getCurrentDownload())
+      if (!$currentDownload = Doctrine::getTable('Download')->getCurrentStableDownload())
       {
         $currentDownload = new Download();
         $currentDownload->setName('Swift-0.0.0.tar.gz');
