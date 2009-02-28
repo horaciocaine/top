@@ -1,6 +1,6 @@
 <?php
 
-require_once SWIFT_EXTERNALS_DIR . '/swift/lib/swift_required.php';
+require_once SWIFT_EXTERNALS_DIR . '/swiftmailer/lib/swift_required.php';
 
 $mailConfig = new Zend_Config_Ini(
   SWIFT_APPLICATION_DIR . '/config/mail.ini',
