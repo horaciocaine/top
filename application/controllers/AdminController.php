@@ -152,6 +152,12 @@ class AdminController extends Swift_Website_ActionController
         $user->setPassword($values['newpassword0']);
         $user->save();
         
+        Zend_Registry::getInstance()->get('notification_queue')
+          ->addNotification(
+            'Your password has been changed successfully.'
+          )
+          ;
+        
         return $this->_redirectToAdminIndex();
       }
     }

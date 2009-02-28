@@ -32,4 +32,9 @@ $router->addRoute('edit-download', new Zend_Controller_Router_Route(
   array('controller'=>'admin', 'action'=>'edit-download')
   ));
 
+$router->addRoute('bugs', new Zend_Controller_Router_Route(
+  '/bugs',
+  array('controller'=>'bug', 'action'=>'index')
+  ));
+
 unset($router);

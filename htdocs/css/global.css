@@ -64,6 +64,10 @@ li {
   margin-left: 4em;
 }
 
+ol ul {
+  list-style: circle;
+}
+
 p {
   margin-bottom: 1em;
 }
