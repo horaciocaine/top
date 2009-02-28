@@ -68,6 +68,15 @@ p {
   margin-bottom: 1em;
 }
 
+a {
+  color: #2a4fb7;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 samp, code, pre {
   font-family: monaco,monospace,courier;
   font-size: 1em;
@@ -393,6 +402,12 @@ form textarea.textarea {
 #sidepanel .supplementary p {
   line-height: 1.5em;
   font-size: 0.8em;
+}
+
+#sidepanel .supplementary ul {
+  line-height: 1.5em;
+  font-size: 0.8em;
+  list-style: disc;
 }
 
 #footer {

@@ -3,12 +3,10 @@ div#topicmap {
   line-height: 1.5em;
 }
 
-div#topicmap a {
-  text-decoration: none;
-}
-
-div#topicmap ul {
+#sidepanel div#topicmap ul {
   margin: 0;
+  list-style: none;
+  font-size: 1em;
 }
 
 div#topicmap li {
@@ -25,7 +23,30 @@ div#topicmap li li {
 }
 
 div#topicmap ul ul ul {
-  display: none;
+  /*display: none;*/
+}
+
+.note {
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-topleft: 10px;
+  -moz-border-radius-bottomright: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  margin: 1em 0 2em 0;
+  padding: 10px;
+  padding-left: 68px;
+  background: #ddd url(/images/note.png) 10px 10px no-repeat;
+  min-height: 48px;
+}
+
+.note .notetitle {
+  font-weight: bold;
+}
+
+.codeph,
+.cmdname {
+  font-family: monaco,monospace,courier;
+  font-size: 1em;
+  color: #000;
 }
 
 div.familylinks {
@@ -55,6 +76,14 @@ div.previouslink strong, div.nextlink strong {
 
 div.previouslink a, div.nextlink a {
   text-decoration: none;
+  font-weight: bold;
+}
+
+.olchildlink {
+  margin-bottom: 0.5em;
+}
+
+.olchildlink a {
   font-weight: bold;
 }
 
