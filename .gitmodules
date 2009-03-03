@@ -1,6 +1,6 @@
 [submodule "externals/swiftmailer"]
 	path = externals/swiftmailer
-	url = git@github.com:swiftmailer/swiftmailer.git
+	url = git://github.com:swiftmailer/swiftmailer.git
 [submodule "htdocs/kodify"]
 	path = htdocs/kodify
-	url = git@github.com:d11wtq/kodify.git
+	url = git://github.com:d11wtq/kodify.git

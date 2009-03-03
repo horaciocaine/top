@@ -31,7 +31,7 @@
       the HeaderSet's <samp class="codeph">addIdHeader()</samp> method.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -48,7 +48,7 @@ $headers-&gt;addIdHeader('Your-Header-Name', '123456.unqiue@example.org');
       method.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $msgId = $message-&gt;getHeaders()-&gt;getHeader('Message-ID');
@@ -63,7 +63,7 @@ $msgId-&gt;setId(time() . '.' . uniqid('thing') . '@example.org');
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $msgId = $message-&gt;getHeaders()-&gt;getHeader('Message-ID');

@@ -27,7 +27,7 @@
       of key-value parameters.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -52,7 +52,7 @@ $headers-&gt;addParameterizedHeader(
       method or the <samp class="codeph">setParameter()</samp> method (note the pluralization).
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $type = $message-&gt;getHeaders()-&gt;getHeader('Content-Type');
@@ -74,7 +74,7 @@ $type-&gt;setParameter('charset', 'iso-8859-1');
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $type = $message-&gt;getHeaders()-&gt;getHeader('Content-Type');
@@ -102,7 +102,7 @@ Content-Type: text/html; charset=utf-8
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $attachment = Swift_Attachment::newInstance();

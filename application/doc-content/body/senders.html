@@ -52,7 +52,7 @@
         address) then you can just use a string.
       </p>
 
-         <pre class="codeblock">
+         <pre class="kodify php">
 $message-&gt;setFrom('some@address.tld');
 </pre>
 
@@ -61,7 +61,7 @@ $message-&gt;setFrom('some@address.tld');
         If you want to include a name then you must use an associative array.
       </p>
 
-         <pre class="codeblock">
+         <pre class="kodify php">
 $message-&gt;setFrom(array('some@address.tld' =&gt; 'The Name'));
 </pre>
 
@@ -70,7 +70,7 @@ $message-&gt;setFrom(array('some@address.tld' =&gt; 'The Name'));
         If you want to include multiple addresses then you must use an array.
       </p>
 
-         <pre class="codeblock">
+         <pre class="kodify php">
 $message-&gt;setTo(array('some@address.tld', 'other@address.tld'));
 </pre>
 
@@ -82,7 +82,7 @@ $message-&gt;setTo(array('some@address.tld', 'other@address.tld'));
       </p>
 
 
-         <pre class="codeblock">
+         <pre class="kodify php">
 $message-&gt;setTo(array(
   'recipient-with-name@example.org' =&gt; 'Recipient Name One',
   'no-name@example.org', //Note that this is not a key-value pair

@@ -31,7 +31,7 @@
       the HeaderSet's <samp class="codeph">addTextHeader()</samp> method.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -48,7 +48,7 @@ $headers-&gt;addTextHeader('Your-Header-Name', 'the header value');
       method.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $subject = $message-&gt;getHeaders()-&gt;getHeader('Subject');
@@ -63,7 +63,7 @@ $subject-&gt;setValue('new subject');
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $subject = $message-&gt;getHeaders()-&gt;getHeader('Subject');
@@ -88,7 +88,7 @@ Subject: amazing subject line
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $subject = $message-&gt;getHeaders()-&gt;getHeader('Subject');

@@ -36,7 +36,7 @@
       You fetch the HeaderSet from a MIME entity like so:
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 
 $message = Swift_Message::newInstance();
 
@@ -63,7 +63,7 @@ $headers = $attachment-&gt;getHeaders();
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 
 foreach ($headers-&gt;getAll() as $header) {
   printf("%s&lt;br /&gt;\n", $header-&gt;getFieldName());
@@ -88,7 +88,7 @@ To
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 
 echo $headers-&gt;toString();
 
@@ -123,7 +123,7 @@ Content-Transfer-Encoding: quoted-printable
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 
 foreach ($headers-&gt;getAll() as $header) {
   switch ($header-&gt;getFieldType()) {

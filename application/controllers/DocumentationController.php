@@ -25,7 +25,7 @@ class DocumentationController extends Swift_Website_ActionController
         array(
           'action'=>'load-file',
           'controller'=>'documentation',
-          'topic' => 'start'
+          'topic' => 'introduction'
         ),
         'docs-file'
     );

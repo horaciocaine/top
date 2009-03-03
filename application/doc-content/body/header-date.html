@@ -29,7 +29,7 @@
       the HeaderSet's <samp class="codeph">addDateHeader()</samp> method.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -46,7 +46,7 @@ $headers-&gt;addDateHeader('Your-Header-Name', strtotime('3 days ago'));
       method.
     </p>
 
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $date = $message-&gt;getHeaders()-&gt;getHeader('Date');
@@ -61,7 +61,7 @@ $date-&gt;setTimestamp(time());
     </p>
 
     
-      <pre class="codeblock">
+      <pre class="kodify php">
 &lt;?php
 
 $date = $message-&gt;getHeaders()-&gt;getHeader('Date');

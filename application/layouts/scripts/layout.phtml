@@ -5,6 +5,8 @@
      xml:lang="en" >
   <head>
     
+    <?php echo $this->headMeta(); ?>
+    
     <?php echo $this->headLink()->appendStylesheet('/css/global.css'); ?>
     
     <?php echo $this->headScript(); ?>
@@ -32,7 +34,7 @@
             <ul>
               <li><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'), 'default'); ?>">home</a></li>
               <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), 'default'); ?>">download</a></li>
-              <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'start'), 'docs-file'); ?>">documentation</a></li>
+              <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'introduction'), 'docs-file'); ?>">documentation</a></li>
               <li><a href="<?php echo $this->url(array('controller'=>'bug', 'action'=>'index'), 'bugs'); ?>">bugs</a></li>
               <li><a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index'), 'default'); ?>">contact</a></li>
               <li class="tab corners top right left"><a href="<?php echo $this->url(array(

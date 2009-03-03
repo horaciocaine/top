@@ -1,24 +1,24 @@
 .stabledownload {
-  margin: 30px;
-  padding: 25px;
-  background: #eeeeff;
+  margin: 40px;
+  padding: 20px;
+  background: #a2ea47;
   font-size: 1.1em;
 }
 
 .stabledownload img {
   float: left;
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .stabledownload .downloadinfo {
   float: right;
   width: 100%;
-  margin-left: -84px;
+  margin-left: -79px;
 }
 
 .stabledownload dl {
   margin-bottom: 0;
-  padding-left: 84px;
+  padding-left: 79px;
 }
 
 .stabledownload dt,
@@ -58,13 +58,27 @@
 
 .stabledownload dl dd.description {
   color: #333;
+  margin-bottom: 1em;
+}
+
+.stabledownload dl dt.releasedate,
+.stabledownload dl dt.filesize {
+  float: left;
+  clear: left;
+  width: 120px;
+}
+
+.stabledownload dl dd.releasedate,
+.stabledownload dl dd.filesize {
+  float: left;
+  clear: none;
 }
 
 .stabledownload dl dt.filesize,
 .stabledownload dl dd.filesize,
 .stabledownload dl dt.releasedate,
 .stabledownload dl dd.releasedate {
-  color: #333;
+  color: #222;
 }
 
 .stabledownload dl dd.download {
