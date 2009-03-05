@@ -27,54 +27,57 @@ h1 {
   padding: 20px 0;
   font-size: 1.3em;
   font-weight: bold;
-}
-
-.featurelist li {
-  -moz-border-radius-topright: 10px;
-  -moz-border-radius-topleft: 10px;
-  -moz-border-radius-bottomright: 10px;
-  -moz-border-radius-bottomleft: 10px;
-  margin: 0 2.5em 20px 2.5em;
-  display: block;
-  background: #a1e34d;
-  color: #111;
-  padding: 10px;
-  width: auto;
-  clear: both;
-}
-
-.featurelist li.feature1,
-.featurelist li.feature3,
-.featurelist li.feature5 {
   float: left;
 }
 
-.featurelist li.feature2,
-.featurelist li.feature4,
-.featurelist li.feature6 {
+.featurelist li {
+  display: block;
+  clear: both;
+  margin: 0;
+}
+
+.featurelist li span {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  margin: 0 2.5em 20px 2.5em;
+  padding: 10px;
+  display: block;
+  background: #a1e34d;
+  color: #111;
+}
+
+.featurelist li.feature1 span,
+.featurelist li.feature3 span,
+.featurelist li.feature5 span {
+  float: left;
+}
+
+.featurelist li.feature2 span,
+.featurelist li.feature4 span,
+.featurelist li.feature6 span {
   float: right;
 }
 
-.featurelist li.feature1 {
+.featurelist li.feature1 span {
   background: #99e934;
 }
 
-.featurelist li.feature2 {
+.featurelist li.feature2 span {
   background: #a2ea47;
 }
 
-.featurelist li.feature3 {
+.featurelist li.feature3 span {
   background: #b9eb79;
 }
 
-.featurelist li.feature4 {
+.featurelist li.feature4 span {
   background: #bcec81;
 }
 
-.featurelist li.feature5 {
+.featurelist li.feature5 span {
   background: #c8eb9d;
 }
 
-.featurelist li.feature6 {
+.featurelist li.feature6 span {
   background: #d2ebb3;
 }

@@ -38,6 +38,8 @@ blockquote:before, blockquote:after {
 body {
   background: #111122;
   font-family: 'Lucida Grande',Trebuchet;
+  width: 100%;
+  float: left;
 }
 
 h1 {
@@ -82,8 +84,8 @@ a:hover {
 }
 
 samp, code, pre {
-  font-family: monaco,monospace,courier;
-  font-size: 1em;
+  font-family: 'Monaco',monospace,courier;
+  font-size: 1.1em;
 }
 
 ol {
@@ -91,7 +93,6 @@ ol {
 }
 
 pre {
-  margin: 2em 1em;
   padding: 1em;
 }
 
@@ -189,10 +190,8 @@ form fieldset.buttons {
 }
 
 form fieldset.buttons input.button {
-  -moz-border-radius-topright: 8px;
-  -moz-border-radius-topleft: 8px;
-  -moz-border-radius-bottomright: 8px;
-  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
   padding: 3px;
   border: 1px solid #fff;
   float: right;
@@ -257,7 +256,8 @@ form textarea.textarea {
 }
 
 #layout {
-  padding: 50px 40px 0 40px;
+  float: left;
+  padding: 50px 40px 40px 40px;
 }
 
 #header {
@@ -315,16 +315,19 @@ form textarea.textarea {
 }
 
 #navigation .tab a {
-  /*color: #64a314;*/
   color: #de5b0b;
   font-weight: bold;
   text-transform: uppercase;
 }
 
+#navigation .tab a:hover {
+  color: #de5b0b;
+}
+
 #wrapper {
   float: left;
   width: 100%;
-  margin: 8px 0 40px 0;
+  margin: 8px 0 0 0;
   background: #ffffff;
 }
 
@@ -462,16 +465,20 @@ form textarea.textarea {
 
 .corners.top.right {
   -moz-border-radius-topright: 10px;
+  -webkit-border-top-right-radius: 10px;
 }
 
 .corners.top.left {
   -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
 }
 
 .corners.bottom.right {
   -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
 }
 
 .corners.bottom.left {
   -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
 }

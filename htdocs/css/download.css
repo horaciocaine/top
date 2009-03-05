@@ -3,6 +3,7 @@
   padding: 20px;
   background: #a2ea47;
   font-size: 1.1em;
+  float: left;
 }
 
 .stabledownload img {
@@ -64,13 +65,13 @@
 .stabledownload dl dt.releasedate,
 .stabledownload dl dt.filesize {
   float: left;
-  clear: left;
+  /*clear: left;*/
   width: 120px;
 }
 
 .stabledownload dl dd.releasedate,
 .stabledownload dl dd.filesize {
-  float: left;
+  /*float: left;*/
   clear: none;
 }
 

@@ -1,0 +1,17 @@
+/* Style overrides for IE 6 */
+#content {
+  width: 100%;
+  overflow: hidden;
+}
+
+img {
+  behavior: url(/behaviours/iepngfix.htc);
+}
+
+pre {
+  margin: 2em 0;
+}
+
+.note {
+  height: 68px;
+}
