@@ -37,7 +37,7 @@ blockquote:before, blockquote:after {
 /* Overall Site Styles */
 body {
   background: #111122;
-  font-family: 'Lucida Grande',Trebuchet;
+  font-family: 'Lucida Grande',sans-serif;
   width: 100%;
   float: left;
 }
@@ -190,6 +190,7 @@ form fieldset.buttons {
 }
 
 form fieldset.buttons input.button {
+  border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
   padding: 3px;
@@ -463,22 +464,32 @@ form textarea.textarea {
   margin: 0;
 }
 
+.corners.top.right.bottom.left {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
 .corners.top.right {
   -moz-border-radius-topright: 10px;
   -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .corners.top.left {
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .corners.bottom.right {
   -moz-border-radius-bottomright: 10px;
   -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .corners.bottom.left {
   -moz-border-radius-bottomleft: 10px;
   -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }

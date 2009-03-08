@@ -1,15 +1,18 @@
 /* Style overrides for IE 6 */
+body {
+  font-size: 1.1em;
+}
+
 #content {
   width: 100%;
   overflow: hidden;
 }
 
-img {
-  behavior: url(/behaviours/iepngfix.htc);
-}
-
 pre {
   margin: 2em 0;
+  word-wrap: break-word;
+  width: 95%;
+  float: left;
 }
 
 .note {
