@@ -3,6 +3,11 @@ body {
   font-size: 1.1em;
 }
 
+#layoutcontainer {
+  float: left;
+  width: 100%;
+}
+
 #content {
   width: 100%;
   overflow: hidden;

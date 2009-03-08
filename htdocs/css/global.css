@@ -256,9 +256,14 @@ form textarea.textarea {
   font-weight: bold;
 }
 
+#layoutcontainer {
+  padding: 50px 40px 0 40px;
+}
+
 #layout {
   float: left;
-  padding: 50px 40px 40px 40px;
+  width: 100%;
+  padding: 0 0 40px 0;
 }
 
 #header {
