@@ -34,10 +34,17 @@ class DocumentationController extends Swift_Website_ActionController
   /** Shows an individual page from the docs */
   public function loadFileAction()
   {
-    $topic = new Swift_Website_Topic(
-      $this->_getTopicDir(),
-      $this->getRequest()->get('topic')
-    );
+    try
+    {
+      $topic = new Swift_Website_Topic(
+        $this->_getTopicDir(),
+        $this->getRequest()->get('topic')
+      );
+    }
+    catch (Swift_Website_TopicNotFoundException $e)
+    {
+      throw new Swift_Website_PageNotFoundException('Topic does not exist');
+    }
     
     $this->view->assign(array(
       'headHtml' => $topic->getHeadContent(),

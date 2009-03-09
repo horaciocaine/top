@@ -16,31 +16,43 @@ class ErrorController extends Swift_Website_ActionController
   public function errorAction()
   {
     $this->_helper->viewRenderer->setViewSuffix('phtml');
-    switch ($this->_getErrors()->type)
+    
+    $exception = $this->_getErrors()->exception;
+    
+    $errorType = ($exception instanceof Swift_Website_PageNotFoundException)
+      ? Swift_Website_PageNotFoundException::ERROR_TYPE
+      : $this->_getErrors()->type
+      ;
+    
+    switch ($errorType)
     {
       case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_CONTROLLER:
       case Zend_Controller_Plugin_ErrorHandler::EXCEPTION_NO_ACTION:
+      case Swift_Website_PageNotFoundException::ERROR_TYPE:
         
         $this->getResponse()->setHttpResponseCode(404);
-        $this->view->message = 'Page not found';
-        $this->view->advice = 'If you typed the address in your browser, check ' .
+        $message = 'Page not found';
+        $advice = 'If you typed the address in your browser, check ' .
           'for spelling mistakes.  If you clicked a link to get here, please report it to me.';
         break;
       
       default:
         
         $this->getResponse()->setHttpResponseCode(500);
-        $this->view->message = 'Application error';
-        $this->view->advice = 'Something isn\'t working correctly.  It\'s my fault, ' .
+        $message = 'Application error';
+        $advice = 'Something isn\'t working correctly.  It\'s my fault, ' .
           'not yours. Please try again later.';
         break;
     }
     
-    $this->view->title = $this->view->message;
-    $this->view->blurb = 'sometimes even computers make mistakes.';
-    $this->view->env = $this->getInvokeArg('env');
-    $this->view->exception = $this->_getErrors()->exception;
-    $this->view->request = $this->_getErrors()->request;
+    $this->view->assign(array(
+      'title' => $message,
+      'message' => $message,
+      'advice' => $advice,
+      'env' => $this->getInvokeArg('env'),
+      'exception' => $exception,
+      'request' => $this->_getErrors()->request
+    ));
   }
   
   // -- Private methods

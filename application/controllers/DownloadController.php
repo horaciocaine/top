@@ -51,7 +51,7 @@ class DownloadController extends Swift_Website_ActionController
       $this->getRequest()->get('filename')
       ))
     {
-      //TODO: Add Page not found logic
+      throw new Swift_Website_PageNotFoundException('Download does not exist');
     }
     
     return $this->_redirect($download->getUrl());
