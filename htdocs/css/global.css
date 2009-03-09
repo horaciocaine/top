@@ -169,7 +169,8 @@ form label .instruction {
 }
 
 form fieldset.radios,
-form fieldset.checkboxes {
+form fieldset.checkboxes,
+form .forminput {
   display: block;
   float: right;
   clear: none;

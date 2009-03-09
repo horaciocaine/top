@@ -17,9 +17,23 @@ class ContactController extends Swift_Website_ActionController
   /** The contact page */
   public function indexAction()
   {
-    $config = Zend_Registry::getInstance()->get('config');
+    //TODO: Refactor a lot of this into smaller service classes
     
-    $form = $this->_getForm(array('subject', 'email', 'message'));
+    $config = Zend_Registry::getInstance()->get('config');
+    $captchaConfig = Zend_Registry::getInstance()->get('captchaconfig');
+    
+    $captcha = new Zend_Service_ReCaptcha(
+      $captchaConfig->get('recaptcha_pubkey'),
+      $captchaConfig->get('recaptcha_privkey')
+    );
+    
+    $form = $this->_getForm(array(
+      'subject',
+      'email',
+      'message',
+      'recaptcha_challenge_field',
+      'recaptcha_response_field'
+    ));
     
     $this->view->assign(array(
       'title' => 'Contact the Developers',
@@ -27,7 +41,9 @@ class ContactController extends Swift_Website_ActionController
       'googleGroupName' => $config->get('google_group_name'),
       'googleGroupUrl' => $config->get('google_group_page'),
       'githubUrl' => $config->get('github_page'),
-      'forumUrl' => $config->get('devnetwork_forum_page')
+      'forumUrl' => $config->get('devnetwork_forum_page'),
+      'formValues' => $form->getValues(),
+      'captcha' => $captcha
     ));
     
     if (!$form->isSubmitted())
@@ -39,12 +55,21 @@ class ContactController extends Swift_Website_ActionController
       new Swift_Website_Validation_Rules_RequiredRule('subject', 'Subject'),
       new Swift_Website_Validation_Rules_RequiredRule('email', 'E-mail Address'),
       new Swift_Website_Validation_Rules_RequiredRule('message', 'Message'),
-      new Swift_Website_Validation_Rules_EmailRule('email', 'E-mail Address')
+      new Swift_Website_Validation_Rules_EmailRule('email', 'E-mail Address'),
+      new Swift_Website_Validation_Rules_RequiredRule('recaptcha_challenge_field'),
+      new Swift_Website_Validation_Rules_RequiredRule(
+        'recaptcha_response_field', null, 'You must type the two words in the captcha'
+      )
     ));
     
     if ($validator->isValid($form->getValues()))
     {
       $values = $form->getValues();
+      
+      $captchaResult = $captcha->verify(
+        $values['recaptcha_challenge_field'],
+        $values['recaptcha_response_field']
+      );
       
       //TODO: Swap this out for asynchronous sending
       //TODO: Move this to a Command object
@@ -57,8 +82,14 @@ class ContactController extends Swift_Website_ActionController
         ->setReplyTo($values['email'])
         ->setTo($mailConfig->get('developer_email'))
         ;
-        
-      if (!Zend_Registry::getInstance()->get('mailer')->send($message))
+      
+      if (!$captchaResult->isValid())
+      {
+        $validator->addValidationError(
+          'The two words from the image do not appear to be correct.  Have another go.'
+          );
+      }
+      elseif (!Zend_Registry::getInstance()->get('mailer')->send($message))
       {
         $validator->addValidationError(
           'We\'re really sorry but there\'s a problem sending the email. ' .

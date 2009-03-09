@@ -29,9 +29,12 @@ Zend_Registry::getInstance()->set(
 );
   
 require_once SWIFT_APPLICATION_DIR . '/routemap.php';
+
+//TODO: Move these to a more robust "service" subsystem
 require_once SWIFT_APPLICATION_DIR . '/doctrine.php';
 require_once SWIFT_APPLICATION_DIR . '/download-factory.php';
 require_once SWIFT_APPLICATION_DIR . '/mail.php';
+require_once SWIFT_APPLICATION_DIR . '/captcha.php';
 require_once SWIFT_APPLICATION_DIR . '/notifications.php';
 
 Zend_Controller_Front::getInstance()

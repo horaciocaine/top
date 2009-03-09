@@ -47,7 +47,7 @@ class Swift_Website_View_Helpers_FormValue
   public function setView(Zend_View_Interface $view)
   {
     $this->_values = $view->formValues;
-    $this->_values = $view->formEncoding
+    $this->_encoding = $view->formEncoding
       ? $view->formEncoding
       : 'utf-8'
       ;

@@ -1,3 +1,4 @@
 application/config/db.ini
 application/config/mail.ini
+application/config/captcha.ini
 application/config/environment.ini

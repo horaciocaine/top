@@ -31,7 +31,7 @@
             Briefly describe what your message is about
           </span>
         </label>
-        <input type="text" class="text" name="subject" id="field_subject" value="" />
+        <input type="text" class="text" id="field_subject" <?php echo $this->formAttributes('input', 'subject'); ?> />
         
         <label for="field_email">
           <strong>E-mail Address</strong>
@@ -39,7 +39,7 @@
             Please provide a valid e-mail address
           </span>
         </label>
-        <input type="text" class="text" name="email" id="field_email" value="" />
+        <input type="text" class="text" id="field_email" <?php echo $this->formAttributes('input', 'email'); ?> />
         
         <label for="field_message">
           <strong>Message</strong>
@@ -47,7 +47,19 @@
             Enter your message, being as detailed as you can be
           </span>
         </label>
-        <textarea class="textarea" rows="5" cols="40" name="message" id="field_message"></textarea>
+        <textarea class="textarea" rows="5" cols="40" name="message" id="field_message"><?php echo $this->escape($this->formValue('message')); ?></textarea>
+      </fieldset>
+      
+      <fieldset class="captchafields">
+        <label for="recaptcha_response_field">
+          <strong>Are you a Human?</strong>
+          <span class="instruction">
+            We do apologize, this is an inconvenience but we've been getting a lot of spam.
+          </span>
+        </label>
+        <div class="forminput">
+          <?php echo $this->captcha->getHtml(); ?>
+        </div>
       </fieldset>
       
       <fieldset class="buttons">
