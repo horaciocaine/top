@@ -1,24 +1,32 @@
-<div id="errorpage">
-  <h1>Oops... <?php echo $this->escape($this->message); ?></h1>
-  
-  <p>
-    <?php echo $this->escape($this->advice); ?>
-  </p>
-  
-  <?php if ('development' == $this->env): ?>
-    <h2>Message</h2>
+<div id="container">
+  <div id="content">
+    
+    <h1>Oops... <?php echo $this->escape($this->message); ?></h1>
+    
     <p>
-      <?php echo $this->escape($this->exception->getMessage()); ?>
+      <?php echo $this->escape($this->advice); ?>
     </p>
     
-    <h3>Stack Trace</h3>
-    <p>
-      <pre><?php echo $this->escape($this->exception->getTraceAsString()); ?></pre>
-    </p>
+    <?php if ('development' == $this->env): ?>
+      <h2>Message</h2>
+      <p>
+        <?php echo $this->escape($this->exception->getMessage()); ?>
+      </p>
+
+      <h3>Stack Trace</h3>
+      <p>
+        <pre><?php echo $this->escape($this->exception->getTraceAsString()); ?></pre>
+      </p>
+
+      <h3>Request Parameters</h3>
+      <p>
+        <pre><?php var_dump($this->request->getParams()); ?></pre>
+      </p>
+    <?php endif; ?>
     
-    <h3>Request Parameters</h3>
-    <p>
-      <pre><?php var_dump($this->request->getParams()); ?></pre>
-    </p>
-  <?php endif; ?>
+  </div>
+</div>
+
+<div id="sidepanel">
+  
 </div>
