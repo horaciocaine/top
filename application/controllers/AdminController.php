@@ -79,10 +79,6 @@ class AdminController extends Swift_Website_ActionController
         return $this->_redirectToAdminIndex();
       }
     }
-    
-    $this->view->assign(array(
-      'validationErrors' => $validator->getValidationErrors()
-    ));
   }
   
   /** End login session */
@@ -161,10 +157,6 @@ class AdminController extends Swift_Website_ActionController
         return $this->_redirectToAdminIndex();
       }
     }
-    
-    $this->view->assign(array(
-      'validationErrors' => $validator->getValidationErrors()
-    ));
   }
   
   /** Add packages for public download, revoke existing packages */
@@ -186,8 +178,7 @@ class AdminController extends Swift_Website_ActionController
     $this->view->assign(array(
       'title' => 'Download Manager',
       'user' => $this->_getAuthenticator()->getIdentity(),
-      'downloads' => $this->_getAllDownloads(),
-      'formValues' => $form->getValues()
+      'downloads' => $this->_getAllDownloads()
     ));
     
     if (!$form->isSubmitted())
@@ -249,10 +240,6 @@ class AdminController extends Swift_Website_ActionController
         }
       }
     }
-    
-    $this->view->assign(array(
-      'validationErrors' => $validator->getValidationErrors()
-    ));
   }
   
   /** Edit a download that exists in the system */
@@ -276,8 +263,7 @@ class AdminController extends Swift_Website_ActionController
     $this->view->assign(array(
       'title' => 'Edit Download',
       'user' => $this->_getAuthenticator()->getIdentity(),
-      'download' => $this->_getDownload(),
-      'formValues' => $form->getValues()
+      'download' => $this->_getDownload()
     ));
     
     if (!$form->isSubmitted())
@@ -311,10 +297,6 @@ class AdminController extends Swift_Website_ActionController
       
       return $this->_redirectToDownloadManager();
     }
-    
-    $this->view->assign(array(
-      'validationErrors' => $validator->getValidationErrors()
-    ));
   }
   
   // -- Private Methods

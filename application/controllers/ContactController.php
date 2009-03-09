@@ -42,7 +42,6 @@ class ContactController extends Swift_Website_ActionController
       'googleGroupUrl' => $config->get('google_group_page'),
       'githubUrl' => $config->get('github_page'),
       'forumUrl' => $config->get('devnetwork_forum_page'),
-      'formValues' => $form->getValues(),
       'captcha' => $captcha
     ));
     
@@ -108,10 +107,6 @@ class ContactController extends Swift_Website_ActionController
         );
       }
     }
-    
-    $this->view->assign(array(
-      'validationErrors' => $validator->getValidationErrors()
-    ));
   }
   
   /** Loaded when a message is sent successfully */

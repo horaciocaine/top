@@ -1,8 +1,8 @@
-<?php if (!empty($this->validationErrors)): ?>
+<?php if (isset($this->formValidator) && count($this->formValidator->getValidationErrors())): ?>
   <div class="errors">
     <strong>Errors occurred:</strong>
     <ul>
-      <?php foreach ($this->validationErrors as $validationError): ?>
+      <?php foreach ($this->formValidator->getValidationErrors() as $validationError): ?>
         <li><?php echo $this->escape($validationError); ?></li>
       <?php endforeach; ?>
     </ul>
