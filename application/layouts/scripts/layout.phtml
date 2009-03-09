@@ -79,8 +79,8 @@
             <dt>Swift Mailer</dt>
             <dd>
               <ul>
-                <li>About</li>
-                <li>Contact Information</li>
+                <!--<li>About</li>-->
+                <li><a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index'), 'default'); ?>">Contact Information</a></li>
               </ul>
             </dd>
           </dl>
@@ -89,9 +89,9 @@
             <dt>Get Started</dt>
             <dd>
               <ul>
-                <li>Download</li>
-                <li>Tutorials</li>
-                <li>User Guide &amp; Book</li>
+                <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), 'default'); ?>">Download</a></li>
+                <!--<li>Tutorials</li>-->
+                <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'index'), 'docs'); ?>">User Guide &amp; Book</a></li>
               </ul>
             </dd>
           </dl>
@@ -100,10 +100,10 @@
             <dt>Get Help</dt>
             <dd>
               <ul>
-                <li>Documentation</li>
-                <li>Contact</li>
-                <li>Report a Bug</li>
-                <li>Google Group</li>
+                <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'index'), 'docs'); ?>">Documentation</a></li>
+                <li><a href="<?php echo $this->url(array('controller'=>'contact', 'action'=>'index'), 'default'); ?>">Contact</a></li>
+                <li><a href="<?php echo $this->url(array('controller'=>'bug', 'action'=>'index'), 'bugs'); ?>">Report a Bug</a></li>
+                <li><a href="http://groups.google.com/group/swiftmailer">Google Group</a></li>
               </ul>
             </dd>
           </dl>
@@ -112,9 +112,9 @@
             <dt>Thanks to</dt>
             <dd>
               <ul>
-                <li>github</li>
-                <li>Lighthouse</li>
-                <li>devnetwork.net</li>
+                <li><a href="http://github.com/">github</a></li>
+                <li><a href="http://lighthouseapp.com/">Lighthouse</a></li>
+                <li><a href="http://forums.devnetwork.net/">devnetwork.net</a></li>
               </ul>
             </dd>
           </dl>

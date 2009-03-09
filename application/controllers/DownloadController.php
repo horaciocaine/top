@@ -44,15 +44,15 @@ class DownloadController extends Swift_Website_ActionController
   /** Download a specific file */
   public function downloadFileAction()
   {
-    $this->_helper->getHelper('ViewRenderer')->setNoRender();
-    $this->_helper->getHelper('Layout')->disableLayout();
-    
     if (!$download = $this->_getDownloadByFilename(
       $this->getRequest()->get('filename')
       ))
     {
       throw new Swift_Website_PageNotFoundException('Download does not exist');
     }
+    
+    $this->_helper->getHelper('ViewRenderer')->setNoRender();
+    $this->_helper->getHelper('Layout')->disableLayout();
     
     return $this->_redirect($download->getUrl());
   }

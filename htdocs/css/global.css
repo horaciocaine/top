@@ -433,6 +433,14 @@ form textarea.textarea {
   line-height: 1.6em;
 }
 
+#footer a {
+  color: #444;
+}
+
+#footer a:hover {
+  text-decoration: none;
+}
+
 #footercontent {
   margin: 15px;
   padding: 15px 0;
