@@ -51,6 +51,9 @@ class DownloadController extends Swift_Website_ActionController
       throw new Swift_Website_PageNotFoundException('Download does not exist');
     }
     
+    $tracker = new Swift_Website_SimpleDownloadTracker();
+    $tracker->trackDownload($download);
+    
     $this->_helper->getHelper('ViewRenderer')->setNoRender();
     $this->_helper->getHelper('Layout')->disableLayout();
     

@@ -61,7 +61,6 @@ DownloadEvent:
       autoincrement: true
     download_id: integer
     time_created: integer
-    ip_address: string(15)
   relations:
     Download:
       foreignType: one

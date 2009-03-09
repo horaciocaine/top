@@ -5,7 +5,8 @@
  * 
  * @author Chris Corbyn
  */
-interface Swift_Website_DownloadTracker
+class Swift_Website_SimpleDownloadTracker
+  implements Swift_Website_DownloadTracker
 {
   
   /**
@@ -13,7 +14,14 @@ interface Swift_Website_DownloadTracker
    * 
    * @param Swift_Website_Download $download
    */
-  public function trackDownload(Swift_Website_Download $download);
+  public function trackDownload(Swift_Website_Download $download)
+  {
+    $event = new DownloadEvent();
+    //TODO: Figure out how to hack Doctrine to allow setDownload()
+    $event->Download = $download;
+    $event->setTimeCreated(time());
+    $event->save();
+  }
   
   /**
    * Returns an associative array for analysis by hour.
@@ -29,7 +37,10 @@ interface Swift_Website_DownloadTracker
    * @return array
    */
   public function getHourlyStatistics($downloads = array(), $dateMin = 0,
-    $dateMax = 0);
+    $dateMax = 0)
+  {
+    //TODO
+  }
   
   /**
    * Returns an associative array for analysis by day.
@@ -45,7 +56,10 @@ interface Swift_Website_DownloadTracker
    * @return array
    */
   public function getDailyStatistics($downloads = array(), $dateMin = 0,
-    $dateMax = 0);
+    $dateMax = 0)
+  {
+    //TODO
+  }
   
   /**
    * Returns an associative array for analysis by week.
@@ -61,7 +75,10 @@ interface Swift_Website_DownloadTracker
    * @return array
    */
   public function getWeeklyDownloadStatistics($downloads = array(),
-    $dateMin = 0, $dateMax = 0);
+    $dateMin = 0, $dateMax = 0)
+  {
+    //TODO
+  }
   
   /**
    * Returns an associative array for analysis by month.
@@ -77,6 +94,9 @@ interface Swift_Website_DownloadTracker
    * @return array
    */
   public function getMonthlyDownloadStatistics($downloads = array(),
-    $dateMin = 0, $dateMax = 0);
+    $dateMin = 0, $dateMax = 0)
+  {
+    //TODO
+  }
   
 }
