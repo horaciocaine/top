@@ -9,7 +9,7 @@ printf("Generating models from yaml schema [%s] %s", $config->get('schema_file')
 Doctrine::generateModelsFromYaml(
   SWIFT_ROOT_DIR . '/' . $config->get('schema_file'),
   SWIFT_MODEL_DIR,
-  array('generateTableClasses' => true)
+  array('generateTableClasses' => true, 'generateAccessors' => true)
 );
 
 printf("All done %s", PHP_EOL);

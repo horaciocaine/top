@@ -152,7 +152,7 @@ class Doctrine_Manager_TestCase extends Doctrine_UnitTestCase {
        
         $this->conn1_database = $tmp_dir . "/doctrine1.db";
         $this->conn2_database = $tmp_dir . "/doctrine2.db";
-        
+
         $this->conn1 = Doctrine_Manager::connection('sqlite:///' . $this->conn1_database, 'doctrine1');
         $this->conn2 = Doctrine_Manager::connection('sqlite:///' . $this->conn2_database, 'doctrine2');
         

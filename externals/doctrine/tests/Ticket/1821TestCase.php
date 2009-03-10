@@ -60,7 +60,10 @@ class Doctrine_Ticket_1821_TestCase extends Doctrine_UnitTestCase
 		    $record->save();
 		}
 		catch(Exception $e) {
-		    $this->fail('Failed to execute validation with class = "'.$klass.'"');
+		    $this->fail(
+		        'Failed to execute validation with class = "' . $klass 
+		        . '". Exception message is: ' . $e->getMessage()
+		    );
 		}
 		$this->pass();
 		

@@ -1,71 +1,43 @@
-1.0.7
------
-     * [r5335] [1.0] Releasing Doctrine 1.0.6
-     * [r5340] [1.0, 1.1] Adding getSupportedDrivers() (closes #1794)
-     * [r5347] [1.0, 1.1] Moving new manual to 1.0 branch
-     * [r5349] [doc] Initial entry of new unit testing chapter.
-     * [r5351] [doc] Initial entry of data validation, dql, inheritance and models explained.
-     * [r5353] [doc] Initial entry of all chapters in new order.
-     * [r5354] [doc] Adding notes.
-     * [r5356] [doc] Misc. revisions
-     * [r5357] [doc] Initial entry of acknowledgements
-     * [r5358] [doc] A few misc. fixes
-     * [r5361] [1.0, 1,1] Fixing NestedSet to not create column for root column if it already exists (closes #1817)
-     * [r5369] [doc][1.0] Misc. revisions across several chapters.
-     * [r5371] [doc][1.0] Revisions for tickets in documentation milestone.
-     * [r5372] [doc][1.0] Revisions from first round of comments from readers.
-     * [r5373] [doc][1.0] Fixing typo in code example
-     * [r5375] [doc][1.0] Small fixes
-     * [r5376] [doc][1.0] Fixing spacing
-     * [r5378] [doc][1.0] Grammar fixes.
-     * [r5380] [doc][1.0] Adding follow a long style to first few chapters.
-     * [r5381] [doc][1.0] Initial entry of introduction to connections.
-     * [r5382] [doc][1.0] Small tweak.
-     * [r5383] [doc][1.0] Misc. revisions
-     * [r5390] [1.0] Changing table option collation to collate as that is what it should be
-     * [r5391] [doc][1.0] Misc. revisions.
-     * [r5393] [doc][1.0] Misc. revisions.
-     * [r5394] show how to autoload table classes as an optional setting
-     * [r5398] [doc][1.0] Final misc. revisions across all chapters.
-     * [r5399] [doc][1.0] Adding the chapters that got lost in the conversion. They still need to be re-written.
-     * [r5400] [doc][1.0] Misc. revisions
-     * [r5401] initial entry
-     * [r5402] [doc][1.0] Removing models explained because it was renamed.
-     * [r5403] [doc][1.0] Moving manual to old_manual.
-     * [r5404] [doc][1.0] Moving new manual in to place.
+1.1.0-RC2
+---------
+     * [r5362] [1.1] Releasing Doctrine 1.1.0-RC1
+     * [r5363] [1.1] Fixing typo in upgrade file.
+     * [r5364] [1.1] Fixing another typo.
+     * [r5365] [1.1] Fixing syntax error in markdown
+     * [r5366] [1.1] Fixing another typo
+     * [r5389] [1.1] Fixes issue with generated migrations not including important table options (closes #1831)
+     * [r5395] show how to autoload table classes as an optional setting
      * [r5405] [1.0, 1.1] Fixed 2 in the Searchable behavior.
-     * [r5407] [doc][1.0] Chapter 3 exercises.
-     * [r5408] [doc][1.0] Exercises chapter 3 tag
-     * [r5409] [doc][1.0] Chapter 4 exercises.
-     * [r5410] [doc][1.0] Chapter 5 exercises.
-     * [r5411] [doc][1.0] Exercise listings
-     * [r5412] [doc][1.0] Chapter 5 exercises tag
-     * [r5413] [doc][1.0] Chapter 7 exercise listings.
-     * [r5414] [doc][1.0] Chapter 8 exercises tag
-     * [r5415] [doc][1.0] Misc. revisions.
+     * [r5406] [doc][1.1] Moving old manual0
+     * [r5417] [1.1] Fixes #1845. Changed deleted_at column to receive date(...) instead of NOW(), since it is not supported in all DBMS.
      * [r5418] [1.0, 1.1] Fixes #1849. Fixed sqlite export sequence name that was throughing fatal errors
      * [r5419] [1.0, 1.1] Fixes #1856. Added checking to schema file to ensure correct file extension (format).
      * [r5420] [1.0, 1.1] Fixed wrong code I introduced. No fatal errors.
      * [r5421] [1.0, 1.1] Fixes #1859. Fixed wrong table alias generation that was picking numbers if table contains it.
+     * [r5422] [1.1] Added BC to SoftDelete behavior for users that cannot/want to update deleted column.
+     * [r5423] [1.1] Added coverage to SoftDelete BC
      * [r5424] [1.0, 1.1] Fixes #1833. Fixed makeRoot that was not working correctly.
-     * [r5427] [doc][1.0] Fixing syntax problem.
-     * [r5428] [doc][1.0] Fixes typo in docs.
+     * [r5425] [1.1] More fixes to BC of SoftDelete behavior.
+     * [r5426] [1.1] Fix for broken code (forgot to test before commit).
      * [r5429] [1.0, 1.1] Fixes issue with generated count queries (closes #1766)
      * [r5430] [1.0, 1.1] Fixed #1766. Previous applied patch did not work. I updated it to get it working smoothly
-     * [r5434] [1.0] Adding special pages to svn
-     * [r5435] [doc][1.0] Fixes special pages
-     * [r5436] [doc][1.0] Removing jwage
+     * [r5431] [1.1] Fixes issue with pre/post(save|insert|update) being invoked multiple times. Also fixes issue with isValid() not invoking the save hooks since they can alter the model
+	  properties which affects if it is valid or not.
+     * [r5437] [1.1] Fixed #1131. Now reference columns to not store the related objects on it. Thanks German for patch.
      * [r5438] [1.0, 1.1] Fixes issue with saveRelated() being called too early (closes #1865)
+     * [r5439] [1.1] Fixes issue with setting object properties in construct() (closes #1841)
+     * [r5440] PostgreSQL now uses TIMESTAMPS with timezone by default for timestamps (Closes #1758)
      * [r5441] [1.0, 1.1] Fixing generated models to adhere to coding standard of using 4 spaces (closes #1846)
-     * [r5442] [doc][1.0] Added tip to using doctrine expressions for how to get the updated values (addresses #1864)
      * [r5443] [1.0, 1.1] Fixes issue with intval overflow in validation (closes #1850)
-     * [r5444] [doc][1.0] Added tip about transactions in migrations (closes #1853)
-     * [r5445] [doc][1.0] Updating tip to be relavent for 1.0 (addresses #1853)
+     * [r5446] [1.1] Fixed #1830, #1827. Fixed duplicated params when using LIMIT/OFFSET under MySQL. Thanks for the awesome testcase and patch!
+     * [r5447] Fixed issue with #1464 test case, not accepting more than 3 fraction of seconds digits.
      * [r5448] [1.0, 1.1] Fixed #1835. Fixed MSSQL limit-subquery that was incorrectly using alias and also double escaping it. Thanks for the patch
+     * [r5449] Typo in the prepareTables parameter 'Ticket_1619_Article' made this test case fail.
      * [r5450] [1.0, 1.1] Fixes #1813. Fixed email validator to accept empty values.
      * [r5451] [1.0, 1.1] Fixed #1821. Fixed Unique validator that was not building check-sql correctly.
      * [r5453] [1.0, 1.1] Added referring row key to exception when importing data (closes #1777)
      * [r5454] [1.0, 1.1] Fixes issue with not being able to change keyField value for column aggregation inheritance (closes #1793)
+     * [r5455] [1.1] Added coverage to ticket #1876. Cannot make it fail, even under mysql-specific test
      * [r5456] [1.0, 1.1] Fixes issue with dropConstraint() function under mysql (closes #1711)
      * [r5457] [1.0, 1.1] Added new attribute to fix problem with modified objects being overwritten when querying for objects existing in the identify map already (closes #990)
      * [r5458] [1.0, 1.1] Fixes issue where enum values cannot be null (closes #1782)
@@ -73,24 +45,92 @@
      * [r5460] [1.0, 1.1] Fixes issue with creating associations between child inheritance classes (closes #1818)
      * [r5461] [1.0, 1.1] Fixes issue where exists() returns true when state === null (closes #1823)
      * [r5462] [1.0, 1.1] Fixes issue with geographical length (closes #1799)
-     * [r5463] #1868: added test case for this ticket. Note that with the default
-	  sqlite driver, the test currently passes... you have to actually run the
-	  test against a mysql backend to see the failure. More details provided
-	  on the ticket.
      * [r5464] [1.0, 1.1] Fixes issue with data fixture properties not working with record filters and fixed issue with missing record functions not being called on templates
+     * [r5465] [1.1] Fixes issue with HYDRATE_SINGLE_SCALAR and empty results causing php error (closes #1881)
+     * [r5467] [1.0, 1.1] Fixes #1860. Fixed two issues: softdelete not correctly converting booleans and reused query in pager was not applying DQL hooks
+     * [r5470] [1.0, 1.1] Fixes issue with link() throwing notices (closes #1884)
+     * [r5471] [1.0, 1.1] Fixes issue where fields with camel case are not moved to the translation table (closes #1883)
+     * [r5472] [1.0, 1.1] Fixes mistake from previous commit.
+     * [r5475] [1.1] Fixes issue with utf8 search analyzer (closes #1887)
+     * [r5477] [1.1] Changed default from encoding to utf-8 (closes #1887)
+     * [r5478] [1.1] Fixes issue with AS keyword in count query under oracle (closes #1886)
+     * [r5479] [1.1] Fixes #1858. Fixed issue that was preventing usage of CAST functions inside UPDATE queries.
+     * [r5480] [1.1] Cleanup of useless commented code
+     * [r5482] [1.0, 1.1] Fixed #1690. Added patch to prevent MSSQL to export a NULLable primary key
+     * [r5483] [1.0, 1.1] Fixed license issue with Zend Framework. License header imported from zend framework license as suggested by Wil Sinclair
+     * [r5485] [1.0, 1.1] Fixing space/tab issue.
+     * [r5486] [1.0, 1.1] Fixes issue with not being able to call accessor methods for children templates (closes #1795)
+     * [r5487] [1.0, 1.1] Fixes issue with query cache not being constructed properly for m2m relationships (closes #1630)
+     * [r5488] [1.0, 1.1] Fixes issue with migrations where migration version number isn't updaded as each migration is executed (closes #1633)
+     * [r5489] [1.0, 1.1] Added coverage to #1916. Fixed issue with column aggregation and subqueries which was incorrectly picking the root alias.
+     * [r5496] [1.0, 1.1] Fixed issue while generating the opposite side relation that was missing to pick the foreignAlias. Added coverage to this issue in 1.1 branch.
+     * [r5497] [1.0, 1.1] Updated the previous patch applied in r5496, simplifying it.
+     * [r5498] [1.0, 1.1] Fixed #1913. Fixed problem dumping data when containing fields with type object
+     * [r5499] [1.0, 1.1] Fixes issue with dumping and importing data fixtures with column type of object (closes #1913)
+     * [r5500] [1.0, 1.1] Fixes and documents issue with importing nested set data fixtures (closes #1919)
+     * [r5501] [1.0, 1.1] Fixes memory leak in sub queries (closes #1908)
+     * [r5502] [1.0, 1.1] Fixes issue with bit operation support in DQL (closes #1921)
+     * [r5516] [1.1] Fixed #1882. Fixed foreign key and index order on migration diff tool
+     * [r5517] [1.0, 1.1] Fixed #1787. Fixed Searchable behavior numeric evaluation
+     * [r5521] [1.1] Fixes issue with attribute using wrong number (closes #1917)
+     * [r5522] [1.1] Fixes issue with prefixes causing invalid differences (closes #1854)
+     * [r5525] [1.0, 1.1] Fixes issue with tmp connections not using port (closes #1928)
+     * [r5526] [1.0, 1.1] Fixes issue with indexes cannot be specified using field names (closes #1923)
+     * [r5528] [1.0, 1.1] Fixes issue with importing from existing databases (closes #1877)
+     * [r5529] [1.0, 1.1] Fixes issue with previous commit to fix tmp connection
+     * [r5531] [1.0, 1.1] Fixes issue with email validator false positive (closes #1893)
+     * [r5532] [1.0, 1.1] Fixed importing so both sides of relationships are properly generated (closes #1890)
+     * [r5533] [1.0, 1.1] Fixed issue with validating length of decimal and float types (closes #1875)
+     * [r5535] [1.0, 1.1] Making another tweak to previous decimal/float validation (closes #1875)
+     * [r5536] [1.0, 1.1] Yet another fix for decimal/float validation (addresses #1875)
+     * [r5537] [1.0, 1.1] Throwing exception when using IN() with empty params array (closes #1912)
+     * [r5539] [1.1] Fixes #1935. Fixed issue of double identifier quoting when using agg expression aliases.
+     * [r5540] [1.1] Fixed #1835. Added support to check_mx against Windows in PHP version lower than 5.3.0.
+     * [r5541] [1.0, 1.1] Fixed #1616, #1766 and #1922. Optimized count query in Doctrine_Query::getCountQuery() to produce smarter count queries, preventing too much resources usage and also
+	  better SQL supported stuff.
+     * [r5542] [1.0, 1.1] Fixes #1931. Fixed issue on Template record generator that was missing to export actAs template behaviors.
+     * [r5543] [1.0, 1.1] Added missing root save when creating a root node (makeRoot()) on NestedSet behavior.
+     * [r5544] [1.0, 1.1] Fixed #1868. Fixed issue with offset bigger than actual resulted that was returning all records.
+     * [r5545] [1.0, 1.1] Fixing case type
+     * [r5546] [1.1] License corrections.
+     * [r5549] [1.1] Fixed warning of email validator on non-Windows OS
+     * [r5550] [1.1] Fixed #1860 and #1876. Fixed issue with pending join conditions not being applied when reusing query.
+     * [r5551] [1.0, 1.1] Fixed #1948. Fixed limit-subquery under Postgres that was generating incorrect SQL. Thanks for ticket and patch!
+     * [r5552] [1.0, 1.1] Fixed #1873. Fixed unsigned validator that was failing when value exceed PHP maximum integer
+     * [r5553] [1.0, 1.1] Fixed #1923. Added support to field names as index declaration. Fixed issue with field options
+     * [r5554] [1.0, 1.1] Fixes issue with importing from mssql databases that have sysdiagrams.
+     * [r5555] [1.0, 1.1] Fixes issue with utf8 length validation
+     * [r5557] [1.0, 1.1] Fixed issue with Validator that was throughing warnings on OSX
+     * [r5558] [1.0, 1.1] Fixed #1950. Added possibility to fetchTree and define a depth limit.
+     * [r5559] [1.0, 1.1] Fixed #1942. Fixed issue that fromArray was not setting properties on templates
+     * [r5560] [1.0, 1.1] Reverting r5559 temporarily (addresses #1942)
+     * [r5564] [1.0, 1.1] Casting $fieldName as string
+     * [r5565] [1.0, 1.1] Undoing changeset
 
-1.0.6
------
-     * [r5283] [1.0] Releasing 1.0.5
+1.1.0-RC1
+---------
+     * [r5346] [1.1] Releasing Doctrine 1.1.0-BETA2
+     * [r5347] [1.0, 1.1] Moving new manual to 1.0 branch
+     * [r5360] [1.1] Adding note to Upgrade file about migration classes needing to extend Doctrine_Migration_Base.
+     * [r5361] [1.0, 1,1] Fixing NestedSet to not create column for root column if it already exists (closes #1817)
+
+1.1.0-BETA2
+-----------
+     * [r5284] [1.1] Releasing 1.1.0-BETA1
+     * [r5285] [1.2] Updating UPGRADE file to document the changes to SoftDelete.
+     * [r5286] [1.1] Property max_identifier_length is now used as the length parameter for _generateUniqueName method. Oracle holds only 30 characters long identifiers.
+     * [r5287] Removed unfitting doc section that seemed misplaced.
      * [r5290] [1.0, 1.1] fixed typo.
-     * [r5291] [1.0] TestCase for ticket 1745
+     * [r5292] [1.1] TestCase for ticket 1745
+     * [r5293] [1.1] Initial entry of new Manual layout.
+     * [r5294] [1.1] Initial entry of Introduction chapter.
      * [r5295] [1.0, 1.1] Fixed issue with Date validator
      * [r5296] [1.0, 1.1] Fixes issue with validators not passing when a related object is set for a foreign key and the foreign key field is notnull (closes #1755)
      * [r5297] [1.0, 1.1] Fixing issue with pgsql and spatial column types (closes #1731)
      * [r5298] [1.0, 1.1] Fixes issue with inheritance type column when it is aliased (closes #1713)
+     * [r5299] [1.1] removing test case.
      * [r5300] [1.0, 1.1] Improving error message when validation fails. (closes #1763)
      * [r5301] [1.0, 1.1] Fixing issue with resultset cache and joined records (closes #1636)
-     * [r5302] [1.0] Removing failing test case.
      * [r5303] [1.0, 1.1] Fixed issue with limit subquery algorithm queries beind cached when they should not be (closes #1726)
      * [r5304] [1.0, 1.1] Fixed issue with accented characters with Searchable behavior (closes #1745)
      * [r5305] [1.0, 1.1] Fixes issue with data fixtures exporting with foreign keys (closes #1665)
@@ -99,6 +139,7 @@
      * [r5308] [1.0, 1.1] Adding odbc to list of drivers (closes #1572)
      * [r5309] [1.0, 1.1] Changing data fixtures to use is_callable() instead of method_exists() since setters may be not real physical functions (closes #1680)
      * [r5310] [1.0, 1.1] Fixes issue with compound filters (closes #1751)
+     * [r5311] [1.1] Fixed infinite loop problem with isValid() (closes #1750)
      * [r5312] [1.0, 1.1] Fixes small issue with Doctrine_Template::setInvoker() (closes #1765)
      * [r5315] [1.0, 1.1] Fixing Timestamp validator to remove regex since the individual date and time validator will do the job
      * [r5316] [1.0, 1.1] Fixes regression in resultset cache (closes #1768) and (addresses #1636 again)
@@ -107,241 +148,89 @@
      * [r5319] [1.0, 1.1] Fixing strict standards notice that happens in certain cases
      * [r5320] [1.0, 1.1] Reverting r5309 (addresses #1680)
      * [r5321] [1.0, 1.1] Fixing data fixtures so they work with setters on behaviors (closes #1680)
+     * [r5322] [1.1] Fixing markdown syntax in upgrade file.
      * [r5323] [1.0, 1.1] Fixed isModified casting that was missing for integer values. Thanks Hannes for reporting that
      * [r5324] Fixes weird caching exceptions in Symfony. Thanks Hannes for notification and patch
      * [r5325] [1.0, 1.1] Fixes #1259. Fixed SELECT DISTINCT query with limit being applied.
+     * [r5326] fixes #1772. Thanks for the patch! I had to modify it a little, because it was breaking 2 test cases in our test suite.
+     * [r5327] [1.1] fixes #1792. Fixed usage of relation aliases in BETWEEN queries. Thanks for the great patch/work!
      * [r5328] [1.0, 1.1] fizes #1701. Fixed data fixture importing of NestedSet model. Thanks for the patch!
      * [r5333] [1.0, 1.1] Makes hydrator exceptions more verbose (closes #1800)
+     * [r5336] [1.1] Added $deep argument for isValid() and isModified() and defaulted it to false to maintain BC (closes #1653)
+     * [r5337] [1.1] Removes uses of _identifiers (closes #1739)
+     * [r5338] [1.1] Updating upgrade document for synchronizeWithArray() changes..
+     * [r5339] [1.1] Reverting r5084 as it introduces some bugs which cannot be fixed until a later version (closes #1692)
+     * [r5340] [1.0, 1.1] Adding getSupportedDrivers() (closes #1794)
+     * [r5341] Fixed issue with named parameters (closes #1741)
+     * [r5344] [1.1] Added checking for obj.field IN :named to prevent possible issues of DQL
+     * [r5345] [1.1] Fixed issue with temporary generated models not being cleaned up properly (closes #1736)
 
-1.0.5
------
-     * [r5215] Fixing filenames
-     * [r5216] Fixing
-     * [r5217] [1.0] Releasing 1.0.4
-     * [r5218] [1.0, 1.1] Fixes issue with && and || being converted to AND and ||. Causes problems with postgres since || is an real operator (closes #1632)
-     * [r5219] [1.0, 1.1] fixes #1698. Thanks for the tip and patch!
-     * [r5222] [1.0, 1.1] fixes #1693. Added return value for Connection rollback.
-     * [r5224] limit fetchOne to one result
-     * [r5232] [1.0, 1.1] fixes #1394
-     * [r5234] [1.0, 1.1] fixes issue with column aggregation inheritance in schema files (fixes #1617)
-     * [r5235] [1.0, 1.1] Added extra check (closes #1707)
-     * [r5237] [1.0, 1.1] fixes #1710.
-     * [r5247] [1.0] Reverting r5224 (fixes #1715)
+1.1.0-BETA1
+-----------
+     * [r5243] [1.1] Releasing 1.1.0-ALPHA1
+     * [r5244] [1.1] Added ability to mapValues and reuse then on application. Mapped values are data that is transient and is not persisted to DB, although they are part of the record.
+     * [r5245] [1.1] fixes issue with foreign key names being too long in genrated migrations (fixes #1712)
+     * [r5246] [1.1] Enhancing generated php doc
+     * [r5248] [1.1] Fixing parse error
+     * [r5249] [1.1] fixing generating php doc block for @version
      * [r5250] [1.0, 1.1] Fixes issue with preInsert() and preUpdate() hooks being called after isValid() (fixes #1716)
      * [r5251] [1.0, 1.1] Fixes issue with checks not exporting in pgsql (fixes #1697)
+     * [r5252] [1.1] Fixes issue with foreign key names (addresses #1712)
+     * [r5253] [1.1] Another issue with foreign key names (addresses #1712)
      * [r5255] [1.0, 1.1] Fixed incorrect phpdoc @return on Doctrine_Record::exportTo() (fixes #1709)
      * [r5256] [1.0, 1.1] Added failing test case for #1706
      * [r5257] [1.0, 1.1] Fixes issue with Searchable behavior when primary key is not an integer (fixes #1704)
+     * [r5258] Add testcase for ticket 1619
      * [r5259] [1.0, 1.1] fixes issue with missing sqlite types in DataDict (fixes #1662)
      * [r5260] [1.0, 1.1] Cached results are now connection/dsn specific. (fixes #1706)
      * [r5261] [1.0, 1.1] fixes issue with creating and dropping databases (fixes #1595)
-     * [r5262] Adding ignore.
      * [r5263] [1.0, 1.1] fixes issue with mis-leading exception being thrown (fixes #1562)
      * [r5264] [1.0, 1.1] Fixes issue with serializing non saved records (fixes #1703)
+     * [r5265] [1.1] fixes #1696. Limit and subqueries are working perfectly now for MySQL. Also fixed the wrong parameter adjusting that was being not accepted under certain circunstances (mix of
+	  params between join/where + > 3 joins not related).
+     * [r5266] [1.1] Format/cleanup
+     * [r5267] [1.1] Fixes issue with generated foreign key names being returned already formatted
+     * [r5268] [1.1] fixes issue with length of generated index names (fixes #1712)
      * [r5269] [1.0, 1.1] fixes issue with Doctrine::loadModels() returning empty array when called back to back with same directory (fixes #1727)
-     * [r5273] [1.0] Fixing typo.
+     * [r5270] [1.1] Fixes strict standards notice (fixes #1720)
+     * [r5271] [1.1] Fixing migrations to execute in the order specified by developer (fixes #1722)
+     * [r5272] [1.1] adding coverage for ticket #1729 (addresses #1729)
+     * [r5274] [1.1] fixes issue with Versionable and SoftDelete together (fixes #1725)
      * [r5275] [1.0, 1.1] fixes #1719. Fixed missing index in Windows specific environment for test suite. Thanks for the tip and patch!
      * [r5276] [1.0, 1.1] Fixes #1718. Fixed setCharset call to PDO quote which was incorrect. Thanks for the tip and patch!
      * [r5277] [1.0, 1.1] fixes #1705. Thanks for the tip and patch!
+     * [r5278] [1.1] Fixing SoftDelete failing test cases.
      * [r5279] [1.0, 1.1] Fixing issue with actAs() where invoker was not being set
      * [r5280] [1.0, 1,1] Fixing issue with comment being used as a validator
      * [r5281] [1.0, 1.1] fixes inconsistant lazy loading behavior (closes #1733)
      * [r5282] [1.0, 1.1] Added missing listTableRelations() for postgres (closes #1734)
 
-1.0.4
------
-     * [r5076] [1.0] Releasing Doctrine 1.0.3
-     * [r5077] [1.0] fixes #1132 Fixes regression in r5074
-     * [r5081] [1.0, 1.1] fixes #1548
-     * [r5082] [1.0, 1.1] Fixes #1463: Updated Doctrine_Adapter_Oracle. Thanks to vadik56..
-     * [r5086] [1.0, 1.1] fixes #1464 fixes issue with postgres timestampz and the date validators
-     * [r5087] [1.0, 1.1] fixes #1558 - issue with empty whereIn params
-     * [r5088] [1.0, 1.1] fixes #1556 - issue with query registry not storing copies of queries
-     * [r5089] [1.0] fixes #1529 - issue with SoftDelete where conditions. Added OR IS NULL to solve problem.
-     * [r5091] [1.0, 1.1] fixes #1528 - issue with unsigned validator and float/string values
-     * [r5092] [1.0, 1.1] addresses #1341 Added test coverage
-     * [r5093] [1.0, 1.1] addresses #1341 fixed test so it fails
-     * [r5094] [1.0, 1.1] addresses #1341 updated test again to fail differently.
-     * [r5095] [1.0, 1.1] fixes #1341 - issue with local/foreign and column aliases
-     * [r5102] [1.0, 1.1] Export: Primary key fields in CREATE TABLE was not quoted when ATTR_QUOTE_IDENTIFIER turned on.
-	  Export/Oracle: CREATE TRIGGER and anonymous statement shouldn't be used with ATTR_QUOTE_IDENTIFIER turned on.
-     * [r5104] [1.0, 1.1] Moved parseQuery method from Doctrine_Adapter_Oracle to Doctrine_Adapter_Statement_Oracle to handle the queryString by the Statement. Both classes reformated to follow
-	  coding standard.
-     * [r5111] [1.0, 1.1] Fixes #1588: Oracle building schema does not detect foreign keys
-     * [r5113] [1.0, 1.1] Fixes #1585: Oracle building model fails due to precision element - precision in number type is now data_length
-     * [r5115] [1.0, 1.1] fixes #1591
-     * [r5116] [1.0, 1.1] Oracle DataDict allowed to export VARCHAR2 and NUMBER bigger than allowed Oracle size. Max limit for VARCHAR2 is 4000 bytes and NUMBER precision 38. Clob used when string
-	  is bigger than 4000.
-     * [r5118] [1.0, 1.1] fixes #1563
-     * [r5119] [1.0, 1.1] fixes #1531
-     * [r5120] [1.0] fixes #1577
-     * [r5122] [1.0, 1.1] fixing tests to auto include all tests found in the Ticket folder
-     * [r5123] [1.0, 1.1] fixes #1006
-     * [r5124] [1.0, 1.1] fixes #1568
-     * [r5125] [1.0, 1.1] fixes #1477
-     * [r5126] [1.0, 1.1] fixes #1575
-     * [r5127] [1.0, 1.1] fixes #1583
-     * [r5128] [1.0, 1.1] fixes #1594
-     * [r5129] [1.0, 1.1] fixes #1578
-     * [r5130] [1.0, 1.1] fixes #1570
-     * [r5132] [1.0, 1.1, 2.0] fixes #1599 Thanks for the report!
-     * [r5136] [1.0, 1.1] fixes #1602
-     * [r5137] [1.0, 1.1] fixes #1604
-     * [r5138] [1.0, 1.1] Set query part didn't quote identifiers when ATTR_QUOTE_IDENTIFIER setted to true. Therefor shifting left and right values in NestedSets didn't work with this attribute
-	  turned on.
-     * [r5140] TestCase 1619
-     * [r5141] TestCase 1619
-     * [r5142] [1.0, 1.1] fixes #1340
-     * [r5143] [1.0, 1.1] fixes #1610
-     * [r5144] [1.0, 1.1] addresses #1629 - added coverage for issue
-     * [r5145] [1.0, 1.1] fixes #1628
-     * [r5146] [1.0, 1.1] fixes #1618
-     * [r5147] [1.0, 1.1] fixes #1611
-     * [r5148] [1.0, 1.1] fixes #1620
-     * [r5149] [1.0, 1.1] fixes parse error in example
-     * [r5150] [1.0, 1.1] fixes #1573
-     * [r5151] [1.0, 1.1] Fixed some updates in Doctrine_Node_NestedSet where ATTR_QUOTE_IDENTIFIER didn't quote the columns in set parts of query - related to r5138
-     * [r5153] [1.0, 1.1] Added checking for no existent schema files
-     * [r5154] [1.0, 1.1] Added checking for no existent schema files (fixed)
-     * [r5155] [1.0, 1.1] Reverting changes by guilhermeblanco as they are un-necessary and break backwards compatibility
-     * [r5156] Fixed cross access logic that was failing.
-     * [r5157] [1.0, 1.1] Complementary fix to cross access logic that was incorrect.
-     * [r5164] [1.0, 1.1] fixes issue with sqlite importing the sqlite_sequence table
-     * [r5165] [1.0] fixes #1538
-     * [r5168] [1.0] Fixes #1631. Thanks for the patch!
-     * [r5170] [1.0] fixes #1638. Thanks for the tip and patch!
-     * [r5171] [1.0, 1.1] Updating coverage, addresses #1523
-     * [r5172] [1.0, 1.1] fixes #1637. Thanks for the tip and patch! I could not add the test case since we do not have a mock driver of memcache and it fails in our test suite (memcache must be
-	  loaded), but your changes are applied.
-     * [r5173] [1.0, 1.1] fixes #1449
-     * [r5174] [1.0, 1.1] closes #1523 - test case was wrong. As far as we can tell this is all working properly and the test case is passing correctly. If we're mistaken can you please update the
-	  ticket and point us straight. Thanks.
-     * [r5175] fixes #1667. thanks for the tip and patch!
-     * [r5176] fixes #1555. Added smalldatetime and smallmoney portable declarations for MSSQL
-     * [r5177] fixes #1569. Correct non-UTF8 data fixture load by removing wrong charset convertion
-     * [r5178] fixes #1646. Added missing quote in set for update queries. Thanks for reporting
-     * [r5179] fixes #1648. Corrected wrong field reference that was causing a random behavior of saving related records
-     * [r5180] fixes #1414. Fixed limit-subquery algorithm when mixing with order by. Thanks for the tip and patch!
-     * [r5183] [1.0, 1.1] fixed #1646 and added coverage to it. Now update queries are able to run without the need of their component alias
-     * [r5184] [1.0, 1.1] fixed #1646 and #1582. Adjusted filgerGet call. Commit fixing the agg expression usage with update queries.
-     * [r5185] [1.0, 1.1] fixed #1646. Fixed Query_Abstract::set to correctly quote identifiers. I hope this is the last fix to be applied.
-     * [r5186] [1.0, 1.1] fixes #1678. Thanks for the tip and patch!
-     * [r5187] fixes #1646. Last commit regarding this DQL issue, please!
-     * [r5188] [1.0, 1.1] fixes #1625. Sluggable and SoftDelete can play nicely together now!
-     * [r5189] [1.0, 1.1] fixes #1472. There is no QueryCache in RawSql, since it expects to be a plain SQL. All other caches are valid to be used. I applied your patch since it is valid. Thanks!
-     * [r5190] [1.0, 1.1] fixes #1613. Added possibiity to define depth when fetching branches in a NestedSet model.
-     * [r5191] [1.0, 1.1] fixes #1612. Added reporting for task dump-data if not model were found. Thanks for the patch!
-     * [r5195] [1.0, 1.1] Fixing issue with update() and delete() not being consistant.
-     * [r5196] [1.0, 1.1] Fixes issue with result cache not respecting passed ttl (closes #1686)
-     * [r5197] [1.0, 1.1] Fixes issue with Doctrine_Lib::arrayDeepMerge() not working for more than 2 arguments (closes #1684)
-     * [r5198] [1.0, 1.1] Fixing a bug that was made visible by fixing a previous bug.
-     * [r5199] [1.0, 1.1] Adding some more coverage for the DQL delete()
-     * [r5200] [1.0, 1.1] Removing new line at end of test template.
-     * [r5201] [1.0, 1.1] Added coverage (addresses #1658)
-     * [r5202] [1.0, 1.1] fixes #1627. Fixed UNIQUE index creation for MSSQL
-     * [r5203] [1.0, 1.1] fixes #1267. Fixed UNIQUE index creation for MSSQL. Now syntax is correct.
-     * [r5204] [1.0, 1.1] fixes #1309, #1500 and #1621. Fixed association table column retrieval. Maybe I missed other changes, so please report back if you find anything else.
-     * [r5205] [1.0, 1.1] fixes #1689. Fixes list databases for MySQL driver
-     * [r5206] [1.0, 1.1] fixes #1685. Fixes Query Cache that was not respecting TTL. Thanks for the tip and patch!
-     * [r5207] [1.0, 1.1] fixes #1641. Doctrine_Table now applies the DQL listeners too
-     * [r5209] [1.0, 1.1] fixes #1621. Fixed inheritance with M2M relations + aliases. Third needed part of this patch.
-     * [r5210] [1.0, 1.1] fixes #880. MSSQL Identity columns are not generated as autoincrement: true when generating yaml from db.
-     * [r5212] Fixes failing test in Doctrine_Record_Synchronize_TestCase method testSynchronizeRecord
-
-1.0.3
------
-     * [r4912] fixes #1323
-     * [r4948] Fixing uncaught exception in test suite.
-     * [r4950] Updating 1.0 branch for Doctrine 1.0.2
-     * [r4953] fixes #1446
-     * [r4954] fixes #1453
-     * [r4955] Added coverage for #1452
-     * [r4956] Fixing some wording.
-     * [r4957] fixes #1450
-     * [r4958] fixes #1447
-     * [r4959] fixes #1413
-     * [r4961] Fixing use_dql_callbacks so it can be specified at the connection level as well as the manager level.
-     * [r4968] undefined variable
-     * [r4969] [1.0] Fixes issue with DQL deletes which use SoftDelete behavior
-     * [r4970] Fixed #1466: fixed Oracle's lastInsertId()
-     * [r4973] Fixed #1499. Fixed #1492.
-     * [r4975] [1.0] Adding coverage for #1395
-     * [r4976] [1.0] Added coverage for #1480
-     * [r4977] [1.0] Removing references to FETCH_ARRAY
-     * [r4978] [1.0] Adding missing test
-     * [r4979] [1.0] fixes #1457 Removed the dummy data code and updated documentation
-     * [r4980] [1.0] fixes #1481 Fixing missing support for cascade: [delete] option to YAML
-     * [r4981] [1.0] fixes #1469 Adds PDO as a dependency in the PEAR package.xml
-     * [r4982] [1.0] Added coverage for #1461
-     * [r4983] [1.0] Adding coverage for #1454
-     * [r4984] [1.0] Removed deprecated task
-     * [r4985] [1.0] fixes #1458 Fixes undefined variable
-     * [r4986] [1.0] fixes #1459 Removing unused file
-     * [r4987] [1.0] fixes #1473 Fixes issue with not being able to set created and updated at values manually with Timestampable
-     * [r4988] [1.0] fixes #1456 Making postDelete() run inside transaction
-     * [r4989] [1.0] fixes #1469
-     * [r4990] [1.0] fixes #1337 Fixes issue with oracle export driver
-     * [r4991] [1.0] fixes #1064
-     * [r4992] [1.0] Adding coverage for #1380
-     * [r4993] [1.0] fixes #1380 Hydrating calculated columns to base component
-     * [r4994] [1.0] Cleaning up test for #1395
-     * [r4995] [1.0] fixes #1395 Fixes regression with calculated columns in preHydrate()
-     * [r4996] [1.0] Fixing debug print_r()
-     * [r4997] [1.0] fixes #1486 Fixes issue with CURRENT_TIMESTAMP default value in mysql
-     * [r4998] [1.0] fixes #1150 Fixes issue with validating length of multibyte character strings
-     * [r4999] [1.0] Added coverage for #1507
-     * [r5000] [1.0] fixes #1507 Fixes issue with Doctrine_Configurable::getParam() namespaces
-     * [r5001] [1.0] fixes #1254, fixes #1454, fixes #1480 Fixes issue with subqueries and shared information
-     * [r5002] [1.0] fixes #1465 Throw exception when bad DQL is used for joining components.
-     * [r5003] [1.0] Removing isset() that is not needed in the hydrator
-     * [r5004] [1.0] fixes #1475 Fixes issue with pgsql and quoting boolean values
-     * [r5005] [1.0] Fixed test case that was failing because test not being setup properly.
-     * [r5006] [1.0] fixes #1476 Fixes issue with ON and WITH keywords for joins being case insensitive
-     * [r5007] [1.0] Fixes issue with exporting records with only a primary key and no other columns
-     * [r5008] [1.0] Fixes test that fails incorrectly
-     * [r5009] [1.0] Another commit to fix #1476 and fixes possible unexpected behavior introduced in r5006.
-     * [r5010] [1.0] Fixes issue with serializing Connection objects with PDO instances
-     * [r5011] Renaming sfYaml to YamlSf, since Symfony's simple autoloader incorrectly refers to Doctrine file instead of Symfony's one.
-	  Issue reported by francoisz. I hope the patch fixes the issue.
-     * [r5012] Fixes #1518. Thanks for the tip and patch!
-     * [r5015] [1.0] Fixed #1510.
-     * [r5017] [1.0, 1.1] fixes #1336 - fixes issue with RawSql adding primary keys on distinct queries
-     * [r5020] [1.0, 1.1] fixes #1517 Implemented serialize()/unserialize() for Doctrine_Connection instances
-     * [r5024] [1.0, 1.1] Fixed array_merge_recursive warnings when using Doctrine with PHP
-     * [r5026] [1.0, 1.1] fixes #1294
-     * [r5028] [1.0, 1.1] fixes #1441 fixes issue where update column is not set for dql update queries
-     * [r5037] [1.0, 1.1]Fixed unexpected conversion of Doctrine_Null into null when second calling _get.
-	  Issue reported by user jesepe in #doctrine channel.
-     * [r5038] [1.0, 1.1] Added color outputting to tests as well as a new fails and fixed fails lines at the end report.
-     * [r5040] [1.0, 1.1] Fixes issue with caching last runs results
-     * [r5041] [1.0, 1.1] fixes invalid ticket test case #1213
-     * [r5042] [1.0, 1.1] Fixes issue with changes in tests
-     * [r5044] [1.0, 1.1] Fixes hardcoded path
-     * [r5045] [1.0, 1.1] fixes #1434
-     * [r5046] [1.0, 1.1] fixes #1511
-     * [r5047] [1.0, 1.1] fixes #952
-     * [r5049] [1.0] fixes #632 Fixes issue where unsetting a record from a collection will delete the record from the reference table as well as the related object.
-     * [r5050] [1.0] Documentation updates
-     * [r5051] [1.0, 1.1] Added coverage for #1483
-     * [r5052] [1.0, 1.1] Added coverage for #1523
-     * [r5053] [1.0, 1.1] fixes #1527
-     * [r5056] [1.0, 1.1] fixes issue with subqueries and shared information as well as cloning query objects
-     * [r5058] [1.0, 1.1] Added coverage for #1537
-     * [r5059] [1.0, 1.1] fixes #1543 Fixed regression with Timestampable behavior.
-     * [r5060] [1.0, 1.1] fixes #1533 fixes with with Doctrine_Data::purge() and no argument
-     * [r5061] [1.0, 1.1] fixes #1536
-     * [r5062] [1.0, 1.1] Added check for fixture path existance in data-dump task.
-     * [r5063] [1.0, 1.1] fixes #1540 Fixes issue with query condition parser.
-     * [r5064] [1.0, 1.1] fixes #1545 Fixes issue with record filters implementation
-     * [r5065] [1.0, 1.1] fixes #1545 - fixes issue with record filters and null values
-     * [r5066] [1.0, 1.1] fixes #1483, #1488, #1513, #1514.
-	  Improved JoinCondition handling.
-	  Added possibility to use placeholders in functions.
-     * [r5067] Oracle shouldn't have index definition in CREATE TABLE DDL. Only UNIQUE indexes should be there but defined as CONSTRAINT index_name UNIQUE (fields).
-	  Btree indexes need to be defined as standalone CREATE INDEX statement.
-     * [r5069] Fixes #1549: added delimiter of SQL queries in exported file as connection parameter
-     * [r5071] fixes #1530. Thanks a lot for your help to address the ticket!
-     * [r5074] [1.0, 1.1] fixes #1534 Issue with params and dql callbacks.
+1.1.0-ALPHA1
+------------
+     * [r5218] [1.0, 1.1] Fixes issue with && and || being converted to AND and ||. Causes problems with postgres since || is an real operator (closes #1632)
+     * [r5219] [1.0, 1.1] fixes #1698. Thanks for the tip and patch!
+     * [r5220] [1.1] fixes #1691. Added possibility to define fk constraint name format. Thanks for the tip. I adapted a bit your patch, check out UPGRADE_TO_1_1 document.
+     * [r5221] [1.1] Fixed bug with constant name ATTR_FKNAME_FORMAT
+     * [r5222] [1.0, 1.1] fixes #1693. Added return value for Connection rollback.
+     * [r5223] [1.1] Added ability to define the ->_options usage through schema when mapping listeners. Fixed some test cases.
+     * [r5226] [1.1] Making models_path optional (closes #1643 closes #1654)
+     * [r5227] [1.1] Making Searchable behavior use default integer length for rootColumnName (closes #1603)
+     * [r5228] [1.1] fixes issue with order of loaded migrations (closes #1688)
+     * [r5229] [1.1] Making migrations BC with 1.0 while still adding new features (closes #1596)
+     * [r5230] [1.1] Updating upgrade document with information on migrations.
+     * [r5231] [1.1] Added ability to register custom validators (closes #1524)
+     * [r5232] [1.0, 1.1] fixes #1394
+     * [r5233] [1.1] Added ability to disable mx recorc checking on Email validator (closes #1385)
+     * [r5234] [1.0, 1.1] fixes issue with column aggregation inheritance in schema files (fixes #1617)
+     * [r5235] [1.0, 1.1] Added extra check (closes #1707)
+     * [r5236] [1.1] Added ability to define optional usage of options in record listener. Added ability to alias the record listener. Added ability to enable/disable record listener chain and also
+	  individual listeners.
+     * [r5237] [1.0, 1.1] fixes #1710.
+     * [r5238] [1.1] Fixed wrong addListener generator bug. It was creating an Array entry instead of ->_options
+     * [r5239] [1.1] Patch for listeners chain which were not exposing the listeners name and also were not catching the en-/dis-able coniguration correctly
+     * [r5240] [1.1] fixes issue with generated foreign key names being too long (closes #1604 closes #1600)
+     * [r5241] [1.1] Enhancing isValid() to check references (closes #1653)
+     * [r5242] [1.1] Enhancing isModified() to check references since isValid() works the same now
 
 1.0.2
 -----

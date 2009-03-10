@@ -193,7 +193,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
     public function testSluggableWithSoftDeleteFailWithSameSlug()
     {
         Doctrine_Manager::getInstance()->setAttribute('use_dql_callbacks', true);
-	
+
         parent::prepareTables();
         $item0 = new SluggableItem9();
         $item0->name = 'test';
@@ -204,6 +204,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item0->delete(); // muhaha! I don't actually delete it!
 
         // We must have 0 as total of records
+        
         $this->assertEqual(Doctrine_Query::create()->from('SluggableItem9')->count(), 0);
 
         $item1 = new SluggableItem9();
@@ -211,7 +212,7 @@ class Doctrine_Sluggable_TestCase extends Doctrine_UnitTestCase
         $item1->save();
         $this->assertEqual($item1->slug, 'test-1');
 
-        Doctrine_Manager::getInstance()->setAttribute('use_dql_callbacks', false);
+        Doctrine_Manager::getInstance()->setAttribute('use_dql_callbacks', true);
     }
 }
 

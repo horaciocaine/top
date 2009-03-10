@@ -3,7 +3,7 @@
  *  $Id$
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * 'AS IS' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
  * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
  * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
@@ -60,6 +60,13 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $e->content = 'There are many ORM frameworks, but nevertheless we decided to create one.';
 
         $e->save();
+
+        $e = new SearchTest();
+
+        $e->title = '007';
+        $e->content = 'Awesome movie series';
+
+        $e->save();
     }
 
     public function testSearchFromTableObject()
@@ -86,6 +93,17 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
         $array = $q->execute(array('orm'), Doctrine::HYDRATE_ARRAY);
 
         $this->assertEqual($array[0]['title'], 'Once there was an ORM framework');
+
+        $q = new Doctrine_Query();
+
+        $q->select('t.title')
+          ->from('SearchTest t')
+          ->innerJoin('t.SearchTestIndex i')
+          ->where('i.keyword = ?');
+
+        $array = $q->execute(array('007'), Doctrine::HYDRATE_ARRAY);
+
+        $this->assertEqual($array[0]['title'], '007');
     }
     
     public function testUsingWordRange()
@@ -148,7 +166,7 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
                 ->setHydrationMode(Doctrine::HYDRATE_ARRAY)
                 ->fetchOne();
 
-        $this->assertEqual($coll['id'], 2);
+        $this->assertEqual($coll['id'], 3);
         $this->assertEqual($coll['keyword'], null);
         $this->assertEqual($coll['field'], null);
         $this->assertEqual($coll['position'], null);
@@ -173,17 +191,50 @@ class Doctrine_Search_TestCase extends Doctrine_UnitTestCase
     {
        try{
            $oQuery = new Doctrine_Search_Query(new Doctrine_Query());
-           $this->fail("Should throw exception");
+           $this->fail('Should throw exception');
        }catch(Doctrine_Search_Exception $exception){
-           $this->assertEqual($exception->getMessage(), "Invalid argument type. Expected instance of Doctrine_Table.");
+           $this->assertEqual($exception->getMessage(), 'Invalid argument type. Expected instance of Doctrine_Table.');
        }
     }
 
 
     public function testGenerateSearchQueryForWeightedSearch()
     {
-        $oQuery = new Doctrine_Search_Query("SearchTest");
-        $oQuery->query("^test");
-        $this->assertEqual($oQuery->getSql(), "SELECT SUM(sub_relevance) AS relevance, id FROM search_test WHERE keyword = ? GROUP BY id ORDER BY relevance DESC");
+        $oQuery = new Doctrine_Search_Query('SearchTest');
+        $oQuery->query('^test');
+        $this->assertEqual($oQuery->getSql(), 'SELECT SUM(sub_relevance) AS relevance, id FROM search_test WHERE keyword = ? GROUP BY id ORDER BY relevance DESC');
+    }
+
+    public function testStandardAnalyzerCanHandleAccentedCharactersGracefullyWorks()
+    {
+        $analyzer = new Doctrine_Search_Analyzer_Standard();
+
+        $words = $analyzer->analyze('un éléphant ça trompe énormément', 'utf-8');
+        $this->assertEqual($words[1], 'elephant');
+        $this->assertEqual($words[2], 'ca');
+        $this->assertEqual($words[4], 'enormement');
+    }
+    
+    public function testUtf8AnalyzerWorks()
+    {
+        $analyzer = new Doctrine_Search_Analyzer_Utf8(array('encoding' => 'utf-8'));
+
+        $words = $analyzer->analyze('un Éléphant ça trompe énormément');
+        $this->assertEqual($words[1], 'éléphant');
+        $this->assertEqual($words[2], 'ça');
+        $this->assertEqual($words[4], 'énormément');
+    }
+ 
+    public function testUtf8AnalyzerKnowsToHandleOtherEncodingsWorks()
+    {
+        $analyzer = new Doctrine_Search_Analyzer_Utf8();
+
+        // convert our test string to iso8859-15
+        $iso = iconv('UTF-8','ISO8859-15', 'un éléphant ça trompe énormément');
+
+        $words = $analyzer->analyze($iso, 'ISO8859-15');
+        $this->assertEqual($words[1], 'éléphant');
+        $this->assertEqual($words[2], 'ça');
+        $this->assertEqual($words[4], 'énormément');
     }
 }

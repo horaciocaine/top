@@ -40,7 +40,7 @@ class Doctrine_Ticket_1483_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($q->getSql(), 'SELECT t.id AS t__id, t.username AS t__username, t2.id AS t2__id, t2.name AS t2__name FROM ticket_1483__user t LEFT JOIN ticket_1483__user_group t3 ON t.id = t3.user_id LEFT JOIN ticket_1483__group t2 ON t2.id = t3.group_id AND t2.id = (SELECT t4.id AS t4__id FROM ticket_1483__group t4 WHERE (t4.name = \'Test\' OR t4.name = \'Test2\'))');
 
     }
-
+    
     public function testTest2()
     {
         $q = Doctrine_Query::create()
@@ -49,7 +49,7 @@ class Doctrine_Ticket_1483_TestCase extends Doctrine_UnitTestCase
         $this->assertEqual($q->getSql(), 'SELECT t.id AS t__id, t.username AS t__username, t2.id AS t2__id, t2.name AS t2__name FROM ticket_1483__user t LEFT JOIN ticket_1483__user_group t3 ON t.id = t3.user_id LEFT JOIN ticket_1483__group t2 ON t2.id = t3.group_id AND t2.id = (SELECT t4.id AS t4__id FROM ticket_1483__group t4 WHERE (t4.name = \'Test\' OR t4.name = \'Test2\'))');
 
     }
-
+    
     public function testTest3()
     {
         $q = Doctrine_Query::create()

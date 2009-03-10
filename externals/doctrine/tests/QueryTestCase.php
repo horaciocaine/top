@@ -32,7 +32,35 @@
  */
 class Doctrine_Query_TestCase extends Doctrine_UnitTestCase 
 {
+    
+    public function testWhereInSupportInDql()
+    {
+        $q = Doctrine_Query::create()
+            ->from('User u')
+            ->where('u.id IN ?', array(array(1, 2, 3)))
+            ->whereNotIn('u.name', array('', 'a'))
+            ->addWhere('u.id NOT IN ?', array(array(4, 5, 6, 7)));
 
+        $this->assertEqual(
+            $q->getSqlQuery(),
+            'SELECT e.id AS e__id, e.name AS e__name, e.loginname AS e__loginname, e.password AS e__password, e.type AS e__type, e.created AS e__created, e.updated AS e__updated, e.email_id AS e__email_id FROM entity e WHERE e.id IN (?, ?, ?) AND e.name NOT IN (?, ?) AND e.id NOT IN (?, ?, ?, ?) AND (e.type = 0)'
+        );
+    }
+    
+    
+    public function testWhereInSupportInDql2()
+    {
+        $q = Doctrine_Query::create()
+            ->from('User u')
+            ->where('u.id IN ?', array(1));
+
+        $this->assertEqual(
+            $q->getSqlQuery(),
+            'SELECT e.id AS e__id, e.name AS e__name, e.loginname AS e__loginname, e.password AS e__password, e.type AS e__type, e.created AS e__created, e.updated AS e__updated, e.email_id AS e__email_id FROM entity e WHERE e.id IN (?) AND (e.type = 0)'
+        );
+    }
+
+    
     public function testGetQueryHookResetsTheManuallyAddedDqlParts()
     {
         $q = new MyQuery();
@@ -272,7 +300,24 @@ class Doctrine_Query_TestCase extends Doctrine_UnitTestCase
         $q1->free();
         $q2->free();
     }
+    
+    public function testParseTableAliasesWithBetweenInWhereClause()
+    {
+        
+        $q1 = Doctrine_Query::create()
+            ->select('u.id')
+            ->from('QueryTest_User u')
+            ->where("CURRENT_DATE() BETWEEN u.QueryTest_Subscription.begin AND u.QueryTest_Subscription.begin")
+            ->addWhere( 'u.id != 5' )
+            ;
+            
+        $expected = 'SELECT q.id AS q__id FROM query_test__user q LEFT JOIN query_test__subscription q2 ON q.subscriptionid = q2.id WHERE CURRENT_DATE() BETWEEN q2.begin AND q2.begin AND q.id != 5';
+        
+        $this->assertEqual( $q1->getSql(), $expected );
+        
+    } 
 }
+
 
 class MyQuery extends Doctrine_Query
 {

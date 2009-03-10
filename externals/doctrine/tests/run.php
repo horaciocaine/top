@@ -1,12 +1,10 @@
 <?php
-$startTime = time();
 
 // Debug Diagnosic process attacher sleep time needed to link process
 // More info about that: http://bugs.php.net/bugs-generating-backtrace-win32.php
 //sleep(10);
 
 error_reporting(E_ALL | E_STRICT);
-ini_set('memory_limit', '256M');
 ini_set('max_execution_time', 900);
 ini_set('date.timezone', 'GMT+0');
 
@@ -25,15 +23,26 @@ spl_autoload_register(array('DoctrineTest','autoload'));
 $test = new DoctrineTest();
 
 // Ticket Tests
+// If you write a ticket testcase add it to the bottom of the list, with the ticket number in it
 $tickets = new GroupTest('Tickets Tests', 'tickets');
 
+$excludeTickets = array(
+    '1830', // MySQL specific error
+    '1876b',
+    '1935',
+);
+
 $ticketTestCases = glob(dirname(__FILE__) . '/Ticket/*TestCase.php');
+
 foreach ($ticketTestCases as $testCase)
 {
     $fileInfo = pathinfo($testCase);
     $name = str_replace('TestCase', '', $fileInfo['filename']);
-    $name = sprintf('Doctrine_Ticket_%s_TestCase', $name);
-    $tickets->addTestCase(new $name());
+
+    if ( ! in_array($name, $excludeTickets)) {
+        $name = sprintf('Doctrine_Ticket_%s_TestCase', $name);
+        $tickets->addTestCase(new $name());
+    }
 }
 
 $test->addTestCase($tickets);
@@ -143,6 +152,7 @@ $core->addTestCase(new Doctrine_Collection_TestCase());
 $core->addTestCase(new Doctrine_Collection_Snapshot_TestCase());
 $core->addTestCase(new Doctrine_Hydrate_FetchMode_TestCase());
 $core->addTestCase(new Doctrine_Hydrate_CollectionInitialization_TestCase());
+$core->addTestCase(new Doctrine_Hydrate_Scalar_TestCase());
 $core->addTestCase(new Doctrine_Tokenizer_TestCase());
 $core->addTestCase(new Doctrine_BatchIterator_TestCase());
 $core->addTestCase(new Doctrine_Hydrate_TestCase());
@@ -177,6 +187,7 @@ $behaviors->addTestCase(new Doctrine_I18n_TestCase());
 $behaviors->addTestCase(new Doctrine_Sluggable_TestCase());
 $behaviors->addTestCase(new Doctrine_Record_Generator_TestCase());
 $behaviors->addTestCase(new Doctrine_SoftDelete_TestCase());
+$behaviors->addTestCase(new Doctrine_SoftDeleteBC_TestCase());
 $test->addTestCase($behaviors);
 
 // Validator Testing
@@ -201,6 +212,7 @@ $test->addTestCase($event_listener);
 
 // Query Tests
 $query_tests = new GroupTest('Query Tests','query');
+$query_tests->addTestCase(new Doctrine_Query_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Condition_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_MultiJoin_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_MultiJoin2_TestCase());
@@ -225,7 +237,6 @@ $query_tests->addTestCase(new Doctrine_Query_From_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_Select_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_JoinCondition_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_MultipleAggregateValue_TestCase());
-$query_tests->addTestCase(new Doctrine_Query_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_MysqlSubquery_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_PgsqlSubquery_TestCase());
 $query_tests->addTestCase(new Doctrine_Query_MysqlSubqueryHaving_TestCase());
@@ -283,6 +294,7 @@ $test->addTestCase($cache);
 // Migration Tests
 $migration = new GroupTest('Migration Tests', 'migration');
 $migration->addTestCase(new Doctrine_Migration_TestCase());
+$migration->addTestCase(new Doctrine_Migration_Diff_TestCase());
 $test->addTestCase($migration);
 
 // File Parser Tests
@@ -311,8 +323,3 @@ $unsorted->addTestCase(new Doctrine_PessimisticLocking_TestCase());
 $test->addTestCase($unsorted);
 
 $test->run();
-
-$endTime = time();
-$time = $endTime - $startTime;
-
-echo "\nTests ran in " . $time . " seconds and used " . (memory_get_peak_usage() / 1024) . " KB of memory\n\n";
