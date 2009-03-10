@@ -7,7 +7,7 @@ RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
 RewriteCond %{REQUEST_FILENAME} -s [OR]
 RewriteCond %{REQUEST_FILENAME} -l [OR]
 RewriteCond %{REQUEST_FILENAME} -d
-RewriteCond %{REQUEST_URI} !/docs
+RewriteCond %{REQUEST_URI} !^/docs
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ /index.php [NC,L]
 
