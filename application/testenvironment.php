@@ -16,6 +16,7 @@ set_include_path(
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/controllers' .
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/layouts/scripts' .
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/views/scripts' .
+  PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/../externals/swiftmailer/lib/classes' .
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/../tests/helpers' .
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/../tests/unit' .
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/../tests/system' .

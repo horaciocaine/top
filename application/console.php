@@ -11,6 +11,7 @@ define('SWIFT_APPLICATION_DIR', realpath(dirname(__FILE__)));
 set_include_path(
   SWIFT_APPLICATION_DIR . '/../library' .
   PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/classes' .
+  PATH_SEPARATOR . SWIFT_APPLICATION_DIR . '/../externals/swiftmailer/lib/classes' .
   PATH_SEPARATOR . get_include_path()
   );
 
