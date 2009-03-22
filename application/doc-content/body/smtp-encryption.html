@@ -6,54 +6,54 @@
   
   
   <div>
-      <p>
+<p>
     You can use SSL or TLS encryption with the SMTP Transport by specifying it
     as a parameter or with a method call.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To use encryption with the SMTP Transport:
       </p>
 
-      </div>
+    </div>
 
-      <ul>
-         <li>
-            <span>
+    <ul>
+      <li>
+        <span>
           Pass the encryption setting as a third parameter to
           <samp class="codeph">Swift_SmtpTransport::newInstance()</samp>; or
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Call the <samp class="codeph">setEncryption()</samp> method on the Transport.
         </span>
-         </li>
+      </li>
 
-      </ul>
+    </ul>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         A connection to the SMTP server will be established upon the first call to
         <samp class="codeph">send()</samp> or <samp class="codeph">batchSend()</samp>.  The connection will
         be initiated with the correct encryption settings.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         For SSL or TLS encryption to work your PHP installation must have appropriate OpenSSL
         transports wrappers.  You can check if "tls" and/or "ssl" are present in your
         PHP installation by using the PHP function <samp class="codeph">stream_get_transports()</samp>
-         </div>
-
       </div>
 
+    </div>
+
     
-      <div class="example" id="smtp-encryption__setencryption">
-         <pre class="kodify php">
+    <div class="example" id="smtp-encryption__setencryption">
+<pre class="kodify php">
 &lt;?php
 
 require_once 'lib/swift_required.php';
@@ -76,29 +76,23 @@ $transport = Swift_SmtpTransport::newInstance()
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="smtp-transport"
-               title="The SMTP Transport sends messages over the (standardized) Simple Message Transfer Protocol. It can deal with encryption and authentication.">The SMTP Transport</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="smtp-howto"
-               title="The SMTP Transport is easy to use. Most configuration options can be set with the constructor.">Using the SMTP Transport</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="smtp-authentication"
-               title="Some servers require authentication. You can provide a username and password with setUsername() and setPassword().">SMTP with a Username and Password</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="smtp-transport" title="The SMTP Transport sends messages over the (standardized) Simple Message Transfer Protocol. It can deal with encryption and authentication.">The SMTP Transport</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="smtp-howto" title="The SMTP Transport is easy to use. Most configuration options can be set with the constructor.">Using the SMTP Transport</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="smtp-authentication" title="Some servers require authentication. You can provide a username and password with setUsername() and setPassword().">SMTP with a Username and Password</a>
+</div>
+</div>
+</div>
 
 </div>

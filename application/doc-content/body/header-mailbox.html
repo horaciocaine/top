@@ -6,34 +6,33 @@
   
   
   <div>
-      <p>
+<p>
     Mailbox headers contain one or more email addresses, possibly with personalized
     names attached to them.  The data on which they are modeled is represented by an
     associative array of email addresses and names.
   </p>
 
-      <p>
+    <p>
       Mailbox headers are probably the most complex header type to understand in
       Swift Mailer because they accept their input as an array which can take various forms,
-      as described in <a href="addresses"
-            title="Addresses are specified with a basic array syntax that can include the name associated with the address.">Addresses in Swift Mailer</a>.
+      as described in <a href="addresses" title="Addresses are specified with a basic array syntax that can include the name associated with the address.">Addresses in Swift Mailer</a>.
     </p>
 
     
-      <p>
+    <p>
       All of the headers that contain e-mail addresses in a message – with the
       exception of <samp class="codeph">Return-Path:</samp> which has a stricter syntax –
       use this header type.  That is, <samp class="codeph">To:</samp>, <samp class="codeph">From:</samp> etc.
     </p>
 
     
-      <p>
+    <p>
       You add a new mailbox header to a HeaderSet by calling the HeaderSet's
       <samp class="codeph">addMailboxHeader()</samp> method.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -50,13 +49,13 @@ $headers-&gt;addMailboxHeader('Your-Header-Name', array(
 </pre>
 
     
-      <p>
+    <p>
       Changing the value of an existing mailbox header is done by calling it's <samp class="codeph">setNameAddresses()</samp>
       method.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $to = $message-&gt;getHeaders()-&gt;getHeader('To');
@@ -70,16 +69,15 @@ $to-&gt;setNameAddresses(array(
 </pre>
 
     
-      <p>
+    <p>
       If you don't wish to concern yourself with the complicated accepted input formats
-      accepted by <samp class="codeph">setNameAddresses()</samp> as described in <a href="addresses"
-            title="Addresses are specified with a basic array syntax that can include the name associated with the address.">Addresses in Swift Mailer</a>
+      accepted by <samp class="codeph">setNameAddresses()</samp> as described in <a href="addresses" title="Addresses are specified with a basic array syntax that can include the name associated with the address.">Addresses in Swift Mailer</a>
       and you only want to set one or more addresses (not names) then you can just use the
       <samp class="codeph">setAddresses()</samp> method instead.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $to = $message-&gt;getHeaders()-&gt;getHeader('To');
@@ -93,20 +91,20 @@ $to-&gt;setAddresses(array(
 </pre>
 
 
-      <div class="note">
-         <span class="notetitle">Note:</span> 
+    <div class="note">
+<span class="notetitle">Note:</span> 
       Both methods will accept the above input format in practice.
     </div>
 
     
-      <p>
+    <p>
       If all you want to do is set a single address in the header, you can use a
       string as the input parameter to <samp class="codeph">setAddresses()</samp> and/or
       <samp class="codeph">setNameAddresses()</samp>.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $to = $message-&gt;getHeaders()-&gt;getHeader('To');
@@ -116,12 +114,12 @@ $to-&gt;setAddresses('joe-bloggs@example.org');
 </pre>
 
 
-      <p>
+    <p>
       When output via <samp class="codeph">toString()</samp>, a mailbox header produces something like the following:
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $to = $message-&gt;getHeaders()-&gt;getHeader('To');
@@ -146,24 +144,18 @@ To: Name of Person &lt;person1@example.org&gt;, person2@example.org, Another Per
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="header-types"
-               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="header-date"
-               title="Date headers contains an RFC 2822 formatted date (i.e. what PHP's date('r') returns). They are used anywhere a date or time is needed to be presented as a message header.">Date Headers</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="header-id"
-               title="ID headers contain identifiers for the entity (or the message). The most notable ID header is the Message-ID header on the message itself.">ID Headers</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="header-types" title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="header-date" title="Date headers contains an RFC 2822 formatted date (i.e. what PHP's date('r') returns). They are used anywhere a date or time is needed to be presented as a message header.">Date Headers</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="header-id" title="ID headers contain identifiers for the entity (or the message). The most notable ID header is the Message-ID header on the message itself.">ID Headers</a>
+</div>
+</div>
+</div>
 
 </div>

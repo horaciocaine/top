@@ -6,64 +6,64 @@
   
   
   <div>
-      <p>
+<p>
     Files that already exist, either on disk or at a URL can be embedded in a message
     with just one line of code, using Swift_EmbeddedFile::fromPath().
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         You can embed files that exist locally, or if your PHP installation has
         <samp class="codeph">allow_url_fopen</samp> turned on you can embed files from other
         websites.
       </p>
 
-         <p>
+      <p>
         To embed an existing file:
       </p>
 
-      </div>
+    </div>
 
-      <ol>
-         <li>
-            <span>
+    <ol>
+      <li>
+        <span>
           Create a message object with <samp class="codeph">Swift_Message::newInstance()</samp>.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Set the body as HTML, and embed a file at the correct point in the message with <samp class="codeph">embed()</samp>.
         </span>
-         </li>
+      </li>
 
-      </ol>
+    </ol>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         The file will be displayed with the message inline with the HTML wherever its ID
         is used as a <samp class="codeph">src</samp> attribute.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
-            <samp class="codeph">Swift_Image</samp> and <samp class="codeph">Swift_EmbeddedFile</samp> are just aliases of one
+      <div class="note">
+<span class="notetitle">Note:</span> 
+        <samp class="codeph">Swift_Image</samp> and <samp class="codeph">Swift_EmbeddedFile</samp> are just aliases of one
         another.  <samp class="codeph">Swift_Image</samp> exists for semantic purposes.
       </div>
 
       
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         You can embed files in two stages if you prefer.  Just capture the return value of <samp class="codeph">embed()</samp>
         in a variable and use that as the <samp class="codeph">src</samp> attribute.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="embedding-files__embed_frompath">
-         <pre class="kodify php">
+    <div class="example" id="embedding-files__embed_frompath">
+<pre class="kodify php">
 //Create the message
 $message = Swift_Message::newInstance('My subject');
 
@@ -114,24 +114,20 @@ $message-&gt;setBody(
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="inline-message-media"
-               title="Often people want to include an image or other content inline with a HTML message. It's easy to do this with HTML linking to remote resources, but this approach is usually blocked by mail clients. Swift Mailer allows you to embed your media directly into the message.">Embedding Inline Media Files</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="embedding-dynamic-content"
-               title="Images that are generated at runtime, such as images created via GD can be embedded directly to a message without writing them out to disk. Use the standard Swift_Image::newInstance() method.">Embedding Dynamic Content</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="inline-message-media" title="Often people want to include an image or other content inline with a HTML message. It's easy to do this with HTML linking to remote resources, but this approach is usually blocked by mail clients. Swift Mailer allows you to embed your media directly into the message.">Embedding Inline Media Files</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="embedding-dynamic-content" title="Images that are generated at runtime, such as images created via GD can be embedded directly to a message without writing them out to disk. Use the standard Swift_Image::newInstance() method.">Embedding Dynamic Content</a>
+</div>
+</div>
+</div>
 
 </div>

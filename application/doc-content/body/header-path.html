@@ -6,19 +6,19 @@
   
   
   <div>
-      <p>
+<p>
     Path headers are like very-restricted mailbox headers.  They contain a single
     email address with no associated name.  The Return-Path header of a message is
     a path header.
   </p>
 
-      <p>
+    <p>
       You add a new path header to a HeaderSet by calling the HeaderSet's
       <samp class="codeph">addPathHeader()</samp> method.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -30,13 +30,13 @@ $headers-&gt;addPathHeader('Your-Header-Name', 'person@example.org');
 </pre>
 
     
-      <p>
+    <p>
       Changing the value of an existing path header is done by calling its <samp class="codeph">setAddress()</samp>
       method.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $return = $message-&gt;getHeaders()-&gt;getHeader('Return-Path');
@@ -46,12 +46,12 @@ $return-&gt;setAddress('my-address@example.org');
 </pre>
 
 
-      <p>
+    <p>
       When output via <samp class="codeph">toString()</samp>, a path header produces something like the following:
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $return = $message-&gt;getHeaders()-&gt;getHeader('Return-Path');
@@ -71,19 +71,15 @@ Return-Path: &lt;person@example.org&gt;
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="header-types"
-               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="header-id"
-               title="ID headers contain identifiers for the entity (or the message). The most notable ID header is the Message-ID header on the message itself.">ID Headers</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="header-types" title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="header-id" title="ID headers contain identifiers for the entity (or the message). The most notable ID header is the Message-ID header on the message itself.">ID Headers</a>
+</div>
+</div>
+</div>
 
 </div>

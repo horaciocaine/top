@@ -6,54 +6,53 @@
   
   
   <div>
-      <p>
+<p>
     The <samp class="codeph">send()</samp> method of the <samp class="codeph">Swift_Mailer</samp> class
     sends a message using exactly the same logic as your Desktop mail client would
     use.  Just pass it a Messgae and get a result.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To send a Message with <samp class="codeph">send()</samp>:
       </p>
 
-      </div>
+    </div>
 
-      <ol>
-         <li>
-            <span>
+    <ol>
+      <li>
+        <span>
           Create a Transport from one of the provided Transports –
           <samp class="codeph">Swift_SmtpTransport</samp>, <samp class="codeph">Swift_SendmailTransport</samp>,
           <samp class="codeph">Swift_MailTransport</samp> or one of the aggregate Transports.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Create an instance of the <samp class="codeph">Swift_Mailer</samp> class, using the Transport
           as it's constructor parameter.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Create a Message according to the instructions laid out in
-          <a href="messages"
-                  title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
-            </span>
-         </li>
+          <a href="messages" title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
+        </span>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Send the message via the <samp class="codeph">send()</samp> method on the Mailer object.
         </span>
-         </li>
+      </li>
 
-      </ol>
+    </ol>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         The message will be sent just like it would
         be sent if you used your mail client.  An integer is returned which includes the
         number of successful recipients.  If none of the recipients could be sent to then
@@ -63,19 +62,19 @@
         5 will be returned.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         In the following example, one is email is sent to both <samp class="codeph">receiver@domain.org</samp>
         and <samp class="codeph">other@domain.org</samp>.  Both addresses will be visible in the <samp class="codeph">To:</samp>
         header.  If you don't want <samp class="codeph">receiver@domain.org</samp> and <samp class="codeph">other@domain.org</samp>
         to know about each other you should use <samp class="codeph">batchSend()</samp> instead.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="send-method__mailer_send">
-         <pre class="kodify php">
+    <div class="example" id="send-method__mailer_send">
+<pre class="kodify php">
 &lt;?php
 
 require_once 'lib/swift_required.php';
@@ -114,24 +113,20 @@ else
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="sending-methods"
-               title="The Mailer class offers two methods for sending Messages – send() and batchSend(). Each behaves in a slightly different way.">Available Methods for Sending Messages</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="batchsend-method"
-               title="The batchSend() method of the Swift_Mailer class sends a separate message to each recipient in the To: field. Each recipient receives a message containing only their own address in the To: field.">Using the batchSend() Method</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="sending-methods" title="The Mailer class offers two methods for sending Messages – send() and batchSend(). Each behaves in a slightly different way.">Available Methods for Sending Messages</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="batchsend-method" title="The batchSend() method of the Swift_Mailer class sends a separate message to each recipient in the To: field. Each recipient receives a message containing only their own address in the To: field.">Using the batchSend() Method</a>
+</div>
+</div>
+</div>
 
 </div>

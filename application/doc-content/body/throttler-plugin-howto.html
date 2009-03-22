@@ -6,69 +6,69 @@
   
   
   <div>
-      <p>
+<p>
     The Throttler Plugin – like all plugins – is added with the Mailer
     class' <samp class="codeph">registerPlugin()</samp> method.  It has two required constructor
     parameters that tell it how to do its rate-limiting.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To use the Throttler plugin:
       </p>
 
-      </div>
+    </div>
 
-      <ol>
-         <li>
-            <span>
+    <ol>
+      <li>
+        <span>
           Create an instance of the Mailer using any Transport you choose.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Create an instance of the <samp class="codeph">Swift_Plugins_ThrottlerPlugin</samp>
           class, passing the number of emails, or bytes you wish to limit by, along
           with the mode you're using.
         </span>
-         </li>
+      </li>
 
       
-         <li>
-            <span>
+      <li>
+        <span>
           Register the plugin using the Mailer's <samp class="codeph">registerPlugin()</samp> method.
         </span>
-         </li>
+      </li>
 
       
-         <li>
-            <span>
+      <li>
+        <span>
           Continue using Swift Mailer to send messages as normal.
         </span>
-         </li>
+      </li>
 
-      </ol>
+    </ol>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         When Swift Mailer sends messages it will keep track of the rate at which sending
         messages is occuring.  If it realises that sending is happening too fast, it will
         cause your program to <samp class="codeph">sleep()</samp> for enough time to average out
         the rate.
       </p>
 
-         <p>
+      <p>
         Both <samp class="codeph">batchSend()</samp> and <samp class="codeph">send()</samp> methods will
         work with this plugin.
       </p>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="throttler-ref__quickexample">
-         <pre class="kodify php">
+    <div class="example" id="throttler-ref__quickexample">
+<pre class="kodify php">
 &lt;?php
 
 require_once 'lib/swift_required.php';
@@ -97,19 +97,17 @@ for ($lotsOfRecipients as $recipient) {
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="throttler-plugin"
-               title="If your SMTP server has restrictions in place to limit the rate at which you send emails, then your code will need to be aware of this rate-limiting. The Throttler plugin makes Swift Mailer run at a rate-limited speed.">Throttler Plugin</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="throttler-plugin" title="If your SMTP server has restrictions in place to limit the rate at which you send emails, then your code will need to be aware of this rate-limiting. The Throttler plugin makes Swift Mailer run at a rate-limited speed.">Throttler Plugin</a>
+</div>
+</div>
+</div>
 
 </div>

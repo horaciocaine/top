@@ -6,39 +6,41 @@
   
   
   <div>
-      <p>
+<p>
     Plugins are provided with Swift Mailer and can be used to extend the
     behavior of the library in ways that simple class inheritance would be
     more complex.
   </p>
 
-      <p/>
+    <p/>
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="antiflood-plugin">AntiFlood Plugin</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="antiflood-plugin">AntiFlood Plugin</a>
+<br/>
 Many SMTP servers have limits on the number of messages that may be sent during any single SMTP connection. The AntiFlood plugin provides a way to stay within this limit while still managing a large number of emails.</li>
-         <li class="olchildlink">
-            <a href="throttler-plugin">Throttler Plugin</a>
-            <br/>
+<li class="olchildlink">
+<a href="throttler-plugin">Throttler Plugin</a>
+<br/>
 If your SMTP server has restrictions in place to limit the rate at which you send emails, then your code will need to be aware of this rate-limiting. The Throttler plugin makes Swift Mailer run at a rate-limited speed.</li>
-         <li class="olchildlink">
-            <a href="logger-plugin">Logger Plugin</a>
-            <br/>
+<li class="olchildlink">
+<a href="logger-plugin">Logger Plugin</a>
+<br/>
 The Logger plugins helps with debugging during the process of sending. It can help to identify why an SMTP server is rejecting addresses, or any other hard-to-find problems that may arise.</li>
-      </ol>
+<li class="olchildlink">
+<a href="decorator-plugin">Decorator Plugin</a>
+<br/>
+Often there's a need to send the same message to multiple recipients, but with tiny variations such as the recipient's name being used inside the message body. The Decorator plugin aims to provide a solution for allowing these small differences.</li>
+</ol>
 
-      <div class="familylinks">
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="sending"
-               title="Sending Messages in Swift Mailer requires the use of a Transport and the Swift_Mailer class. There are several possible Transport classes that can be used.">Sending Messages</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="sending" title="Sending Messages in Swift Mailer requires the use of a Transport and the Swift_Mailer class. There are several possible Transport classes that can be used.">Sending Messages</a>
+</div>
+</div>
+</div>
 
 </div>

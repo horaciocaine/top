@@ -1,47 +1,49 @@
 <div id="including">
 
 
-  <h1 class="topictitle1">Including Swift Mailer Required Files</h1>
+  <h1 class="topictitle1">Including Swift Mailer (Autoloading)</h1>
 
   
   
   <div>
-      <p>
+<p>
     Swift Mailer uses an auto-loader so the only file you need to include is the
     <samp class="codeph">lib/swift_required.php</samp> file.
   </p>
 
-      <div class="section">
-         <p>
-        To include the library:
-      </p>
-
-      </div>
-
-      <ol>
-         <li>
-            <span>
-          Put Swift Mailer somewhere accessible to your PHP scripts (this does not need to be in the web root).
-        </span>
-         </li>
-
-         <li>
-            <span>
-          Include, or require the <samp class="codeph">lib/swift_required.php</samp> file.
-        </span>
-         </li>
-
-         <li>
-            <span>
-          Follow the remainder of the documentation for using the available components.
-        </span>
-         </li>
-
-      </ol>
+    <p>
+      To use Swift Mailer's autoloader:
+    </p>
 
     
-      <div class="example" id="including__quickexample">
-         <pre class="kodify php">
+    <br/>
+<ol>
+      <li>
+        Put Swift Mailer somewhere accessible to your PHP scripts (this does not need to be in the web root).
+      </li>
+
+      <li>
+        Include, or require the <samp class="codeph">lib/swift_required.php</samp> file.
+      </li>
+
+      <li>
+        Follow the remainder of the documentation for using the available components.
+      </li>
+
+    </ol>
+
+    
+    <div class="note">
+<span class="notetitle">Note:</span> 
+      While Swift Mailer's autoloader is designed to play nicely with other autoloaders,
+      sometimes you may have a need to avoid using Swift Mailer's autoloader and use your own
+      instead.  Include the <samp class="codeph">swift_init.php</samp> instead of the <samp class="codeph">swift_required.php</samp>
+      if you need to do this.  The very minimum include is the <samp class="codeph">swift_init.php</samp> file since
+      Swift Mailer will not work without the dependency injection this file sets up.
+    </div>
+
+    
+<pre class="kodify php">
 &lt;?php
 
 require_once '/path/to/swift-mailer/lib/swift_required.php';
@@ -50,24 +52,18 @@ require_once '/path/to/swift-mailer/lib/swift_required.php';
 
 </pre>
 
-      </div>
-
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="help-resources"
-               title="There are a number of ways you can get help when using Swift Mailer, depending upon the nature of your problem. For bug reports and feature requests create a new ticket in Lighthouse. For general advice ask on the Google Group (swiftmailer), or make a post on the forum at forums.devnetwork.net.">Getting Help</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="messages"
-               title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="help-resources" title="There are a number of ways you can get help when using Swift Mailer, depending upon the nature of your problem. For bug reports and feature requests create a new ticket in Lighthouse. For general advice ask on the Google Group (swiftmailer), or make a post on the forum at forums.devnetwork.net.">Getting Help</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="messages" title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
+</div>
+</div>
+</div>
 
 </div>

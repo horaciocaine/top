@@ -6,25 +6,25 @@
   
   
   <div>
-      <p>
+<p>
     Attachments are downloadable parts of a message and can be added by calling the
     attach() method on the message.  You can add attachments that exist on disk, or
     you can create attachments on-the-fly.
   </p>
 
-      <p>
+    <p>
       Attachments are actually an interesting area of Swift Mailer and something that
       could put a lot of power at your fingertips if you grasp the concept behind the
       way a message is held together.
     </p>
 
-      <p>
+    <p>
       Although we refer to files sent over e-mails as "attachments" – because they're
       attached to the message – lots of other parts of the message are actually
       "attached" even if we don't refer to these parts as attachments.
     </p>
 
-      <p>
+    <p>
       File attachments are created by the <samp class="codeph">Swift_Attachment</samp>
       class and then attached to the message via the <samp class="codeph">attach()</samp> method on it.  For all
       of the "every day" MIME types such as all image formats, word documents, PDFs and spreadsheets
@@ -35,43 +35,37 @@
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="attaching-files">Attaching Existing Files</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="attaching-files">Attaching Existing Files</a>
+<br/>
 Files that already exist, either on disk or at a URL can be attached to a message with just one line of code, using Swift_Attachment::fromPath().</li>
-         <li class="olchildlink">
-            <a href="attachment-filename">Setting the Filename</a>
-            <br/>
+<li class="olchildlink">
+<a href="attachment-filename">Setting the Filename</a>
+<br/>
 Usually you don't need to explicitly set the filename of an attachment because the name of the attached file will be used by default, but if you want to set the filename you use the setFilename() method of the Attachment.</li>
-         <li class="olchildlink">
-            <a href="dynamic-attachments">Attaching Dynamic Content</a>
-            <br/>
+<li class="olchildlink">
+<a href="dynamic-attachments">Attaching Dynamic Content</a>
+<br/>
 Files that are generated at runtime, such as PDF documents or images created via GD can be attached directly to a message without writing them out to disk. Use the standard Swift_Attachment::newInstance() method.</li>
-         <li class="olchildlink">
-            <a href="attachment-disposition">Changing the Disposition</a>
-            <br/>
+<li class="olchildlink">
+<a href="attachment-disposition">Changing the Disposition</a>
+<br/>
 Attachments just appear as files that can be saved to the Desktop if desired. You can make attachment appear inline where possible by using the setDisposition() method of an attachment.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="message-content"
-               title="Rich content can be added to messages in Swift Mailer with relative ease by calling methods such as setSubject(), setBody(), addPart() and attach().">Adding Content to Your Message</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="message-body"
-               title="The body of the message – seen when the user opens the message – is specified by calling the setBody() method. If an alternative body is to be included addPart() can be used.">Setting the Body Content</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="inline-message-media"
-               title="Often people want to include an image or other content inline with a HTML message. It's easy to do this with HTML linking to remote resources, but this approach is usually blocked by mail clients. Swift Mailer allows you to embed your media directly into the message.">Embedding Inline Media Files</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="message-content" title="Rich content can be added to messages in Swift Mailer with relative ease by calling methods such as setSubject(), setBody(), addPart() and attach().">Adding Content to Your Message</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="message-body" title="The body of the message – seen when the user opens the message – is specified by calling the setBody() method. If an alternative body is to be included addPart() can be used.">Setting the Body Content</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="inline-message-media" title="Often people want to include an image or other content inline with a HTML message. It's easy to do this with HTML linking to remote resources, but this approach is usually blocked by mail clients. Swift Mailer allows you to embed your media directly into the message.">Embedding Inline Media Files</a>
+</div>
+</div>
+</div>
 
 </div>

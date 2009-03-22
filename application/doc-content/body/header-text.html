@@ -6,13 +6,13 @@
   
   
   <div>
-      <p>
+<p>
     Text headers are the simplest type of Header.  They contain textual information
     with no special information included within it – for example the Subject
     header in a message.
   </p>
 
-      <p>
+    <p>
       There's nothing particularly interesting about a text header, though it is probably
       the one you'd opt to use if you need to add a custom header to a message.  It represents
       text just like you'd think it does.  If the text contains characters that are not permitted
@@ -20,18 +20,18 @@
       of encoding the text so that it can be used.
     </p>
 
-      <p>
+    <p>
       No header – including text headers – in Swift Mailer is vulnerable to
       header-injection attacks.  Swift Mailer breaks any attempt at header injection by
       encoding the dangerous data into a non-dangerous form.
     </p>
 
-      <p>
+    <p>
       It's easy to add a new text header to a HeaderSet.  You do this by calling
       the HeaderSet's <samp class="codeph">addTextHeader()</samp> method.
     </p>
 
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $message = Swift_Message::newInstance();
@@ -43,12 +43,12 @@ $headers-&gt;addTextHeader('Your-Header-Name', 'the header value');
 </pre>
 
     
-      <p>
+    <p>
       Changing the value of an existing text header is done by calling it's <samp class="codeph">setValue()</samp>
       method.
     </p>
 
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $subject = $message-&gt;getHeaders()-&gt;getHeader('Subject');
@@ -58,12 +58,12 @@ $subject-&gt;setValue('new subject');
 </pre>
 
 
-      <p>
+    <p>
       When output via <samp class="codeph">toString()</samp>, a text header produces something like the following:
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $subject = $message-&gt;getHeaders()-&gt;getHeader('Subject');
@@ -81,14 +81,14 @@ Subject: amazing subject line
 </pre>
 
 
-      <p>
+    <p>
       If the header contains any characters that are outside of the US-ASCII range
       however, they will be encoded.  This is nothing to be concerned about since
       mail clients will decode them back.
     </p>
 
     
-      <pre class="kodify php">
+<pre class="kodify php">
 &lt;?php
 
 $subject = $message-&gt;getHeaders()-&gt;getHeader('Subject');
@@ -108,19 +108,15 @@ Subject: contains =?utf-8?Q?=E2=80=93?= dash
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="header-types"
-               title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="header-parameterized"
-               title="Parameterized headers are text headers that contain key-value parameters following the textual content. The Content-Type header of a message is a parameterized header since it contains charset information after the content type.">Parameterized Headers</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="header-types" title="Because all headers are modeled on different data (dates, addresses, text…) there are different types of Header in Swift Mailer. Swift Mailer attempts to categorize all possible MIME headers into more general groups, defined by a small number of classes.">Header Types</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="header-parameterized" title="Parameterized headers are text headers that contain key-value parameters following the textual content. The Content-Type header of a message is a parameterized header since it contains charset information after the content type.">Parameterized Headers</a>
+</div>
+</div>
+</div>
 
 </div>

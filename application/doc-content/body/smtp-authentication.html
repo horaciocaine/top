@@ -6,57 +6,57 @@
   
   
   <div>
-      <p>
+<p>
     Some servers require authentication.  You can provide a username and password
     with <samp class="codeph">setUsername()</samp> and <samp class="codeph">setPassword()</samp>.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To use a username and password with the SMTP Transport:
       </p>
 
-      </div>
+    </div>
 
-      <ol>
-         <li>
-            <span>
+    <ol>
+      <li>
+        <span>
           Create the Transport with <samp class="codeph">Swift_SmtpTransport::newInstance()</samp>.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Call the <samp class="codeph">setUsername()</samp> and <samp class="codeph">setPassword()</samp> methods
           on the Transport.
         </span>
-         </li>
+      </li>
 
-      </ol>
+    </ol>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         Your username and password will be used to authenticate upon first connect when
         <samp class="codeph">send()</samp> or <samp class="codeph">batchSend()</samp> are first used on the Mailer.
       </p>
 
-         <p>
+      <p>
         If authentication fails, an Exception of type <samp class="codeph">Swift_Transport_TransportException</samp>
         will be thrown.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         If you need to know early whether or not authentication has failed and an Exception
         is going to be thrown, call the <samp class="codeph">start()</samp> method on the created Transport.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="smtp-authentication__authentication">
-         <pre class="kodify php">
+    <div class="example" id="smtp-authentication__authentication">
+<pre class="kodify php">
 &lt;?php
 
 require_once 'lib/swift_required.php';
@@ -72,24 +72,20 @@ $mailer = Swift_Mailer::newInstance($transport);
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="smtp-transport"
-               title="The SMTP Transport sends messages over the (standardized) Simple Message Transfer Protocol. It can deal with encryption and authentication.">The SMTP Transport</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="smtp-encryption"
-               title="You can use SSL or TLS encryption with the SMTP Transport by specifying it as a parameter or with a method call.">Encrypted SMTP</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="smtp-transport" title="The SMTP Transport sends messages over the (standardized) Simple Message Transfer Protocol. It can deal with encryption and authentication.">The SMTP Transport</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="smtp-encryption" title="You can use SSL or TLS encryption with the SMTP Transport by specifying it as a parameter or with a method call.">Encrypted SMTP</a>
+</div>
+</div>
+</div>
 
 </div>

@@ -6,50 +6,50 @@
   
   
   <div>
-      <p>
+<p>
     Addresses are specified with a basic array syntax that can include the name
     associated with the address.
   </p>
 
-      <div class="section" id="message-addresses__syntax">
-         <h2 class="sectiontitle">Syntax for Addresses</h2>
+    <div class="section" id="message-addresses__syntax">
+<h2 class="sectiontitle">Syntax for Addresses</h2>
       
-         <p>
+      <p>
         If you only wish to refer to a single email address (for example your <samp class="codeph">From:</samp>
         address) then you can just use a string.
       </p>
 
-         <pre class="kodify php">
+<pre class="kodify php">
 $message-&gt;setFrom('some@address.tld');
 </pre>
 
 
-         <p>
+      <p>
         If you want to include a name then you must use an associative array.
       </p>
 
-         <pre class="kodify php">
+<pre class="kodify php">
 $message-&gt;setFrom(array('some@address.tld' =&gt; 'The Name'));
 </pre>
 
 
-         <p>
+      <p>
         If you want to include multiple addresses then you must use an array.
       </p>
 
-         <pre class="kodify php">
+<pre class="kodify php">
 $message-&gt;setTo(array('some@address.tld', 'other@address.tld'));
 </pre>
 
 
-         <p>
+      <p>
         You can mix personalized (addresses with a name) and non-personalized
         addresses in the same list by mixing the use of associative and non-associative
         array syntax.
       </p>
 
 
-         <pre class="kodify php">
+<pre class="kodify php">
 $message-&gt;setTo(array(
   'recipient-with-name@example.org' =&gt; 'Recipient Name One',
   'no-name@example.org', //Note that this is not a key-value pair
@@ -58,7 +58,7 @@ $message-&gt;setTo(array(
 </pre>
 
       
-      </div>
+    </div>
 
     
   </div>

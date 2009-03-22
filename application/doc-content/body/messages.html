@@ -6,60 +6,64 @@
   
   
   <div>
-      <p>
+<p>
     Creating messages in Swift Mailer is done by making use of the various MIME
     entities provided with the library.  Complex messages can be quickly created
     with very little effort.
   </p>
 
-      <p/>
+    <p/>
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="message-quickref">Quick Reference for Creating a Message</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="message-quickref">Quick Reference for Creating a Message</a>
+<br/>
 You can think of creating a Message as being similar to the steps you perform when you click the Compose button in your mail client. You give it a subject, specify some recipients, add any attachments and write your message.</li>
-         <li class="olchildlink">
-            <a href="message-basics">Message Basics</a>
-            <br/>
+<li class="olchildlink">
+<a href="message-basics">Message Basics</a>
+<br/>
 A message is a container for anything you want to send to somebody else. There are several basic aspects of a message that you should know.</li>
-         <li class="olchildlink">
-            <a href="message-content">Adding Content to Your Message</a>
-            <br/>
+<li class="olchildlink">
+<a href="message-content">Adding Content to Your Message</a>
+<br/>
 Rich content can be added to messages in Swift Mailer with relative ease by calling methods such as setSubject(), setBody(), addPart() and attach().</li>
-         <li class="olchildlink">
-            <a href="recipients">Adding Recipients to Your Message</a>
-            <br/>
+<li class="olchildlink">
+<a href="recipients">Adding Recipients to Your Message</a>
+<br/>
 Recipients are specified within the message itself via setTo(), setCc() and setBcc(). Swift Mailer reads these recipients from the message when it gets sent so that it knows where to send the message to.</li>
-         <li class="olchildlink">
-            <a href="senders">Specifying Sender Details</a>
-            <br/>
+<li class="olchildlink">
+<a href="senders">Specifying Sender Details</a>
+<br/>
 An email must include information about who sent it. Usually this is managed by the From: address, however there are other options.</li>
-         <li class="olchildlink">
-            <a href="read-receipts">Requesting a Read Receipt</a>
-            <br/>
+<li class="olchildlink">
+<a href="read-receipts">Requesting a Read Receipt</a>
+<br/>
 It is possible to request a read-receipt to be sent to an address when the email is opened. To request a read receipt set the address with setReadReceiptTo().</li>
-         <li class="olchildlink">
-            <a href="message-priority">Setting the Message Priority</a>
-            <br/>
+<li class="olchildlink">
+<a href="message-charset">Setting the Character Set</a>
+<br/>
+The character set of the message (and it's MIME parts) is set with the setCharset() method. You can also change the global default of UTF-8 by working with the Swift_Preferences class.</li>
+<li class="olchildlink">
+<a href="message-line-length">Setting the Line Length</a>
+<br/>
+The length of lines in a message can be changed by using the setMaxLineLength() method on the message. It should be kept to less than 1000 characters.</li>
+<li class="olchildlink">
+<a href="message-priority">Setting the Message Priority</a>
+<br/>
 You can change the priority of the message with setPriority(). Setting the priority will not change the way your email is sent – it is purely an indicative setting for the recipient.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="including-the-files"
-               title="Swift Mailer uses an auto-loader so the only file you need to include is the lib/swift_required.php file.">Including Swift Mailer Required Files</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="headers"
-               title="Sometimes you'll want to add your own headers to a message or modify/remove headers that are already present. You work with the message's HeaderSet to do this.">Message Headers</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="including-the-files" title="Swift Mailer uses an auto-loader so the only file you need to include is the lib/swift_required.php file.">Including Swift Mailer (Autoloading)</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="headers" title="Sometimes you'll want to add your own headers to a message or modify/remove headers that are already present. You work with the message's HeaderSet to do this.">Message Headers</a>
+</div>
+</div>
+</div>
 
 </div>

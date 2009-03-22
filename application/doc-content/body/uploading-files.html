@@ -6,62 +6,62 @@
   
   
   <div>
-      <p>
+<p>
     You only need to upload the "lib/" directory to your web host for production use.  All other
     files and directories are support files not needed in production.
   </p>
 
-      <div class="p">
-         <p>
+    <div class="p">
+      <p>
         You will need FTP, rsync or similar software installed in order to upload the "lib/" directory
         to your web host.
       </p>
 
-      </div>
+    </div>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To upload Swift Mailer:
       </p>
 
-      </div>
+    </div>
 
-      <ol>
-         <li>
-            <span>
+    <ol>
+      <li>
+        <span>
           Open your FTP program, or a command line if you prefer rsync/scp.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Upload the "lib/" directory to your hosting account.
         </span>
-         </li>
+      </li>
 
-      </ol>
+    </ol>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         The files needed to use Swift Mailer should now be accessible to PHP on your host.
       </p>
 
-         <p>
+      <p>
         The following example shows show you can upload the files using <span class="cmdname">rsync</span> on Linux or OS X.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         You do not need to place the files inside your web root. They only need to be in a place
         where your PHP scripts can "include" them.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="uploading__command_upload">
-         <pre class="kodify">
+    <div class="example" id="uploading__command_upload">
+<pre class="kodify">
 chrisbook:Swift-4.0.0-dev chris$ rsync -rvz lib d11wtq@swiftmailer.org:swiftmailer
 building file list ... done
 created directory swiftmailer
@@ -84,24 +84,20 @@ total size is 401405  speedup is 2.60
 chrisbook:Swift-4.0.0-dev chris$
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="installing"
-               title="Installing Swift Mailer is trivial. Usually it's just a case of uploading the extracted source files to your web server.">Installing the Library</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="installing-from-git"
-               title="It's possible to download and install Swift Mailer directly from github.com if you want to keep up-to-date with ease.">Installing from Git</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="installing" title="Installing Swift Mailer is trivial. Usually it's just a case of uploading the extracted source files to your web server.">Installing the Library</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="installing-from-git" title="It's possible to download and install Swift Mailer directly from github.com if you want to keep up-to-date with ease.">Installing from Git</a>
+</div>
+</div>
+</div>
 
 </div>

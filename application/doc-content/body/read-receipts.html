@@ -6,17 +6,17 @@
   
   
   <div>
-      <p>
+<p>
     It is possible to request a read-receipt to be sent to an address when the email
     is opened.  To request a read receipt set the address with <samp class="codeph">setReadReceiptTo()</samp>.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To request a read receipt:
       </p>
 
-      </div>
+    </div>
 
     
       <div class="p">
@@ -28,47 +28,41 @@
 
     
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         When the email is opened, if the mail client supports it a notification will be sent to this address.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         Read receipts won't work for the majority of recipients since many mail clients
         auto-disable them.  Those clients that will send a read receipt will make the user
         aware that one has been requested.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="setting-readreceiptto__setreadreceiptto">
-         <pre class="kodify php">$message-&gt;setReadReceiptTo('your@address.tld');</pre>
+    <div class="example" id="setting-readreceiptto__setreadreceiptto">
+<pre class="kodify php">$message-&gt;setReadReceiptTo('your@address.tld');</pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="messages"
-               title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="senders"
-               title="An email must include information about who sent it. Usually this is managed by the From: address, however there are other options.">Specifying Sender Details</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="message-priority"
-               title="You can change the priority of the message with setPriority(). Setting the priority will not change the way your email is sent – it is purely an indicative setting for the recipient.">Setting the Message Priority</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="messages" title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="senders" title="An email must include information about who sent it. Usually this is managed by the From: address, however there are other options.">Specifying Sender Details</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="message-charset" title="The character set of the message (and it's MIME parts) is set with the setCharset() method. You can also change the global default of UTF-8 by working with the Swift_Preferences class.">Setting the Character Set</a>
+</div>
+</div>
+</div>
 
 </div>

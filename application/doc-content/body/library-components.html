@@ -6,53 +6,49 @@
   
   
   <div>
-      <p>
+<p>
     Swift Mailer is made up of many classes.  Each of these classes can be grouped into a
     general "component" group which describes the task it is designed to perform.
   </p>
 
-      <p>
+    <p>
       We'll take a brief look at the components which form Swift Mailer in this section of the book.
     </p>
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="mailer-component">The Mailer</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="mailer-component">The Mailer</a>
+<br/>
 The mailer class, Swift_Mailer is the central class in the library where all of the other components meet one another. Swift_Mailer acts as a sort of message dispatcher, communicating with the underlying Transport to deliver your Message to all intended recipients.</li>
-         <li class="olchildlink">
-            <a href="transport-components">Transports</a>
-            <br/>
+<li class="olchildlink">
+<a href="transport-components">Transports</a>
+<br/>
 Transports are the classes in Swift Mailer that are responsible for communicating with a service in order to deliver a Message. There are several types of Transport in Swift Mailer, all of which implement the Swift_Transport interface and offer underlying start(), stop() and send() methods.</li>
-         <li class="olchildlink">
-            <a href="mime-components">MIME Entities</a>
-            <br/>
+<li class="olchildlink">
+<a href="mime-components">MIME Entities</a>
+<br/>
 Everything that forms part of a Message is called a MIME Entity. All MIME entities in Swift Mailer share a common set of features. There are various types of MIME entity that serve different purposes such as Attachments and MIME parts.</li>
-         <li class="olchildlink">
-            <a href="encoder-components">Encoders</a>
-            <br/>
+<li class="olchildlink">
+<a href="encoder-components">Encoders</a>
+<br/>
 Encoders are used to transform the content of Messages generated in Swift Mailer into a format that is safe to send across the internet and that conforms to RFC specifications.</li>
-         <li class="olchildlink">
-            <a href="plugin-components">Plugins</a>
-            <br/>
+<li class="olchildlink">
+<a href="plugin-components">Plugins</a>
+<br/>
 Plugins exist to extend, or modify the behaviour of Swift Mailer. They respond to Events that are fired within the Transports during sending.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="overview"
-               title="Most features (and more) of your every day mail client software are provided by Swift Mailer, using object-oriented PHP code as the interface.">Library Overview</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="system-requirements"
-               title="The basic requirements to operate Swift Mailer are extremely minimal and easily achieved. Historically, Swift Mailer has supported both PHP 4 and PHP 5 by following a parallel development workflow. Now in it's fourth major version, and with PHP 4 support officially dropped by its makers at Zend, Swift Mailer operates on servers running PHP 5.2 or higher.">System Requirements</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="overview" title="Most features (and more) of your every day mail client software are provided by Swift Mailer, using object-oriented PHP code as the interface.">Library Overview</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="system-requirements" title="The basic requirements to operate Swift Mailer are extremely minimal and easily achieved. Historically, Swift Mailer has supported both PHP 4 and PHP 5 by following a parallel development workflow. Now in it's fourth major version, and with PHP 4 support officially dropped by its makers at Zend, Swift Mailer operates on servers running PHP 5.2 or higher.">System Requirements</a>
+</div>
+</div>
+</div>
 
 </div>

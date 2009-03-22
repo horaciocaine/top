@@ -6,51 +6,51 @@
   
   
   <div>
-      <p>
+<p>
     Files that already exist, either on disk or at a URL can be attached to a message
     with just one line of code, using Swift_Attachment::fromPath().
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         You can attach files that exist locally, or if your PHP installation has
         <samp class="codeph">allow_url_fopen</samp> turned on you can attach files from other
         websites.
       </p>
 
-         <p>
+      <p>
         To attach an existing file:
       </p>
 
-      </div>
+    </div>
 
-      <ol>
-         <li>
-            <span>
+    <ol>
+      <li>
+        <span>
           Create an attachment with <samp class="codeph">Swift_Attachment::fromPath()</samp>.
         </span>
-         </li>
+      </li>
 
-         <li>
-            <span>
+      <li>
+        <span>
           Add the attachment to the message with <samp class="codeph">attach()</samp>.
         </span>
-         </li>
+      </li>
 
-      </ol>
+    </ol>
 
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         The attachment will be presented to the recipient as a downloadable file
         with the same filename as the one you attached.
       </p>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="attaching-files__attach_frompath">
-         <pre class="kodify php">
+    <div class="example" id="attaching-files__attach_frompath">
+<pre class="kodify php">
 //Create the attachment
 // * Note that you can technically leave the content-type parameter out
 $attachment = Swift_Attachment::fromPath('/path/to/image.jpg', 'image/jpeg');  
@@ -67,24 +67,20 @@ $message-&gt;attach(Swift_Attachment::fromPath('/path/to/image.jpg'));
 $message-&gt;attach(Swift_Attachment::fromPath('http://site.tld/logo.png'));
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="message-attachments"
-               title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="attachment-filename"
-               title="Usually you don't need to explicitly set the filename of an attachment because the name of the attached file will be used by default, but if you want to set the filename you use the setFilename() method of the Attachment.">Setting the Filename</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="message-attachments" title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="attachment-filename" title="Usually you don't need to explicitly set the filename of an attachment because the name of the attached file will be used by default, but if you want to set the filename you use the setFilename() method of the Attachment.">Setting the Filename</a>
+</div>
+</div>
+</div>
 
 </div>

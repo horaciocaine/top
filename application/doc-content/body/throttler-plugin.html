@@ -6,20 +6,20 @@
   
   
   <div>
-      <p>
+<p>
     If your SMTP server has restrictions in place to limit the rate at which you send
     emails, then your code will need to be aware of this rate-limiting.  The Throttler
     plugin makes Swift Mailer run at a rate-limited speed.
   </p>
 
-      <p>
+    <p>
       Many shared hosts don't open their SMTP servers as a free-for-all.  Usually they
       have policies in place (probably to discourage spammers) that only allow you
       to send a fixed number of emails per-hour/day.
     </p>
 
     
-      <p>
+    <p>
       The Throttler plugin supports two modes of rate-limiting and with each, you
       will need to do that math to figure out the values you want.  The plugin can
       limit based on the number of emails per minute, or the number of bytes-transferred
@@ -28,31 +28,25 @@
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="throttler-plugin-howto">Using the Throttler Plugin</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="throttler-plugin-howto">Using the Throttler Plugin</a>
+<br/>
 The Throttler Plugin – like all plugins – is added with the Mailer class' registerPlugin() method. It has two required constructor parameters that tell it how to do its rate-limiting.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="plugins"
-               title="Plugins are provided with Swift Mailer and can be used to extend the behavior of the library in ways that simple class inheritance would be more complex.">Plugins</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="antiflood-plugin"
-               title="Many SMTP servers have limits on the number of messages that may be sent during any single SMTP connection. The AntiFlood plugin provides a way to stay within this limit while still managing a large number of emails.">AntiFlood Plugin</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="logger-plugin"
-               title="The Logger plugins helps with debugging during the process of sending. It can help to identify why an SMTP server is rejecting addresses, or any other hard-to-find problems that may arise.">Logger Plugin</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="plugins" title="Plugins are provided with Swift Mailer and can be used to extend the behavior of the library in ways that simple class inheritance would be more complex.">Plugins</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="antiflood-plugin" title="Many SMTP servers have limits on the number of messages that may be sent during any single SMTP connection. The AntiFlood plugin provides a way to stay within this limit while still managing a large number of emails.">AntiFlood Plugin</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="logger-plugin" title="The Logger plugins helps with debugging during the process of sending. It can help to identify why an SMTP server is rejecting addresses, or any other hard-to-find problems that may arise.">Logger Plugin</a>
+</div>
+</div>
+</div>
 
 </div>

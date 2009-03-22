@@ -6,28 +6,28 @@
   
   
   <div>
-      <p>
+<p>
     A <samp class="codeph">From:</samp> address is required and is set with the
     <samp class="codeph">setFrom()</samp> method of the message.
   </p>
 
-      <div class="section">
-         <p>
-            <samp class="codeph">From:</samp> addresses specify who actually wrote the email, and usually
+    <div class="section">
+      <p>
+        <samp class="codeph">From:</samp> addresses specify who actually wrote the email, and usually
         who sent it.
       </p>
 
-         <p>
+      <p>
         What most people probably don't realise is that you can have more than one <samp class="codeph">From:</samp>
         address if more than one person wrote the email – for example if an email was put together
         by a committee.
       </p>
 
-         <p>
+      <p>
         To set the <samp class="codeph">From:</samp> address(es):
       </p>
 
-      </div>
+    </div>
 
     
       <div class="p">
@@ -38,23 +38,23 @@
 
     
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         The <samp class="codeph">From:</samp> address(es) are visible in the message headers and will
         be seen by the recipients.
       </p>
 
-         <div class="note" id="setting-from__multiple_from">
-            <span class="notetitle">Note:</span> 
+      <div class="note" id="setting-from__multiple_from">
+<span class="notetitle">Note:</span> 
         If you set multiple <samp class="codeph">From:</samp> addresses then you absolutely must
         set a <samp class="codeph">Sender:</samp> address to indicate who physically sent the message.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="setting-from__setfrom">
-         <pre class="kodify php">
+    <div class="example" id="setting-from__setfrom">
+<pre class="kodify php">
   
 //Set a single From: address
 $message-&gt;setFrom('your@address.tld');
@@ -70,24 +70,20 @@ $message-&gt;setFrom(array(
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="senders"
-               title="An email must include information about who sent it. Usually this is managed by the From: address, however there are other options.">Specifying Sender Details</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="senders-sender"
-               title="A Sender: address specifies who sent the message and is set with the setSender() method of the message.">Setting the Sender: Address</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="senders" title="An email must include information about who sent it. Usually this is managed by the From: address, however there are other options.">Specifying Sender Details</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="senders-sender" title="A Sender: address specifies who sent the message and is set with the setSender() method of the message.">Setting the Sender: Address</a>
+</div>
+</div>
+</div>
 
 </div>

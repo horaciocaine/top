@@ -6,13 +6,13 @@
   
   
   <div>
-      <p>
+<p>
     Many SMTP servers have limits on the number of messages that may be sent
     during any single SMTP connection.  The AntiFlood plugin provides a way to
     stay within this limit while still managing a large number of emails.
   </p>
 
-      <p>
+    <p>
       A typical limit for a single connection is 100 emails.  If the server you
       connect to imposes such a limit, it expects you to disconnect after that
       number of emails has been sent.  You could manage this manually within a
@@ -21,7 +21,7 @@
     </p>
 
     
-      <p>
+    <p>
       Regardless of limits imposed by the server, it's usually a good idea to
       be conservative with the resources of the SMTP server.  Sending will
       become sluggish if the server is being over-used so using the AntiFlood
@@ -29,14 +29,14 @@
     </p>
 
     
-      <p>
+    <p>
       The AntiFlood plugin's logic is basically to disconnect and the immediately
       re-connect with the SMTP server every X number of emails sent, where X
       is a number you specify to the plugin.
     </p>
 
     
-      <p>
+    <p>
       You can also specify a time period in seconds that Swift Mailer should pause
       for between the disconnect/re-connect process.  It's a good idea to pause
       for a short time (say 30 seconds every 100 emails) simply to give the SMTP
@@ -45,26 +45,22 @@
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="antiflood-plugin-howto">Using the AntiFlood Plugin</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="antiflood-plugin-howto">Using the AntiFlood Plugin</a>
+<br/>
 The AntiFlood Plugin – like all plugins – is added with the Mailer class' registerPlugin() method. It takes two constructor parameters: the number of emails to pause after, and optionally the number of seconds to pause for.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="plugins"
-               title="Plugins are provided with Swift Mailer and can be used to extend the behavior of the library in ways that simple class inheritance would be more complex.">Plugins</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="throttler-plugin"
-               title="If your SMTP server has restrictions in place to limit the rate at which you send emails, then your code will need to be aware of this rate-limiting. The Throttler plugin makes Swift Mailer run at a rate-limited speed.">Throttler Plugin</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="plugins" title="Plugins are provided with Swift Mailer and can be used to extend the behavior of the library in ways that simple class inheritance would be more complex.">Plugins</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="throttler-plugin" title="If your SMTP server has restrictions in place to limit the rate at which you send emails, then your code will need to be aware of this rate-limiting. The Throttler plugin makes Swift Mailer run at a rate-limited speed.">Throttler Plugin</a>
+</div>
+</div>
+</div>
 
 </div>

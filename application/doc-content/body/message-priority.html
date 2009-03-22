@@ -6,38 +6,38 @@
   
   
   <div>
-      <p>
+<p>
     You can change the priority of the message with <samp class="codeph">setPriority()</samp>.  Setting the
     priority will not change the way your email is sent – it is purely an indicative setting
     for the recipient.
   </p>
 
-      <div class="section">
-         <div class="p">
+    <div class="section">
+      <div class="p">
         The priority of a message is an indication to the recipient what significance it has.
         Swift Mailer allows you to set the priority by calling the <samp class="codeph">setPriority</samp>
         method.  This method takes an integer value between 1 and 5:
         <br/>
-            <ol>
-               <li>Highest</li>
+<ol>
+          <li>Highest</li>
 
-               <li>High</li>
+          <li>High</li>
 
-               <li>Normal</li>
+          <li>Normal</li>
 
-               <li>Low</li>
+          <li>Low</li>
 
-               <li>Lowest</li>
+          <li>Lowest</li>
 
-            </ol>
+        </ol>
 
-         </div>
+      </div>
 
-         <p>
+      <p>
         To set the message priority:
       </p>
 
-      </div>
+    </div>
 
     
       <div class="p">
@@ -49,30 +49,26 @@
 
     
     
-      <div class="example" id="setting-priority__setreadreceiptto">
-         <pre class="kodify php">
+    <div class="example" id="setting-priority__setreadreceiptto">
+<pre class="kodify php">
 //Indicate "High" priority
 $message-&gt;setPriority(2);
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="messages"
-               title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="read-receipts"
-               title="It is possible to request a read-receipt to be sent to an address when the email is opened. To request a read receipt set the address with setReadReceiptTo().">Requesting a Read Receipt</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="messages" title="Creating messages in Swift Mailer is done by making use of the various MIME entities provided with the library. Complex messages can be quickly created with very little effort.">Creating Messages</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="message-line-length" title="The length of lines in a message can be changed by using the setMaxLineLength() method on the message. It should be kept to less than 1000 characters.">Setting the Line Length</a>
+</div>
+</div>
+</div>
 
 </div>

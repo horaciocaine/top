@@ -1,0 +1,61 @@
+<div id="decorator-plugin">
+
+
+  <h1 class="topictitle1">Decorator Plugin</h1>
+
+  
+  
+  <div>
+<p>
+    Often there's a need to send the same message to multiple recipients, but with tiny
+    variations such as the recipient's name being used inside the message body.  The
+    Decorator plugin aims to provide a solution for allowing these small differences.
+  </p>
+
+    <p>
+      The decorator plugin works by intercepting the sending process of Swift Mailer,
+      reading the email address in the To: field and then looking up a set of replacements
+      for a template.
+    </p>
+
+    
+    <p>
+      While the use of this plugin is simple, it is probably the most commonly misunderstood
+      plugin due to the way in which it works.  The typical mistake users make is to try
+      registering the plugin multiple times (once for each recipient) – inside a loop
+      for example.  This is incorrect.
+    </p>
+
+    
+    <p>
+      The Decorator plugin should be registered just once, but containing the list of all
+      recipients prior to sending.  It will use this list of recipients to find the required
+      replacements during sending.
+    </p>
+
+    
+  </div>
+
+<div>
+<ol>
+<li class="olchildlink">
+<a href="decorator-plugin-howto">Using the Decorator Plugin</a>
+<br/>
+To use the Decorator plugin, simply create an associative array of replacements based on email addresses and then use the mailer's registerPlugin() method to add the plugin.</li>
+<li class="olchildlink">
+<a href="decorator-plugin-replacements">Providing Your Own Replacements Lookup for the Decorator</a>
+<br/>
+Filling an array with replacements may not be the best solution for providing replacement information to the decorator. If you have a more elegant algorithm that performs replacement lookups on-the-fly you may provide your own implementation.</li>
+</ol>
+
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="plugins" title="Plugins are provided with Swift Mailer and can be used to extend the behavior of the library in ways that simple class inheritance would be more complex.">Plugins</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="logger-plugin" title="The Logger plugins helps with debugging during the process of sending. It can help to identify why an SMTP server is rejecting addresses, or any other hard-to-find problems that may arise.">Logger Plugin</a>
+</div>
+</div>
+</div>
+
+</div>

@@ -6,46 +6,53 @@
   
   
   <div>
-      <p>
-         <samp class="codeph">Bcc:</samp> recipients receive a copy of the message without anybody
-    else knowing it, and are set with the <samp class="codeph">setBcc()</samp> method of the message.
+<p>
+    <samp class="codeph">Bcc:</samp> recipients receive a copy of the message without anybody
+    else knowing it, and are set with the <samp class="codeph">setBcc()</samp> or
+    <samp class="codeph">addBcc</samp> methods of the message.
   </p>
 
-      <div class="section">
-         <p>
-        To set <samp class="codeph">Bcc:</samp> recipients:
-      </p>
-
-      </div>
-
-    
-      <div class="p">
-        <span>
-          Call the <samp class="codeph">setBcc()</samp> method on the Message.
-        </span>
-      </div>
+    <p>
+      To set <samp class="codeph">Bcc:</samp> recipients, create the message object using either
+      <samp class="codeph">new Swift_Message( ... )</samp> or <samp class="codeph">Swift_Message::newInstance( ... )</samp>,
+      then call the <samp class="codeph">setBcc()</samp> method with a complete array of addresses, or use the
+      <samp class="codeph">addBcc()</samp> method to iteratively add recipients.
+    </p>
 
     
-    
-      <div class="section">
-         <p>
-        Only the individual <samp class="codeph">Bcc:</samp> recipient will see their address in
-        the message headers.  Other recipients (including other <samp class="codeph">Bcc:</samp>
-        recipients) will not see the address.
-      </p>
-
-         <div class="note">
-            <span class="notetitle">Note:</span> 
-        You should not use <samp class="codeph">Bcc:</samp> recipients as a mechanism for sending
-        bulk email with undisclosed recipients.  You should perform a <samp class="codeph">batchSend()</samp>
-        instead.
-      </div>
-
-      </div>
+    <p>
+      The <samp class="codeph">setBcc()</samp> method accepts input in various formats as described in the
+      chapter, <a href="addresses" title="Addresses are specified with a basic array syntax that can include the name associated with the address.">Addresses in Swift Mailer</a>.  The <samp class="codeph">addBcc()</samp> method
+      takes either one or two parameters.  The first being the email address and the second optional
+      parameter being the name of the recipient.
+    </p>
 
     
-      <div class="example" id="setting-bcc__setbcc">
-         <pre class="kodify php">
+    <p>
+      Only the individual <samp class="codeph">Bcc:</samp> recipient will see their address in
+      the message headers.  Other recipients (including other <samp class="codeph">Bcc:</samp>
+      recipients) will not see the address.
+    </p>
+
+    
+    <div class="note">
+<span class="notetitle">Note:</span> 
+      You should not use <samp class="codeph">Bcc:</samp> recipients as a mechanism for sending
+      bulk email with undisclosed recipients.  You should perform a <samp class="codeph">batchSend()</samp>
+      instead.
+    </div>
+
+    
+    <div class="note">
+<span class="notetitle">Note:</span> 
+      Multiple calls to <samp class="codeph">setBcc()</samp> will not add new recipients – each call overrides
+      the previous calls.  If you want to iteratively add Bcc: recipients, use the <samp class="codeph">addBcc()</samp> method.
+    </div>
+
+    
+    <div class="example" id="setting-bcc__setbcc">
+<pre class="kodify php">
+//Using setBcc() to set all recipients in one go
 $message-&gt;setBcc(array(
   'person1@example.org',
   'person2@otherdomain.org' =&gt; 'Person 2 Name',
@@ -53,26 +60,27 @@ $message-&gt;setBcc(array(
   'person4@example.org',
   'person5@example.org' =&gt; 'Person 5 Name'
 ));
+
+//Using addBcc() to add recipients iteratively
+$message-&gt;addBcc('person1@example.org');
+$message-&gt;addBcc('person2@example.org', 'Person 2 Name');
+
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="recipients"
-               title="Recipients are specified within the message itself via setTo(), setCc() and setBcc(). Swift Mailer reads these recipients from the message when it gets sent so that it knows where to send the message to.">Adding Recipients to Your Message</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="recipients-cc"
-               title="Cc: recipients receive a copy of the message and are set with the setCc() method of the message.">Setting Cc: Recipients</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="recipients" title="Recipients are specified within the message itself via setTo(), setCc() and setBcc(). Swift Mailer reads these recipients from the message when it gets sent so that it knows where to send the message to.">Adding Recipients to Your Message</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="recipients-cc" title="Cc: recipients are set with the setCc() or addCc() methods of the message.">Setting Cc: Recipients</a>
+</div>
+</div>
+</div>
 
 </div>

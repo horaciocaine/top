@@ -6,76 +6,72 @@
   
   
   <div>
-      <p>
+<p>
     The Mail Transport sends messages by delegating to PHP's internal <span class="cmdname">mail()</span>
     function.
   </p>
 
-      <div class="section" id="transport-mail__about">
-         <p>
+    <div class="section" id="transport-mail__about">
+      <p>
         In my experience – and others' – the <samp class="codeph">mail()</samp>
         function is not particularly predictable, or helpful.
       </p>
 
-         <p>
+      <p>
         Quite notably, the <samp class="codeph">mail()</samp> function behaves entirely differently between Linux and
         Windows servers.  On linux it uses <span class="cmdname">sendmail</span>, but on Windows it uses SMTP.
       </p>
 
-         <p>
+      <p>
         In order for the <samp class="codeph">mail()</samp> function to even work at all <span class="filepath">php.ini</span> needs to be configured
         correctly, specifying the location of sendmail or of an SMTP server.
       </p>
 
-         <p>
+      <p>
         The problem with <samp class="codeph">mail()</samp> is that it "tries" to simplify things to the point that it
         actually makes things more complex due to poor interface design.  The developers of
         Swift Mailer have gone to a lot of effort to make the Mail Transport work with a
         reasonable degree of consistency.
       </p>
 
-         <div class="p">
+      <div class="p">
         Serious drawbacks when using this Transport are:
         <br/>
-            <ul>
-               <li>Unpredictable message headers</li>
+<ul>
+          <li>Unpredictable message headers</li>
 
-               <li>Lack of feedback regarding delivery failures</li>
+          <li>Lack of feedback regarding delivery failures</li>
 
-               <li>Lack of support for several plugins that require real-time delivery feedback</li>
+          <li>Lack of support for several plugins that require real-time delivery feedback</li>
 
-            </ul>
+        </ul>
 
-         </div>
+      </div>
 
-         <p>
+      <p>
          It's a last resort, and we say that with a passion!
       </p>
 
-      </div>
+    </div>
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="mail-transport-howto">Using the Mail Transport</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="mail-transport-howto">Using the Mail Transport</a>
+<br/>
 To use the Mail Transport you simply need to call Swift_MailTransport::newInstance(). It's unlikely you'll need to configure the Transport.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="transport-types"
-               title="A Transport is the component which actually does the sending. You need to provide a Transport object to the Mailer class and there are several possible options.">Transport Types</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="sendmail-transport"
-               title="The Sendmail Transport sends messages by communicating with a locally installed MTA – such as sendmail.">The Sendmail Transport</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="transport-types" title="A Transport is the component which actually does the sending. You need to provide a Transport object to the Mailer class and there are several possible options.">Transport Types</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="sendmail-transport" title="The Sendmail Transport sends messages by communicating with a locally installed MTA – such as sendmail.">The Sendmail Transport</a>
+</div>
+</div>
+</div>
 
 </div>

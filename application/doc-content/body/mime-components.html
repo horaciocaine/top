@@ -6,21 +6,21 @@
   
   
   <div>
-      <p>
+<p>
     Everything that forms part of a Message is called a MIME Entity.  All MIME entities
     in Swift Mailer share a common set of features.  There are various types of MIME entity
     that serve different purposes such as Attachments and MIME parts.
   </p>
 
-      <div class="section" id="mime__mimebasics">
-         <p>
+    <div class="section" id="mime__mimebasics">
+      <p>
         An e-mail message is made up of several relatively simple entities that are combined in
         different ways to achieve different results.  All of these entities have the same fundamental
         outline but serve a different purpose.  The Message itself can be defined as a MIME entity,
         an Attachment is a MIME entity, all MIME parts are MIME entities – and so on…
       </p>
 
-         <div class="p">
+      <div class="p">
         The basic units of each MIME entity – be it the Message itself, or an Attachment –
         are its Headers and its body:
       
@@ -30,53 +30,47 @@ Other-Header: Another value
 The body content itself</pre>
 
       
-         </div>
+      </div>
 
-         <p>
+      <p>
         The Headers of a MIME entity, and its body must conform to some strict standards defined by
         various RFC documents.  Swift Mailer ensures that these specifications are followed by using
         various types of object, including Encoders and different Header types to generate the entity.
       </p>
 
-      </div>
+    </div>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         Each MIME component implements the base <samp class="codeph">Swift_Mime_MimeEntity</samp> interface, which
         offers methods for retrieving Headers, adding new Headers, changing the Encoder, updating
         the body and so on…
       </p>
 
-      </div>
+    </div>
 
-      <div class="section" id="mime__mimenote">
-         <p>
+    <div class="section" id="mime__mimenote">
+      <p>
         All MIME entities have one Header in common – the Content-Type Header, updated with
         the entity's <samp class="codeph">setContentType()</samp> method.
       </p>
 
-      </div>
+    </div>
 
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="library-components"
-               title="Swift Mailer is made up of many classes. Each of these classes can be grouped into a general &#34;component&#34; group which describes the task it is designed to perform.">Component Breakdown</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="transport-components"
-               title="Transports are the classes in Swift Mailer that are responsible for communicating with a service in order to deliver a Message. There are several types of Transport in Swift Mailer, all of which implement the Swift_Transport interface and offer underlying start(), stop() and send() methods.">Transports</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="encoder-components"
-               title="Encoders are used to transform the content of Messages generated in Swift Mailer into a format that is safe to send across the internet and that conforms to RFC specifications.">Encoders</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="library-components" title="Swift Mailer is made up of many classes. Each of these classes can be grouped into a general &quot;component&quot; group which describes the task it is designed to perform.">Component Breakdown</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="transport-components" title="Transports are the classes in Swift Mailer that are responsible for communicating with a service in order to deliver a Message. There are several types of Transport in Swift Mailer, all of which implement the Swift_Transport interface and offer underlying start(), stop() and send() methods.">Transports</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="encoder-components" title="Encoders are used to transform the content of Messages generated in Swift Mailer into a format that is safe to send across the internet and that conforms to RFC specifications.">Encoders</a>
+</div>
+</div>
+</div>
 
 </div>

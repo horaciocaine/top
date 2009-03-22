@@ -6,37 +6,37 @@
   
   
   <div>
-      <p>
+<p>
     Often people want to include an image or other content inline with a HTML message.  It's easy to
     do this with HTML linking to remote resources, but this approach is usually blocked by mail
     clients.  Swift Mailer allows you to embed your media directly into the message.
   </p>
 
-      <p>
+    <p>
       Mail clients usually block downloads from remote resources because this technique was often
       abused as a mean of tracking who opened an email.  If you're sending a HTML email and you
       want to include an image in the message another approach you can take is to embed the image
       directly.
     </p>
 
-      <p>
+    <p>
       Swift Mailer makes embedding files into messages extremely streamlined.  You embed a file
       by calling the <samp class="codeph">embed()</samp> method of the message, which returns a value you
       can use in a <samp class="codeph">src</samp> or <samp class="codeph">href</samp> attribute in your HTML.
     </p>
 
-      <p>
+    <p>
       Just like with attachments, it's possible to embed dynamically generated content without
       having an existing file available.
     </p>
 
-      <p>
+    <p>
       The embedded files are sent in the email as a special type of attachment that has a unique
       ID used to reference them within your HTML attributes.  On mail clients that do not support
       embedded files they may appear as attachments.
     </p>
 
-      <p>
+    <p>
       Although this is commonly done for images, in theory it will work for any
       displayable (or playable) media type.  Support for other media types (such
       as video) is dependent on the mail client however.
@@ -44,35 +44,26 @@
 
   </div>
 
-   <div>
-      <ol>
-         <li class="olchildlink">
-            <a href="embedding-files">Embedding Existing Files</a>
-            <br/>
+<div>
+<ol>
+<li class="olchildlink">
+<a href="embedding-files">Embedding Existing Files</a>
+<br/>
 Files that already exist, either on disk or at a URL can be embedded in a message with just one line of code, using Swift_EmbeddedFile::fromPath().</li>
-         <li class="olchildlink">
-            <a href="embedding-dynamic-content">Embedding Dynamic Content</a>
-            <br/>
+<li class="olchildlink">
+<a href="embedding-dynamic-content">Embedding Dynamic Content</a>
+<br/>
 Images that are generated at runtime, such as images created via GD can be embedded directly to a message without writing them out to disk. Use the standard Swift_Image::newInstance() method.</li>
-      </ol>
+</ol>
 
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="message-content"
-               title="Rich content can be added to messages in Swift Mailer with relative ease by calling methods such as setSubject(), setBody(), addPart() and attach().">Adding Content to Your Message</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="message-attachments"
-               title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="message-charset"
-               title="The character set of the message (and it's MIME parts) is set with the setCharset() method. You can also change the global default of UTF-8 by working with the Swift_Preferences class.">Setting the Character Set</a>
-         </div>
-      </div>
-   </div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="message-content" title="Rich content can be added to messages in Swift Mailer with relative ease by calling methods such as setSubject(), setBody(), addPart() and attach().">Adding Content to Your Message</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="message-attachments" title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
+</div>
+</div>
+</div>
 
 </div>

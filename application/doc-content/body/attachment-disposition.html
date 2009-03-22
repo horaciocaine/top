@@ -6,18 +6,18 @@
   
   
   <div>
-      <p>
+<p>
     Attachments just appear as files that can be saved to the Desktop if desired.
     You can make attachment appear inline where possible by using the setDisposition()
     method of an attachment.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To make an attachment appear inline:
       </p>
 
-      </div>
+    </div>
 
     
       <div class="p">
@@ -28,23 +28,23 @@
 
     
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         The attachment will be displayed within the email viewing window if the mail
         client knows how to display it.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         If you try to create an inline attachment for a non-displayable file type such as a
         ZIP file, the mail client should just present the attachment as normal.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="setting-disposition__setdisposition">
-         <pre class="kodify php">
+    <div class="example" id="setting-disposition__setdisposition">
+<pre class="kodify php">
 //Create the attachment and call its setDisposition() method
 $attachment = Swift_Attachment::fromPath('/path/to/image.jpg')
   -&gt;setDisposition('inline');
@@ -56,24 +56,20 @@ $message-&gt;attach(
 );
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="message-attachments"
-               title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
-         </div>
-         <div class="previouslink">
-            <strong>Previous topic:</strong> 
-            <a href="dynamic-attachments"
-               title="Files that are generated at runtime, such as PDF documents or images created via GD can be attached directly to a message without writing them out to disk. Use the standard Swift_Attachment::newInstance() method.">Attaching Dynamic Content</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="message-attachments" title="Attachments are downloadable parts of a message and can be added by calling the attach() method on the message. You can add attachments that exist on disk, or you can create attachments on-the-fly.">Attaching Files</a>
+</div>
+<div class="previouslink">
+<strong>Previous topic:</strong> <a href="dynamic-attachments" title="Files that are generated at runtime, such as PDF documents or images created via GD can be attached directly to a message without writing them out to disk. Use the standard Swift_Attachment::newInstance() method.">Attaching Dynamic Content</a>
+</div>
+</div>
+</div>
 
 </div>

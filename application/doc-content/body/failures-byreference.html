@@ -6,18 +6,18 @@
   
   
   <div>
-      <p>
+<p>
     Collecting delivery failures by-reference with the <samp class="codeph">send()</samp> or
     <samp class="codeph">batchSend()</samp> methods is as simple as passing a variable name to
     the method call.
   </p>
 
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         To get failed recipients by-reference:
       </p>
 
-      </div>
+    </div>
 
     
       <div class="p">
@@ -29,24 +29,24 @@
 
     
     
-      <div class="section">
-         <p>
+    <div class="section">
+      <p>
         If the Transport rejects any of the recipients, the culprit addresses will be added to the
         array provided by-reference.
       </p>
 
-         <div class="note">
-            <span class="notetitle">Note:</span> 
+      <div class="note">
+<span class="notetitle">Note:</span> 
         If the variable name does not yet exist, it will be initialized as an empty array and then
         failures will be added to that array.  If the variable already exists it will be type-cast to
         an array and failures will be added to it.
       </div>
 
-      </div>
+    </div>
 
     
-      <div class="example" id="failures-byreference__mailer_failures_byreference">
-         <pre class="kodify php">
+    <div class="example" id="failures-byreference__mailer_failures_byreference">
+<pre class="kodify php">
 $mailer = Swift_Mailer::newInstance( ... );
 
 $message = Swift_Message::newInstance( ... )
@@ -76,19 +76,17 @@ Array (
 
 </pre>
 
-      </div>
+    </div>
 
     
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="finding-failures"
-               title="It's possible to get a list of addresses that were rejected by the Transport by using a by-reference parameter to send() or batchSend().">Finding out Rejected Addresses</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="finding-failures" title="It's possible to get a list of addresses that were rejected by the Transport by using a by-reference parameter to send() or batchSend().">Finding out Rejected Addresses</a>
+</div>
+</div>
+</div>
 
 </div>

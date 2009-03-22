@@ -6,49 +6,45 @@
   
   
   <div>
-      <p>
+<p>
     The mailer class, <samp class="codeph">Swift_Mailer</samp> is the central class in the library where all of the
     other components meet one another. <samp class="codeph">Swift_Mailer</samp> acts as a sort of message dispatcher,
     communicating with the underlying Transport to deliver your Message to all intended
     recipients.
   </p>
 
-      <div class="p">
+    <div class="p">
       If you were to dig around in the source code for Swift Mailer you'd notice that <samp class="codeph">Swift_Mailer</samp>
       itself is pretty bare.  It delegates to other objects for most tasks and in theory, if you knew the internals
       of Swift Mailer well you could by-pass this class entirely.  We wouldn't advise doing such a thing however –
       there are reasons this class exists:
       <br/>
-         <ul>
-            <li>for consistency, regardless of the Transport used</li>
+<ul>
+        <li>for consistency, regardless of the Transport used</li>
 
-            <li>to provide abstraction from the internals in the event internal API changes are made</li>
+        <li>to provide abstraction from the internals in the event internal API changes are made</li>
 
-            <li>to provide convenience wrappers around aspects of the internal API</li>
+        <li>to provide convenience wrappers around aspects of the internal API</li>
 
-         </ul>
+      </ul>
 
-      </div>
+    </div>
 
-      <p>
+    <p>
       An instance of <samp class="codeph">Swift_Mailer</samp> is created by the developer before sending any Messages.
     </p>
 
   </div>
 
-   <div>
-      <div class="familylinks">
-         <div class="parentlink">
-            <strong>Parent topic:</strong> 
-            <a href="library-components"
-               title="Swift Mailer is made up of many classes. Each of these classes can be grouped into a general &#34;component&#34; group which describes the task it is designed to perform.">Component Breakdown</a>
-         </div>
-         <div class="nextlink">
-            <strong>Next topic:</strong> 
-            <a href="transport-components"
-               title="Transports are the classes in Swift Mailer that are responsible for communicating with a service in order to deliver a Message. There are several types of Transport in Swift Mailer, all of which implement the Swift_Transport interface and offer underlying start(), stop() and send() methods.">Transports</a>
-         </div>
-      </div>
-   </div>
+<div>
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a href="library-components" title="Swift Mailer is made up of many classes. Each of these classes can be grouped into a general &quot;component&quot; group which describes the task it is designed to perform.">Component Breakdown</a>
+</div>
+<div class="nextlink">
+<strong>Next topic:</strong> <a href="transport-components" title="Transports are the classes in Swift Mailer that are responsible for communicating with a service in order to deliver a Message. There are several types of Transport in Swift Mailer, all of which implement the Swift_Transport interface and offer underlying start(), stop() and send() methods.">Transports</a>
+</div>
+</div>
+</div>
 
 </div>
