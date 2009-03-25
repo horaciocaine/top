@@ -12,7 +12,7 @@ class Swift_Website_DownloadSources_GithubDownloadSource
   /** The base URL where the download resides */
   //const GITHUB_URL = 'http://cloud.github.com/downloads';
   /** Temporary hack due to GitHub issues */
-  const GITHIUB_URL = 'http://d24z2fz21y4fag.cloudfront.net/downloads';
+  const GITHUB_URL = 'http://d24z2fz21y4fag.cloudfront.net/downloads';
   
   /** The name of the github account holder */
   private $_accountName;
