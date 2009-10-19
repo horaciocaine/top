@@ -1,0 +1,578 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="color:Background" content="#3b627e" />
+    <meta name="font:Title" content="Arial" />
+    <meta name="font:Body" content="Arial" />
+    <meta name="font:Accent" content="Lucida Sans" />
+    <meta name="if:Show People I Follow" content="1" />
+    <meta name="if:Show Tags" content="1" />
+    <meta name="text:Disqus Shortname" content="" />
+    <meta name="image:Header" value="" />
+    <meta name="image:Background" content="" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="Description" content="Powerful component based mailing library for PHP &#8211; Swift Mailer" />
+    <meta name="Keywords" content="swift mailer, swiftmailer, swiftmail, php mailer, phpmailer, oop mailer, bulk emailing" />
+
+    <title>Powerful component based mailing library for PHP &#8211; Swift Mailer</title>
+
+    <link rel="shortcut icon" href="{Favicon}" />
+    <link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/swiftmailer" />
+
+    <link href="http://www.swiftmailer.org/css/homepage.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://www.swiftmailer.org/css/global.css" media="screen" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="/css/ie.css" />
+    <script type="text/javascript" src="/js/jquery-1.3.min.js"></script>
+    <script type="text/javascript" src="/js/DD_roundies_0.0.2a-min.js"></script>
+    <script type="text/javascript" src="/js/DD_belatedPNG_0.0.7a-min.js"></script>
+    <script type="text/javascript" src="/js/ie.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .clear {
+            clear: both;
+            height: 1px;
+        }
+        
+        a img {
+            border: none;
+        }
+        
+        #wrapper_tumblr {
+            margin: 0 auto;
+        }
+        
+            #wrapper_tumblr #title {
+                margin: 30px 0;
+                color: #fff;
+                font-size: 50px;
+                font-weight: bold;
+                font-family: {font:Title};
+                text-shadow: #2f2f2f 1px 3px 5px;
+                letter-spacing: -1px;
+            }
+            
+                #wrapper_tumblr #title a {
+                    color: #fff;
+                    text-decoration: none;
+                }
+        
+            #wrapper_tumblr #content {
+                float: left;
+            }
+            
+                #wrapper_tumblr #content .post {
+                    font-family: {font:Body};
+                    background: #fff;
+                    padding: 10px;
+                    position: relative;
+                }
+        
+                    #wrapper_tumblr #content .post .media {
+                        text-align: center;
+                        margin-bottom: 10px;
+                    }
+                    
+                    #wrapper_tumblr #content .post .quotebg {
+                        font-family: georgia, serif;
+                        font-size: 150px;
+                        color: {color:Background};
+                        opacity: 0.2;
+                        filter: alpha(opacity=20);
+                        -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+                        position: absolute;
+                        top: 70px;
+                        left: 10px;
+                    }
+                    
+                    #wrapper_tumblr #content .post .quote {
+                        color: {color:Background};
+                        font-weight: bold;
+                        padding: 20px;
+                    }
+                    
+                    #wrapper_tumblr #content .post .quote.short {
+                        font-size: 33px;
+                        line-height: 35px;
+                    }
+                    
+                    #wrapper_tumblr #content .post .quote.medium {
+                        font-size: 25px;
+                        line-height: 28px;
+                    }
+                    
+                    #wrapper_tumblr #content .post .quote.long {
+                        font-size: 18px;
+                        line-height: 22px;
+                    }
+                                        
+                        #wrapper_tumblr #content .post .quote_source *:first-child {
+                            margin-top: 0px;
+                        }
+                        
+                        #wrapper_tumblr #content .post .quote_source *:last-child {
+                            margin-bottom: 0px;
+                        }
+                        
+                        #wrapper_tumblr #content .post .quote *:first-child {
+                            margin-top: 0px;
+                        }
+
+                        #wrapper_tumblr #content .post .quote *:last-child {
+                            margin-bottom: 0px;
+                        }
+                
+                    #wrapper_tumblr #content .post .audio {
+                        background: #eaeaea;
+                        float: left;
+                        padding: 7px;
+                        border-radius: 4px;
+                        -moz-border-radius: 4px;
+                        -webkit-border-radius: 4px;
+                    }
+                                                        
+                        #wrapper_tumblr #content .post .audio .player {
+                            float: left;
+                        }
+                        
+                            #wrapper_tumblr #content .post .audio .player .audio_player embed {
+                                border: 1px solid #c8c8c8;
+                            }
+                        
+                        #wrapper_tumblr #content .post .audio .meta {
+                            padding: 8px 13px;
+                            height: 13px;
+                            float: left;
+                            color: #666;
+                            font-family: {font:Accent};
+                            font-size: 11px;
+                        }
+                        
+                            #wrapper_tumblr #content .post .audio .meta a {
+                                color: #666;
+                                text-decoration: none;
+                            }
+                    
+                    #wrapper_tumblr #content .post img {
+                      max-width: 500px;
+                    }
+                                        
+                    #wrapper_tumblr #content .post .chat {
+                        background-color: #fff;
+                        border-left: 5px solid #dedddd;
+                        margin: 10px 10px 0 10px;
+                        font-size: 14px;
+                    }
+                                        
+                        #wrapper_tumblr #content .post .chat .lines {
+                            margin-left: 1px;
+                        }
+                        
+                            #wrapper_tumblr #content .post .chat .lines .line {
+                                background-color: #eaeaea;
+                                color: #494949;
+                                margin-bottom: 1px;
+                                padding: 3px 5px;
+                            }
+                        
+                            #wrapper_tumblr #content .post .chat .lines .line.even {
+                                background-color: #dedddd;
+                            }
+                    
+                        #wrapper_tumblr #content .post .link {
+                            margin: 4px 0 2px 0;
+                            font-size: 16px;
+                            line-height: 25px;
+                        }
+                            
+                            #wrapper_tumblr #content .post .link a {
+                                background-color: {color:Background};
+                                color: #fff;
+                                padding: 5px 7px;
+                                border-radius: 4px;
+                                -moz-border-radius: 4px;
+                                -webkit-border-radius: 4px;
+                            }
+                            
+                            #wrapper_tumblr #content .post .link a:hover {
+                                opacity: 0.9;
+                                filter: alpha(opacity=90);
+                                -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+                            }
+                    
+                    #wrapper_tumblr #content .post .footer {
+                        font-size: 80%;
+                        color: #aaa;
+                        padding: 0 0 30px 0;
+                    }
+                    
+                        #wrapper_tumblr #content .post .footer .date {
+                            width: 67%;
+                            float: left;
+                            color: #666;
+                        }
+                        
+                        #wrapper_tumblr #content .post .footer .notes {
+                            width: 33%;
+                            float: right;
+                            text-align: right;
+                            color: #666;
+                        }
+                        
+                            #wrapper_tumblr #content .post .footer .notes a {
+                                color: #666;
+                            }
+                        
+                            #wrapper_tumblr #content .post .footer .tags a {
+                                color: #4a4a51;
+                                text-decoration: underline;
+                            }
+                            
+                                #wrapper_tumblr #content .post .footer .tags .tag-commas:last-child {
+                                    display: none;
+                                }
+                    
+                        #wrapper_tumblr #content .post a {
+                            text-decoration: none;
+                        }
+                        
+                        #wrapper_tumblr #content #navigation {
+                            text-align: right;
+                            padding-bottom: 35px;
+                        }
+                        
+                            #wrapper_tumblr #content #navigation a {
+                                background-color: #fff;
+                                color: {color:Background};
+                                padding: 5px 10px;
+                                text-decoration: none;
+                                margin-left: 25px;
+                            }
+                    
+                            #wrapper_tumblr #content #navigation a:hover {
+                                opacity: 0.9;
+                                filter: alpha(opacity=90);
+                                -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+                            }
+        
+                            #wrapper_tumblr #content .post .notecontainer {
+                                background: #eaeaea;
+                                border-radius: 4px;
+                                -moz-border-radius: 4px;
+                                -webkit-border-radius: 4px;
+                                font-family: {font:Accent};
+                                font-size: 11px;
+                                color: #666;
+                                margin-top: 10px;
+                                margin-bottom: -10px;
+                            }
+
+                                    #wrapper_tumblr #content .post .notecontainer a {
+                                        color: #666;
+                                        text-decoration: underline;
+                                    }
+
+                                    #wrapper_tumblr #content .post .notecontainer ol.notes {
+                                        padding: 0px 0 10px 0;
+                                        list-style-type: none;
+                                        font-size: 11px;
+                                    }
+
+                                        #wrapper_tumblr #content .post .notecontainer ol.notes li.note {
+                                            padding: 10px 10px 0 10px;
+                                        }
+
+                                            #wrapper_tumblr #content .post .notecontainer ol.notes li.note img.avatar {
+                                                vertical-align: -4px;
+                                                margin-right: 10px;
+                                                width: 16px;
+                                                height: 16px;
+                                            }
+
+                                            #wrapper_tumblr #content .post .notecontainer ol.notes li.note span.action {
+                                                font-weight: normal;
+                                            }
+
+                                            #wrapper_tumblr #content .post .notecontainer ol.notes li.note .answer_content {
+                                                font-weight: normal;
+                                            }
+
+                                            #wrapper_tumblr #content .post .notecontainer ol.notes li.note blockquote {
+                                                border-left: 2px solid #666;
+                                                padding: 4px 10px;
+                                                margin: 10px 0px 0px 25px;
+                                            }
+
+                                                #wrapper_tumblr #content .post .notecontainer ol.notes li.note blockquote a {
+                                                    text-decoration: none;
+                                                }
+            
+                #wrapper_tumblr #content #searchresults {
+                    color: #fff;
+                    margin: 0 0 15px 0;
+                    text-shadow: #2f2f2f 1px 3px 5px;
+                    font-family: {font:Body};
+                    font-size: 20px;
+                }    
+
+                #wrapper_tumblr #content { margin-right: 0; }
+    </style>
+    <!--[if lt IE 7.]>
+        <style type="text/css">
+            #wrapper_tumblr #sidebar #bottom {
+                background: transparent;
+            }
+            
+            #wrapper_tumblr #sidebar #top #avatar {
+                background: none;
+            }
+            
+            #wrapper_tumblr #sidebar #top #avatar img {
+                border: 5px solid #f1f1f1;
+            }
+            
+            #wrapper_tumblr #sidebar #top .heading#followontumblr {
+                background-image: none;
+                text-indent: 0;
+            }
+        
+            #wrapper_tumblr #sidebar #top .heading#twitter {
+                background-image: none;
+            }
+        
+            #wrapper_tumblr #sidebar #top .heading#following {
+                background-image: none;
+            }
+
+            #wrapper_tumblr #content .post .audio .player {
+                float: none;
+            }
+            
+            #wrapper_tumblr #content .post .audio .meta {
+                display: none;
+                float: none;
+            }
+        </style>
+    <![endif]-->
+    
+    <!--[if lt IE 8.]>
+        <style type="text/css">
+            #wrapper_tumblr #content .post .footer {
+                background: transparent;
+                color: #000;
+            }
+            
+            #wrapper_tumblr #content .post .audio {
+                float: none;
+                background: transparent;
+            }
+            
+            #wrapper_tumblr #content .post .notecontainer .notes {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+    <![endif]-->
+    <style type="text/css">{CustomCSS}</style>
+</head>
+<body>
+    <div id="layoutcontainer">
+      
+    <div id="layout">
+      
+      <div id="header" class="corners top right left">
+        <div id="headercontent">
+          <img id="logo" src="http://www.swiftmailer.org/images/logo.png" alt="Swift Mailer" />
+          
+          <div id="navigation">
+            <ul>
+              <li><a href="http://www.swiftmailer.org/">home</a></li>
+
+              <li><a href="http://www.swiftmailer.org/download">download</a></li>
+              <li><a href="http://www.swiftmailer.org/docs/introduction">documentation</a></li>
+              <li><a href="http://www.swiftmailer.org/bugs">bugs</a></li>
+              <li><a href="http://blog.swiftmailer.org/">blog</a></li>
+              <li><a href="http://www.swiftmailer.org/contact">contact</a></li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="wrapper" class="corners bottom right left">
+        
+        <div>
+          <div>
+  <div>
+
+<!-- tumblr -->
+
+<div id="wrapper_tumblr">
+    <div id="content">
+        {block:Posts}
+            <div class="post">
+                {block:Text}
+                  {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+
+                  <div class="footer">
+                      <div class="date">
+                          {block:Reblog}Reblogged{/block:Reblog}
+                          {block:NotReblog}Posted{/block:NotReblog}
+
+                          {TimeAgo}
+
+                          {block:Reblog}from {ReblogParentName} {block:RebloggedFromReblog}(originally from {ReblogRootName}){block:RebloggedFromReblog}{/block:Reblog}
+                          {block:FromBookmarklet}from bookmarklet{/block:FromBookmarklet}
+                          {block:FromMobile}from mobile{/block:FromMobile}
+                      </div>
+                      <div class="notes">{block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} {block:IfDisqusShortname}{block:NoteCount}&bull;{/block:NoteCount} <a href="{Permalink}#disqus_thread">view comments</a>{/block:IfDisqusShortname}</div>
+                      <div class="clear"></div>
+                  </div>
+
+                  <div class="copy">{Body}</div>
+                {/block:Text}
+
+                {block:IfDisqusShortname}
+                    {block:Permalink}
+                        <div class="notecontainer" style="margin: 20px 0 1px 0; padding: 1px 10px 10px 10px;">
+                            <div id="disqus_thread"></div>
+                            <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+                            <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+                        </div>
+                        <div style="text-align: right; margin-top: 5px">
+                            <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+                        </div>
+                    {/block:Permalink}
+                {/block:IfDisqusShortname}
+            </div>
+        {/block:Posts}
+
+        {block:Pagination}
+            <div id="navigation">
+                {block:PreviousPage}<a href="{PreviousPage}">&larr; previous page</a>{/block:PreviousPage}
+                {block:NextPage}<a href="{NextPage}">next page &rarr;{/block:NextPage}
+            </div>
+        {/block:Pagination}
+
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+{block:Twitter}
+    <script type="text/javascript" src="/tweets.js"></script>
+{/block:Twitter}
+
+{block:IfDisqusShortname}
+    <script type="text/javascript">
+        //<![CDATA[
+        (function() {
+            var links = document.getElementsByTagName('a');
+            var query = '?';
+            for(var i = 0; i < links.length; i++) {
+                if(links[i].href.indexOf('#disqus_thread') >= 0) {
+                    query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+                }
+            }
+            document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+        })();
+        //]]>
+    </script>
+{/block:IfDisqusShortname}
+
+<!-- tumblr end -->
+
+
+</div>
+
+<div id="sidepanel">
+</div>
+        </div>
+      
+        <div id="footer">
+          <div id="footercontent">
+            
+            <div id="about">
+              <p><strong>&copy; 2009 Chris Corbyn</strong></p>
+            </div>
+
+        
+        <div id="support">
+          
+          <dl class="contact">
+            <dt>Swift Mailer</dt>
+            <dd>
+              <ul>
+                <!--<li>About</li>-->
+                <li><a href="/contact">Contact Information</a></li>
+              </ul>
+
+            </dd>
+          </dl>
+          
+          <dl class="getstarted">
+            <dt>Get Started</dt>
+            <dd>
+              <ul>
+                <li><a href="/download">Download</a></li>
+                <!--<li>Tutorials</li>-->
+
+                <li><a href="/docs">User Guide &amp; Book</a></li>
+              </ul>
+            </dd>
+          </dl>
+
+          <dl class="related">
+            <dt>Get Help</dt>
+
+            <dd>
+              <ul>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/bugs">Report a Bug</a></li>
+                <li><a href="http://groups.google.com/group/swiftmailer">Google Group</a></li>
+              </ul>
+
+            </dd>
+          </dl>
+          
+          <dl class="thanks">
+            <dt>Thanks to</dt>
+            <dd>
+              <ul>
+                <li><a href="http://github.com/">github</a></li>
+                <li><a href="http://lighthouseapp.com/">Lighthouse</a></li>
+
+                <li><a href="http://forums.devnetwork.net/">devnetwork.net</a></li>
+              </ul>
+            </dd>
+          </dl>
+            
+            </div>
+            
+          </div>
+        </div>
+        
+      </div>
+
+      
+    </div>
+    
+    </div>
+
+
+  <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-10643821-1");
+    pageTracker._trackPageview();
+    } catch(err) {}
+  </script>
+</body>
+</html>
