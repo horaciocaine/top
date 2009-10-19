@@ -57,7 +57,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @param string $source
    */
-  public function setSource($source)
+  public function setSource($source, $load = true)
   {
     return $this->set('source', $source);
   }
@@ -69,7 +69,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @see SOURCE_SOURCEFORGE, SOURCE_GOOGLECODE, SOURCE_GITHUB
    */
-  public function getSource()
+  public function getSource($load = true)
   {
     return $this->get('source');
   }
@@ -99,7 +99,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @param int $timestamp
    */
-  public function setTimeCreated($timestamp)
+  public function setTimeCreated($timestamp, $load = true)
   {
     return $this->set('time_created', $timestamp);
   }
@@ -109,7 +109,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @return int
    */
-  public function getTimeCreated()
+  public function getTimeCreated($load = true)
   {
     return $this->get('time_created');
   }
@@ -129,7 +129,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @param boolean $revoked
    */
-  public function setRevoked($revoked = true)
+  public function setRevoked($revoked = true, $load = true)
   {
     return $this->set('revoked', $revoked);
   }
@@ -149,7 +149,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @param boolean $stable
    */
-  public function setStable($stable = true)
+  public function setStable($stable = true, $load = true)
   {
     return $this->set('stable', $stable);
   }
@@ -176,7 +176,7 @@ class Download extends BaseDownload implements Swift_Website_Download
    * 
    * @return string
    */
-  public function getVersionNumber()
+  public function getVersionNumber($load = true)
   {
     return $this->get('version_number');
   }
