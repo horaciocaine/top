@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<server>
+  <name>pear.swiftmailer.org</name>
+  <summary>Swift Mailer PEAR channel</summary>
+  <alias>swift</alias>
+  <url>http://pear.swiftmailer.org/</url>
+</server>
