@@ -98,9 +98,9 @@ class Pirum_CLI
       return 1;
     }
 
-    copy($this->options[3], $target.'/get/'.$this->options[3]);
-    system('cd '.$target.'/get/ && gunzip '.$this->options[3]);
-    copy($this->options[3], $target.'/get/'.$this->options[3]);
+    copy($this->options[3], $target.'/get/'.basename($this->options[3]));
+    system('cd '.$target.'/get/ && gunzip '.basename($this->options[3]));
+    copy($this->options[3], $target.'/get/'.basename($this->options[3]));
 
     $this->runBuild($target);
 
@@ -230,7 +230,7 @@ EOF;
 
     $index = <<<EOF
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom" xml:base="http://fabien.potencier.org/">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{$this->server->url}">
   <title>{$this->server->summary} Latest Releases</title>
   <link href="{$this->server->url}" />
   <author>
@@ -327,7 +327,7 @@ EOF;
         <h2>Using this Channel</h2>
         <p>This channel is to be used with the PEAR installer.</p>
         <em>Registering</em> the channel:
-        <pre><code>pear channel-discover {$this->server->url}</code></pre>
+        <pre><code>pear channel-discover {$this->server->name}</code></pre>
         <em>Listing</em> available packages:
         <pre><code>pear remote-list -c {$this->server->alias}</code></pre>
         <em>Installing</em> a package:
@@ -771,6 +771,8 @@ EOF;
     // get information for each package
     foreach ($files as $file)
     {
+      $this->formatter and print $this->formatter->formatSection('INFO', 'Parsing Package '.basename($file));
+
       $info = new Pirum_Package($file);
 
       if ($info->getChannel() != $this->server->name)
@@ -909,6 +911,11 @@ class Pirum_Package
     mkdir($this->tmpDir, 0777, true);
 
     $this->loadPackage();
+  }
+
+  public function __destruct()
+  {
+    system('rm -rf '.$this->tmpDir);
   }
 
   public function getDate($format = 'Y-m-d H:i:s')
@@ -1144,3 +1151,4 @@ class Pirum_CLI_Formatter
     return sprintf("  %s %s\n", $this->format($section, $style), $text);
   }
 }
+
