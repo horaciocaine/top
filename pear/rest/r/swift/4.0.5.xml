@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<r xmlns="http://pear.php.net/dtd/rest.release" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://pear.php.net/dtd/rest.release http://pear.php.net/dtd/rest.release.xsd">
+  <p xlink:href="/rest/p/swift">Swift</p>
+  <c>pear.swiftmailer.org</c>
+  <v>4.0.5</v>
+  <st>stable</st>
+  <l>LGPL</l>
+  <m>fabpot</m>
+  <s>Free Feature-rich PHP Mailer.</s>
+  <d>Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.</d>
+  <da>2009-10-19 15:20:39</da>
+  <n>
+-
+ </n>
+  <f>81269</f>
+  <g>http://pear.swiftmailer.org//get/Swift-4.0.5</g>
+  <x xlink:href="package.4.0.5.xml"/>
+</r>
