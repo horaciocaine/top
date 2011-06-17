@@ -3,6 +3,10 @@
   <p>Swift</p>
   <c>pear.swiftmailer.org</c>
   <r>
+    <v>4.0.7</v>
+    <s>stable</s>
+  </r>
+  <r>
     <v>4.0.6</v>
     <s>stable</s>
   </r>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
+ <name>Swift</name>
+ <channel>pear.swiftmailer.org</channel>
+ <summary>Free Feature-rich PHP Mailer.</summary>
+ <description>Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.</description>
+ <lead>
+  <name>Fabien Potencier</name>
+  <user>fabpot</user>
+  <email>fabien.potencier@symfony-project.org</email>
+  <active>yes</active>
+ </lead>
+ <lead>
+  <name>Chris Corbyn</name>
+  <user>d11wtq</user>
+  <email />
+  <active>no</active>
+ </lead>
+ <date>2011-06-17</date>
+ <time>07:34:27</time>
+ <version>
+  <release>4.0.7</release>
+  <api>4.0.7</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/lgpl-3.0.html">LGPL</license>
+ <notes>
+-
+ </notes>
+ <contents>
+  <dir name="/">
+   <file install-as="dependency_maps/cache_deps.php" md5sum="318bd67fb6be2f3693edf31f76188939" name="lib/dependency_maps/cache_deps.php" role="php" />
+   <file install-as="dependency_maps/mime_deps.php" md5sum="2180ec3eee7566199b3530fa199b2ce1" name="lib/dependency_maps/mime_deps.php" role="php" />
+   <file install-as="dependency_maps/transport_deps.php" md5sum="acbe25337fbffe3cfac0bb36e8f5973e" name="lib/dependency_maps/transport_deps.php" role="php" />
+   <file install-as="Swift/Attachment.php" md5sum="f7f3161cee2f7d9e79cdf295f25a0772" name="lib/classes/Swift/Attachment.php" role="php" />
+   <file install-as="Swift/ByteStream/AbstractFilterableInputStream.php" md5sum="0328438801b419673a095cccd2b2ecd9" name="lib/classes/Swift/ByteStream/AbstractFilterableInputStream.php" role="php" />
+   <file install-as="Swift/ByteStream/ArrayByteStream.php" md5sum="fc0ab0996e5b7631c33ca3e0c53bd3a7" name="lib/classes/Swift/ByteStream/ArrayByteStream.php" role="php" />
+   <file install-as="Swift/ByteStream/FileByteStream.php" md5sum="76f8737da607a9f0675afdc67ea72d74" name="lib/classes/Swift/ByteStream/FileByteStream.php" role="php" />
+   <file install-as="Swift/CharacterReader/GenericFixedWidthReader.php" md5sum="daea9a4e38c74e54dea237508a391e80" name="lib/classes/Swift/CharacterReader/GenericFixedWidthReader.php" role="php" />
+   <file install-as="Swift/CharacterReader/UsAsciiReader.php" md5sum="b658f2243c8dc8b559afe6d3dd7ac1cf" name="lib/classes/Swift/CharacterReader/UsAsciiReader.php" role="php" />
+   <file install-as="Swift/CharacterReader/Utf8Reader.php" md5sum="fa6b3429d9e99eb269bcc119ef1f9e0d" name="lib/classes/Swift/CharacterReader/Utf8Reader.php" role="php" />
+   <file install-as="Swift/CharacterReader.php" md5sum="6a051076b93ff8e2bc7080b473261f85" name="lib/classes/Swift/CharacterReader.php" role="php" />
+   <file install-as="Swift/CharacterReaderFactory/SimpleCharacterReaderFactory.php" md5sum="5bd9b8091e2bda2804a1951d6ff537e6" name="lib/classes/Swift/CharacterReaderFactory/SimpleCharacterReaderFactory.php" role="php" />
+   <file install-as="Swift/CharacterReaderFactory.php" md5sum="60f66a611f693689da29cdff2f4ed666" name="lib/classes/Swift/CharacterReaderFactory.php" role="php" />
+   <file install-as="Swift/CharacterStream/ArrayCharacterStream.php" md5sum="749721908c6db791129ec7c1c9681bae" name="lib/classes/Swift/CharacterStream/ArrayCharacterStream.php" role="php" />
+   <file install-as="Swift/CharacterStream/NgCharacterStream.php" md5sum="8ebbf26bee823212d80b8b32a6aa1d2d" name="lib/classes/Swift/CharacterStream/NgCharacterStream.php" role="php" />
+   <file install-as="Swift/CharacterStream.php" md5sum="73696afdffebc4bdba4b0a122f657dff" name="lib/classes/Swift/CharacterStream.php" role="php" />
+   <file install-as="Swift/DependencyContainer.php" md5sum="0bb31b04a8c55b76f6a8fcba02cda2d9" name="lib/classes/Swift/DependencyContainer.php" role="php" />
+   <file install-as="Swift/DependencyException.php" md5sum="e89657c450fcda375e6c9814b65c711f" name="lib/classes/Swift/DependencyException.php" role="php" />
+   <file install-as="Swift/EmbeddedFile.php" md5sum="ed8050e9c1aa5fd3b494682de2f93393" name="lib/classes/Swift/EmbeddedFile.php" role="php" />
+   <file install-as="Swift/Encoder/Base64Encoder.php" md5sum="8249a9a530b6dfbe32f1a8d5bf066f83" name="lib/classes/Swift/Encoder/Base64Encoder.php" role="php" />
+   <file install-as="Swift/Encoder/QpEncoder.php" md5sum="b8c7c915fd5db234fc75ec757a2861f9" name="lib/classes/Swift/Encoder/QpEncoder.php" role="php" />
+   <file install-as="Swift/Encoder/Rfc2231Encoder.php" md5sum="5d7ab5daabeacb4ec43f826d538ca751" name="lib/classes/Swift/Encoder/Rfc2231Encoder.php" role="php" />
+   <file install-as="Swift/Encoder.php" md5sum="fbb03397fc9ca4c14a12dc387e491c26" name="lib/classes/Swift/Encoder.php" role="php" />
+   <file install-as="Swift/Encoding.php" md5sum="903e535618a176f767cee4460249bb69" name="lib/classes/Swift/Encoding.php" role="php" />
+   <file install-as="Swift/Events/CommandEvent.php" md5sum="bb06d21ade45b21578bb4f0eb984b6cd" name="lib/classes/Swift/Events/CommandEvent.php" role="php" />
+   <file install-as="Swift/Events/CommandListener.php" md5sum="cfc79d55b6e657264f9534f712cd0266" name="lib/classes/Swift/Events/CommandListener.php" role="php" />
+   <file install-as="Swift/Events/Event.php" md5sum="235ebab241b01cf75c9b7d12a7d8f9ae" name="lib/classes/Swift/Events/Event.php" role="php" />
+   <file install-as="Swift/Events/EventDispatcher.php" md5sum="77e6f5bd3f3ecf8ada99af0de6ce9dcd" name="lib/classes/Swift/Events/EventDispatcher.php" role="php" />
+   <file install-as="Swift/Events/EventListener.php" md5sum="b8ada84d192dd7e349bb253edc1d9e15" name="lib/classes/Swift/Events/EventListener.php" role="php" />
+   <file install-as="Swift/Events/EventObject.php" md5sum="0889f8ea9ffd5af8155dde2555932bee" name="lib/classes/Swift/Events/EventObject.php" role="php" />
+   <file install-as="Swift/Events/ResponseEvent.php" md5sum="0bc7229f38bc15ad4490c961d216347c" name="lib/classes/Swift/Events/ResponseEvent.php" role="php" />
+   <file install-as="Swift/Events/ResponseListener.php" md5sum="64197c25227c215748ebcd4e3144b784" name="lib/classes/Swift/Events/ResponseListener.php" role="php" />
+   <file install-as="Swift/Events/SendEvent.php" md5sum="3bd94b6f639b2ec5490542595165607e" name="lib/classes/Swift/Events/SendEvent.php" role="php" />
+   <file install-as="Swift/Events/SendListener.php" md5sum="e888aef8185a423b021563133d44c9ae" name="lib/classes/Swift/Events/SendListener.php" role="php" />
+   <file install-as="Swift/Events/SimpleEventDispatcher.php" md5sum="de6f33c84874b937c5ac821bcb9cd415" name="lib/classes/Swift/Events/SimpleEventDispatcher.php" role="php" />
+   <file install-as="Swift/Events/TransportChangeEvent.php" md5sum="cd5d544eb9b9f05644cfa16d4af4abc9" name="lib/classes/Swift/Events/TransportChangeEvent.php" role="php" />
+   <file install-as="Swift/Events/TransportChangeListener.php" md5sum="46325981ac5349e305cd044f8f023831" name="lib/classes/Swift/Events/TransportChangeListener.php" role="php" />
+   <file install-as="Swift/Events/TransportExceptionEvent.php" md5sum="aa0ed02c7de2e322248f427ea14b0fd8" name="lib/classes/Swift/Events/TransportExceptionEvent.php" role="php" />
+   <file install-as="Swift/Events/TransportExceptionListener.php" md5sum="d5a5d2841e382b1824be87dfaf233bc3" name="lib/classes/Swift/Events/TransportExceptionListener.php" role="php" />
+   <file install-as="Swift/FailoverTransport.php" md5sum="cc590bbe708bd0617bea2a6bf94636ef" name="lib/classes/Swift/FailoverTransport.php" role="php" />
+   <file install-as="Swift/FileStream.php" md5sum="79bae27e9b10125d9a1c677da9f0cef3" name="lib/classes/Swift/FileStream.php" role="php" />
+   <file install-as="Swift/Filterable.php" md5sum="dd7814325dba036e001dae8b285b7eb5" name="lib/classes/Swift/Filterable.php" role="php" />
+   <file install-as="Swift/Image.php" md5sum="8732e3a328389f53302fe889d1b61e2a" name="lib/classes/Swift/Image.php" role="php" />
+   <file install-as="Swift/InputByteStream.php" md5sum="0665ca052ebbf1efe4056a4fc6ccb4a9" name="lib/classes/Swift/InputByteStream.php" role="php" />
+   <file install-as="Swift/IoException.php" md5sum="860eff7f96092b148a8cb19189e4f858" name="lib/classes/Swift/IoException.php" role="php" />
+   <file install-as="Swift/KeyCache/ArrayKeyCache.php" md5sum="f69462e76a1712e53cb9f7a38b889647" name="lib/classes/Swift/KeyCache/ArrayKeyCache.php" role="php" />
+   <file install-as="Swift/KeyCache/DiskKeyCache.php" md5sum="8f3acbc8dbe593ca126a4a54e800586e" name="lib/classes/Swift/KeyCache/DiskKeyCache.php" role="php" />
+   <file install-as="Swift/KeyCache/KeyCacheInputStream.php" md5sum="36635953c956471a6cfe6b2464439668" name="lib/classes/Swift/KeyCache/KeyCacheInputStream.php" role="php" />
+   <file install-as="Swift/KeyCache/NullKeyCache.php" md5sum="3724d969eb8c28f8464802fc7f0e7b80" name="lib/classes/Swift/KeyCache/NullKeyCache.php" role="php" />
+   <file install-as="Swift/KeyCache/SimpleKeyCacheInputStream.php" md5sum="6ac9c032b867da8a1b8e236ac2cb3c79" name="lib/classes/Swift/KeyCache/SimpleKeyCacheInputStream.php" role="php" />
+   <file install-as="Swift/KeyCache.php" md5sum="1b77a5ee8bfb7cf3ab529a34f8bf765e" name="lib/classes/Swift/KeyCache.php" role="php" />
+   <file install-as="Swift/LoadBalancedTransport.php" md5sum="c419ea217d6459987713b41ed9df7937" name="lib/classes/Swift/LoadBalancedTransport.php" role="php" />
+   <file install-as="Swift/Mailer/ArrayRecipientIterator.php" md5sum="97a6ddf2bd5040f9c29e1a8abb7ef378" name="lib/classes/Swift/Mailer/ArrayRecipientIterator.php" role="php" />
+   <file install-as="Swift/Mailer/RecipientIterator.php" md5sum="870cf8512df6fb733d7e9a3a107ede6f" name="lib/classes/Swift/Mailer/RecipientIterator.php" role="php" />
+   <file install-as="Swift/Mailer.php" md5sum="cb008b6878ca65bfe50004debadd8214" name="lib/classes/Swift/Mailer.php" role="php" />
+   <file install-as="Swift/MailTransport.php" md5sum="6329232641ae803903f2129ea5fc055f" name="lib/classes/Swift/MailTransport.php" role="php" />
+   <file install-as="Swift/Message.php" md5sum="e6a53077014c533578cea56587fd40ee" name="lib/classes/Swift/Message.php" role="php" />
+   <file install-as="Swift/Mime/Attachment.php" md5sum="7e4b16869435da9347b5e680811f2add" name="lib/classes/Swift/Mime/Attachment.php" role="php" />
+   <file install-as="Swift/Mime/CharsetObserver.php" md5sum="f549036f2758e2693b2d046cccfcf1a0" name="lib/classes/Swift/Mime/CharsetObserver.php" role="php" />
+   <file install-as="Swift/Mime/ContentEncoder/Base64ContentEncoder.php" md5sum="03090cc3a81cd12f5e3354da9480aa8b" name="lib/classes/Swift/Mime/ContentEncoder/Base64ContentEncoder.php" role="php" />
+   <file install-as="Swift/Mime/ContentEncoder/PlainContentEncoder.php" md5sum="957bdcd0eac25cae54757a8121102e7e" name="lib/classes/Swift/Mime/ContentEncoder/PlainContentEncoder.php" role="php" />
+   <file install-as="Swift/Mime/ContentEncoder/QpContentEncoder.php" md5sum="f33496ad3864807c62985fe114d51e24" name="lib/classes/Swift/Mime/ContentEncoder/QpContentEncoder.php" role="php" />
+   <file install-as="Swift/Mime/ContentEncoder.php" md5sum="d8da56babd5c363ae3a59c7c0890a865" name="lib/classes/Swift/Mime/ContentEncoder.php" role="php" />
+   <file install-as="Swift/Mime/EmbeddedFile.php" md5sum="811c16b324e0f9f69dcd23d4ad54db32" name="lib/classes/Swift/Mime/EmbeddedFile.php" role="php" />
+   <file install-as="Swift/Mime/EncodingObserver.php" md5sum="b6426ba6414d1099257ae86d1c9d8b9c" name="lib/classes/Swift/Mime/EncodingObserver.php" role="php" />
+   <file install-as="Swift/Mime/Header.php" md5sum="662c4fb59044a3f29169895dd5f104f4" name="lib/classes/Swift/Mime/Header.php" role="php" />
+   <file install-as="Swift/Mime/HeaderEncoder/Base64HeaderEncoder.php" md5sum="78cccfbba314fa97abd6e5d3c20e5104" name="lib/classes/Swift/Mime/HeaderEncoder/Base64HeaderEncoder.php" role="php" />
+   <file install-as="Swift/Mime/HeaderEncoder/QpHeaderEncoder.php" md5sum="3c9cfcbc31c62c7ed981e960ab02d288" name="lib/classes/Swift/Mime/HeaderEncoder/QpHeaderEncoder.php" role="php" />
+   <file install-as="Swift/Mime/HeaderEncoder.php" md5sum="57b9546649abf5da7923d4683247f90b" name="lib/classes/Swift/Mime/HeaderEncoder.php" role="php" />
+   <file install-as="Swift/Mime/HeaderFactory.php" md5sum="a588ebc5e5b22dc04a4a9f46fb532ed4" name="lib/classes/Swift/Mime/HeaderFactory.php" role="php" />
+   <file install-as="Swift/Mime/Headers/AbstractHeader.php" md5sum="3885758f6b5b530229473ec9182ada08" name="lib/classes/Swift/Mime/Headers/AbstractHeader.php" role="php" />
+   <file install-as="Swift/Mime/Headers/DateHeader.php" md5sum="0547d0e371b2dc1d33bfd5d3f227398d" name="lib/classes/Swift/Mime/Headers/DateHeader.php" role="php" />
+   <file install-as="Swift/Mime/Headers/IdentificationHeader.php" md5sum="85fe7888f3dacc2b1f989bc408209199" name="lib/classes/Swift/Mime/Headers/IdentificationHeader.php" role="php" />
+   <file install-as="Swift/Mime/Headers/MailboxHeader.php" md5sum="5316cf8058e0220c8d2842790a1664bb" name="lib/classes/Swift/Mime/Headers/MailboxHeader.php" role="php" />
+   <file install-as="Swift/Mime/Headers/ParameterizedHeader.php" md5sum="546829916217f50d005696795ccb9431" name="lib/classes/Swift/Mime/Headers/ParameterizedHeader.php" role="php" />
+   <file install-as="Swift/Mime/Headers/PathHeader.php" md5sum="9ca7eefd5b02b94fcd87985fdf306388" name="lib/classes/Swift/Mime/Headers/PathHeader.php" role="php" />
+   <file install-as="Swift/Mime/Headers/UnstructuredHeader.php" md5sum="ff60f4e89661516612b25fd73ac2a2e4" name="lib/classes/Swift/Mime/Headers/UnstructuredHeader.php" role="php" />
+   <file install-as="Swift/Mime/HeaderSet.php" md5sum="19c25bd3e7ed9b5943c2fabf1d088dd7" name="lib/classes/Swift/Mime/HeaderSet.php" role="php" />
+   <file install-as="Swift/Mime/Message.php" md5sum="ad5015bc30ded0e1a8b177931bd2bfc4" name="lib/classes/Swift/Mime/Message.php" role="php" />
+   <file install-as="Swift/Mime/MimeEntity.php" md5sum="5bc6f30e6db2094029f92eea4e5aebfb" name="lib/classes/Swift/Mime/MimeEntity.php" role="php" />
+   <file install-as="Swift/Mime/MimePart.php" md5sum="60bf65875776765324efd0854c965c8e" name="lib/classes/Swift/Mime/MimePart.php" role="php" />
+   <file install-as="Swift/Mime/ParameterizedHeader.php" md5sum="27ba92ba42311d77d1836f47405c3c13" name="lib/classes/Swift/Mime/ParameterizedHeader.php" role="php" />
+   <file install-as="Swift/Mime/SimpleHeaderFactory.php" md5sum="4d88cb7cb21a2872165fb807de5fc633" name="lib/classes/Swift/Mime/SimpleHeaderFactory.php" role="php" />
+   <file install-as="Swift/Mime/SimpleHeaderSet.php" md5sum="2e5c664af8c7faefdff5ef604dc62ca7" name="lib/classes/Swift/Mime/SimpleHeaderSet.php" role="php" />
+   <file install-as="Swift/Mime/SimpleMessage.php" md5sum="66a6a0bae2fcdc96eae65f0320a9ac51" name="lib/classes/Swift/Mime/SimpleMessage.php" role="php" />
+   <file install-as="Swift/Mime/SimpleMimeEntity.php" md5sum="db6473b50526ec9c666605fdd1ede237" name="lib/classes/Swift/Mime/SimpleMimeEntity.php" role="php" />
+   <file install-as="Swift/MimePart.php" md5sum="d7e9583b85338f4e3134d1326c63fcd2" name="lib/classes/Swift/MimePart.php" role="php" />
+   <file install-as="Swift/OutputByteStream.php" md5sum="7a9614da71511e7a2e121d11574356a0" name="lib/classes/Swift/OutputByteStream.php" role="php" />
+   <file install-as="Swift/Plugins/AntiFloodPlugin.php" md5sum="8116c625f99b30925c6f6c4afe671c91" name="lib/classes/Swift/Plugins/AntiFloodPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/BandwidthMonitorPlugin.php" md5sum="e4103e1b0870caf83eb9bf9783b6445f" name="lib/classes/Swift/Plugins/BandwidthMonitorPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/Decorator/Replacements.php" md5sum="678cbb7201252d38180fe848c2031fdc" name="lib/classes/Swift/Plugins/Decorator/Replacements.php" role="php" />
+   <file install-as="Swift/Plugins/DecoratorPlugin.php" md5sum="655b6626534c41c770c6478564252e2f" name="lib/classes/Swift/Plugins/DecoratorPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/Logger.php" md5sum="94d9c908d42e95968696eecbb5f22fa2" name="lib/classes/Swift/Plugins/Logger.php" role="php" />
+   <file install-as="Swift/Plugins/LoggerPlugin.php" md5sum="0d82480281a06040fe46cdb7aeb04443" name="lib/classes/Swift/Plugins/LoggerPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/Loggers/ArrayLogger.php" md5sum="c8733165f8f37aea8120400b64b3c4f1" name="lib/classes/Swift/Plugins/Loggers/ArrayLogger.php" role="php" />
+   <file install-as="Swift/Plugins/Loggers/EchoLogger.php" md5sum="45f9594ec44ca5bb9a929be545da9a66" name="lib/classes/Swift/Plugins/Loggers/EchoLogger.php" role="php" />
+   <file install-as="Swift/Plugins/Pop/Pop3Connection.php" md5sum="cb50d4a1d4398078239ef886eaa6d27a" name="lib/classes/Swift/Plugins/Pop/Pop3Connection.php" role="php" />
+   <file install-as="Swift/Plugins/Pop/Pop3Exception.php" md5sum="4d439b5ad54559415df76378bc606d3c" name="lib/classes/Swift/Plugins/Pop/Pop3Exception.php" role="php" />
+   <file install-as="Swift/Plugins/PopBeforeSmtpPlugin.php" md5sum="5661bc27faa15b2d3a3e3b1b63398078" name="lib/classes/Swift/Plugins/PopBeforeSmtpPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/Reporter.php" md5sum="7f5fe4e543f7f17e5f56122f506beb5f" name="lib/classes/Swift/Plugins/Reporter.php" role="php" />
+   <file install-as="Swift/Plugins/ReporterPlugin.php" md5sum="2f1a90edb8eda47f02e8039bb35a7ed7" name="lib/classes/Swift/Plugins/ReporterPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/Reporters/HitReporter.php" md5sum="f69713612a29ba5e797ff719aac0baf8" name="lib/classes/Swift/Plugins/Reporters/HitReporter.php" role="php" />
+   <file install-as="Swift/Plugins/Reporters/HtmlReporter.php" md5sum="609c7fac7ae91cf6135d70c7cab23b19" name="lib/classes/Swift/Plugins/Reporters/HtmlReporter.php" role="php" />
+   <file install-as="Swift/Plugins/Sleeper.php" md5sum="cb94dc5d8060f84867e2f7f2dc869de5" name="lib/classes/Swift/Plugins/Sleeper.php" role="php" />
+   <file install-as="Swift/Plugins/ThrottlerPlugin.php" md5sum="ce03fd963c285fd07f9a7e627b7403d4" name="lib/classes/Swift/Plugins/ThrottlerPlugin.php" role="php" />
+   <file install-as="Swift/Plugins/Timer.php" md5sum="cde494e3124e5b4183ec1d1570e67278" name="lib/classes/Swift/Plugins/Timer.php" role="php" />
+   <file install-as="Swift/Preferences.php" md5sum="55bf52c310769c66e9d9bcea1681cfe5" name="lib/classes/Swift/Preferences.php" role="php" />
+   <file install-as="Swift/ReplacementFilterFactory.php" md5sum="59d28632d19e3ad8025c93de33d819a4" name="lib/classes/Swift/ReplacementFilterFactory.php" role="php" />
+   <file install-as="Swift/RfcComplianceException.php" md5sum="8fcc7a6d8ec6bbdce9f32803dd6650af" name="lib/classes/Swift/RfcComplianceException.php" role="php" />
+   <file install-as="Swift/SendmailTransport.php" md5sum="e0aab6ad6862061a474f21e622f98f85" name="lib/classes/Swift/SendmailTransport.php" role="php" />
+   <file install-as="Swift/SmtpTransport.php" md5sum="c605eb1137ca859e370ed4f8d67dad1a" name="lib/classes/Swift/SmtpTransport.php" role="php" />
+   <file install-as="Swift/StreamFilter.php" md5sum="7e5d400eed73403381ecc255c8325feb" name="lib/classes/Swift/StreamFilter.php" role="php" />
+   <file install-as="Swift/StreamFilters/ByteArrayReplacementFilter.php" md5sum="02ff52ee82e189189a8371460584c513" name="lib/classes/Swift/StreamFilters/ByteArrayReplacementFilter.php" role="php" />
+   <file install-as="Swift/StreamFilters/StringReplacementFilter.php" md5sum="c7994884f113f5a2926c9f40b9927ea6" name="lib/classes/Swift/StreamFilters/StringReplacementFilter.php" role="php" />
+   <file install-as="Swift/StreamFilters/StringReplacementFilterFactory.php" md5sum="6064e9e7e02fdec0b50cc2d3f03cc8b2" name="lib/classes/Swift/StreamFilters/StringReplacementFilterFactory.php" role="php" />
+   <file install-as="Swift/SwiftException.php" md5sum="eb693fa025f320e37c39a75715835da9" name="lib/classes/Swift/SwiftException.php" role="php" />
+   <file install-as="Swift/Transport/AbstractSmtpTransport.php" md5sum="5a2fa311d1790f92d23c64082fd1523a" name="lib/classes/Swift/Transport/AbstractSmtpTransport.php" role="php" />
+   <file install-as="Swift/Transport/Esmtp/Auth/CramMd5Authenticator.php" md5sum="f985782564fc00ca3b75f32ff03a4b62" name="lib/classes/Swift/Transport/Esmtp/Auth/CramMd5Authenticator.php" role="php" />
+   <file install-as="Swift/Transport/Esmtp/Auth/LoginAuthenticator.php" md5sum="88576f8882bd235a8f6332ec44bce891" name="lib/classes/Swift/Transport/Esmtp/Auth/LoginAuthenticator.php" role="php" />
+   <file install-as="Swift/Transport/Esmtp/Auth/PlainAuthenticator.php" md5sum="9ab3d1fff20a26e86ae454823b074ac4" name="lib/classes/Swift/Transport/Esmtp/Auth/PlainAuthenticator.php" role="php" />
+   <file install-as="Swift/Transport/Esmtp/Authenticator.php" md5sum="30f92ba42ace66ec0ecdf424e00fa816" name="lib/classes/Swift/Transport/Esmtp/Authenticator.php" role="php" />
+   <file install-as="Swift/Transport/Esmtp/AuthHandler.php" md5sum="f9001d6205520b89bea8ef1ef9869d7b" name="lib/classes/Swift/Transport/Esmtp/AuthHandler.php" role="php" />
+   <file install-as="Swift/Transport/EsmtpHandler.php" md5sum="389ca2abb830f019d77d2de056294dfc" name="lib/classes/Swift/Transport/EsmtpHandler.php" role="php" />
+   <file install-as="Swift/Transport/EsmtpTransport.php" md5sum="9503355680923201c5a4e9b8c2eee04a" name="lib/classes/Swift/Transport/EsmtpTransport.php" role="php" />
+   <file install-as="Swift/Transport/FailoverTransport.php" md5sum="565ceb65a48893b80fc11e7714ef1434" name="lib/classes/Swift/Transport/FailoverTransport.php" role="php" />
+   <file install-as="Swift/Transport/IoBuffer.php" md5sum="8a2923f9c7e1a4005373340366c3094c" name="lib/classes/Swift/Transport/IoBuffer.php" role="php" />
+   <file install-as="Swift/Transport/LoadBalancedTransport.php" md5sum="85af76b41b15cdf54b4f6ef8e10d24a1" name="lib/classes/Swift/Transport/LoadBalancedTransport.php" role="php" />
+   <file install-as="Swift/Transport/MailInvoker.php" md5sum="b180183dbaac3e5d58b9158fcf3ca679" name="lib/classes/Swift/Transport/MailInvoker.php" role="php" />
+   <file install-as="Swift/Transport/MailTransport.php" md5sum="6670d6e62527012fc416634b05b3b024" name="lib/classes/Swift/Transport/MailTransport.php" role="php" />
+   <file install-as="Swift/Transport/SendmailTransport.php" md5sum="127a422b1735d3f733f30fae76cae6d0" name="lib/classes/Swift/Transport/SendmailTransport.php" role="php" />
+   <file install-as="Swift/Transport/SimpleMailInvoker.php" md5sum="9cfc6ec6a21a9855cad202966f5a3a77" name="lib/classes/Swift/Transport/SimpleMailInvoker.php" role="php" />
+   <file install-as="Swift/Transport/SmtpAgent.php" md5sum="2805edcf6a1b48bb6ae2c98ca2bbdcb5" name="lib/classes/Swift/Transport/SmtpAgent.php" role="php" />
+   <file install-as="Swift/Transport/StreamBuffer.php" md5sum="72ed249a7ce2b4abf4da0db9e13339e0" name="lib/classes/Swift/Transport/StreamBuffer.php" role="php" />
+   <file install-as="Swift/Transport.php" md5sum="0d25b0bd8aea0ffb7837c17200de3524" name="lib/classes/Swift/Transport.php" role="php" />
+   <file install-as="Swift/TransportException.php" md5sum="a4601216a0fae9195f33f2fdbc610609" name="lib/classes/Swift/TransportException.php" role="php" />
+   <file install-as="Swift.php" md5sum="e046a867184ca2fd25689409d5885b4c" name="lib/classes/Swift.php" role="php" />
+   <file install-as="mime_types.php" md5sum="abb6ccc75d6a59a42cb258da02f90a5c" name="lib/mime_types.php" role="php" />
+   <file install-as="preferences.php" md5sum="b701332b421b0c289a5559729e922f7b" name="lib/preferences.php" role="php" />
+   <file install-as="swift_init.php" md5sum="8205b5fea339f39676a7b45b1d55ef0e" name="lib/swift_init.php" role="php" />
+   <file install-as="swift_required.php" md5sum="9be56fa84e47172301f350fd6999aa25" name="lib/swift_required_pear.php" role="php" />
+   <file md5sum="8b071b3875628a71bf3df3d2385f9d5f" name="CHANGES" role="doc" />
+   <file md5sum="6a6a8e020838b23406c81b19c1d46df6" name="LICENSE" role="doc" />
+   <file md5sum="4bbf828ca5e87e47598c6065195ea6ce" name="README" role="doc" />
+   <file md5sum="f5c474a531c81d83489db659db7025a2" name="VERSION" role="doc" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.4</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease />
+</package>
