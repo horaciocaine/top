@@ -7,6 +7,17 @@
   </author>
 
   <entry>
+    <title>Swift 4.1.0RC1 (beta)</title>
+    <link href="http://pear.swiftmailer.org//get/Swift-4.1.0RC1.tgz" />
+    <id>Swift-4.1.0RC1</id>
+    <author>
+      <name>fabpot</name>
+    </author>
+    <updated>2011-06-17T08:25:12+02:00</updated>
+    <content>
+      Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.
+    </content>
+  </entry>  <entry>
     <title>Swift 4.0.7 (stable)</title>
     <link href="http://pear.swiftmailer.org//get/Swift-4.0.7.tgz" />
     <id>Swift-4.0.7</id>

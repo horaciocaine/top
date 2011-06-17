@@ -3,6 +3,10 @@
   <p>Swift</p>
   <c>pear.swiftmailer.org</c>
   <r>
+    <v>4.1.0RC1</v>
+    <s>beta</s>
+  </r>
+  <r>
     <v>4.0.7</v>
     <s>stable</s>
   </r>
