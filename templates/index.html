@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title 'Powerful component based mailing library for PHP' %}
+
+{% block content %}
+    <div id="container">
+      <div id="content">
+    
+        <h1>Free Feature-rich PHP Mailer</h1>
+    
+        <p class="homepageintro">
+          Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant
+          object-oriented approach to sending emails with a multitude of features.
+        </p>
+    
+        <ul class="featurelist">
+          <li class="feature1"><span>Send emails using SMTP, sendmail, postfix or a custom Transport implementation of your own</span></li>
+          <li class="feature2"><span>Support servers that require username &amp; password and/or encryption</span></li>
+          <li class="feature3"><span>Protect from header injection attacks without stripping request data content</span></li>
+          <li class="feature4"><span>Send MIME compliant HTML/multipart emails</span></li>
+          <li class="feature5"><span>Use event-driven plugins to customize the library</span></li>
+          <li class="feature6"><span>Handle large attachments and inline/embedded images with low memory use</span></li>
+        </ul>
+    
+      </div>
+    </div>
+
+    <div id="sidepanel">
+      <div id="downloadbox" class="supplementary iconbox corners top right bottom left">
+        <a href="<?php echo $this->url(array(
+          'controller'=>'download',
+          'action'=>'download-file',
+          'filename'=>$this->currentDownload()->getName()),
+          'get-download'
+        ); ?>"><img src="/images/download.png" alt="download" /></a>
+        <dl>
+          <dt><a rel="nofollow" href="<?php echo $this->url(array(
+            'controller'=>'download',
+            'action'=>'download-file',
+            'filename'=>$this->currentDownload()->getName()),
+            'get-download'
+          ); ?>"><?php echo $this->escape($this->currentDownload()->getName()); ?></a></dt>
+          <dd>
+            <div class="releasedate"><?php echo $this->escape(date('j F Y', $this->currentDownload()->getTimeCreated())); ?></div>
+            <div class="downloadsize">
+              <?php echo $this->escape(number_format($this->currentDownload()->getSize())); ?> bytes
+            </div>
+            <a rel="nofollow" href="<?php echo $this->url(array(
+              'controller'=>'download',
+              'action'=>'download-file',
+              'filename'=>$this->currentDownload()->getName()),
+              'get-download'
+            ); ?>">Download</a>
+          </dd>
+        </dl>
+      </div>
+  
+      <div id="docbox" class="supplementary iconbox secondary">
+        <a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'introduction'), 'docs-file'); ?>"><img src="/images/docs.png" alt="documents" /></a>
+        <dl>
+          <dt><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'introduction'), 'docs-file'); ?>">Complete User Guide</a></dt>
+          <dd>
+            Read the documentation and see how Swift Mailer works
+          </dd>
+        </dl>
+      </div>
+  
+    </div>
+{% endblock %}

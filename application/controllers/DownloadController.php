@@ -24,7 +24,6 @@ class DownloadController extends Swift_Website_ActionController
   public function indexAction()
   {
     $this->view->assign(array(
-      'title' => 'Latest Downloads',
       'stableDownload' => $this->_getCurrentStableDownload(),
       'unstableDownload' => $this->_getCurrentUnstableDownload(),
       'githubUrl' => $this->_getGithubUrl()
@@ -35,7 +34,6 @@ class DownloadController extends Swift_Website_ActionController
   public function archiveAction()
   {
     $this->view->assign(array(
-      'title' => 'Download Archive',
       'downloads' => $this->_getArchivedDownloads(),
       'githubUrl' => $this->_getGithubUrl()
     ));
