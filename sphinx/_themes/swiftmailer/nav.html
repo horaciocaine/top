@@ -1,0 +1,16 @@
+{%- if pagename != "search" and not "index" in pagename and (prev or next) %}
+    {%- set reldelim2 = reldelim2 is not defined and ' |' or reldelim2 %}
+    <div class="navigation">
+        {%- if prev %}
+            <a {{ accesskey('P') }} title="{{ prev.title|striptags|e }}" href="{{ prev.link|e }}">
+                &laquo;&nbsp;{{ prev.title|striptags|e }}
+            </a>
+        {%- endif %}
+        {%- if prev and next %}<span class="separator">|</span>{%- endif %}
+        {%- if next %}
+            <a {{ accesskey('N') }} title="{{ next.title|striptags|e }}" href="{{ next.link|e }}">
+                {{ next.title|striptags|e }}&nbsp;&raquo;
+            </a>
+        {%- endif %}
+    </div>
+{%- endif %}

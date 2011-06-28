@@ -8,6 +8,9 @@
         <link href="/css/global.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/css/homepage.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/css/download.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="/css/doc.css" media="screen" rel="stylesheet" type="text/css" />
 
         <script type="text/javascript" src="/js/jquery-1.3.min.js"></script>
 
@@ -33,7 +36,7 @@
             <ul>
               <li><a href="{{ path('homepage') }}">home</a></li>
               <li><a href="{{ path('download') }}">download</a></li>
-              <li><a href="{{ path('doc') }}">documentation</a></li>
+              <li><a href="{{ path('doc', {'page': 'introduction'}) }}">documentation</a></li>
               <li><a href="{{ path('bugs') }}">bugs</a></li>
               <li><a href="http://blog.swiftmailer.org/">blog</a></li>
               <li class="tab corners top right left"><a href="{{ path('download_file', {'filename': currentDownload.filename}) }}">current {{ currentDownload.version }}</a></li>
@@ -43,11 +46,19 @@
       </div>
 
       <div id="wrapper" class="corners bottom right left">
-        
-        <div>
-            {% block content '' %}
-        </div>
-      
+
+          <div>
+              <div id="container">
+                  <div id="content">
+                      {% block content '' %}
+                  </div>
+              </div>
+          </div>
+
+          <div id="sidepanel">
+              {% block sidepanel '' %}
+          </div>
+
         <div id="footer">
           <div id="footercontent">
             
@@ -63,7 +74,7 @@
               <ul>
                 <li><a href="{{ path('download') }}">Download</a></li>
                 <!--<li>Tutorials</li>-->
-                <li><a href="{{ path('doc') }}">User Guide &amp; Book</a></li>
+                <li><a href="{{ path('doc', {'page': 'introduction'}) }}">User Guide &amp; Book</a></li>
               </ul>
             </dd>
           </dl>
@@ -72,7 +83,7 @@
             <dt>Get Help</dt>
             <dd>
               <ul>
-                <li><a href="{{ path('doc') }}">Documentation</a></li>
+                <li><a href="{{ path('doc', {'page': 'introduction'}) }}">Documentation</a></li>
                 <li><a href="{{ path('bugs') }}">Report a Bug</a></li>
                 <li><a href="http://groups.google.com/group/swiftmailer">Google Group</a></li>
               </ul>

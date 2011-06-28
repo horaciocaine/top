@@ -54,6 +54,24 @@ h2 {
   margin: 1em 0;
 }
 
+h3 {
+  clear: both;
+  font-size: 1.3em;
+  margin: 1em 0;
+}
+
+h4 {
+  clear: both;
+  font-size: 1.2em;
+  margin: 1em 0;
+}
+
+h5 {
+  clear: both;
+  font-size: 1.1em;
+  margin: 1em 0;
+}
+
 strong {
   font-weight: bold;
 }

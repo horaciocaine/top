@@ -3,9 +3,6 @@
 {% block title 'Latest Downloads' %}
 
 {% block content %}
-    <div id="container">
-      <div id="content">
-    
         <h1>Latest Downloads</h1>
     
         <p>
@@ -39,11 +36,9 @@
         
             <br class="clear" />
           </div>
-    
-      </div>
-    </div>
+{% endblock %}
 
-    <div id="sidepanel">
+{% block sidepanel %}
       <div class="supplementary secondary corners top right bottom left">
         <h2>Looking for older releases?</h2>
         <p>
@@ -55,5 +50,4 @@
 
       {% include '_repository.html' %}
       {% include '_pear_channel.html' %}
-    </div>
 {% endblock %}

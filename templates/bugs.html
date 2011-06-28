@@ -3,9 +3,6 @@
 {% block title 'Reporting Bugs' %}
 
 {% block content %}
-    <div id="container">
-      <div id="content">
-    
         <h1>Submitting Bug Reports</h1>
     
         <p>
@@ -55,11 +52,9 @@
           <a href="http://swiftmailer.lighthouseapp.com/">http://swiftmailer.lighthouseapp.com/</a>
           to enter your bug.
         </p>
-    
-      </div>
-    </div>
+{% endblock %}
 
-    <div id="sidepanel">
+{% block sidepanel %}
       <div class="supplementary corners top right bottom left iconbox">
         <a href="http://swiftmailer.lighthouseapp.com/"><img src="/images/add.png" alt="add a new bug" /></a>
         <dl>
@@ -82,5 +77,4 @@
           <a href="http://groups.google.com/group/swiftmailer">here</a>.
         </p>
       </div>
-    </div>
 {% endblock %}

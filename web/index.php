@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Silex\Application;
 use Silex\Extension\TwigExtension;
 use Silex\Extension\UrlGeneratorExtension;
@@ -45,19 +46,23 @@ $app->register(new DoctrineExtension(), array(
     )
 ));
 $app['twig.configure'] = $app->protect(function ($twig) use ($app) {
-    $twig->addGlobal('currentDownload', Download::getCurrentStableDownload($app['db']));
+    $twig->addGlobal('currentDownload', DownloadManager::getCurrentStableDownload($app['db']));
 });
 
 class Download
 {
+}
+
+class DownloadManager
+{
     static public function getCurrentStableDownload($db)
     {
-        return self::fixDownload($db->fetchAssoc('SELECT *
+        return self::getDownload($db, 'SELECT *
             FROM download
             WHERE revoked != 1 AND stable = 1
             ORDER BY version_number DESC, time_created DESC
             LIMIT 1
-        '));
+        ');
     }
 
     static public function getCurrentUnstableDownload($db)
@@ -66,35 +71,55 @@ class Download
           return false;
         }
 
-        return self::fixDownload($db->fetchAssoc('SELECT *
+        return self::getDownload($db, 'SELECT *
             FROM download
             WHERE revoked != 1 AND stable != 1 AND version_number > :number
             ORDER BY version_number DESC, time_created DESC
             LIMIT 1
-        ', array(':number' => $current['version_number'])));
+        ', array(':number' => $current->version_number));
     }
 
     static public function findAllAvailableDescendingByVersion($db)
     {
-        $downloads = $db->fetchAll('SELECT *
+        $sth = $db->executeQuery('SELECT *
             FROM download
             WHERE revoked != 1
             ORDER BY version_number DESC, time_created DESC
-        ', array(':number' => $current['version_number']));
+        ');
+        $sth->setFetchMode(\PDO::FETCH_CLASS, 'Download');
 
-        foreach ($downloads as $i => $download) {
-            $downloads[$i] = self::fixDownload($download);
+        $downloads = array();
+        foreach ($sth->fetchAll() as $download) {
+            $downloads[] = self::fixDownload($download);
         }
 
         return $downloads;
     }
 
-    static public function fixDownload($download)
+    static public function findAvailableByName($db, $filename)
     {
-        if (preg_match('~([0-9]+)(?:\.([0-9]+))?(?:\.([0-9]+))?(?:-(alpha|a|beta|b|rc)-?([0-9]+))?~i', $download['filename'], $matches)) {
-            $download['version'] = $matches[0];
+        return self::getDownload($db, 'SELECT *
+            FROM download
+            WHERE revoked != 1 AND filename = :filename
+            LIMIT 1
+        ', array(':filename' => $filename));
+    }
+
+    static protected function getDownload($db, $sql, array $params = array())
+    {
+        $sth = $db->executeQuery($sql, $params);
+        $sth->setFetchMode(\PDO::FETCH_CLASS, 'Download');
+        $hash = $sth->fetch();
+
+        return $hash ? self::fixDownload($hash) : false;
+    }
+
+    static protected function fixDownload($download)
+    {
+        if (preg_match('~([0-9]+)(?:\.([0-9]+))?(?:\.([0-9]+))?(?:-(alpha|a|beta|b|rc)-?([0-9]+))?~i', $download->filename, $matches)) {
+            $download->version = $matches[0];
         } else {
-            $download['version'] = '0.0.0';
+            $download->version = '0.0.0';
         }
 
         return $download;
@@ -107,19 +132,29 @@ $app->get('/', function() use ($app) {
 })->bind('homepage');
 
 $app->get('/download_file/{filename}', function($filename) use ($app) {
-    // FIXME
+    if (!$download = DownloadManager::findAvailableByName($app['db'], $filename)) {
+        throw new NotFoundHttpException('Download does not exist');
+    }
+
+    if ('github' == $download['source']) {
+        $url = sprintf('http://cloud.github.com/downloads/swiftmailer/swiftmailer/%s', $download['filename']);
+    } else {
+        $url = sprintf('http://sourceforge.net/projects/swiftmailer/files/SwiftMailer/PHP4%%20%s/%s/download', $download['version'], $download['filename']);
+    }
+
+    return new RedirectResponse($url);
 })->bind('download_file');
 
 $app->get('/download', function() use ($app) {
     return $app['twig']->render('download.html', array(
-        'stableDownload'   => Download::getCurrentStableDownload($app['db']),
-        'unstableDownload' => Download::getCurrentUnstableDownload($app['db']),
+        'stableDownload'   => DownloadManager::getCurrentStableDownload($app['db']),
+        'unstableDownload' => DownloadManager::getCurrentUnstableDownload($app['db']),
     ));
 })->bind('download');
 
 $app->get('/downloads/archive', function() use ($app) {
     return $app['twig']->render('archive.html', array(
-        'downloads' => Download::findAllAvailableDescendingByVersion($app['db']),
+        'downloads' => DownloadManager::findAllAvailableDescendingByVersion($app['db']),
     ));
 })->bind('archive');
 
@@ -127,26 +162,19 @@ $app->get('/bugs', function() use ($app) {
     return $app['twig']->render('bugs.html');
 })->bind('bugs');
 
-$app->get('/docs/introduction', function() use ($app) {
-    // FIXMEs
-})->bind('doc');
-/*
-$app->get('/{page}', function($page) use ($app) {
-    try {
-        return $app['twig']->render($page.'.html', array('page' => $page));
-    } catch (\Exception $e) {
-        throw new NotFoundHttpException('Page not found', $e);
+$app->get('/docs/{page}', function($page) use ($app) {
+    if ('introduction' == $page) {
+        $page = '01-Introduction.html';
     }
-})->bind('page')->assert('page', '[a-zA-Z\/\-0-9]+');
 
-$app->get('/doc/{page}.html', function($page) use ($app) {
     try {
-        return $app['twig']->render('_build/'.$page.'.html', array('page' => 'documentation'));
+        return $app['twig']->render('_build/'.$page, array());
     } catch (\Exception $e) {
+throw $e;
         throw new NotFoundHttpException('Page not found', $e);
     }
-})->bind('doc')->assert('page', '[a-zA-Z\/\-0-9_]+');
-*/
+})->bind('doc');
+
 $app->error(function (\Exception $e) use ($app) {
     $error = null;
     if ($e instanceof NotFoundHttpException || in_array($app['request']->server->get('REMOTE_ADDR'), array('127.0.0.1', '::1'))) {

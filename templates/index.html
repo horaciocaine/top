@@ -3,9 +3,6 @@
 {% block title 'Powerful component based mailing library for PHP' %}
 
 {% block content %}
-    <div id="container">
-      <div id="content">
-    
         <h1>Free Feature-rich PHP Mailer</h1>
     
         <p class="homepageintro">
@@ -21,11 +18,9 @@
           <li class="feature5"><span>Use event-driven plugins to customize the library</span></li>
           <li class="feature6"><span>Handle large attachments and inline/embedded images with low memory use</span></li>
         </ul>
-    
-      </div>
-    </div>
+{% endblock %}
 
-    <div id="sidepanel">
+{% block sidepanel %}
       <div id="downloadbox" class="supplementary iconbox corners top right bottom left">
         <a href="{{ path('download_file', {'filename': currentDownload.filename}) }}"><img src="/images/download.png" alt="download" /></a>
         <dl>
@@ -41,14 +36,12 @@
       </div>
   
       <div id="docbox" class="supplementary iconbox secondary">
-        <a href="{{ path('doc') }}"><img src="/images/docs.png" alt="documents" /></a>
+        <a href="{{ path('doc', {'page': 'introduction'}) }}"><img src="/images/docs.png" alt="documents" /></a>
         <dl>
-          <dt><a href="{{ path('doc') }}">Complete User Guide</a></dt>
+          <dt><a href="{{ path('doc', {'page': 'introduction'}) }}">Complete User Guide</a></dt>
           <dd>
             Read the documentation and see how Swift Mailer works
           </dd>
         </dl>
       </div>
-  
-    </div>
 {% endblock %}

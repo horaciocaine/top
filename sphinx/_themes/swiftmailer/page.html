@@ -1,0 +1,25 @@
+{% raw %}
+{% extends "layout.html" %}
+
+{% block content %}
+        {% raw %}
+{% endraw %}
+        <div id="doc">
+            {{ body }}
+        </div>
+        {{ "{% endraw %}" }}
+    {%- include "nav.html" %}
+{% raw %}
+{% endblock %}
+
+{% block sidepanel %}
+    <div class="infobar clearfix">
+        <div class="toc">
+            <h3>Table of Contents</h3>
+{% endraw %}
+            {{ toc }}
+{% raw %}
+        </div>
+    </div>
+{% endblock %}
+{% endraw %}

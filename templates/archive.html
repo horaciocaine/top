@@ -3,9 +3,6 @@
 {% block title 'Download Archive' %}
 
 {% block content %}
-    <div id="container">
-      <div id="content">
-
         <h1>Download Archive</h1>
 
         {% if downloads|length <= 0 %}
@@ -34,12 +31,9 @@
               </tbody>
             </table>
         {% endif %}
+{% endblock %}
 
-      </div>
-    </div>
-
-    <div id="sidepanel">
-        {% include '_repository.html' %}
-        {% include '_pear_channel.html' %}
-    </div>
+{% block sidepanel %}
+    {% include '_repository.html' %}
+    {% include '_pear_channel.html' %}
 {% endblock %}
