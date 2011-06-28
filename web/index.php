@@ -74,6 +74,21 @@ class Download
         ', array(':number' => $current['version_number'])));
     }
 
+    static public function findAllAvailableDescendingByVersion($db)
+    {
+        $downloads = $db->fetchAll('SELECT *
+            FROM download
+            WHERE revoked != 1
+            ORDER BY version_number DESC, time_created DESC
+        ', array(':number' => $current['version_number']));
+
+        foreach ($downloads as $i => $download) {
+            $downloads[$i] = self::fixDownload($download);
+        }
+
+        return $downloads;
+    }
+
     static public function fixDownload($download)
     {
         if (preg_match('~([0-9]+)(?:\.([0-9]+))?(?:\.([0-9]+))?(?:-(alpha|a|beta|b|rc)-?([0-9]+))?~i', $download['filename'], $matches)) {
@@ -103,13 +118,19 @@ $app->get('/download', function() use ($app) {
 })->bind('download');
 
 $app->get('/downloads/archive', function() use ($app) {
-    return $app['twig']->render('archive.html');
+    return $app['twig']->render('archive.html', array(
+        'downloads' => Download::findAllAvailableDescendingByVersion($app['db']),
+    ));
 })->bind('archive');
 
 $app->get('/bugs', function() use ($app) {
     return $app['twig']->render('bugs.html');
 })->bind('bugs');
 
+$app->get('/docs/introduction', function() use ($app) {
+    // FIXMEs
+})->bind('doc');
+/*
 $app->get('/{page}', function($page) use ($app) {
     try {
         return $app['twig']->render($page.'.html', array('page' => $page));
@@ -125,7 +146,7 @@ $app->get('/doc/{page}.html', function($page) use ($app) {
         throw new NotFoundHttpException('Page not found', $e);
     }
 })->bind('doc')->assert('page', '[a-zA-Z\/\-0-9_]+');
-
+*/
 $app->error(function (\Exception $e) use ($app) {
     $error = null;
     if ($e instanceof NotFoundHttpException || in_array($app['request']->server->get('REMOTE_ADDR'), array('127.0.0.1', '::1'))) {

@@ -33,7 +33,7 @@
             <ul>
               <li><a href="{{ path('homepage') }}">home</a></li>
               <li><a href="{{ path('download') }}">download</a></li>
-              <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'introduction'), 'docs-file'); ?>">documentation</a></li>
+              <li><a href="{{ path('doc') }}">documentation</a></li>
               <li><a href="{{ path('bugs') }}">bugs</a></li>
               <li><a href="http://blog.swiftmailer.org/">blog</a></li>
               <li class="tab corners top right left"><a href="{{ path('download_file', {'filename': currentDownload.filename}) }}">current {{ currentDownload.version }}</a></li>
@@ -61,9 +61,9 @@
             <dt>Get Started</dt>
             <dd>
               <ul>
-                <li><a href="<?php echo $this->url(array('controller'=>'download', 'action'=>'index'), 'default'); ?>">Download</a></li>
+                <li><a href="{{ path('download') }}">Download</a></li>
                 <!--<li>Tutorials</li>-->
-                <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'index'), 'docs'); ?>">User Guide &amp; Book</a></li>
+                <li><a href="{{ path('doc') }}">User Guide &amp; Book</a></li>
               </ul>
             </dd>
           </dl>
@@ -72,8 +72,8 @@
             <dt>Get Help</dt>
             <dd>
               <ul>
-                <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'index'), 'docs'); ?>">Documentation</a></li>
-                <li><a href="<?php echo $this->url(array('controller'=>'bug', 'action'=>'index'), 'bugs'); ?>">Report a Bug</a></li>
+                <li><a href="{{ path('doc') }}">Documentation</a></li>
+                <li><a href="{{ path('bugs') }}">Report a Bug</a></li>
                 <li><a href="http://groups.google.com/group/swiftmailer">Google Group</a></li>
               </ul>
             </dd>
