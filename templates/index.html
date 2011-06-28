@@ -30,16 +30,16 @@
         <a href="<?php echo $this->url(array(
           'controller'=>'download',
           'action'=>'download-file',
-          'filename'=>$this->currentDownload()->getName()),
+          'filename'=> currentDownload.name,
           'get-download'
         ); ?>"><img src="/images/download.png" alt="download" /></a>
         <dl>
           <dt><a rel="nofollow" href="<?php echo $this->url(array(
             'controller'=>'download',
             'action'=>'download-file',
-            'filename'=>$this->currentDownload()->getName()),
+            'filename'=>currentDownload.name,
             'get-download'
-          ); ?>"><?php echo $this->escape($this->currentDownload()->getName()); ?></a></dt>
+          ); ?>">{{ currentDownload.name }}/a></dt>
           <dd>
             <div class="releasedate"><?php echo $this->escape(date('j F Y', $this->currentDownload()->getTimeCreated())); ?></div>
             <div class="downloadsize">

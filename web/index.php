@@ -32,8 +32,8 @@ $app = new Application();
 $app->register(new SymfonyBridgesExtension());
 $app->register(new UrlGeneratorExtension());
 $app->register(new TwigExtension(), array(
-    'twig.path'       => array(__DIR__.'/../templates', __DIR__.'/../sphinx'),
-    'twig.options'    => array('cache' => __DIR__.'/../cache', 'debug' => true, 'strict_variables' => true),
+    'twig.path'    => array(__DIR__.'/../templates', __DIR__.'/../sphinx'),
+    'twig.options' => array('cache' => __DIR__.'/../cache', 'debug' => true, 'strict_variables' => true),
 ));
 $app->register(new DoctrineExtension(), array(
     'db.options' => array(
@@ -54,29 +54,22 @@ class Download
         $this->db = $db;
     }
 
-//    return $this->db->fetchColumn('SELECT COUNT(*) FROM '.$this->db->quoteIdentifier($table), array(), 0);
-
     public function getCurrentStableDownload()
     {
-        $sql = 'SELECT *
-            FROM dctrn_find
+        return $this->db->fetchAssoc('SELECT *
+            FROM download
             WHERE revoked != 1 AND stable = 1
             ORDER BY version_number DESC, time_created DESC
             LIMIT 1
-        ';
-
-        return $this->db->query();
-    }
-
-    public function getCount($table)
-    {
-        return $this->db->fetchColumn('SELECT COUNT(*) FROM '.$this->db->quoteIdentifier($table), array(), 0);
+        ');
     }
 }
 
 // Application
 $app->get('/', function() use ($app) {
-    return $app['twig']->render('index.html', array('page' => 'index'));
+    return $app['twig']->render('index.html', array(
+        'currentDownload' => $app['db']->getCurrentStableDownload(),
+    ));
 })->bind('homepage');
 
 $app->get('/download', function() use ($app) {
