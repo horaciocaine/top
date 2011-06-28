@@ -36,12 +36,7 @@
               <li><a href="<?php echo $this->url(array('controller'=>'documentation', 'action'=>'load-file', 'topic'=>'introduction'), 'docs-file'); ?>">documentation</a></li>
               <li><a href="{{ path('bugs') }}">bugs</a></li>
               <li><a href="http://blog.swiftmailer.org/">blog</a></li>
-              <li class="tab corners top right left"><a href="<?php echo $this->url(array(
-                'controller'=>'download',
-                'action'=>'download-file',
-                'filename'=>$this->currentDownload()->getName()),
-                'get-download'
-              ); ?>">current <?php echo $this->escape($this->currentDownload()->getVersion()); ?></a></li>
+              <li class="tab corners top right left"><a href="{{ path('download_file', {'filename': currentDownload.filename}) }}">current {{ currentDownload.version }}</a></li>
             </ul>
           </div>
         </div>

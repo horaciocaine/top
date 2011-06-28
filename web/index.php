@@ -38,42 +38,68 @@ $app->register(new TwigExtension(), array(
 $app->register(new DoctrineExtension(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',
-        'dbname'   => 'swiftmailer',
+        'dbname'   => 'dbswiftmailer',
         'host'     => 'localhost',
         'user'     => 'root',
         'password' => null,
     )
 ));
+$app['twig.configure'] = $app->protect(function ($twig) use ($app) {
+    $twig->addGlobal('currentDownload', Download::getCurrentStableDownload($app['db']));
+});
 
 class Download
 {
-    protected $db;
-
-    public function __construct($db)
+    static public function getCurrentStableDownload($db)
     {
-        $this->db = $db;
-    }
-
-    public function getCurrentStableDownload()
-    {
-        return $this->db->fetchAssoc('SELECT *
+        return self::fixDownload($db->fetchAssoc('SELECT *
             FROM download
             WHERE revoked != 1 AND stable = 1
             ORDER BY version_number DESC, time_created DESC
             LIMIT 1
-        ');
+        '));
+    }
+
+    static public function getCurrentUnstableDownload($db)
+    {
+        if (!$current = self::getCurrentStableDownload($db)) {
+          return false;
+        }
+
+        return self::fixDownload($db->fetchAssoc('SELECT *
+            FROM download
+            WHERE revoked != 1 AND stable != 1 AND version_number > :number
+            ORDER BY version_number DESC, time_created DESC
+            LIMIT 1
+        ', array(':number' => $current['version_number'])));
+    }
+
+    static public function fixDownload($download)
+    {
+        if (preg_match('~([0-9]+)(?:\.([0-9]+))?(?:\.([0-9]+))?(?:-(alpha|a|beta|b|rc)-?([0-9]+))?~i', $download['filename'], $matches)) {
+            $download['version'] = $matches[0];
+        } else {
+            $download['version'] = '0.0.0';
+        }
+
+        return $download;
     }
 }
 
 // Application
 $app->get('/', function() use ($app) {
-    return $app['twig']->render('index.html', array(
-        'currentDownload' => $app['db']->getCurrentStableDownload(),
-    ));
+    return $app['twig']->render('index.html');
 })->bind('homepage');
 
+$app->get('/download_file/{filename}', function($filename) use ($app) {
+    // FIXME
+})->bind('download_file');
+
 $app->get('/download', function() use ($app) {
-    return $app['twig']->render('download.html');
+    return $app['twig']->render('download.html', array(
+        'stableDownload'   => Download::getCurrentStableDownload($app['db']),
+        'unstableDownload' => Download::getCurrentUnstableDownload($app['db']),
+    ));
 })->bind('download');
 
 $app->get('/downloads/archive', function() use ($app) {
