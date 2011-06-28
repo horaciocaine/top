@@ -11,15 +11,21 @@
     {%- include "nav.html" %}
 {% raw %}
 {% endblock %}
+{% endraw %}
 
-{% block sidepanel %}
-    <div class="infobar clearfix">
-        <div class="toc">
-            <h3>Table of Contents</h3>
-{% endraw %}
-            {{ toc }}
-{% raw %}
+{%- if display_toc %}
+
+    {% raw %}
+    {% block sidepanel %}
+        <div id="topicmap" class="supplementary secondary">
+            <p>&laquo;&nbsp;<a href="{{ path('doc', {'page': 'introduction'}) }}">Table of Contents</a></p>
+            <div class="toc">
+    {% endraw %}
+                {{ toc }}
+    {% raw %}
+            </div>
         </div>
-    </div>
-{% endblock %}
-{% endraw %}
+    {% endblock %}
+    {% endraw %}
+
+{% endif %}

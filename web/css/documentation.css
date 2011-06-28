@@ -14,9 +14,6 @@ div#topicmap .currenttopic {
 }
 
 div#topicmap li {
-  margin: 0;
-  padding: 0;
-  padding-left: 16px;
   margin-bottom: 1em;
   font-weight: bold;
 }

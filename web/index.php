@@ -164,7 +164,7 @@ $app->get('/bugs', function() use ($app) {
 
 $app->get('/docs/{page}', function($page) use ($app) {
     if ('introduction' == $page) {
-        $page = '01-Introduction.html';
+        $page = 'index.html';
     }
 
     try {
