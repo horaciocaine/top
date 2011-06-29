@@ -16,7 +16,6 @@
                   <th>Filename</th>
                   <th>Version</th>
                   <th>Released</th>
-                  <th>Size</th>
                 </tr>
               </thead>
               <tbody>
@@ -25,7 +24,6 @@
                         <td><a href="{{ path('download_file', {'filename': download.filename}) }}">{{ download.filename }}</a></td>
                         <td>{{ download.version }}</td>
                         <td>{{ download.time_created|date('j F Y') }}</td>
-                        <td>{{ download.filesize }} bytes</td>
                       </tr>
                   {% endfor %}
               </tbody>

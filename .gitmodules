@@ -16,3 +16,6 @@
 [submodule "vendor/swiftmailer"]
 	path = vendor/swiftmailer
 	url = https://github.com/swiftmailer/swiftmailer
+[submodule "vendor/Symfony/Component/Console"]
+	path = vendor/Symfony/Component/Console
+	url = http://github.com/symfony/Console.git

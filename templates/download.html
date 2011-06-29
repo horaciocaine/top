@@ -24,9 +24,6 @@
                 <dt class="releasedate">Release Date:</dt>
                 <dd class="releasedate">{{ stableDownload.time_created|date('j F Y') }}</dd>
           
-                <dt class="filesize">File Size:</dt>
-                <dd class="filesize">{{ stableDownload.filesize }} bytes</dd>
-          
                 <dt class="download">Download</dt>
                 <dd class="download"><a rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">Download Now</a></dd>
               </dl>

@@ -27,9 +27,6 @@
           <dt><a rel="nofollow" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">{{ currentDownload.filename }}</a></dt>
           <dd>
             <div class="releasedate">{{ currentDownload.time_created|date('j F Y') }}</div>
-            <div class="downloadsize">
-                {{ currentDownload.filesize }} bytes
-            </div>
             <a rel="nofollow" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">Download</a>
           </dd>
         </dl>
