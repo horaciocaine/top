@@ -1,0 +1,37 @@
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="coMULTI">/** THIS CODE REQUIRES Swift 3.1 OR HIGHER **/</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Decorator.php&quot;</span>;
+&nbsp;
+<span class="co1">//Instantiate Swift as usual</span>
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your-server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message, using some unique variables to search for</span>
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Hey {name}, what's up?&quot;</span>, <span class="st0">&quot;It's a bit {weather} today wouldn't you say?&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Extend the replacements class</span>
+<span class="kw2">class</span> Replacements <span class="kw2">extends</span> Swift_Plugin_Decorator_Replacements <span class="br0">&#123;</span>
+    <span class="kw2">function</span> getReplacementsFor<span class="br0">&#40;</span><span class="re0">$address</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="re0">$query</span> = <span class="st0">&quot;select
+        name as `{name}`, weather as `{weather}`
+        from buddies
+        where email = '&quot;</span> . <a href="http://www.php.net/mysql_real_escape_string"><span class="kw3">mysql_real_escape_string</span></a><span class="br0">&#40;</span><span class="re0">$address</span><span class="br0">&#41;</span> . <span class="st0">&quot;'&quot;</span>;
+        <span class="re0">$result</span> = <a href="http://www.php.net/mysql_query"><span class="kw3">mysql_query</span></a><span class="br0">&#40;</span><span class="re0">$query</span><span class="br0">&#41;</span>;
+        <span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/mysql_num_rows"><span class="kw3">mysql_num_rows</span></a><span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span> &gt; <span class="nu0">0</span><span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <a href="http://www.php.net/mysql_fetch_assoc"><span class="kw3">mysql_fetch_assoc</span></a><span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span>;
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Load the plugin with the extended replacements class</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Replacements<span class="br0">&#40;</span><span class="br0">&#41;</span>, <span class="st0">&quot;decorator&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send messages</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="st0">&quot;fred@perry.com&quot;</span>, <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="st0">&quot;joe@bloggs.com&quot;</span>, <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span>-&gt;<span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>

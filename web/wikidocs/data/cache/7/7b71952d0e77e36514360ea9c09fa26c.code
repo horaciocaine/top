@@ -1,0 +1,11 @@
+<span class="kw2">class</span> ConnectLoggerPlugin implements Swift_Events_ConnectListener
+<span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> connectPerformed<span class="br0">&#40;</span>swift_Events_ConnectEvent <span class="re0">$e</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$swift</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getSwift</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><span class="br0">&#40;</span><span class="re0">$enabled</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">log</span><span class="sy0">-&gt;</span><span class="me1">isEnabled</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+            <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">log</span><span class="sy0">-&gt;</span><span class="me1">enable</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">log</span><span class="sy0">-&gt;</span><span class="me1">add</span><span class="br0">&#40;</span><span class="st0">&quot;Swift connected and this plugin saw it happen!&quot;</span><span class="br0">&#41;</span>;
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><span class="re0">$enabled</span><span class="br0">&#41;</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">log</span><span class="sy0">-&gt;</span><span class="me1">disable</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

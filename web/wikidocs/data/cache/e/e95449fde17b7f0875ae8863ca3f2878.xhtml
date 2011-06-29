@@ -1,0 +1,53 @@
+
+
+
+<h1><a name="swift_connection_rotator" id="swift_connection_rotator">Swift_Connection_Rotator</a></h1>
+<div class="level1">
+
+<p>
+ <strong><em class="u">Synopsis:</em></strong> <em><code>new Swift_Connection_Rotator( [array connections] )</code></em>
+</p>
+
+<p>
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+</p>
+
+<p>
+You provide it with a collection of different connections (possibly including some other rotating ones if you&rsquo;re crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as &ldquo;dead&rdquo; internally and will not be retried.  Upon sending an email with Swift, the connection will rotated to the next one in sequence so the subsequent email will be sent through a different server.
+</p>
+
+<p>
+This is not as expensive as it may sound.  Once a connection has been established, it is kept open persistently until you call the disconnect() method in the Swift class.  Connections are not all opened unless they are needed neither (i.e. they open when the connection rotates if they are not already open, not upon instantiation), therefore, if you provide a lot of connections it&rsquo;s possible that some of them will never even be tried.
+</p>
+
+<p>
+Internally, a plugin is used to invoke the rotation.  The plugin used is Swift_Plugin_ConnectionRotator and simply listens for sendEvents being dispatched by Swift.  You don&rsquo;t really need to worry about this, but if it&rsquo;s of any use the plugin is automatically registered in Swift with the ID &ldquo;_ROTATOR&rdquo;.
+</p>
+
+<p>
+Like with the Multi connection, this connection either takes an array of connections in the constructor, or uses the addConnection() method to populate it.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Rotator.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Populate an array if you want to provide connections at instantiation</span>
+<span class="re0">$connections</span> = <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$conn1</span> =&amp; <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host1.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn1</span>-&gt;<span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st0">&quot;user&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn1</span>-&gt;<span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st0">&quot;pass&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> =&amp; <span class="re0">$conn1</span>;
+&nbsp;
+<span class="re0">$conn2</span> =&amp; <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host2.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> =&amp; <span class="re0">$conn2</span>;
+&nbsp;
+<span class="co1">//Start swift as normal</span>
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Rotator<span class="br0">&#40;</span><span class="re0">$connections</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Do some stuff</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span>, <span class="st0">&quot;Body&quot;</span><span class="br0">&#41;</span>, <span class="st0">&quot;foo@bar.com&quot;</span>, <span class="st0">&quot;me@home.tld&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Feel free to throw in new connections at run-time</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">connection</span>-&gt;<span class="me1">addConnection</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host3.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+</div>

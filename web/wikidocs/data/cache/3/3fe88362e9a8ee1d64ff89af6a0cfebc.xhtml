@@ -1,0 +1,168 @@
+
+
+
+<h1><a name="swift_automatic_file_embedding_plugin" id="swift_automatic_file_embedding_plugin">Swift Automatic File Embedding Plugin</a></h1>
+<div class="level1">
+
+<p>
+
+Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/FileEmbedder.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;localhost&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Attach the plugin</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_FileEmbedder<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;file_embedder&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Your subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st_h">'This is going to be embedded&lt;br /&gt;
+&lt;img src=&quot;http://www.server.tld/images/some-image.gif&quot; /&gt; rather than linked to.'</span><span class="sy0">,</span> <span class="st_h">'text/html'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st_h">'someone@somewhere.com'</span><span class="sy0">,</span> <span class="st_h">'sender@domain.tld'</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>IMPORTANT:</strong> You cannot embed files into messages successfully unless you set the body as an instance of Swift_Message_Part.  Make sure your body has been added with attach(new Swift_Message_Part()) rather than $message→setBody().
+</p>
+
+<p>
+The plugin is smart enough to know not to download and embed the same image more than once so you do not need to worry about using the same image multiple times to create layouts for example.
+</p>
+
+<p>
+By default the plugin will use the following rules and nothing else:
+
+</p>
+<ul>
+<li class="level1"><div class="li"> Find &lt;img&gt; tags with <code>src</code> attributes and extensions ending in one of gif, jpg, jpeg, pjpeg, png.</div>
+</li>
+<li class="level1"><div class="li"> Find &lt;script&gt; tags with <code>src</code> attributes and extensions ending in js.</div>
+</li>
+<li class="level1"><div class="li"> Find &lt;link&gt; tags with <code>href</code> attributes and extensions ending in css.</div>
+</li>
+</ul>
+
+<p>
+
+It will also try to use protocols http, https and ftp.
+</p>
+
+<p>
+There&#039;s a fairly good chance you&#039;ll want to change this.
+</p>
+
+</div>
+<!-- SECTION "Swift Automatic File Embedding Plugin" [1-1980] -->
+<h2><a name="changing_the_rules" id="changing_the_rules">Changing the rules</a></h2>
+<div class="level2">
+
+<p>
+
+If you start the plugin before you attach it to $swift you can make some changes in the rules first.  We&#039;ll look at how you add and remove rules for which tags to scan for and which protocols to use.
+</p>
+
+</div>
+<!-- SECTION "Changing the rules" [1981-2214] -->
+<h3><a name="adding_or_ammending_a_tag_rule" id="adding_or_ammending_a_tag_rule">Adding or ammending a tag rule</a></h3>
+<div class="level3">
+
+<p>
+
+The setTagDefinition() method allows you to specify how tags are searched.
+</p>
+<pre class="code php"><span class="re0">$plugin</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Plugin_FileEmbedder<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="co1">//Add a new rule (parameter order: tag, attributes, extensions)</span>
+<span class="co1">// This would find for example</span>
+<span class="co1">// &lt;body background=&quot;foo.gif&quot;&gt;</span>
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">setTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;body&quot;</span><span class="sy0">,</span> <span class="st0">&quot;background&quot;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;gif&quot;</span><span class="sy0">,</span> <span class="st0">&quot;png&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="co1">//Overwrite an existing rule (same as above)</span>
+<span class="co1">// This rule will only find &lt;img&gt; tags containing .jpg files.</span>
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">setTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;img&quot;</span><span class="sy0">,</span> <span class="st0">&quot;src&quot;</span><span class="sy0">,</span> <span class="st0">&quot;jpg&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+You can specify multiple values for the attributes and/or the extensions by simply passing an array for those parameters
+
+</p>
+<pre class="code php"><span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">setTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;tagname&quot;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;src&quot;</span><span class="sy0">,</span> <span class="st0">&quot;href&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;ext1&quot;</span><span class="sy0">,</span> <span class="st0">&quot;ext2&quot;</span><span class="sy0">,</span> <span class="st0">&quot;ext3&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+I&#039;ve yet to see a tag which has multiple attributes for remote files however ;)
+</p>
+
+</div>
+<!-- SECTION "Adding or ammending a tag rule" [2215-3060] -->
+<h3><a name="checking_a_tag_rule" id="checking_a_tag_rule">Checking a tag rule</a></h3>
+<div class="level3">
+
+<p>
+
+Checking a tag rule is just a case of calling getTagDefintion($tagName).
+</p>
+<pre class="code php"><a href="http://www.php.net/print_r"><span class="kw3">print_r</span></a><span class="br0">&#40;</span><span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">getTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;img&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="coMULTI">/*
+Array (
+  'attributes' =&gt; Array (
+    0 =&gt; 'src'
+  ),
+  'extensions' =&gt; Array (
+    0 =&gt; 'gif',
+    1 =&gt; 'jpg',
+    2 =&gt; 'jpeg',
+    3 =&gt; 'pjpeg',
+    4 =&gt; 'png'
+  )
+)
+*/</span></pre>
+</div>
+<!-- SECTION "Checking a tag rule" [3061-3403] -->
+<h3><a name="deleting_a_tag_rule" id="deleting_a_tag_rule">Deleting a tag rule</a></h3>
+<div class="level3">
+
+<p>
+
+The removeTagDefintion() method removes a rule completely.
+</p>
+<pre class="code php"><span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">removeTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;script&quot;</span><span class="br0">&#41;</span>; <span class="co1">//Disable Embedded JS files</span></pre>
+</div>
+<!-- SECTION "Deleting a tag rule" [3404-3582] -->
+<h3><a name="adding_a_protocol_to_use_when_downloading_files" id="adding_a_protocol_to_use_when_downloading_files">Adding a protocol to use when downloading files</a></h3>
+<div class="level3">
+
+<p>
+
+By default, the plugin will only download a file and embed it if the file will be downloaded over <acronym title="Hyper Text Transfer Protocol">HTTP</acronym>, HTTPS or <acronym title="File Transfer Protocol">FTP</acronym>.  If you&#039;d like to add a new protocol to this list simply call addProtocol().
+</p>
+<pre class="code php"><span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">addProtocol</span><span class="br0">&#40;</span><span class="st0">&quot;file&quot;</span><span class="br0">&#41;</span>; <span class="co1">// as in 'file:///foo/bar.txt' without the :// part</span></pre>
+</div>
+<!-- SECTION "Adding a protocol to use when downloading files" [3583-3939] -->
+<h3><a name="removing_a_protocol" id="removing_a_protocol">Removing a protocol</a></h3>
+<div class="level3">
+
+<p>
+
+Removing a protocol is done through removeProtocol().
+</p>
+<pre class="code php"><span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">removeProtocol</span><span class="br0">&#40;</span><span class="st_h">'ftp'</span><span class="br0">&#41;</span>; <span class="co1">//Disable FTP downloads</span></pre>
+</div>
+<!-- SECTION "Removing a protocol" [3940-4101] -->
+<h2><a name="local_and_remote_files" id="local_and_remote_files">Local and remote files</a></h2>
+<div class="level2">
+
+<p>
+
+The plugin will actually detect paths inside the permitted tags within your filesystem.  For example:
+</p>
+<pre class="code">
+&lt;img src=&quot;/path/to/image.gif&quot; /&gt;
+</pre>
+
+<p>
+For this to work you need to specify an absolute path to the file, starting with a forward slash.
+</p>
+
+<p>
+You can disable remote and/or local file embedding by using $plugin→setEmbedRemoteFiles(false) and/or $plugin→setEmbedLocalFiles(false).
+</p>
+
+</div>
+<!-- SECTION "Local and remote files" [4102-] -->

@@ -1,0 +1,7 @@
+====== Send me your ideas and thoughts ======
+
+Come on guys, lets do this together, give me some input and let me know what's lacking in version 3, or if something stinks about my direction with version 4.
+
+One thing though, don't ask for anything to do with receiving mail or tracking delivery once a message has been sent, that's a complete different subject which Swift has never been scoped towards.  Swift is an email creation and delivery library, not a complete email system ;)
+
+Comments can be made by clicking the "Contact" link at the top right of the header.

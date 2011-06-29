@@ -1,0 +1,18 @@
+====== Embedding images ======
+
+When you send a HTML format email you can of course include the ''<img />'' tag.  Commonly, people will do something like:
+
+  <img src="http://your-host.tld/images/foo.png" alt="foo" />
+
+However, because this links to a remote image you may find that your recipient does not see the image as the mail client may block remote images by default.  If you'd prefer to send the image as part of the email you need to embed it.
+
+<code php>
+$message =& new Swift_Message("My subject");
+
+$part =& new Swift_Message_Part("Here's an image <img src=\"" . $message->attach(new Swift_Message_Image(
+    new Swift_File("images/foo.png"))) . "\" alt=\"\" /> embedded");
+
+$message->attach($part);
+</code>
+
+This does have it's drawbacks however.  Some web-based email services like Yahoo //may// not display the image, and additonally, you will use extra bandwidth in sending the email.

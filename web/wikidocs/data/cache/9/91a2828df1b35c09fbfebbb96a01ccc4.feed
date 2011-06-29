@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-12-23T11:47:15+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T19:18:50+01:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+</rdf:RDF>

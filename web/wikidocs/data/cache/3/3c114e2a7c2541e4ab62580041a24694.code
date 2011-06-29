@@ -1,0 +1,10 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Check if the required fields were sent</span>
+<span class="co1">// Redirect back to the form if not</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_name&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_email&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_title&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_body&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="co1">//redirect back to form</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php&quot;</span><span class="br0">&#41;</span>; <span class="co1">//This should really be an absolute URL if you know it</span>
+<span class="br0">&#125;</span>

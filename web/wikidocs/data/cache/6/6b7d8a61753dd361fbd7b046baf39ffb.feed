@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-12-23T11:45:36+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/multirecipients?rev=1171450165&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tutorials/multirecipients?rev=1181248375&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:22+01:00</dc:date>
+        <title>Manipulating MIME Headers</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff</link>
+        <description>Setting and getting headers
+
+
+Each component of a message contains a headers property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T20:21:04+01:00</dc:date>
+        <title>Manipulating MIME Headers</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff</link>
+        <description>Setting and getting headers
+
+
+Each component of a message contains a headers property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/multirecipients?rev=1171450165&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T11:49:25+01:00</dc:date>
+        <title>Sending to multiple recipients</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/multirecipients?rev=1171450165&amp;do=diff</link>
+        <description>In the previous tutorials you may have read, we've been providing recipient addresses using a string, or using the Swift_Address class.  However, Swift can send to Bcc recipients, Cc recipients and multiple To recipients.  For this, we use the Swift_RecipientList class.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T19:18:50+01:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tutorials/multirecipients?rev=1181248375&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-06-07T22:32:55+01:00</dc:date>
+        <title>Sending to multiple recipients</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tutorials/multirecipients?rev=1181248375&amp;do=diff</link>
+        <description>In the previous tutorials you may have read, we've been providing recipient addresses using a string, or using the Swift_Address class.  However, Swift can send to Bcc recipients, Cc recipients and multiple To recipients.  For this, we use the Swift_RecipientList class.</description>
+    </item>
+</rdf:RDF>

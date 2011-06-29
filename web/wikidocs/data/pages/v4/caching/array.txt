@@ -1,0 +1,14 @@
+===== The Array Cache =====
+
+It's not advisable to use array caching if a writable directory exists on the filesystem (even /tmp).  However, the presence of a directory which PHP can write to is often not available.  Using the array cache will work on all systems without any specific cache settings.
+
+The downside to using the array cache is that of memory.  To send an attachment of any size using the Array cache PHP will require at least (attachmentSize * 1.38) MiB of memory.  Using the Disk cache Swift Mailer will always require a flat 1.68MiB of memory.
+
+To use the array cache place this single line anywhere before you send any Messages.  You only need this line once in your code, there is no need to repeatedly call it.
+
+<code php>
+<?php
+
+Swift_Preferences::getInstance()->setCacheType('array');
+
+</code>

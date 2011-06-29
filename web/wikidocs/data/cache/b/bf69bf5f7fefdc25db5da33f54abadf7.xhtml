@@ -1,0 +1,78 @@
+
+
+
+<h1><a name="basics_of_swift_message" id="basics_of_swift_message">Basics of Swift_Message</a></h1>
+<div class="level1">
+
+<p>
+ <strong><em class="u">Synopsis:</em></strong> <em><code>new Swift_Message([string subject [, mixed body [, string content-type [, string encoding [, string charset ]]]]])</code></em>
+</p>
+
+<p>
+Unlike other email libraries, Swift is fully Object-oriented.  Message composition could be bundled into the main Swift class by all means... but it&rsquo;s not.  The EasySwift class does that if you really want it.  Swift itself doesn&rsquo;t do anything to do with the creation of emails.  Instead, there&rsquo;s a subset of classes included to allow you to do that.  All of these classes share an underlying <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> <acronym title="Application Programming Interface">API</acronym> so many of the same methods are available in each class... Essentially an attachment is nothing more than a <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> part which encodes data, while an Embedded Image is an attachment with slightly different headers.  They are all <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> components, just differently configured.  It&rsquo;s advised that you familiarise yourself with the <acronym title="Application Programming Interface">API</acronym> documentation (in the docs/ folder of swift) for Swift_Message_Mime so that you can gain the most flexibility when composing messages.  You can do that later however; for now, just keep reading ;)
+</p>
+
+<p>
+Swift_Message is the parent document for all messages passed through the Swift class.  It contains a set of headers, and a body.  Swift_Message is set up in a way which allows other components of the message to be &ldquo;attached&rdquo; to it.  That includes the textual content in a multipart message (plain text and/or <acronym title="HyperText Markup Language">HTML</acronym>), embedded images, file attachments.  If you read the tutorials at the start of this documentation you will already have gathered that every time you want to send a message with swift you have to create an instance of Swift_Message.  You can modify this instance as many times as you need during script execution.
+</p>
+
+<p>
+A basic plain text message would be created by simply passing all the values you need to the constructor.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+If you want a <acronym title="HyperText Markup Language">HTML</acronym> email it&rsquo;s not much more complicated:
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My &lt;strong&gt;bold body&lt;/strong&gt;&quot;</span>, <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> Don&rsquo;t forget that in <acronym title="HyperText Markup Language">HTML</acronym> messages you want to use <code>&lt;br /&gt;</code> for line breaks, not actual new lines.
+</p>
+
+<p>
+You can add custom headers to your message by manipulating the <em>headers</em> property of the object.  This is an instance of the Swift_Message_Headers class - another class you should probably familiarise yourself with in the <acronym title="Application Programming Interface">API</acronym> documentation if you want to gain the most flexibility from Swift.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;X-Foo&quot;</span>, <span class="st0">&quot;something&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;X-Bar&quot;</span>, <span class="st0">&quot;something else&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+If you want to send a multipart email (i.e. one with a <acronym title="HyperText Markup Language">HTML</acronym> part and an alternative plain-text part) you use a method in Swift_Message called attach().  This same method is used to add attachments, embed images and other things which form part of the message composition.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;This is plain text&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;This is &lt;em&gt;HTML&lt;/em&gt;&quot;</span>, <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+By default, Swift will use the <acronym title="International Organization for Standardization">ISO</acronym>-8859-1 character set.  If it detects UTF-8 in your message it will switch to UTF-8 mode, but any other character sets will <strong>not</strong> be automatically detected and thus, you must inform the Swift_Message class of the charset you&rsquo;re using or you will almost certainly finish up with a garbled message being displayed in the recipient&rsquo;s mail client.
+</p>
+
+<p>
+<strong>IMPORTANT:</strong> Don&rsquo;t forget, if you&rsquo;re loading a message from a database or from a file on the server, you need to also use the same encoding there.  Everywhere the message will go needs to be aware of the encoding.  It&rsquo;s common that people build contact forms which receive non-ascii characters but they forget to set the charset of their web page to utf-8.  If the form was submitted from a web page in <acronym title="International Organization for Standardization">ISO</acronym>-8859-1 and you send the message through Swift as UTF-8 you could very well create a nice mess.
+</p>
+<pre class="code php"><span class="co1">//At construction</span>
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Some subject&quot;</span>, <span class="st0">&quot;My body&quot;</span>, <span class="st0">&quot;text/plain&quot;</span>, <span class="st0">&quot;8bit&quot;</span>, <span class="st0">&quot;iso-8859-2&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Or after construction</span>
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Some subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">setCharset</span><span class="br0">&#40;</span><span class="st0">&quot;iso-8859-2&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Because it&rsquo;s perfectly legal to have differing character sets in each <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> part of your document (email) you should tell Each individual mime part what charset you&rsquo;re using too:
+</p>
+<pre class="code php"><span class="co1">//At instantiation</span>
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Plain text part&quot;</span>, <span class="st0">&quot;text/plain&quot;</span>, <span class="st0">&quot;8bit&quot;</span>, <span class="st0">&quot;iso-8859-2&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;HTML &lt;em&gt;Mime Part&lt;/em&gt;&quot;</span>, <span class="st0">&quot;text/html&quot;</span>, <span class="st0">&quot;8bit&quot;</span>, <span class="st0">&quot;windows-874&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Or after construction</span>
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$part1</span> =&amp; <span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Plain text part&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$part1</span>-&gt;<span class="me1">setCharset</span><span class="br0">&#40;</span><span class="st0">&quot;iso-8859-2&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$part1</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$part2</span> =&amp; <span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;My HTML &lt;em&gt;part&lt;/em&gt;&quot;</span>, <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$part2</span>-&gt;<span class="me1">setCharset</span><span class="br0">&#40;</span><span class="st0">&quot;windows-874&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$part2</span><span class="br0">&#41;</span>;</pre>
+<p>
+Swift_Message is the result of endless hours of listening to requests from users of Swift Mailer Version 2, planning, testing and refactoring.  Under the surface it does some useful things such as intelligent runtime caching of encoded data and checking for header-injection attacks. 
+</p>
+
+</div>

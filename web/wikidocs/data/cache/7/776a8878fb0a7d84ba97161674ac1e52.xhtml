@@ -1,0 +1,116 @@
+
+
+
+<h3><a name="what_s_changed_in_version_4" id="what_s_changed_in_version_4">What&#039;s changed in Version 4?</a></h3>
+<div class="level3">
+
+</div>
+
+<h4><a name="no_more_php_4" id="no_more_php_4">No more PHP 4</a></h4>
+<div class="level4">
+
+<p>
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with <acronym title="Hypertext Preprocessor">PHP</acronym> 4 at all.  I have no plans to support <acronym title="Hypertext Preprocessor">PHP</acronym> 4 so please do not email me and beg me to do so ;)
+</p>
+
+</div>
+
+<h4><a name="re-written_again" id="re-written_again">Re-written, again</a></h4>
+<div class="level4">
+
+<p>
+
+Besides the system requirements, the interface of Swift has changed significantly in some areas.  To the “average” Swift user these changes will no doubt appear as nothing more than a few naming changes, but to those developers who had hacked the previous version of Swift to do add some custom behaviour the changes will jump out immediately.  Version 4 has been completely rewritten from the ground up.  That is to say, not a single line of code has been taken from Version 3.  It&#039;s taken me a long time to finish writing the library because of this fact, but the end result is something I&#039;m extremely proud of.  It&#039;s fresh, it&#039;s flexible, it&#039;s test-friendly and I&#039;d like to think that it&#039;s a great demonstration of just what <acronym title="Hypertext Preprocessor">PHP</acronym> is capable of!
+</p>
+
+</div>
+
+<h4><a name="dependency_injection" id="dependency_injection">Dependency Injection</a></h4>
+<div class="level4">
+
+<p>
+
+This version of Swift Mailer uses dependency injection everywhere below the surface.  For the most part this will be transparent to end-users since I have decorated the constructors where this injection occurs.  The dependency injection is one of the primary reasons the library is very test-friendly however.
+</p>
+
+</div>
+
+<h4><a name="focused_on_internationalization" id="focused_on_internationalization">Focused on internationalization</a></h4>
+<div class="level4">
+
+<p>
+
+If you ever tried doing much with international character sets in version 3 there&#039;s a good chance you ran into a few hurdles.  Everywhere text processing happens in version 4, the charset is used to ensure text does not become garbled.  E-mail requires everything gets sent in 7-bit ascii and then transformed back into it&#039;s 8-bit form at the recipient&#039;s end.  Swift Mailer Version 4 includes a completely custom quoted-printable encoder following the rules specified in RFC 2045 to the word.  Believe me, meeting all requirements of that RFC is not easy ;)
+</p>
+
+</div>
+
+<h4><a name="no_more_connections" id="no_more_connections">No more connections</a></h4>
+<div class="level4">
+
+<p>
+
+What! You say?  Well, I do have to wonder why I called the various mailing mechanisms in Version 3 “Connections”.  Version 3 only spoke in <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>, so to get Swift Mailer to send an email using the mail() function I had to write a class which conjured up a “fake” <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> conversation just to make it work.  Version 4 takes the abstraction further and replaces all “Connection” classes with “Transport” classes.  Each Transport knows whatever language it needs to know; the main Mailer class itself only knows how to use a Transport.  What does this mean for you guys?  It means faster, more efficient sending, more accurate error messages AND FINALLY!  “sendmail -t” support!
+</p>
+
+</div>
+
+<h4><a name="more_streamlined_message_composition" id="more_streamlined_message_composition">More streamlined message composition</a></h4>
+<div class="level4">
+
+<p>
+
+Rather than trying to explain this in writing, let me show you two comparisons sending an email with two attachments in version 3, then again in version 4.
+</p>
+
+</div>
+
+<h5><a name="version_3" id="version_3">Version 3</a></h5>
+<div class="level5">
+<pre class="code php"><span class="re0">$swift</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st_h">'localhost'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st_h">'My subject'</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Mime_Part<span class="br0">&#40;</span><span class="st_h">'Reports as requested man!'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st_h">'report-jan-mar-08.pdf'</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st_h">'report-jan-mar-08.pdf'</span><span class="sy0">,</span> <span class="st_h">'application/pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st_h">'report-mar-jun-08.pdf'</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st_h">'report-mar-jun-08.pdf'</span><span class="sy0">,</span> <span class="st_h">'application/pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st_h">'receiver@domain.tld'</span><span class="sy0">,</span> <span class="st_h">'Person'</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st_h">'you@domain.tld'</span><span class="sy0">,</span> <span class="st_h">'You'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;A problem occurred&quot;</span>;
+<span class="br0">&#125;</span></pre>
+</div>
+
+<h5><a name="version_4" id="version_4">Version 4</a></h5>
+<div class="level5">
+<pre class="code php"><span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'localhost'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My subject'</span><span class="sy0">,</span> <span class="st_h">'Reports as requested man!'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'you@domain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'You'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'receiver@domain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Person'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment<span class="sy0">::</span><span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st_h">'report-jan-mar-08.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment<span class="sy0">::</span><span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st_h">'report-mar-jun-08.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;A problem occurred&quot;</span>;
+<span class="br0">&#125;</span></pre>
+</div>
+
+<h4><a name="new_plugin_api" id="new_plugin_api">New Plugin API</a></h4>
+<div class="level4">
+
+<p>
+
+Version 4 comes with a new event-driven plugin <acronym title="Application Programming Interface">API</acronym>.  It&#039;s not vastly different from that in Version 3, but it does allow you to cancel events and is in theory faster; though I have not yet benchmarked it.
+</p>
+
+</div>

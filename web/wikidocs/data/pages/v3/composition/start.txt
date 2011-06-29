@@ -1,0 +1,7 @@
+==== Message Composition ====
+  * [[v3:composition:basics|Basics of the Swift_Message class]]
+  * [[v3:composition:multipart|Multi-Part messages in more detail]]
+  * [[v3:composition:attachments|Dealing with Attachments]]
+  * [[v3:composition:headers|Manipulating MIME headers]]
+  * [[v3:composition:images_embedded|Embedding images]]
+  * [[v3:plugin_decorator|Customizing Messages]]

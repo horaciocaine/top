@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/styles/feed.css" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v4:examples</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-03-06T12:45:11+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/basics?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/html?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/multiple_recipients?rev=1236058885"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/basics?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending a Basic Email</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/basics?rev=1236058885</link>
+        <description>Sending a Basic Email
+
+ First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message and send it with the Mailer.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Just for Kicks!</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1236058885</link>
+        <description>Just for Kicks!
+
+ Swift Mailer Version 4 is very streamlined and aims to make typing the code as pain-free as possible.  One statement is less painful to write than 5 statements right?  I really don’t expect anybody to do this, but just to show off how streamlined Swift can be, here’s sending a message with an attachment using a single statement.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/html?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending a HTML Email</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/html?rev=1236058885</link>
+        <description>Sending a HTML Email
+
+ First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, specifying “text/html” as a content type and send it with the Mailer.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending a Multipart Email</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1236058885</link>
+        <description>Sending a Multipart Email
+
+ First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, add some parts to it and send it with the Mailer.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/multiple_recipients?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending to Several Recipients</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/multiple_recipients?rev=1236058885</link>
+        <description>Sending to Several Recipients
+
+ This is much the same as sending a basic email.  You simply add more addresses to the array of setTo().
+
+First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message and send it with the Mailer.</description>
+    </item>
+</rdf:RDF>

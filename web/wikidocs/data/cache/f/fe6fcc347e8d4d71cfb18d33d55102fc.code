@@ -1,0 +1,20 @@
+//Display an error if something went wrong
+if (!empty($_GET[&quot;error&quot;]))
+{
+    switch ($_GET[&quot;error&quot;])
+    {
+        case &quot;not_enough_info&quot;: ?&gt;
+            &lt;strong style=&quot;color: red;&quot;&gt;You need to complete all fields marked *&lt;strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;invalid_email&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Please provide a valid email address&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;upload_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;The file you uploaded failed to attach, this could be a temporary problem.
+            Please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;sending_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Temporary problem, please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

@@ -1,0 +1,5 @@
+<pre class="code php"><span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setAttribute</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;zip&quot;</span>, <span class="st0">&quot;button&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setAttribute</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;animal&quot;</span>, <span class="st0">&quot;cat&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//Foo: bar; zip=button; animal=cat</span></pre>

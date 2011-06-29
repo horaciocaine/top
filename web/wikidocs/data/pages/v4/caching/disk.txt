@@ -1,0 +1,13 @@
+===== The Disk Cache =====
+
+The Disk cache is enabled by default, provided ''sys_get_temp_dir()'' exists.  Using disk caching provides speed improvements when sending large attachments and it provides a consistent level of memory use (roughly 1.68 MiB).
+
+To explicitly use disk caching place these lines anywhere before you send any messages.  There is no need to use this code in the same script multiple times; only call it once.
+
+<code php>
+<?php
+
+Swift_Preferences::getInstance()->setCacheType('disk')->setTempDir('/tmp');
+</code>
+
+Where "/tmp" is replaced with whatever writable directory exists on your server.

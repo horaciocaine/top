@@ -1,0 +1,40 @@
+====== Swift Bandwidth Monitoring/Tracking Plugin ======
+
+Depending upon what you're doing, or shoud I say, the scale of what you're sending you may wish to keep track of how much bandwidth Swift is using.  This plugin measures the incoming and outgoing bandwidth through the connection.
+
+**NOTE:** The figures are from Swift's point of view, not the server.  "Bytes in" refers to bytes from the SMTP server back into swift; "bytes out" refers to bytes sent from Swift to the SMTP server.
+
+All you need to do is load the plugin and grab the figures at runtime.
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/BandwidthMonitor.php";
+
+//Instantiate Swift
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.host.tld"));
+
+//Create the instance of the plugin
+$bandwidth =& new Swift_Plugin_BandwidthMonitor();
+
+//Load it
+$swift->attachPlugin($bandwidth, "bwmon");
+
+$message = new Swift_Message( ... whatever ... );
+
+foreach ($some_recipients as $address)
+{
+    $swift->send($message, $address, $your_address);
+    echo "Bytes sent out so far: " . $bandwidth->getBytesOut() . "<br />";
+    echo "Bytes received so far: " . $bandwidth->getBytesIn() . "<br />";
+}
+</code>
+
+You can reset the counters at any point by calling for example:
+
+<code php>
+$bandwidth->setBytesIn(0);
+$bandwidth->setBytesOut(0);
+</code>

@@ -1,0 +1,2 @@
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">headers</span><span class="sy0">-&gt;</span><span class="me1">setLanguage</span><span class="br0">&#40;</span><span class="st0">&quot;de&quot;</span><span class="br0">&#41;</span>;

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v3:misc</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-13T00:51:01+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/misc/caching?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/misc/logging?rev=1187163154&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/misc/php4errors?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/misc/caching?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift's Runtime Cache</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/misc/caching?rev=1236058883&amp;do=diff</link>
+        <description>Swift Mailer incorporates a runtime cache to help speed things up a lot.  Composing emails is a tough business.  You need to encode files, correct line endings, translate to formats laid out in the RFCs.  It's therefore easier if you can just do this once and once it's been done, re-use the results.  Swift caches various pieces of data (computed strings) on various different levels whilst it composes messages.  This is all handled by an abstracted caching layer.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/misc/logging?rev=1187163154&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-15T07:32:34+00:00</dc:date>
+        <title>Swift's Logging System</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/misc/logging?rev=1187163154&amp;do=diff</link>
+        <description>Swift's Logging System
+
+
+This page applies to version 3.3 and higher only.  The interface for this feature was considerably different in earlier versions.
+
+Swift contains a complete logging system with differing levels of reporting.  By default, this logging system is disabled for the sake of speed and memory, but if you're running into problems you may consider enabling it so you can find out what's going on.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/misc/php4errors?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>PHP4 error handling - The alternative to exceptions</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/misc/php4errors?rev=1236058883&amp;do=diff</link>
+        <description>In PHP5, Swift throws exceptions in places, which is fairly standard practise.  Exceptions of course, can be caught and dealt with.  PHP4 however, does not support exceptions (the use of the try/catch construct).  I could have triggered errors everywhere blindly and had you use set_error_handler() from PHP, but that's too intrusive and can easily conflict with other things happening in your application.  Instead, Swift dispatches error object, much like an exception from PHP5, to an error manage…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-14T21:34:50+00:00</dc:date>
+        <title>Miscellaneous</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff</link>
+        <description>Miscellaneous
+
+	*  Swift's logging system... find out what's going on
+	*  A little about Swift's internal caching system
+	*  PHP4 error handling - the exception hackaround
+	*  Runing SMTP commands using Swift</description>
+    </item>
+</rdf:RDF>

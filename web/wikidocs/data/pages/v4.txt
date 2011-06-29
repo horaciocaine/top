@@ -1,0 +1,19 @@
+===== Swift Mailer Version 4 =====
+
+==== General Information ====
+
+  * [[v4:changes|What's changed in version 4?]]
+  * [[v4:requirements|Server environment requirements]]
+  * [[v4:enterprise|Two editions, One project]]
+
+==== Overview of the project structure ====
+
+  * [[v4:dependency_injection|Dependency Injection]]
+  * [[v4:autoloading|Required files]]
+  * [[v4:preferences|Configurable preferences]]
+
+==== Short Examples ====
+
+  * [[v4:examples:basics|Sending a basic email]]
+  * [[v4:examples:html|Sending a HTML email]]
+  * [[v4:examples:multipart|Sending a multipart email (HTML and text)]]

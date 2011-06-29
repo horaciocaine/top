@@ -1,0 +1,67 @@
+====== Writing a ConnectListener ======
+
+As the name suggests, a ConnectListener will be notified every time Swift connects to the SMTP server or other MTA.  A plugin which implements the Swift_Events_ConnectListener interface will be passed an instance of Swift_Events_ConnectEvent when a connection is established.
+
+The interface for a plugin which will be a ConnectListener is shown below:
+
+<code php>
+/**
+ * Contains the list of methods a plugin requiring the use of a ConnectEvent must implement
+ * @package Swift_Events
+ * @author Chris Corbyn <chris@w3style.co.uk>
+ */
+interface Swift_Events_ConnectListener extends Swift_Events_Listener
+{
+	/**
+	 * Executes when Swift initiates a connection
+	 * @param Swift_Events_ConnectEvent Information about the connection
+	 */
+	public function connectPerformed(Swift_Events_ConnectEvent $e);
+}
+</code>
+
+If you're using PHP5, you must declare that your plugin implements this interface.  For PHP4, all you need to do is make sure the method connectPerformed($e) exists in you plugin.  You cannot using type-checking in PHP4.
+
+In PHP5, your plugin would be declared like this:
+
+<code php>
+class MyPlugin implements Swift_Events_ConnectListener
+{
+    public function connectPerformed(Swift_Events_ConnectEvent $e) {}
+}
+</code>
+
+In PHP4, that simply becomes:
+
+<code php>
+class MyPlugin extends Swift_Events_Listener
+{
+    function connectPerformed(&$e) {}
+}
+</code>
+
+Let's take the example that you want to add a custom line to the log whenever Swift connects.  All event objects have a common method of getSwift() which returns a reference to the instance of Swift which generated the event.  Working with Swift here is just like working with it anywhere else, so adding a line to the log at connect is a pretty basic example.
+
+<code php>
+class ConnectLoggerPlugin implements Swift_Events_ConnectListener
+{
+    public function connectPerformed(swift_Events_ConnectEvent $e)
+    {
+        $swift = $e->getSwift();
+        if (!($enabled = $swift->log->isEnabled()))
+            $swift->log->enable();
+        $swift->log->add("Swift connected and this plugin saw it happen!");
+        if (!$enabled) $swift->log->disable();
+    }
+}
+</code>
+
+You need to remember that in PHP4, you will absolutely need to use the reference operator or you'll be working with a copy of Swift and it won't work.
+
+You can also get a copy of the connection object that established the connection by calling:
+
+<code php>
+$connection = $e->getConnection();
+</code>
+
+It's unlikely you'd ever want to tamper with the connection, but the ability exists if you really do.

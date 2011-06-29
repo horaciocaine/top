@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-03-31T17:37:11+02:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/swift_connection_sendmail?rev=1171452718&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/connections/sendmail?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/easy/swift_connection_sendmail?rev=1171816235&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/easy/start?rev=1171816577&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/connections/start?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/start?rev=1211596497&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/easy/swift_connection_multi?rev=1236058880&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/connections/multi?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/swift_connection_multi?rev=1171467003&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T10:22:50+02:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The Sendmail Transport (named Swift_SendmailTransport) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are ”/sbin/sendmail” or ”/usr/sbin/sendmail”.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/swift_connection_sendmail?rev=1171452718&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T12:31:58+02:00</dc:date>
+        <title>Swift_Connection_Sendmail</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/swift_connection_sendmail?rev=1171452718&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Sendmail([string command])
+
+Sendmail is a binary executable which runs on UNIX-like systems such as Linux and OS X.  The Swift_Connection_Sendmail class runs this executable in a standalone SMTP mode and sends emails through it.  If you have sendmail available to you this will be much faster than using the SMTP connection to a remote server, however, it does have one drawback - load balancing.  If you use sendmail then your server is processing Swift instructions, …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/connections/sendmail?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+02:00</dc:date>
+        <title>Swift_Connection_Sendmail</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/connections/sendmail?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Sendmail([string command])
+
+Sendmail is a binary executable which runs on UNIX-like systems such as Linux and OS X.  The Swift_Connection_Sendmail class runs this executable in a standalone SMTP mode and sends emails through it.  If you have sendmail available to you this will be much faster than using the SMTP connection to a remote server, however, it does have one drawback - load balancing.  If you use sendmail then your server is processing Swift instructions, …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/easy/swift_connection_sendmail?rev=1171816235&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-18T17:30:35+02:00</dc:date>
+        <title>Swift_Connection_Sendmail</title>
+        <link>http://www.swiftmailer.org/wikidocs/easy/swift_connection_sendmail?rev=1171816235&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Sendmail([string command])
+
+Sendmail is a binary executable which runs on UNIX-like systems such as Linux and OS X.  The Swift_Connection_Sendmail class runs this executable in a standalone SMTP mode and sends emails through it.  If you have sendmail available to you this will be much faster than using the SMTP connection to a remote server, however, it does have one drawback - load balancing.  If you use sendmail then your server is processing Swift instructions, …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+02:00</dc:date>
+        <title>Caching Strategies - Overview</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff</link>
+        <description>Caching Strategies - Overview
+
+
+Generating compliant MIME data (i.e. the email itself) is thirsty work, especially for non-ascii character sets.  Swift Mailer caches data where it can so that when sending the same email to lot of recipients things run a little faster.  There are two caching strategies offered by default in Swift Mailer.  One uses a PHP array to hold cached data.  The other writes data to disk.  It would be easy to extend Swift to support a new cache type if you have a reason to …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-04-12T02:07:16+02:00</dc:date>
+        <title>Swift Mailer</title>
+        <link>http://www.swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff</link>
+        <description>Swift Mailer
+
+
+Version 3 is now deprecated.  Unless you absolutely cannot upgrade yet, please download version 4 and use the version 4 documentation instead.
+
+Download Version 4: &lt;http://swiftmailer.org/download&gt; 
+
+Documentation for Version 4: &lt;http://swiftmailer.org/docs&gt;</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/easy/start?rev=1171816577&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-18T17:36:17+02:00</dc:date>
+        <title>EasySwift Documentation</title>
+        <link>http://www.swiftmailer.org/wikidocs/easy/start?rev=1171816577&amp;do=diff</link>
+        <description>Installation
+
+Installation is the same as installing Swift Mailer Version 3 since EasySwift is provided with, and wrapped around Version 3.
+
+
+	*  Extracting the archive
+	*  Uploading to the server
+	*  Running the included tests
+
+Tutorials
+
+The Connections
+
+EasySwift uses the same connection classes as Swift.  It requires a connection to be given during instantiation.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/connections/start?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+02:00</dc:date>
+        <title>The Connections</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/connections/start?rev=1236058883&amp;do=diff</link>
+        <description>The Connections
+
+	*   Swift_Connection_SMTP
+	*  Swift_Connection_Sendmail
+	*  Swift_Connection_NativeMail
+	*  Swift_Connection_Multi
+	*  Swift_Connection_Rotator
+	*  SMTP Authentication</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-09-21T09:54:30+02:00</dc:date>
+        <title>Swift Mailer 3</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff</link>
+        <description>Swift Mailer 3
+
+
+Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+
+Library API Reference
+
+	*  PHP4 API Documentation
+	*  PHP5 API Documentation
+
+Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/start?rev=1211596497&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T04:34:57+02:00</dc:date>
+        <title>Swift Mailer Version 4</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/start?rev=1211596497&amp;do=diff</link>
+        <description>Swift Mailer Version 4
+
+
+NOTE this documentation is a work in progress.
+
+General Information
+
+	*  What's changed in version 4?
+	*  Server environment requirements
+	*  Two editions, One project
+
+Overview of the project structure
+
+	*  Dependency Injection
+	*  Required files
+	*  Configurable preferences</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/easy/swift_connection_multi?rev=1236058880&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:20+02:00</dc:date>
+        <title>Swift_Connection_Multi</title>
+        <link>http://www.swiftmailer.org/wikidocs/easy/swift_connection_multi?rev=1236058880&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Multi( [array connections] )
+
+The Multi connection is a mechanism which contains within itself any number of connections you give it.  These connections can be of any combination of types (SMTP, Sendmail, NativeMail, other instances of Multi etc etc).  It's a way of providing redundancy in the event that a SMTP server is unavailable at the time of the request for example.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/connections/multi?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+02:00</dc:date>
+        <title>Swift_Connection_Multi</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/connections/multi?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Multi( [array connections] )
+
+The Multi connection is a mechanism which contains within itself any number of connections you give it.  These connections can be of any combination of types (SMTP, Sendmail, NativeMail, other instances of Multi etc etc).  It's a way of providing redundancy in the event that a SMTP server is unavailable at the time of the request for example.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+02:00</dc:date>
+        <title>Version 4 Development Discussion</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885&amp;do=diff</link>
+        <description>A bit of a mish-mash of ramblings of the top of my head.
+
+Components (subpackages)
+
+	*  Encoders
+	*  Mime Library
+	*  Delivery Drivers/connections
+	*  Authenticators
+	*  Plugins
+	*  Central Swift class (adaptor for the Delivery Drivers) (?)
+
+Timeline
+
+
+I'm not working to any deadlines on version 4.  It will be done right and it will be ready when it's ready.  It will definitely not be released before February 5th 2008, even if it is stable by then (see &lt;http://gophp5.org/&gt;)</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-24T18:16:59+02:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff</link>
+        <description>If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-04-21T23:18:27+02:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff</link>
+        <description>If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T02:39:54+02:00</dc:date>
+        <title>Sending a Multipart Email</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff</link>
+        <description>Sending a Multipart Email
+
+
+First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, add some parts to it and send it with the Mailer.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/swift_connection_multi?rev=1171467003&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T16:30:03+02:00</dc:date>
+        <title>Swift_Connection_Multi</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/swift_connection_multi?rev=1171467003&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Multi( [array connections] )
+
+The Multi connection is a mechanism which contains within itself any number of connections you give it.  These connections can be of any combination of types (SMTP, Sendmail, NativeMail, other instances of Multi etc etc).  It's a way of providing redundancy in the event that a SMTP server is unavailable at the time of the request for example.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+02:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+</rdf:RDF>

@@ -1,0 +1,8 @@
+<span class="re0">$plugin</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Plugin_FileEmbedder<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="co1">//Add a new rule (parameter order: tag, attributes, extensions)</span>
+<span class="co1">// This would find for example</span>
+<span class="co1">// &lt;body background=&quot;foo.gif&quot;&gt;</span>
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">setTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;body&quot;</span><span class="sy0">,</span> <span class="st0">&quot;background&quot;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;gif&quot;</span><span class="sy0">,</span> <span class="st0">&quot;png&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="co1">//Overwrite an existing rule (same as above)</span>
+<span class="co1">// This rule will only find &lt;img&gt; tags containing .jpg files.</span>
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">setTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;img&quot;</span><span class="sy0">,</span> <span class="st0">&quot;src&quot;</span><span class="sy0">,</span> <span class="st0">&quot;jpg&quot;</span><span class="br0">&#41;</span>;

@@ -1,0 +1,7 @@
+Swift_Errors<span class="sy0">::</span><span class="me2">expect</span><span class="br0">&#40;</span><span class="re0">$e</span><span class="sy0">,</span> <span class="st0">&quot;Swift_Connection_Exception&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">theMethod</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$e</span> <span class="sy0">!==</span> <span class="kw2">null</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;An error occurred&quot;</span> <span class="sy0">.</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span> Swift_Errors<span class="sy0">::</span><span class="me2">clear</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Connection_Exception&quot;</span><span class="br0">&#41;</span>;

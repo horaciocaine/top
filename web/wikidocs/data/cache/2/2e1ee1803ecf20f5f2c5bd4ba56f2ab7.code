@@ -1,0 +1,15 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>; <span class="co1">//There are various connections to use</span>
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;I have attached a file to this message!&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Use the Swift_File class</span>
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span>
+  <span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;foo.pdf&quot;</span><span class="sy0">,</span> <span class="st0">&quot;application/pdf&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;my-friend@host.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;me@my-domain.tld&quot;</span><span class="br0">&#41;</span>;

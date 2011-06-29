@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-12-22T10:42:54+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff</link>
+        <description>Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?
+
+
+This is more than likely die to a firewall rule that has been put in place by your hosting provider.  Though I have not verified this information I have also been informed that PhpSuExec can cuase problems establishing socket connections.</description>
+    </item>
+</rdf:RDF>

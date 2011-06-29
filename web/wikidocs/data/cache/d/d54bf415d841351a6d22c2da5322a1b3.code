@@ -1,0 +1,18 @@
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Connect to localhost on port 25</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;localhost&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="co1">//Connect to an IP address on a non-standard port</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;217.147.94.117&quot;</span><span class="sy0">,</span> <span class="nu0">419</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="co1">//Connect to Gmail (PHP5)</span>
+<span class="re0">$swift</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span>
+    <span class="st0">&quot;smtp.gmail.com&quot;</span><span class="sy0">,</span> Swift_Connection_SMTP<span class="sy0">::</span><span class="me2">PORT_SECURE</span><span class="sy0">,</span> Swift_Connection_SMTP<span class="sy0">::</span><span class="me2">ENC_TLS</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Connect to Gmail (PHP4)</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span>
+    <span class="st0">&quot;smtp.gmail.com&quot;</span><span class="sy0">,</span> SWIFT_SMTP_PORT_SECURE<span class="sy0">,</span> SWIFT_SMTP_ENC_TLS<span class="br0">&#41;</span><span class="br0">&#41;</span>;

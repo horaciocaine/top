@@ -1,0 +1,6 @@
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+Swift_Mailer::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_MailTransport<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span>
+  Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'Some message'</span><span class="br0">&#41;</span>
+    -&gt;<span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment::<span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st0">'foo.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#41;</span>;</pre>

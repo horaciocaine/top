@@ -1,0 +1,18 @@
+<span class="kw2">class</span> NeverArguesBackPlugin
+    implements Swift_Events_BeforeCommandListener<span class="sy0">,</span> Swift_Events_ResponseListener
+<span class="br0">&#123;</span>
+    protected <span class="re0">$code</span>;
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> beforeCommandSent<span class="br0">&#40;</span>Swift_Events_CommandEvent <span class="re0">$e</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">code</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getCode</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> responseReceived<span class="br0">&#40;</span>Swift_Events_ResponseEvent <span class="re0">$e</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">code</span><span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+            <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">setCode</span><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">code</span><span class="br0">&#41;</span>;
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

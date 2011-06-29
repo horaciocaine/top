@@ -1,0 +1,56 @@
+====== Writing a DisconnectListener ======
+
+A DisconnectListener will be notified every time Swift disconnects from the SMTP server or local MTA.  A plugin which implements the Swift_Events_DisconnectListener interface will be passed an instance of Swift_Events_DisconnectEvent when a disconnection occurs.
+
+Here's the event listener interface:
+
+<code php>
+/**
+ * Contains the list of methods a plugin requiring the use of a DisconnectEvent must implement
+ * @package Swift_Events
+ * @author Chris Corbyn <chris@w3style.co.uk>
+ */
+interface Swift_Events_DisconnectListener extends Swift_Events_Listener
+{
+	/**
+	 * Executes when Swift closes a connection
+	 * @param Swift_Events_DisconnectEvent Information about the connection
+	 */
+	public function disconnectPerformed(Swift_Events_DisconnectEvent $e);
+}
+</code>
+
+If you're using PHP5, you must declare that your plugin implements this interface.  For PHP4, all you need to do is make sure the method disconnectPerformed($e) exists in your plugin.
+
+The PHP5 plugin skeleton would be as follows:
+
+<code php>
+class MyPlugin implements Swift_Events_DisconnectListener
+{
+    public function disconnectPerformed(Swift_Events_DisconnectEvent $e) {}
+}
+</code>
+
+In PHP4, that simply becomes:
+
+<code php>
+class MyPlugin extends Swift_Events_Listener
+{
+    function disconnectPerformed(&$e) {}
+}
+</code>
+
+For the sake of simplicity, we'll do something a little vicious and force Swift to reconnect by using a DisconnectListener.
+
+<code php>
+class ForceReconnectPlugin implements Swift_Events_DisconnectListener
+{
+    public function disconnectPerformed(swift_Events_DisconnectEvent $e)
+    {
+        $swift = $e->getSwift();
+        $swift->connect();
+    }
+}
+</code>
+
+You need to remember that in PHP4, you will absolutely need to use the reference operator or you'll be working with a copy of Swift and it won't work.

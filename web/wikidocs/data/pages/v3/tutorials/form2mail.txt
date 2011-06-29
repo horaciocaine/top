@@ -1,0 +1,350 @@
+====== Sending an e-mail from a form with Swift ======
+
+Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: http://www.w3schools.com/php/php_forms.asp.  The only thing Swift will do is create the email for you and send it.
+
+The tutorial I'll take you through here will explain how to use Swift to create a contact form which allows an attachment to be sent to your address.  A bit like the contact form on the SwiftMailer website.
+
+You'll need to write three files for this.  One for the form, one for processing the form, and a really simple page to display a success message.
+
+We'll start by creating the form itself.  This form will need some work later on so that it can handle problems if the user enters something we don't want to handle, but in terms of sending data ready for Swift to use, the code below will be enough.
+
+===== The basis of the form =====
+
+All we want for this example is an email address to send the message from, the name of the sender, a title, a comment and (optionally) an attached file.  Remember that to send files over HTTP you need to specify the ''enctype'' attribute of the form to be "multipart/form-data".
+
+I've called it **form.php** -- not sure why ;)
+
+<code html>
+<form action="handle_form.php" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td class="label">Name</td>
+            <td><input type="text" name="sender_name" value="" /></td>
+        </tr>
+        <tr>
+            <td class="label">E-mail address</td>
+            <td><input type="text" name="sender_email" value="" /></td>
+        </tr>
+        <tr>
+            <td class="label">Title</td>
+            <td><input type="text" name="comment_title" value="" /></td>
+        </tr>
+        <tr>
+            <td class="label">Attachment (optional)</td>
+            <td><input type="file" name="attachment" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">Comment<br />
+                <textarea name="comment_body" rows="10" cols="30"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" name="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+</code>
+
+Nothing new here, it should be fairly self explanatory.  The form uses POST to send the information, and the information will be sent to **handle_form.php**.
+
+===== The form handler backend ====
+
+Now we'll start with the backend code in handle_form.php which will process the form data and send an email if it's all ok.  We sent the data using POST so the variables will come through in $_POST and the file information will come through in $_FILES.  We wanted //Name//, //E-mail//, //Title//, and //Comments// to be required fields.  The attachment is optional.  First we check if everything was sent that was required, and if it's not, we redirect back to the form so the user can do it again -- properly ;)
+
+<code php>
+<?php
+
+//Check if the required fields were sent
+// Redirect back to the form if not
+if (empty($_POST["sender_name"]) || empty($_POST["sender_email"])
+    || empty($_POST["comment_title"]) || empty($_POST["comment_body"]))
+{
+    //redirect back to form
+    header("Location: ./form.php"); //This should really be an absolute URL if you know it
+}
+</code>
+
+If you're wondering where the ending tag for PHP is, there isn't one.  It's not needed and Zend actually say not to use it.  The reasons are beyond the scope of this tutorial; add the closing tag if you wish.
+
+This form includes an email address.  It's usually a good idea to at the very lest confirm that the address looks like an email address.  We'll use a regular expression to do this here.  The one I'm using in this example is extremely basic purely to save confusing people.  If you search the web you'll find loads of better ones for validating email addresses.
+
+<code php>
+//Copy into global variables
+$name = $_POST["sender_name"];
+$email = $_POST["sender_email"];
+$title = $_POST["comment_title"];
+$body = $_POST["comment_body"];
+
+//Validate the email address using a regex (I suggest you use a better one than this!!)
+if (!preg_match("/[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9_\\.-]+/", $email))
+{
+    header("Location: ./form.php?error=invalid_email");
+    exit();
+}
+</code>
+
+The last check we need to make in terms of what was uploaded to the handle_form.php file is if the attachment was sent, and if it was, did it fail?  The file attachment data is contained in $_FILES["attachment"]. "tmp_name" is the location of the temporary file on the server.
+
+<code php>
+//Check if an attachment was uploaded
+$file_path = false;
+$file_name = false;
+$file_type = false;
+if (!empty($_FILES["attachment"]["tmp_name"]))
+{
+    if ($_FILES["attachment"]["error"])
+    {
+        //Redirect if the upload has failed
+        header("Location: ./form.php?error=upload_failed");
+        exit();
+    }
+    $file_path = $_FILES["attachment"]["tmp_name"];
+    $file_name = $_FILES["attachment"]["name"];
+    $file_type = $_FILES["attachment"]["type"];
+}
+</code>
+
+If we have checked everything we've checked so far, then we're good to go with Swift.  You may read in other tutorials all this stuff about header injection and filtering.  Add such things if you want -- yes it is important, but Swift luckily does that for you.  The encoding it performs will safely prevent header injection attacks.
+
+Because we may be dealing with attachments here, we'll make use of the /tmp directory on the server if it's there and it's writable.  Swift can filestream via disk if we tell it to.  Any writable folder can be used.
+
+<code php>
+//Everything looks ok, we can start Swift
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+//Enable disk caching if we can
+if (is_writable("/tmp"))
+{
+    Swift_CacheFactory::setClassName("Swift_Cache_Disk");
+    Swift_Cache_Disk::setSavePath("/tmp");
+}
+
+//Create a Swift instance
+$swift =& new Swift(new Swift_Connection_SMTP("your_smtp_server.tld"));
+</code>
+
+Now we can start to build our message.  We know the sender is the person submitting the form so we can define this too.
+
+<code php>
+//Create the sender from the details we've been given
+$sender =& new Swift_Address($email, $name);
+
+//Create the message to send
+$message =& new Swift_Message("New comment: " . $title);
+$message->attach(new Swift_Message_Part($body));
+</code>
+
+Earlier, we ran some checks to see if an attachment was uploaded.  We created variables and set them to FALSE.  If the attachment was uploaded these variables will now contain values so we can attach the file here if we need to:
+
+<code php>
+//If an attachment was sent, attach it
+if ($file_path && $file_name && $file_type)
+{
+    $message->attach(
+        new Swift_Message_Attachment(new Swift_File($file_path), $file_name, $file_type));
+}
+</code>
+
+All that's left to do now is send the email to your own address and either go to a success page, or back to the form if we fail.
+
+<code php>
+//Try sending the email
+$sent = $swift->send($message, "your@address.tld", $sender);
+//Disconnect from SMTP, we're done
+$swift->disconnect();
+
+if ($sent)
+{
+    header("Location: ./success.php");
+    exit();
+}
+else
+{
+    header("Location: ./form.php?error=sending_failed");
+    exit();
+}
+</code>
+
+Your success page can be simple.  It doesn't have to actually "do" anything, it just displays a message saying something along of the lines of "Thanks for your comments.".  However, I noted earlier that our form page was just the basis upon which to build.  At this point we have a working, functional form-to-mail script, but what's it's lacking is user-friendliness.  If something goes wrong the user simply gets bounced back to the form again.  We'll change this to show them some error messages which explain why they've come back to the form.  If you have the time, you'll probably want to go further than I'm going here and actually store the form values in the session and pre-opulate the form upon returning to it.  For simplicity's sake however, we'll just display an error message.
+
+Every time we redirected back to the form from handle_form.php we passed an argument through the URL which can be accessed via $_GET.  A simple switch() statment will suffice to display errors.
+
+<code php>
+//Display an error if something went wrong
+if (!empty($_GET["error"]))
+{
+    switch ($_GET["error"])
+    {
+        case "not_enough_info": ?>
+            <strong style="color: red;">You need to complete all fields marked *<strong><?php
+            break;
+        case "invalid_email": ?>
+            <strong style="color: red;">Please provide a valid email address</strong><?php
+            break;
+        case "upload_failed": ?>
+            <strong style="color: red;">The file you uploaded failed to attach, this could be a temporary problem.
+            Please try later.</strong><?php
+            break;
+        case "sending_failed": ?>
+            <strong style="color: red;">Temporary problem, please try later.</strong><?php
+            break;
+    }
+}
+</code>
+
+So putting that all together we have **form.php**
+
+<code php>
+<?php
+
+//Display an error if something went wrong
+if (!empty($_GET["error"]))
+{
+    switch ($_GET["error"])
+    {
+        case "not_enough_info": ?>
+            <strong style="color: red;">You need to complete all fields marked *<strong><?php
+            break;
+        case "invalid_email": ?>
+            <strong style="color: red;">Please provide a valid email address</strong><?php
+            break;
+        case "upload_failed": ?>
+            <strong style="color: red;">The file you uploaded failed to attach, this could be a temporary problem.
+            Please try later.</strong><?php
+            break;
+        case "sending_failed": ?>
+            <strong style="color: red;">Temporary problem, please try later.</strong><?php
+            break;
+    }
+}
+
+?>
+
+<form action="handle_form.php" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <td class="label">Name *</td>
+            <td><input type="text" name="sender_name" value="" /></td>
+        </tr>
+        <tr>
+            <td class="label">E-mail address *</td>
+            <td><input type="text" name="sender_email" value="" /></td>
+        </tr>
+        <tr>
+            <td class="label">Title *</td>
+            <td><input type="text" name="comment_title" value="" /></td>
+        </tr>
+        <tr>
+            <td class="label">Attachment (optional)</td>
+            <td><input type="file" name="attachment" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">Comment *<br />
+                <textarea name="comment_body" rows="10" cols="30"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" name="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+</code>
+
+We have our backend script, **handle_form.php** utilising Swift.
+
+<code php>
+<?php
+
+//Check if the required fields were sent
+// Redirect back to the form if not
+if (empty($_POST["sender_name"]) || empty($_POST["sender_email"])
+    || empty($_POST["comment_title"]) || empty($_POST["comment_body"]))
+{
+    //redirect back to form
+    header("Location: ./form.php?error=not_enough_info"); //This should really be an absolute URL if you know it
+    exit();
+}
+
+//Copy into global variables
+$name = $_POST["sender_name"];
+$email = $_POST["sender_email"];
+$title = $_POST["comment_title"];
+$body = $_POST["comment_body"];
+
+//Validate the email address using a regex (I suggest you use a better one than this!!)
+if (!preg_match("/[a-zA-Z0-9_\\.-]+@[a-zA-Z0-9_\\.-]+/", $email))
+{
+    header("Location: ./form.php?error=invalid_email");
+    exit();
+}
+
+//Check if an attachment was uploaded
+$file_path = false;
+$file_name = false;
+$file_type = false;
+if (!empty($_FILES["attachment"]["tmp_name"]))
+{
+    if ($_FILES["attachment"]["error"])
+    {
+        //Redirect if the upload has failed
+        header("Location: ./form.php?error=upload_failed");
+        exit();
+    }
+    $file_path = $_FILES["attachment"]["tmp_name"];
+    $file_name = $_FILES["attachment"]["name"];
+    $file_type = $_FILES["attachment"]["type"];
+}
+
+//Everything looks ok, we can start Swift
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+//Enable disk caching if we can
+if (is_writable("/tmp"))
+{
+    Swift_CacheFactory::setClassName("Swift_Cache_Disk");
+    Swift_Cache_Disk::setSavePath("/tmp");
+}
+
+//Create a Swift instance
+$swift =& new Swift(new Swift_Connection_SMTP("your_smtp_server.tld"));
+
+//Create the sender from the details we've been given
+$sender =& new Swift_Address($email, $name);
+
+//Create the message to send
+$message =& new Swift_Message("New comment: " . $title);
+$message->attach(new Swift_Message_Part($body));
+
+//If an attachment was sent, attach it
+if ($file_path && $file_name && $file_type)
+{
+    $message->attach(
+        new Swift_Message_Attachment(new Swift_File($file_path), $file_name, $file_type));
+}
+
+//Try sending the email
+$sent = $swift->send($message, "your@address.tld", $sender);
+//Disconnect from SMTP, we're done
+$swift->disconnect();
+
+if ($sent)
+{
+    header("Location: ./success.php");
+    exit();
+}
+else
+{
+    header("Location: ./form.php?error=sending_failed");
+    exit();
+}
+</code>
+
+And we have a success page (basic).
+
+<code html>
+<div>Thanks for you comments, your message sent successfully.</div>
+</code>
+
+So there you have it!  Forms with attachments using Swift :)

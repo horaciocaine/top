@@ -1,0 +1,34 @@
+====== Catching useful errors ======
+
+===== THIS PAGE APPLIES TO PHP5 ONLY =====
+
+Swift Mailer version 3 throws exceptions in PHP5.  These exceptions should ideally be caught so that you can recover from them if required.  It's not compulsory to catch exceptions but it is good practice and it does help.  The API documentation packaged in the "docs" folder indicates where exceptions are thrown.  The only time this should happen in practise, is if your mail server is not configured correctly or is unavailable, or if you try doing something illegal with the message object.
+
+<code php>
+<?php
+
+//Load in the files we'll need
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+try {
+  //Start Swift
+  $swift = new Swift(new Swift_Connection_SMTP("smtp.your-host.tld"));
+
+  //Create the message
+  $message = new Swift_Message("My subject", "My body");
+
+  //Now check if Swift actually sends it
+  $swift->send($message, "foo@bar.tld", "me@mydomain.com");
+  echo "Sent";
+} catch (Swift_ConnectionException $e) {
+  echo "There was a problem communicating with SMTP: " . $e->getMessage();
+} catch (Swift_Message_MimeException $e) {
+  echo "There was an unexpected problem building the email:" . $e->getMessage();
+}
+
+
+
+</code>
+
+**NOTE:** In versions earlier than 3.3 Swift_ConnectionException was called Swift_Connection_Exception (extra underscore).

@@ -1,0 +1,15 @@
+a:2:{s:7:"current";a:6:{s:4:"date";a:1:{s:7:"created";i:1193920201;}s:7:"creator";s:12:"Chris Corbyn";s:11:"last_change";b:0;s:5:"title";s:32:"Version 4 Development Discussion";s:11:"description";a:2:{s:15:"tableofcontents";a:8:{i:0;a:4:{s:3:"hid";s:32:"version_4_development_discussion";s:5:"title";s:32:"Version 4 Development Discussion";s:4:"type";s:2:"ul";s:5:"level";i:1;}i:1;a:4:{s:3:"hid";s:22:"components_subpackages";s:5:"title";s:24:"Components (subpackages)";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:2;a:4:{s:3:"hid";s:8:"timeline";s:5:"title";s:8:"Timeline";s:4:"type";s:2:"ul";s:5:"level";i:2;}i:3;a:4:{s:3:"hid";s:21:"encoders_mime_library";s:5:"title";s:23:"Encoders & Mime Library";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:4;a:4:{s:3:"hid";s:16:"delivery_drivers";s:5:"title";s:16:"Delivery Drivers";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:5;a:4:{s:3:"hid";s:14:"authenticators";s:5:"title";s:14:"Authenticators";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:6;a:4:{s:3:"hid";s:7:"plugins";s:5:"title";s:7:"Plugins";s:4:"type";s:2:"ul";s:5:"level";i:3;}i:7;a:4:{s:3:"hid";s:11:"swift_class";s:5:"title";s:11:"Swift class";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:478:"A bit of a mish-mash of ramblings of the top of my head.
+
+Components (subpackages)
+
+	*  Encoders
+	*  Mime Library
+	*  Delivery Drivers/connections
+	*  Authenticators
+	*  Plugins
+	*  Central Swift class (adaptor for the Delivery Drivers) (?)
+
+Timeline
+
+
+I'm not working to any deadlines on version 4.  It will be done right and it will be ready when it's ready.  It will definitely not be released before February 5th 2008, even if it is stable by then (see <http://gophp5.org/>)";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}}s:10:"persistent";a:3:{s:4:"date";a:1:{s:7:"created";i:1193920201;}s:7:"creator";s:12:"Chris Corbyn";s:11:"last_change";b:0;}}

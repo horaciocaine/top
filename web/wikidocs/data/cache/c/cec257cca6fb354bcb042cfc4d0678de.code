@@ -1,0 +1,1 @@
+<span class="re0">$batch</span><span class="sy0">-&gt;</span><span class="me1">setSleepTime</span><span class="br0">&#40;</span><span class="nu0">10</span><span class="br0">&#41;</span>; <span class="co1">//Sleep for 10 seconds if an error occurs</span>

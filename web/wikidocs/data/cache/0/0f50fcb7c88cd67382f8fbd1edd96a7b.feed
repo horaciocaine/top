@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-01-16T17:18:01+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tutorials/start?rev=1236058885&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Sending an e-mail from a form with Swift</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff</link>
+        <description>Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: &lt;http://www.w3schools.com/php/php_forms.asp&gt;.  The only thing Swift will do is create the email for you and send it.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-12T15:19:01+01:00</dc:date>
+        <title>Sending an e-mail from a form with Swift</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff</link>
+        <description>Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: &lt;http://www.w3schools.com/php/php_forms.asp&gt;.  The only thing Swift will do is create the email for you and send it.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-09-21T09:54:30+01:00</dc:date>
+        <title>Swift Mailer 3</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff</link>
+        <description>Swift Mailer 3
+
+
+Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+
+Library API Reference
+
+	*  PHP4 API Documentation
+	*  PHP5 API Documentation
+
+Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tutorials/start?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Tutorials</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tutorials/start?rev=1236058885&amp;do=diff</link>
+        <description>Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing all addresses
+	*  Sending an email from a form with Swift
+	*  How to customize messages for each recipient in a batch
+	*  [TODO: A mass-maling tutorial]</description>
+    </item>
+</rdf:RDF>

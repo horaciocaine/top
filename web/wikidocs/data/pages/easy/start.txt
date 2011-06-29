@@ -1,0 +1,27 @@
+====== EasySwift Documentation ======
+
+===== Installation =====
+Installation is the same as installing Swift Mailer Version 3 since EasySwift is provided with, and wrapped around Version 3.
+
+  * [[v3:extracting|Extracting the archive]]
+  * [[v3:uploading|Uploading to the server]]
+  * [[v3:testing|Running the included tests]]
+
+===== Tutorials =====
+
+===== The Connections =====
+EasySwift uses the same connection classes as Swift.  It requires a connection to be given during instantiation.
+
+  * [[easy:swift_connection_smtp|Swift_Connection_SMTP]]
+  * [[easy:swift_connection_sendmail|Swift_Connection_Sendmail]]
+  * [[easy:swift_connection_nativemail|Swift_Connection_NativeMail]]
+  * [[easy:swift_connection_multi|Swift_Connection_Multi]]
+  * [[easy:swift_connection_rotator|Swift_Connection_Rotator]]
+
+===== Message Composition =====
+
+===== Sending & Recipients =====
+
+===== Miscellaneous =====
+
+===== Frequently Asked Questions =====

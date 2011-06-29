@@ -1,0 +1,6 @@
+<span class="co1">//Create the sender from the details we've been given</span>
+<span class="re0">$sender</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="re0">$email</span><span class="sy0">,</span> <span class="re0">$name</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message to send</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;New comment: &quot;</span> <span class="sy0">.</span> <span class="re0">$title</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="re0">$body</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;

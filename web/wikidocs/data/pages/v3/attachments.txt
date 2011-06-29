@@ -1,0 +1,51 @@
+====== Sending attachments ======
+
+Luckily, attachments are much like [[v3:multipart|MIME parts in a multipart message]], expect they are not displayed by default and are encoded in a special way.  You attach files to an email using the attach() method in swift like you do when you add MIME parts, but you use the Swift_Message_Attachment class rather than the Swift_Message_Part class.  Swift then includes the message as an attachment, rather than a textual part of the email.
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/NativeMail.php"; //There are various connections to use
+
+$swift =& new Swift(new Swift_Connection_NativeMail());
+
+$message =& new Swift_Message("My subject");
+$message->attach(new Swift_Message_Part("I have attached a file to this message!"));
+$message->attach(new Swift_Message_Attachment(
+  file_get_contents("foo.pdf"), "foo.pdf", "application/pdf"));
+
+$swift->send($message, "my-friend@host.tld", "me@my-domain.tld");
+
+</code>
+
+**TIP:** Notice that in the above example the attachment has been created using the file's contents.  This is how older versions of Swift used to handle attachments and it's not brilliant for large files because much memory gets used whilst encoding the file and reading it.
+
+To keep memory down we can make a small adjustment and make use of the Swift_File class.  The Swift_File class doesn't just blindly load in all the file's data, then pass it to an encoder, instead, it "streams" the file's data through the encoder keeping a maximum of 8192 bytes from the original file in memory at any one time - massively reducing the load on your script and speeding things up a bit.  Make use of it!
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/NativeMail.php"; //There are various connections to use
+
+$swift =& new Swift(new Swift_Connection_NativeMail());
+
+$message =& new Swift_Message("My subject");
+$message->attach(new Swift_Message_Part("I have attached a file to this message!"));
+
+//Use the Swift_File class
+$message->attach(new Swift_Message_Attachment(
+  new Swift_File("foo.pdf"), "foo.pdf", "application/pdf"));
+
+$swift->send($message, "my-friend@host.tld", "me@my-domain.tld");
+
+</code>
+
+**TIP:** Swift_File can be used as a substitute for passing strings into a message body too.  Say for example, you have an email template saved as email.html, you can create a mime part by doing:
+
+<code php>
+$part =& new Swift_Message_Part(new Swift_File("email.html"), "text/html");
+</code>
+
+**NOTE:** Be sure to read the notes about Disk Caching in the tips and tricks section: [[v3:tips_memory]]

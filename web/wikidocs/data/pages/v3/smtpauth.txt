@@ -1,0 +1,84 @@
+====== SMTP Authentication ======
+
+The SMTP connection in Swift provides a mechanism to use SMTP authentication against a remote server.  You use the setUsername() and setPassword() methods of the Swift_Connection_SMTP class to acheive this:
+
+<code php>
+$smtp =& new Swift_Connection_SMTP("smtp.host.tld");
+$smtp->setUsername("foo");
+$smtp->setPassword("bar");
+</code>
+
+In order for the SMTP connection to perform authentication, some "Authenticator" classes are used.  These are individual units of code which know how to perform some common authentication procedures over SMTP.  The procedures are "LOGIN", "PLAIN" and "CRAM-MD5".  These should be enough for almost anybody to get going.  The SMTP connection will choose the correct one to use.  If you'd like to provide a specific mechanism and prevent Swift from using any of the others you can load it yourself using the attachAuthenticator() method in Swift_Connection_SMTP.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Authenticator/LOGIN.php";
+
+$conn =& new Swift_Connection_SMTP("smtp.host.tld");
+$conn->attachAuthenticator(new Swift_Authenticator_LOGIN());
+
+$swift =& new Swift($conn);
+
+</code>
+
+However, if you need a different type of authentication mechanism, and you know how it works, you can write your own using SMTP commands.
+
+The authenticator must conform to the following interface, which can be found in the Authenticator.php file:
+
+<code php>
+/**
+ * Swift Authenticator Interface
+ * Lists the methods all authenticators must implement
+ * @package Swift_Authenticator
+ * @author Chris Corbyn <chris@w3style.co.uk>
+ */
+interface Swift_Authenticator
+{
+	/**
+	 * Try to authenticate using the username and password
+	 * Returns false on failure
+	 * @param string The username
+	 * @param string The password
+	 * @param Swift The instance of Swift this authenticator is used in
+	 * @return boolean
+	 */
+	public function isAuthenticated($username, $password, Swift $instance);
+	/**
+	 * Return the name of the AUTH extension this is for
+	 * @return string
+	 */
+	public function getAuthExtensionName();
+}
+</code>
+
+getAuthExtensionName() should return the case senSiTIVe string which corresponds to the name of the authentication mechanism in SMTP.  For example, for CRAM-MD5 authentication, your authenticator's getAuthExtensionName() method would return "CRAM-MD5".
+
+isAuthenticated() will contain any logic needed to perform the authentication.  The currect instance of Swift is provided so that you can call it's command() method when performing authentication.
+
+===== How to get Pop Before SMTP Working =====
+
+Swift does support Pop Before SMTP as a method of authentication, however, I'll be the first to admit it's not the friendliest authenticator to get working in Swift.  Here's how you do it.  Basically, the complication arises from the fact SMTP servers do not advertise the fact they offer Pop Before SMTP authentication so Swift can't load the class in itself.  There's some oddness with the way I've named the class file here in order to prevent auto-loading, I do apologise ;)
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+//Apologies for the filename, it's to stop Swift auto-loading it
+require_once 'lib/Swift/Authenticator/$PopB4Smtp$.php';
+
+$smtp =& new Swift_Connection_SMTP("smtp.host.tld");
+
+//Load the PopB4Smtp authenticator with the pop3 hostname
+$smtp->attachAuthenticator(new Swift_Authenticator_PopB4Smtp("pop.host.tld"));
+
+//Continue like normal
+$smtp->setUsername("your_pop3_username");
+$smtp->setPassword("your_pop3_password");
+
+$swift =& new Swift($smtp);
+
+//and continue....
+</code>

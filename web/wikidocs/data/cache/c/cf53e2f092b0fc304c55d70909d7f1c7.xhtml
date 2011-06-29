@@ -1,0 +1,66 @@
+
+
+
+<h1><a name="sending_a_batch_email" id="sending_a_batch_email">Sending a batch email</a></h1>
+<div class="level1">
+
+<p>
+
+If you try to deliver an email to more than one recipient by using the Swift_RecipientList class in combination with Swift&#039;s send() method, you need to be aware that all the recipients of the message will be able to see each other&#039;s addresses in their mail clients.  This is fine for social/work emails, but if you were sending something like a newsletter or a marketing campaign it wouldn&#039;t look great and could even land you in trouble for breach of data protection.  To avoid any such problems, you want to send your email using batchSend() rather than send().  You still use the Swift_RecipientList class, but only the <code>To:</code> recipients are actually used.
+</p>
+
+<p>
+<strong>NOTE:</strong> This uses slightly more bandwidth than send() because a different email needs to be sent to each recipient.  It should by no means be a slow process unless the server is already processing a heavy load however.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;zip@button.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//NOTE that Cc and Bcc recipients are IGNORED in a batch send</span>
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">batchSend</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="st0">&quot;my@address.com&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+batchSend() returns an integer indicating how many recipients were accepted for delivery at the server.
+</p>
+
+<p>
+<strong>TIP:</strong> I&#039;m an idiot for even bringing this up*, but you can deliver your email really fast – as in <em>really fast</em> to thousands of recipients if you specify the <code>To:</code> address as <code>undisclosed-recipients:;</code> then use send().
+
+</p>
+<pre class="code">undisclosed-recipients:;</pre>
+
+<p>
+
+Note the colon-semi-colon ending!
+</p>
+
+<p>
+Here&#039;s how you do that.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//HERE'S THE TRICK!</span>
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><span class="st0">&quot;undisclosed-recipients:;&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;zip@button.tld&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="st0">&quot;my@address.com&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+* <strong>Why am I an idiot?</strong> Because it&#039;s bad ;)  You shouldn&#039;t do it and you may be upset when you find messages disappearing into people&#039;s Junk folders.  A better approach may be to set the <code>To:</code> header to something which exists, but the safest option is just to include the actual recipient&#039;s address in the headers which is what happens by default.
+
+</p>
+
+</div>

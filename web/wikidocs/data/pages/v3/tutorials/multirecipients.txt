@@ -1,0 +1,68 @@
+====== Sending to multiple recipients ======
+
+In the previous tutorials you may have read, we've been providing recipient addresses using a string, or using the Swift_Address class.  However, Swift can send to Bcc recipients, Cc recipients and multiple To recipients.  For this, we use the Swift_RecipientList class.
+
+The Swift_RecipientList class is just a nice container which allows you to add and remove Cc, To and Bcc recipients with ease... it makes Swift that tad faster too since it doesn't need to worry about parsing out any delimited strings!
+
+**NOTE:** Using Bcc or Cc recipients is NOT the ideal way to deliver a marketing email or newsletter to multiple recipients.  Use [[v3:tutorials:batch|batchSend()]] for that task.
+
+**Sending to multiple To addresses:**
+<code php>
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My message body");
+
+//Start a new list
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("foo@bar.com", "Foo Bar"); //We can give a name along with the address
+$recipients->addTo("joe@bloggs.tld"); //or we can just add the address
+$recipients->addTo("lisa-smith@domain.tld", "Lisa");
+
+//The number of successful recipients is returned here (hopefully 3!)
+$number_sent = $swift->send($message, $recipients, "my-address@domain.tld");
+</code>
+
+**Including some Cc recipients:**
+<code php>
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My message body");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("foo@bar.com", "Foo Bar");
+//Use addCc()
+$recipients->addCc("fred@perry.tld");
+$recipients->addCc("lisa-smith@domain.tld", "Lisa");
+
+//The number of successful recipients is returned here (hopefully 3!)
+$number_sent = $swift->send($message, $recipients, "my-address@domain.tld");
+</code>
+
+**And Bcc recipients just the same way!**
+<code php>
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My message body");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("foo@bar.com", "Foo Bar");
+$recipients->addCc("joe@bloggs.tld");
+$recipients->addBcc("lisa-smith@domain.tld", "Lisa");
+
+//The number of successful recipients is returned here (hopefully 3!)
+$number_sent = $swift->send($message, $recipients, "my-address@domain.tld");
+</code>
+
+The use of the reference operator (=&) in the above example code applies only to PHP4.  If you're using PHP5, leave it out.

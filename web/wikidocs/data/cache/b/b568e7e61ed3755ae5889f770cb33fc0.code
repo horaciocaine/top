@@ -1,0 +1,1 @@
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">removeTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;script&quot;</span><span class="br0">&#41;</span>; <span class="co1">//Disable Embedded JS files</span>

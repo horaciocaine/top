@@ -1,0 +1,28 @@
+
+
+
+<h1><a name="setting_the_bounce_detect_or_return-path_address" id="setting_the_bounce_detect_or_return-path_address">Setting the Bounce detect, or Return-path address</a></h1>
+<div class="level1">
+
+<p>
+
+When using <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>, you don&#039;t always know if the message is going to reach the recipient.  If something goes wrong and you&#039;re really lucky you&#039;ll know about it at <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> time if the server reports an error; if you&#039;re not so lucky, but not completely in the dark, you&#039;ll receive an email from a different server saying that something went wrong; and if you&#039;re completely unlucky, you&#039;ll just be left wondering why you never got a response from the recipient.
+</p>
+
+<p>
+In order to be sent an email in the event of a failure after the initial <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> conversation you need to provide an address for this to go to.  By default, Swift will use the address of the sender which is passed to send().  However, many people like to set up special mailboxes which do nothing more than collect such failure messages.  In that case, because you&#039;d rather not have the message appear with a <code>From:</code> header showing the bounce-detect address, <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> uses another address which is issued as a command.
+</p>
+
+<p>
+All you need to do to get Swift to honour this wish, is specify the address by calling setReturnPath() in the message object:
+</p>
+<pre class="code php"><span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setReturnPath</span><span class="br0">&#40;</span><span class="st0">&quot;bounces@company.tld&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//or</span>
+&nbsp;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setReturnPath</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;bounces@company.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> If you pass a Swift_Address object, only the email address will actually be used.
+</p>
+
+</div>

@@ -1,0 +1,60 @@
+
+
+
+<h1><a name="sending_a_multipart_email" id="sending_a_multipart_email">Sending a multipart email</a></h1>
+<div class="level1">
+
+<p>
+
+When you use a mail client such as Thunderbird to send an email in both <acronym title="HyperText Markup Language">HTML</acronym> and Plain-text you are asking it to send a multipart message.  This uses a standard called <acronym title="Multipurpose Internet Mail Extension">MIME</acronym>.  The essence of what&#039;s actually being sent is that rather than just sending one body of text and one set of headers, the email contains a main set of headers which identify it as having more than one part, and the body is replaced with two smaller documents, each with their own headers and bodies.  The mail client then decides which one to display.
+</p>
+
+<p>
+When you want to send such a message with Swift, you will take advantage of the knowledge of how <acronym title="Multipurpose Internet Mail Extension">MIME</acronym>/multipart actually works.  You create the message (without a body), then create some “Parts” and “attach” those parts to the message before sending.  We use the same conventions later for sending attachments and embedding images.
+</p>
+
+<p>
+The only thing you need to worry about is what content you want in each part, and what <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> type it has.  The common (and obvious) combination would be a text/plain part and a text/html part.
+</p>
+
+<p>
+<strong>NOTE:</strong> It is ill-advised to send completely different content in each part.  Spam blockers could easily cast your email away as spam.
+</p>
+
+<p>
+[TODO: provide a mime type list]
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create a message</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Add some &quot;parts&quot;</span>
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Part 1 of message&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Part &lt;strong&gt;2&lt;/strong&gt; of message&quot;</span><span class="sy0">,</span> <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//And send like usual</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;joe@bloggs.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;me@my-address.com&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent&quot;</span>;
+<span class="kw1">else</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Failed&quot;</span>;</pre>
+<p>
+The only difference between sending a multipart message and sending a plain-text message is that we “attach” some <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> parts before we send the message.
+</p>
+
+<p>
+Once again, the use of the reference operator (=&amp;) in the example above is merely for PHP4 users.  If you use PHP5, leave it out.
+</p>
+
+<p>
+If you want to test the appearance of both the <acronym title="HyperText Markup Language">HTML</acronym> and the plain text email you will need to tell your mail client which part to view.  In Thunderbird you change this in the “View” menu on the toolbar.
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fmultipart_mua_options.jpeg" class="media" title="http://www.swiftmailer.org/wikiimages/multipart_mua_options.jpeg"><img src="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fmultipart_mua_options.jpeg" class="media" title="Changing MIME parts" alt="Changing MIME parts" /></a>
+</p>
+
+</div>

@@ -1,0 +1,16 @@
+<pre class="code php"><span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st0">'localhost'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'Reports as requested man!'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'you@domain.tld'</span> =&gt; <span class="st0">'You'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'receiver@domain.tld'</span> =&gt; <span class="st0">'Person'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment::<span class="me2">fromFile</span><span class="br0">&#40;</span><span class="st0">'report-jan-mar-08.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment::<span class="me2">fromFile</span><span class="br0">&#40;</span><span class="st0">'report-mar-jun-08.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;A problem occurred&quot;</span>;
+<span class="br0">&#125;</span></pre>

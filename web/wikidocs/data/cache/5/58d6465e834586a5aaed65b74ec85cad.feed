@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/styles/feed.css" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v4:notes</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-03-07T14:43:06+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/notes/goals?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/notes/ideas?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/notes/uml?rev=1236058885"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Version 4 Development Discussion</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885</link>
+        <description>A bit of a mish-mash of ramblings of the top of my head.
+
+Components (subpackages)
+
+	*  Encoders
+	*  Mime Library
+	*  Delivery Drivers/connections
+	*  Authenticators
+	*  Plugins
+	*  Central Swift class (adaptor for the Delivery Drivers) (?)
+
+Timeline
+
+ I’m not working to any deadlines on version 4.  It will be done right and it will be ready when it’s ready.  It will definitely not be released before February 5th 2008, even if it is stable by then (see &lt;http://gophp5.org/&gt;)</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/notes/goals?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Development Goals</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/notes/goals?rev=1236058885</link>
+        <description>Version 4 will be the first release of Swift Mailer which will be developed for PHP 5.2 and later.  The development of version 4 will be taken at a slow and steady pace (no release date until at least February 5th 2008) with an extreme amount of focus put on cutting down coupling between classes in the library as far as possible.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/notes/ideas?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Send me your ideas and thoughts</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/notes/ideas?rev=1236058885</link>
+        <description>Come on guys, lets do this together, give me some input and let me know what’s lacking in version 3, or if something stinks about my direction with version 4.
+
+One thing though, don’t ask for anything to do with receiving mail or tracking delivery once a message has been sent, that’s a complete different subject which Swift has never been scoped towards.  Swift is an email creation and delivery library, not a complete email system ;)</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/notes/uml?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>UML Diagrams for Version 4</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/notes/uml?rev=1236058885</link>
+        <description>Here’s an up-to-date collection of UML diagrams used in project planning for Version 4.  These diagrams are not to be assumed as final, they merely act as memory joggers in preparation for development of a library where TDD will be the main driving force.  Given that Swift is now reaching it’s 4th major version, there’s enough knowledge about what works and what doesn’t in the API to be able to get it roughly solid.</description>
+    </item>
+</rdf:RDF>

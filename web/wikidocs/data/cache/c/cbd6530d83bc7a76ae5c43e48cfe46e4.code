@@ -1,0 +1,2 @@
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Some subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Message goes here&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setContentType</span><span class="br0">&#40;</span><span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;

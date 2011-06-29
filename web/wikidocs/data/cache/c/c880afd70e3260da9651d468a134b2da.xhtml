@@ -1,0 +1,102 @@
+
+
+
+<h1><a name="using_iterators_to_provide_lists" id="using_iterators_to_provide_lists">Using iterators to provide lists</a></h1>
+<div class="level1">
+
+<p>
+
+As you have seen, you can make use of Swift_RecipientList to send a message to multiple recipients.  Up until now you&#039;ve only seen the usage of addTo(), addCc() and addBcc().  You can completely by-pass these methods however.  Swift is provided with an iterator to loop over those addresses you have added and calling addTo() for example is simply pushing addresses onto an array.  By default Swift_RecipientList will provide an Array iterator so that the values added with addTo(), addCc() and addBcc() can be used.
+</p>
+
+<p>
+The interface of this iterator is simply this:
+</p>
+<pre class="code php"><span class="re0">$iterator</span> <span class="sy0">=&amp;</span> <span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">getIterator</span><span class="br0">&#40;</span><span class="st0">&quot;to&quot;</span><span class="br0">&#41;</span>; <span class="co1">//Or cc, bcc</span>
+<span class="kw1">while</span> <span class="br0">&#40;</span><span class="re0">$iterator</span><span class="sy0">-&gt;</span><span class="me1">hasNext</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="re0">$iterator</span><span class="sy0">-&gt;</span><span class="me1">next</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span class="re0">$address</span> <span class="sy0">=&amp;</span> <span class="re0">$iterator</span><span class="sy0">-&gt;</span><span class="me1">getValue</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span class="co1">//and so on...</span>
+<span class="br0">&#125;</span></pre>
+<p>
+So Swift is calling getIterator() with little regard for what you added initially.
+</p>
+
+<p>
+There&#039;s also a setIterator() method in Swift_RecipientList so you can specify your own.  For example, also packaged with the library is a MySQL iterator.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Iterator/MySQLResult.php&quot;</span>;
+&nbsp;
+<span class="re0">$query</span> <span class="sy0">=</span> <span class="st0">&quot;select email, name from users&quot;</span>;
+<span class="re0">$result</span> <span class="sy0">=</span> <a href="http://www.php.net/mysql_query"><span class="kw3">mysql_query</span></a><span class="br0">&#40;</span><span class="re0">$query</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$it</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Iterator_MySQLResult<span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">setIterator</span><span class="br0">&#40;</span><span class="re0">$it</span><span class="sy0">,</span> <span class="st0">&quot;to&quot;</span><span class="br0">&#41;</span>; <span class="co1">//or cc, bcc</span>
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="re0">$sender</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Using iterators to provide lists" [1-1373] -->
+<h2><a name="writing_your_own_iterator" id="writing_your_own_iterator">Writing your own Iterator</a></h2>
+<div class="level2">
+
+<p>
+
+Writing your own iterator is easy.  If you use PHP5, simply write a class which implements Swift_Iterator.  If you are using PHP4 you just need to be very careful to include the following methods in your iterator class:
+</p>
+
+<p>
+boolean hasNext( void );
+boolean next( void );
+boolean seekTo( int position );
+Swift_Address getValue( void );
+int getPosition( void );
+</p>
+
+<p>
+Your iterator should not return any value when getValue() is called unless next() was first called;  hasNext() simply returns true if there are remaining values in the list; next() moves one place forward in the list; seekTo() moves to the given numeric position in the list where 0 is the first item; getValue() returns a Swift_Address instance at the current list position; getPosition() returns the current list position where 0 is the start.
+</p>
+
+<p>
+Here&#039;s an example using an ADODB resultset with PHP5.
+</p>
+<pre class="code php"><span class="kw2">class</span> ADOIterator implements Swift_Iterator
+<span class="br0">&#123;</span>
+  protected <span class="re0">$rs</span>;
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="re0">$adoRs</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">rs</span> <span class="sy0">=</span> <span class="re0">$adoRs</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">function</span> hasNext<span class="br0">&#40;</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="sy0">!</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">rs</span><span class="sy0">-&gt;</span><span class="me1">EOF</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">function</span> <a href="http://www.php.net/next"><span class="kw3">next</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">rs</span><span class="sy0">-&gt;</span><span class="me1">MoveNext</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">function</span> seekTo<span class="br0">&#40;</span><span class="re0">$n</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">rs</span><span class="sy0">-&gt;</span><span class="me1">Move</span><span class="br0">&#40;</span><span class="re0">$n</span><span class="br0">&#41;</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">function</span> getPosition<span class="br0">&#40;</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">rs</span><span class="sy0">-&gt;</span><span class="me1">AbsolutePosition</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="kw2">public</span> <span class="kw2">function</span> getValue<span class="br0">&#40;</span><span class="br0">&#41;</span>
+  <span class="br0">&#123;</span>
+    <span class="re0">$row</span> <span class="sy0">=</span> <a href="http://www.php.net/array_values"><span class="kw3">array_values</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">rs</span><span class="sy0">-&gt;</span><span class="me1">GetAssoc</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$row</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="kw1">return</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="re0">$row</span><span class="br0">&#91;</span><span class="nu19">0</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="re0">$row</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#41;</span>; <span class="co1">//email, name</span>
+    <span class="kw1">else</span> <span class="kw1">return</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="re0">$row</span><span class="br0">&#91;</span><span class="nu19">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span>; <span class="co1">//Just email</span>
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+</div>
+<!-- SECTION "Writing your own Iterator" [1374-] -->

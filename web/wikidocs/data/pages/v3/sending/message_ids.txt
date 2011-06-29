@@ -1,0 +1,18 @@
+====== Working with Message-IDs ======
+
+Emails can contain a unique ID known as a message ID.  As of Swift version 3.1.4, Swift will generate this ID for you on a per-send basis (i.e. when you send a message an ID is created for it).  If you want to get the message ID yourself then you should override what Swift does and call the generateId() method of Swift_Message:
+
+<code php>
+$message = new Swift_Message( ... ); //as normal
+
+foreach ($recipients as $address)
+{
+  $id = $message->generateId();
+  echo $id; // something@domain.tld
+  $swift->send($message, $address, $you);
+}
+</code>
+
+generateId() accepts an optional string parameter which gets included in the overall message ID if passed.
+
+Knowing the message ID before the message is sent comes in useful when you are sending to a mailing list where you will detect bounces/track message statuses later.

@@ -1,0 +1,11 @@
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Iterator/MySQLResult.php&quot;</span>;
+&nbsp;
+<span class="re0">$query</span> <span class="sy0">=</span> <span class="st0">&quot;select email, name from users&quot;</span>;
+<span class="re0">$result</span> <span class="sy0">=</span> <a href="http://www.php.net/mysql_query"><span class="kw3">mysql_query</span></a><span class="br0">&#40;</span><span class="re0">$query</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$it</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Iterator_MySQLResult<span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">setIterator</span><span class="br0">&#40;</span><span class="re0">$it</span><span class="sy0">,</span> <span class="st0">&quot;to&quot;</span><span class="br0">&#41;</span>; <span class="co1">//or cc, bcc</span>
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="re0">$sender</span><span class="br0">&#41;</span>;

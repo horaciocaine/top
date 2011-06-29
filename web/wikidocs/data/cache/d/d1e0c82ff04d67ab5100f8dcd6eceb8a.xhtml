@@ -1,0 +1,22 @@
+
+
+
+<h2><a name="the_disk_cache" id="the_disk_cache">The Disk Cache</a></h2>
+<div class="level2">
+
+<p>
+
+The Disk cache is enabled by default, provided <code>sys_get_temp_dir()</code> exists.  Using disk caching provides speed improvements when sending large attachments and it provides a consistent level of memory use (roughly 1.68 MiB).
+</p>
+
+<p>
+To explicitly use disk caching place these lines anywhere before you send any messages.  There is no need to use this code in the same script multiple times; only call it once.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+Swift_Preferences<span class="sy0">::</span><span class="me2">getInstance</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">setCacheType</span><span class="br0">&#40;</span><span class="st_h">'disk'</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">setTempDir</span><span class="br0">&#40;</span><span class="st_h">'/tmp'</span><span class="br0">&#41;</span>;</pre>
+<p>
+Where ”/tmp” is replaced with whatever writable directory exists on your server.
+</p>
+
+</div>

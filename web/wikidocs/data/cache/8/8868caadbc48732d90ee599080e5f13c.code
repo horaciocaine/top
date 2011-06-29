@@ -1,0 +1,6 @@
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$file_data</span> <span class="sy0">=</span> <a href="http://www.php.net/file_get_contents"><span class="kw3">file_get_contents</span></a><span class="br0">&#40;</span><span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="re0">$file_data</span><span class="sy0">,</span> <span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$attachment</span><span class="br0">&#41;</span>;

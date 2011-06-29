@@ -1,0 +1,24 @@
+====== Uploading to the server ======
+
+Once the archive has been extracted you will have a new directory named something like
+  Swift-<version>
+
+Inside this directory there are several files and folders.  You should read the README and INSTALL files before you do anything else.
+
+<file>
+  w3style:~/public_html/Swift-3.0-rc1 d11wtq$ ls -l
+  total 80
+  -rw-r--r--   1 d11wtq  d11wtq   1976 Dec 28 21:00 CHANGES
+  -rw-r--r--   1 d11wtq  d11wtq   1351 Dec 28 21:00 INSTALL
+  -rw-r--r--   1 d11wtq  d11wtq  24382 Dec 28 21:00 LICENSE
+  -rw-r--r--   1 d11wtq  d11wtq   1746 Dec 28 21:05 README
+  -rw-r--r--   1 d11wtq  d11wtq     39 Dec 28 21:00 VERSION
+  drwxr-xr-x   4 d11wtq  d11wtq    136 Dec 28 21:09 docs
+  drwxr-xr-x   5 d11wtq  d11wtq    170 Dec 28 21:01 lib
+  drwxr-xr-x   6 d11wtq  d11wtq    204 Dec 28 21:01 tests
+  w3style:~/public_html/Swift-3.0-rc1 d11wtq$
+</file>
+
+You will notice that the directory is several megabytes in size.  Obviously, you don't need to upload all of this to your web server.  Most of this is documentation and tests.  The directory you will want to upload is "lib".  Be sure to keep the "lib" directory in-tact when you upload it.  Moving its contents around will cause you problems.  It is however safe to rename the directory to something more suitable such as "swift".
+
+Upload the lib directory via FTP or whatever facility your web host provides to upload files and rename it if you desire to do so.  Swift does not need to be inside the web root, but it does need to be in a location which you are able to refer to in your PHP scripts which will use it (i.e. PHP needs to be able to see it, but your end-users don't).

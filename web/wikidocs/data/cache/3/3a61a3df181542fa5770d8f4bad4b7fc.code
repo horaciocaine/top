@@ -1,0 +1,52 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Display an error if something went wrong</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st0">&quot;error&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">switch</span> <span class="br0">&#40;</span><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st0">&quot;error&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">case</span> <span class="st0">&quot;not_enough_info&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;You need to complete all fields marked *&lt;strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;invalid_email&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Please provide a valid email address&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;upload_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;The file you uploaded failed to attach, this could be a temporary problem.
+            Please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;sending_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Temporary problem, please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">?&gt;</span>
+&nbsp;
+&lt;form action=&quot;handle_form.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;Name *&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;sender_name&quot; value=&quot;&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;E-mail address *&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;sender_email&quot; value=&quot;&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;Title *&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;comment_title&quot; value=&quot;&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;Attachment (optional)&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;file&quot; name=&quot;attachment&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;Comment *&lt;br /&gt;
+                &lt;textarea name=&quot;comment_body&quot; rows=&quot;10&quot; cols=&quot;30&quot;&gt;&lt;/textarea&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/form&gt;

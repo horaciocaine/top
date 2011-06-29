@@ -1,0 +1,7 @@
+<span class="co1">//yes, this applies to attachments and MIME parts too!</span>
+<span class="re0">$attachment</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span><span class="sy0">-&gt;</span><span class="me1">headers</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span><span class="sy0">,</span> <span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span><span class="sy0">-&gt;</span><span class="me1">headers</span><span class="sy0">-&gt;</span><span class="me1">setAttribute</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span><span class="sy0">,</span> <span class="st0">&quot;zip&quot;</span><span class="sy0">,</span> <span class="st0">&quot;some<span class="es0">\n</span>string&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$attachment</span><span class="sy0">-&gt;</span><span class="me1">headers</span><span class="sy0">-&gt;</span><span class="me1">getEncoded</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//bar; zip*=&quot;'en-us'iso-8859-1'some%0Astring'&quot;</span>

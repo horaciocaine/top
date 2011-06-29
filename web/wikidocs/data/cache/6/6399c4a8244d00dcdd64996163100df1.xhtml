@@ -1,0 +1,21 @@
+
+
+
+<h2><a name="the_array_cache" id="the_array_cache">The Array Cache</a></h2>
+<div class="level2">
+
+<p>
+ It&rsquo;s not advisable to use array caching if a writable directory exists on the filesystem (even /tmp).  However, the presence of a directory which <acronym title="Hypertext Preprocessor">PHP</acronym> can write to is often not available.  Using the array cache will work on all systems without any specific cache settings.
+</p>
+
+<p>
+The downside to using the array cache is that of memory.  To send an attachment of any size using the Array cache <acronym title="Hypertext Preprocessor">PHP</acronym> will require at least (attachmentSize * 1.38) MiB of memory.  Using the Disk cache Swift Mailer will always require a flat 1.68MiB of memory.
+</p>
+
+<p>
+To use the array cache place this single line anywhere before you send any Messages.  You only need this line once in your code, there is no need to repeatedly call it.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+Swift_Preferences::<span class="me2">getInstance</span><span class="br0">&#40;</span><span class="br0">&#41;</span>-&gt;<span class="me1">setCacheType</span><span class="br0">&#40;</span><span class="st0">'array'</span><span class="br0">&#41;</span>;</pre>
+</div>

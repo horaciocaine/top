@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-08-15T02:29:19+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/bounce_address?rev=1236058884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/bounce_address?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/basic?rev=1171479116&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/basic?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:21:24+00:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The SMTP Transport class (named Swift_SmtpTransport) is used when you want to send messages using an SMTP server.  Before you decide to use this Transport method you first need to know the credentials to connect to an SMTP server from your web host.  Most web hosts provide an SMTP server to use, others do not.  Some SMTP servers will require the use of a username and password before you can send.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending an e-mail from a form with Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff</link>
+        <description>Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: &lt;http://www.w3schools.com/php/php_forms.asp&gt;.  The only thing Swift will do is create the email for you and send it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-12T14:19:01+00:00</dc:date>
+        <title>Sending an e-mail from a form with Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff</link>
+        <description>Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: &lt;http://www.w3schools.com/php/php_forms.asp&gt;.  The only thing Swift will do is create the email for you and send it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-04-12T00:07:16+00:00</dc:date>
+        <title>Swift Mailer</title>
+        <link>http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff</link>
+        <description>Swift Mailer
+
+
+Version 3 is now deprecated.  Unless you absolutely cannot upgrade yet, please download version 4 and use the version 4 documentation instead.
+
+Download Version 4: &lt;http://swiftmailer.org/download&gt; 
+
+Documentation for Version 4: &lt;http://swiftmailer.org/docs&gt;</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-09-21T07:54:30+00:00</dc:date>
+        <title>Swift Mailer 3</title>
+        <link>http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff</link>
+        <description>Swift Mailer 3
+
+
+Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+
+Library API Reference
+
+	*  PHP4 API Documentation
+	*  PHP5 API Documentation
+
+Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-18T18:04:16+00:00</dc:date>
+        <title>Sending a batch email or newsletter</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff</link>
+        <description>When you send out an email marketing campaign, newsletter or any other type of batch email you don't particularly want to reveal everybody's address to the recipients.  One nasty hack is to Bcc all the recipients and leave the To: field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/bounce_address?rev=1236058884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Setting the Bounce detect, or Return-path address</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/bounce_address?rev=1236058884&amp;do=diff</link>
+        <description>When using SMTP, you don't always know if the message is going to reach the recipient.  If something goes wrong and you're really lucky you'll know about it at SMTP time if the server reports an error; if you're not so lucky, but not completely in the dark, you'll receive an email from a different server saying that something went wrong; and if you're completely unlucky, you'll just be left wondering why you never got a response from the recipient.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/bounce_address?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Setting the Bounce detect, or Return-path address</title>
+        <link>http://swiftmailer.org/wikidocs/v3/bounce_address?rev=1236058881&amp;do=diff</link>
+        <description>When using SMTP, you don't always know if the message is going to reach the recipient.  If something goes wrong and you're really lucky you'll know about it at SMTP time if the server reports an error; if you're not so lucky, but not completely in the dark, you'll receive an email from a different server saying that something went wrong; and if you're completely unlucky, you'll just be left wondering why you never got a response from the recipient.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/basic?rev=1171479116&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T18:51:56+00:00</dc:date>
+        <title>Sending a basic email</title>
+        <link>http://swiftmailer.org/wikidocs/v3/basic?rev=1171479116&amp;do=diff</link>
+        <description>Sending an email with Swift Mailer is a simple process.  You basically create a new instance of Swift with a connection type of your choice, you then create a message and ask Swift to deliver it to one or more recipients.  Perhaps if you're not familiar with OOP this snippet may look a little daunting but it should hopefully soon become familiar to you and feel quite natural.  EasySwift, packaged inside the library when you download it, provides a wrapper which makes this even simpler - at the e…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/basic?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending a basic email</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/basic?rev=1236058885&amp;do=diff</link>
+        <description>Sending an email with Swift Mailer is a simple process.  You basically create a new instance of Swift with a connection type of your choice, you then create a message and ask Swift to deliver it to one or more recipients.  Perhaps if you're not familiar with OOP this snippet may look a little daunting but it should hopefully soon become familiar to you and feel quite natural.  EasySwift, packaged inside the library when you download it, provides a wrapper which makes this even simpler - at the e…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?</title>
+        <link>http://swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff</link>
+        <description>Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?
+
+
+This is more than likely die to a firewall rule that has been put in place by your hosting provider.  Though I have not verified this information I have also been informed that PhpSuExec can cuase problems establishing socket connections.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-14T21:34:50+00:00</dc:date>
+        <title>Miscellaneous</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff</link>
+        <description>Miscellaneous
+
+	*  Swift's logging system... find out what's going on
+	*  A little about Swift's internal caching system
+	*  PHP4 error handling - the exception hackaround
+	*  Runing SMTP commands using Swift</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:22:50+00:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The Sendmail Transport (named Swift_SendmailTransport) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are ”/sbin/sendmail” or ”/usr/sbin/sendmail”.</description>
+    </item>
+</rdf:RDF>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v3:installation</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-13T08:03:28+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/installation/extracting?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/installation/start?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/installation/testing?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/installation/uploading?rev=1236058883&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/installation/extracting?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Extracting the archive</title>
+        <link>http://swiftmailer.org/wikidocs/v3/installation/extracting?rev=1236058883&amp;do=diff</link>
+        <description>Downloads of Swift Mailer come in two different archive formats.  There's a tarball (the one with .tar.gz) or a ZIP file (the one with .zip).  Both archives contain exactly the same files so it's up to you which one you download.
+
+Extracting the archives on Linux or Mac OS X
+
+
+Tarball:</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/installation/start?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Installation</title>
+        <link>http://swiftmailer.org/wikidocs/v3/installation/start?rev=1236058883&amp;do=diff</link>
+        <description>Installation
+
+	*  Extracting the archive
+	*  Uploading to your web server
+	*  Running the included tests</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/installation/testing?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Running the included tests</title>
+        <link>http://swiftmailer.org/wikidocs/v3/installation/testing?rev=1236058883&amp;do=diff</link>
+        <description>Swift comes with a complete set of tests just to ensure everything works the way it's expect to.  There are three types of tests included with the library: Smoke Tests, Unit Tests and Benchmarks.  All of these are found in the “tests” directory.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/installation/uploading?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Uploading to the server</title>
+        <link>http://swiftmailer.org/wikidocs/v3/installation/uploading?rev=1236058883&amp;do=diff</link>
+        <description>Once the archive has been extracted you will have a new directory named something like
+Swift-&lt;version&gt;
+
+Inside this directory there are several files and folders.  You should read the README and INSTALL files before you do anything else.
+
+
+  w3style:~/public_html/Swift-3.0-rc1 d11wtq$ ls -l
+  total 80
+  -rw-r--r--   1 d11wtq  d11wtq   1976 Dec 28 21:00 CHANGES
+  -rw-r--r--   1 d11wtq  d11wtq   1351 Dec 28 21:00 INSTALL
+  -rw-r--r--   1 d11wtq  d11wtq  24382 Dec 28 21:00 LICENSE
+  -rw-r--r--   1 …</description>
+    </item>
+</rdf:RDF>

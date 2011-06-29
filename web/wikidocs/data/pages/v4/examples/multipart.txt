@@ -1,0 +1,46 @@
+===== Sending a Multipart Email =====
+
+First you need to include the "swift_required.php" file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, add some parts to it and send it with the Mailer.
+
+<code php>
+<?php
+
+//Include this needed file
+require_once '/path/to/swift/lib/swift_required.php';
+
+//Start the mailer
+$mailer = new Swift_Mailer(new Swift_SendmailTransport('/usr/sbin/sendmail -oi -t'));
+
+//Create a message
+$message = Swift_Message::newInstance('Your subject')
+  ->addPart('Your text message', 'text/plain')
+  ->addPart('Your HTML message', 'text/html')
+  ->setFrom(array('your@address.tld' => 'Your Name'))
+  ->setTo(array('someone@address.tld' => 'Person name'));
+
+//Send it
+$mailer->send($message);
+</code>
+
+Now would probably be a good time to introduce the concept of "everything's an attachment".  Users of version 3 will be familiar with this, but you can also add mime parts in this way:
+
+<code php>
+$message = Swift_Message::newInstance('Your subject')
+  ->attach(new Swift_MimePart('Your text message', 'text/plain'))
+  ->attach(new Swift_MimePart('Your HTML message', 'text/html'))
+  ->setFrom(array('your@address.tld' => 'Your Name'))
+  ->setTo(array('someone@address.tld' => 'Person name'));
+</code>
+
+Swift knows how to attach a mime part to the message.
+
+Finally, you can add one part just like you're sending a basic message, then attach your alternative part:
+
+<code php>
+$message = Swift_Message::newInstance('Your subject', 'Your HTML message', 'text/html')
+  ->addPart('Your text message', 'text/plain')
+  ->setFrom(array('your@address.tld' => 'Your Name'))
+  ->setTo(array('someone@address.tld' => 'Person name'));
+</code>
+
+All three approaches yield the same end result.  I'd prefer the first example over the second two, but understanding how you can "compose" a message by attaching things to it will help you to grasp some other concepts later on ;)

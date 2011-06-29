@@ -1,0 +1,14 @@
+<span class="co1">//Everything looks ok, we can start Swift</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Enable disk caching if we can</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/is_writable"><span class="kw3">is_writable</span></a><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    Swift_CacheFactory<span class="sy0">::</span><span class="me2">setClassName</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Cache_Disk&quot;</span><span class="br0">&#41;</span>;
+    Swift_Cache_Disk<span class="sy0">::</span><span class="me2">setSavePath</span><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Create a Swift instance</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your_smtp_server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;

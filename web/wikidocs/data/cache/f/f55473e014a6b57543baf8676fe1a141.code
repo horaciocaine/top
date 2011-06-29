@@ -1,0 +1,24 @@
+<pre class="code xml"><span class="sc3"><span class="re1">&lt;email<span class="re2">&gt;</span></span></span>
+    
+    <span class="sc3"><span class="re1">&lt;headers<span class="re2">&gt;</span></span></span>
+        <span class="sc3"><span class="re1">&lt;header</span> <span class="re0">name</span>=<span class="st0">&quot;Content-Type&quot;</span> <span class="re0">value</span>=<span class="st0">&quot;multipart&quot;</span> <span class="re2">/&gt;</span></span>
+        <span class="sc3"><span class="re1">&lt;header</span> <span class="re0">name</span>=<span class="st0">&quot;Subject&quot;</span> <span class="re0">value</span>=<span class="st0">&quot;My subject&quot;</span> <span class="re2">/&gt;</span></span>
+    <span class="sc3"><span class="re1">&lt;/headers<span class="re2">&gt;</span></span></span>
+    
+    <span class="sc3"><span class="re1">&lt;body<span class="re2">&gt;</span></span></span>
+&nbsp;
+        <span class="sc3"><span class="re1">&lt;part<span class="re2">&gt;</span></span></span>
+        
+            <span class="sc3"><span class="re1">&lt;headers<span class="re2">&gt;</span></span></span>
+                <span class="sc3"><span class="re1">&lt;header</span> <span class="re0">name</span>=<span class="st0">&quot;Content-Type&quot;</span> <span class="re0">value</span>=<span class="st0">&quot;text/plain&quot;</span> <span class="re2">/&gt;</span></span>
+            <span class="sc3"><span class="re1">&lt;/headers<span class="re2">&gt;</span></span></span>
+&nbsp;
+            <span class="sc3"><span class="re1">&lt;body<span class="re2">&gt;</span></span></span>
+                This is a plain text body
+            <span class="sc3"><span class="re1">&lt;/body<span class="re2">&gt;</span></span></span>
+        
+        <span class="sc3"><span class="re1">&lt;/part<span class="re2">&gt;</span></span></span>
+&nbsp;
+    <span class="sc3"><span class="re1">&lt;/body<span class="re2">&gt;</span></span></span>
+    
+<span class="sc3"><span class="re1">&lt;/email<span class="re2">&gt;</span></span></span></pre>

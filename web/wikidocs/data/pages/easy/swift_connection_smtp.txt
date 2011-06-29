@@ -1,0 +1,37 @@
+====== Swift_Connection_SMTP ======
+
+**__Synopsis:__** //''new Swift_Connection_SMTP(string remote_host[, int remote_port [, int encryption_level]])''//
+
+===== Getting connected to SMTP =====
+
+The SMTP connection is probably the most heavily used connection, and almost certainly the most consistent and portable.  This connection opens up a socket with TCP and speaks "SMTP" to a remote SMTP server.  You need to have a SMTP server which is capable of relaying mail from the domain of your web server for this to work.  Some hosts provide a SMTP server for you as part of your package.  You may also make use of Gmail's SMTP server if you have a Gmail account; however, they do impose a maximum limit of 50 emails in any one go.
+
+<code php>
+require_once "lib/EasySwift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+//Connect to localhost on port 25
+$swift =& new EasySwift(new Swift_Connection_SMTP("localhost"));
+
+
+//Connect to an IP address on a non-standard port
+$swift =& new EasySwift(new Swift_Connection_SMTP("217.147.94.117", 419));
+
+//Connect to Gmail
+$swift =& new EasySwift(new Swift_Connection_SMTP(
+    "smtp.gmail.com", SWIFT_SECURE_PORT, SWIFT_TLS));
+
+</code>
+
+Note that you can also use the constants provided by swift itself.  See the [[v3:start|Swift Mailer Version 3 Documentation]] for more information.
+
+The default timeout to wait for a connection, or to wait for a response with the SMTP connection is 15 seconds.  This can be adjusted by using the setTimeout() method.
+
+<code php>
+$smtp =& new Swift_Connection_SMTP("some-host.tld", 25);
+$smtp->setTimeout(2);
+
+
+$swift =& new Swift($smtp);
+
+</code>

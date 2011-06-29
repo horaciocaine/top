@@ -1,0 +1,10 @@
+====== The Unit Tests are using too much Memory ======
+
+If you run the group tests, and you're unlucky you may be getting one of the following:
+
+  - A blank page
+  - Asked to download the php file
+  - A memory exhaustion error
+
+This is due to the fact that the group tests are examining a lot of areas of Swift and in the process need to do things such as regexp over strings and create mock objects (dummy objects which act like the real thing).  This takes it toll on memory.  The tests have been split into 4 separate groups and the highest memory used by my own testing on PHP5 (higher than PHP4 by the way) was 6MB for the test.  If you're having issues however, just run each test case in turn - there are not many more than 30 tests cases so it doesn't take long.
+

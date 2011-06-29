@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v3:connections</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-14T19:56:42+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/multi?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/nativemail?rev=1180799008&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/sendmail?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/smtp?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/start?rev=1236058883&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/multi?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift_Connection_Multi</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/multi?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Multi( [array connections] )
+
+The Multi connection is a mechanism which contains within itself any number of connections you give it.  These connections can be of any combination of types (SMTP, Sendmail, NativeMail, other instances of Multi etc etc).  It's a way of providing redundancy in the event that a SMTP server is unavailable at the time of the request for example.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/nativemail?rev=1180799008&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-06-02T15:43:28+00:00</dc:date>
+        <title>Swift_Connection_NativeMail</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/nativemail?rev=1180799008&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_NativeMail( void )
+
+This is probably the simplest of all the connections to get to grips with.  It uses PHP's mail() function.  It takes no constructor parameters and requires no configuration.
+
+NOTE: Due to differences between mail() in Windows and mail() on UNIX-like systems there will be small inconsistencies between running this connection on Windows and Linux/OS X.  These are perfectly fine.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift_Connection_Rotator</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Rotator( [array connections] )
+
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+
+You provide it with a collection of different connections (possibly including some other rotating ones if you're crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as “dead” internally and will not be retried. …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/sendmail?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift_Connection_Sendmail</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/sendmail?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Sendmail([string command])
+
+Sendmail is a binary executable which runs on UNIX-like systems such as Linux and OS X.  The Swift_Connection_Sendmail class runs this executable in a standalone SMTP mode and sends emails through it.  If you have sendmail available to you this will be much faster than using the SMTP connection to a remote server, however, it does have one drawback - load balancing.  If you use sendmail then your server is processing Swift instructions, …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/smtp?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift_Connection_SMTP</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/smtp?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_SMTP(string remote_host[, int remote_port [, int encryption_level]])
+
+Getting connected to SMTP
+
+
+The SMTP connection is probably the most heavily used connection, and almost certainly the most consistent and portable.  This connection opens up a socket with TCP and speaks “SMTP” to a remote SMTP server.  You need to have a SMTP server which is capable of relaying mail from the domain of your web server for this to work.  Some hosts provide a SMTP server for you as…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/start?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>The Connections</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/start?rev=1236058883&amp;do=diff</link>
+        <description>The Connections
+
+	*   Swift_Connection_SMTP
+	*  Swift_Connection_Sendmail
+	*  Swift_Connection_NativeMail
+	*  Swift_Connection_Multi
+	*  Swift_Connection_Rotator
+	*  SMTP Authentication</description>
+    </item>
+</rdf:RDF>

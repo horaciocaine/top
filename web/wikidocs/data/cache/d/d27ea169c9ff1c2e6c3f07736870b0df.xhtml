@@ -1,0 +1,47 @@
+
+
+
+<h1><a name="sending_a_message_to_a_recipient" id="sending_a_message_to_a_recipient">Sending a message to a recipient</a></h1>
+<div class="level1">
+
+<p>
+
+Sending messages in Swift is extremely simple.  You call the send() method, which only has 3 parameters.  One is the message, one is the recipient, and the other is the sender.
+</p>
+<pre class="code php"><span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$sent</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;recipient@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;sender@address.tld&quot;</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent to $sent recipients&quot;</span>;</pre>
+<p>
+send() returns the number of recipients it delivered to message to successfully.
+</p>
+
+<p>
+In the above example we used strings for the email addresses, however, using the Swift_Address class we have a little more flexibility over the format of the address.  We can have a personal name in the address like so: <code>Foo <a href="mailto:&#x66;&#x6f;&#x6f;&#x40;&#x62;&#x61;&#x72;&#x2e;&#x63;&#x6f;&#x6d;" class="mail JSnocheck" title="&#x66;&#x6f;&#x6f;&#x40;&#x62;&#x61;&#x72;&#x2e;&#x63;&#x6f;&#x6d;">foo@bar.com</a></code>.
+</p>
+<pre class="code php"><span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$sent</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;recipient@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Recipient&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;sender@address.tld&quot;</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent to $sent recipients&quot;</span>;</pre>
+<p>
+We can also use the Swift_Address class for the sender parameter:
+</p>
+<pre class="code php"><span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="re0">$sent</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span>
+    <span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;recipient@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Recipient Name&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+    <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;sender@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My Name&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent to $sent recipients&quot;</span>;</pre>
+<p>
+Simple right? :)
+
+</p>
+
+</div>

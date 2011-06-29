@@ -1,0 +1,8 @@
+<span class="kw2">class</span> ForceReconnectPlugin implements Swift_Events_DisconnectListener
+<span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> disconnectPerformed<span class="br0">&#40;</span>swift_Events_DisconnectEvent <span class="re0">$e</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$swift</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getSwift</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">connect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

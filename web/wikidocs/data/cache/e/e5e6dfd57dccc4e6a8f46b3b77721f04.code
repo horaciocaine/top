@@ -1,0 +1,2 @@
+<span class="re0">$batch</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_BatchMailer<span class="br0">&#40;</span><span class="re0">$swift</span><span class="br0">&#41;</span>;
+<span class="re0">$batch</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="re0">$from</span><span class="br0">&#41;</span>;

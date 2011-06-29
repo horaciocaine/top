@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2011-01-18T12:15:57+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-15T22:34:59+01:00</dc:date>
+        <title>How to use SendListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you're plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T19:18:50+01:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>How to use SendListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you're plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Caching Strategies - Overview</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff</link>
+        <description>Caching Strategies - Overview
+
+
+Generating compliant MIME data (i.e. the email itself) is thirsty work, especially for non-ascii character sets.  Swift Mailer caches data where it can so that when sending the same email to lot of recipients things run a little faster.  There are two caching strategies offered by default in Swift Mailer.  One uses a PHP array to hold cached data.  The other writes data to disk.  It would be easy to extend Swift to support a new cache type if you have a reason to …</description>
+    </item>
+</rdf:RDF>

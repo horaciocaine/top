@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-09-30T17:07:53+02:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_connection_rotator?rev=1171467632&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T10:21:24+02:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The SMTP Transport class (named Swift_SmtpTransport) is used when you want to send messages using an SMTP server.  Before you decide to use this Transport method you first need to know the credentials to connect to an SMTP server from your web host.  Most web hosts provide an SMTP server to use, others do not.  Some SMTP servers will require the use of a username and password before you can send.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T10:22:50+02:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The Sendmail Transport (named Swift_SendmailTransport) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are ”/sbin/sendmail” or ”/usr/sbin/sendmail”.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T19:18:50+02:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-03-26T11:22:20+02:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-07T23:50:27+02:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_connection_rotator?rev=1171467632&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T16:40:32+02:00</dc:date>
+        <title>Swift_Connection_Rotator</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_connection_rotator?rev=1171467632&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Rotator( [array connections] )
+
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+
+You provide it with a collection of different connections (possibly including some other rotating ones if you're crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as “dead” internally and will not be retried. …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+02:00</dc:date>
+        <title>Swift_Connection_Rotator</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Rotator( [array connections] )
+
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+
+You provide it with a collection of different connections (possibly including some other rotating ones if you're crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as “dead” internally and will not be retried. …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T16:19:34+02:00</dc:date>
+        <title>Dealing with failed recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff</link>
+        <description>SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in $swift-&gt;log-&gt;getFailedRecipients() as an array.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T20:32:37+02:00</dc:date>
+        <title>Dealing with failed recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff</link>
+        <description>SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in $swift-&gt;log-&gt;getFailedRecipients() as an array.</description>
+    </item>
+</rdf:RDF>

@@ -1,0 +1,52 @@
+====== How to use CommandListener ======
+
+A plugin which implements the Swift_Events_CommandListener interface will be invoked whenever Swift has sent a command.  The CommandEvent object which is passed is the same object as the one a plugin implementing BeforeCommandListener would have already seen.  Therefore, any changes made before the command is issued will be also seen here after the command has been issued.  More often than not, BeforeCommandListener will be more useful than CommandListener.  We could use something like this to monitor the number of bytes being sent through Swift (outgoing bytes).
+
+Here's the interface:
+
+<code php>
+/**
+ * Contains the list of methods a plugin requiring the use of a CommandEvent must implement
+ * @package Swift_Events
+ * @author Chris Corbyn <chris@w3style.co.uk>
+ */
+interface Swift_Events_CommandListener extends Swift_Events_Listener
+{
+	/**
+	 * Executes when Swift sends a command
+	 * @param Swift_Events_CommandEvent Information about the command sent
+	 */
+	public function commandSent(Swift_Events_CommandEvent $e);
+}
+</code>
+
+And here's a basic bandwidth monitor for outgoing bytes:
+
+<code php>
+class OutgoingBandwidthPlugin implements Swift_Events_CommandListener
+{
+    protected $bytes = 0;
+    
+    public function commandSent(Swift_Events_CommandEvent $e)
+    {
+        $command = $e->getString();
+        $length = strlen($command) + 2; //Remember to add the CRLF
+        $this->addBytes($length);
+    }
+    
+    public function addBytes($bytes)
+    {
+        $this->bytes += $bytes;
+    }
+    
+    public function setBytes($bytes)
+    {
+        $this->bytes = $bytes;
+    }
+    
+    public function getBytes()
+    {
+        return $this->bytes;
+    }
+}
+</code>

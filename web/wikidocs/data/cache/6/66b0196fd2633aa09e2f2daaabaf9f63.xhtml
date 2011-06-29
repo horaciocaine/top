@@ -1,0 +1,174 @@
+
+
+
+<h1><a name="swift_message_decorator_plugin_for_customized_messages" id="swift_message_decorator_plugin_for_customized_messages">Swift Message Decorator Plugin (For Customized Messages)</a></h1>
+<div class="level1">
+
+</div>
+<!-- SECTION "Swift Message Decorator Plugin (For Customized Messages)" [1-72] -->
+<h2><a name="introduction_to_message_decorating" id="introduction_to_message_decorating">Introduction to message decorating</a></h2>
+<div class="level2">
+
+<p>
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something&#039;s already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render only those bits which changed.
+</p>
+
+<p>
+For this reason, you need only create one instance of <code>Swift_Message</code> when sending to many recipients.  If you want to change the message for each recipient you can just loop over all the recipients and modify the message in the loop, for example:
+</p>
+<pre class="code php"><span class="kw1">while</span> <span class="br0">&#40;</span><span class="re0">$row</span> <span class="sy0">=</span> <a href="http://www.php.net/mysql_fetch_assoc"><span class="kw3">mysql_fetch_assoc</span></a><span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setSubject</span><span class="br0">&#40;</span><span class="st0">&quot;Order no. &quot;</span> <span class="sy0">.</span> <span class="re0">$row</span><span class="br0">&#91;</span><span class="st0">&quot;order&quot;</span><span class="br0">&#93;</span> <span class="sy0">.</span> <span class="st0">&quot; has been processed&quot;</span><span class="br0">&#41;</span>;
+    <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$row</span><span class="br0">&#91;</span><span class="st0">&quot;recipient&quot;</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="re0">$your_address</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+However, although it&#039;s logical, when you start adding attachments, mime part and other fancy bits and pieces this may just become a bit of an unneccessary (I never spell that right!) hassle.
+</p>
+
+<p>
+As of version 3.1, Swift includes a plugin called <code>Swift_Plugin_Decorator</code>.  This plugin is intended to give you the flexibility to customize a single message for each individual recipient.  Whether you choose to use batchSend() or just send() inside a loop, this plugin will work regardless.
+</p>
+
+</div>
+<!-- SECTION "Introduction to message decorating" [73-1562] -->
+<h2><a name="using_the_plugin" id="using_the_plugin">Using the plugin</a></h2>
+<div class="level2">
+
+<p>
+
+The basic use of the plugin simply takes a 2-dimensional array of replacements, where each key in the first dimension is the address and the second dimension becomes a mapping of replacments.  To make this clear, let&#039;s look at a really obvious example:
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co4">/** THIS CODE REQUIRES Swift 3.1 OR HIGHER **/</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Decorator.php&quot;</span>;
+&nbsp;
+<span class="co1">//Instantiate Swift as usual</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your-server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message, using some unique variables to search for</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Hey {name}, what's up?&quot;</span><span class="sy0">,</span> <span class="st0">&quot;It's a bit {weather} today wouldn't you say?&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Specify the list of replacements as a 2-d array</span>
+<span class="re0">$replacements</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">&quot;joe@bloggs.com&quot;</span> <span class="sy0">=&gt;</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;{name}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Joe&quot;</span><span class="sy0">,</span> <span class="st0">&quot;{weather}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;chilly&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+    <span class="st0">&quot;fred@perry.com&quot;</span> <span class="sy0">=&gt;</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;{name}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Fred&quot;</span><span class="sy0">,</span> <span class="st0">&quot;{weather}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;muggy&quot;</span><span class="br0">&#41;</span>
+<span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Load the plugin with these replacements</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Decorator<span class="br0">&#40;</span><span class="re0">$replacements</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;decorator&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send messages</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;fred@perry.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;joe@bloggs.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+<p>
+In the above example we are doing nothing more than performing a basic send to two different recipients.  This is just the start, you can do a lot more with this plugin.
+</p>
+
+<p>
+The emails the two recipients will receive will looks like this:
+
+</p>
+<pre class="code">Subject: Hey Fred, what&#039;s up?
+--------------------------------
+It&#039;s a bit muggy today wouldn&#039;t you say?</pre>
+<pre class="code">Subject: Hey Joe, what&#039;s up?
+--------------------------------
+It&#039;s a bit chilly today wouldn&#039;t you say?</pre>
+
+<p>
+More than likely, if you&#039;re thinking of using this plugin it&#039;s becuase you have a more complicated requirement than this basic example so let&#039;s continue.
+</p>
+
+<p>
+If you attach parts, Swift will replace variables here too:
+</p>
+<pre class="code php"><span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Order number: {order} sent on {date}&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;&lt;strong&gt;Order number:&lt;/strong&gt; {order} sent on {date}&quot;</span><span class="sy0">,</span> <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+And even tricky things like file attachments can have unique names:
+</p>
+<pre class="code php"><span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span>
+    <span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;generic_plan.pdf&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;{name}s_action_plan.pdf&quot;</span><span class="sy0">,</span> <span class="st0">&quot;application/pdf&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+If you choose to use some other syntax for your variables this will work just fine because the plugin requires that you provide the full identifier of the variable anyway (i.e. ”{foo}” not just “foo”).  You may choose to use something like <code>%foo%</code> or even <code>*&amp;&amp;^foo&amp;*&amp;</code> if you&#039;re a bit nutty.
+</p>
+
+<p>
+In our first example, we&#039;d get the exact same result if we used <code>batchSend()</code> to send the email to Joe and Fred.  Whatever method you use to send the email to the recipients, providing they are the main recipient (i.e. not a <code>Cc</code> or <code>Bcc</code> recipient) this plugin will just work.
+</p>
+<pre class="code php"><span class="co1">//Load the plugin with these replacements</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Decorator<span class="br0">&#40;</span><span class="re0">$replacements</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;decorator&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.com&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;fred@perry.com&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//Send with batchSend()</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">batchSend</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Using the plugin" [1563-4876] -->
+<h2><a name="extending_the_replacement_functionality_recommended_for_database_work" id="extending_the_replacement_functionality_recommended_for_database_work">Extending the replacement functionality (recommended for Database work)</a></h2>
+<div class="level2">
+
+<p>
+
+Filling a huge array with the replacements for all the recipients you&#039;re going to work with is probably not particularly appetising if you&#039;re sending to 1000 recipients.  The plugin was deliberately designed to make it easy to extend so you can hook it right into your database or use whatever means you need to retreive the replacements for each recipient.  Providing you are able to get the replacments you need if you are given the email address to retreive them for then this is going to be the most ideal solution for you.  By default, the plugin takes your array and gives it to a class called <code>Swift_Plugin_Decorator_Replacements</code>, it&#039;s this class you need to extend.
+</p>
+
+<p>
+The only method you&#039;ll want to override out of neccessity is <code>Swift_Plugin_Decroator_Replacements→getReplacementsFor()</code>.  This method takes the address as an argument and returns the map of replacements as an array.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co4">/** THIS CODE REQUIRES Swift 3.1 OR HIGHER **/</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Decorator.php&quot;</span>;
+&nbsp;
+<span class="co1">//Instantiate Swift as usual</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your-server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message, using some unique variables to search for</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Hey {name}, what's up?&quot;</span><span class="sy0">,</span> <span class="st0">&quot;It's a bit {weather} today wouldn't you say?&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Extend the replacements class</span>
+<span class="kw2">class</span> Replacements <span class="kw2">extends</span> Swift_Plugin_Decorator_Replacements <span class="br0">&#123;</span>
+    <span class="kw2">function</span> getReplacementsFor<span class="br0">&#40;</span><span class="re0">$address</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="re0">$query</span> <span class="sy0">=</span> <a href="http://www.php.net/sprintf"><span class="kw3">sprintf</span></a><span class="br0">&#40;</span><span class="st0">&quot;select
+        name as `{name}`, weather as `{weather}`
+        from buddies
+        where email = '%s'&quot;</span><span class="sy0">,</span> <a href="http://www.php.net/mysql_real_escape_string"><span class="kw3">mysql_real_escape_string</span></a><span class="br0">&#40;</span><span class="re0">$address</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        <span class="re0">$result</span> <span class="sy0">=</span> <a href="http://www.php.net/mysql_query"><span class="kw3">mysql_query</span></a><span class="br0">&#40;</span><span class="re0">$query</span><span class="br0">&#41;</span>;
+        <span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/mysql_num_rows"><span class="kw3">mysql_num_rows</span></a><span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span> <span class="sy0">&gt;</span> <span class="nu19">0</span><span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <a href="http://www.php.net/mysql_fetch_assoc"><span class="kw3">mysql_fetch_assoc</span></a><span class="br0">&#40;</span><span class="re0">$result</span><span class="br0">&#41;</span>;
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Load the plugin with the extended replacements class</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Decorator<span class="br0">&#40;</span><span class="kw2">new</span> Replacements<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;decorator&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send messages</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;fred@perry.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;joe@bloggs.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+<p>
+This plugin really does give you a lot of flexibility when sending to a list, getting to know it is fun :)
+</p>
+
+<p>
+Enjoy!
+
+</p>
+
+</div>
+<!-- SECTION "Extending the replacement functionality (recommended for Database work)" [4877-] -->

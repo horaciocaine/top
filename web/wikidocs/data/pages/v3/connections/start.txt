@@ -1,0 +1,8 @@
+==== The Connections ====
+  * [[v3:connections:smtp| Swift_Connection_SMTP]]
+  * [[v3:connections:sendmail|Swift_Connection_Sendmail]]
+  * [[v3:connections:nativemail|Swift_Connection_NativeMail]]
+  * [[v3:connections:multi|Swift_Connection_Multi]]
+  * [[v3:connections:rotator|Swift_Connection_Rotator]]
+  * **[[v3:smtpauth|SMTP Authentication]]**
+

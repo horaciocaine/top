@@ -1,0 +1,26 @@
+
+
+
+<h1><a name="loading_new_plugins_into_swift" id="loading_new_plugins_into_swift">Loading new plugins into Swift</a></h1>
+<div class="level1">
+
+<p>
+
+Plugins in Swift are nothing more than event listeners (a sort of observer).  If you download a plugin, or want to load one of the packaged ones you first need to include the file in your script using the “include” or “require” keywords.  You then use the attachPlugin() method in Swift to pass an instance of the plugin to Swift.  Swift quite simply sends messages (events) to the plugin at relevent times.
+</p>
+
+<p>
+If the plugin comes with a little documentation, be sure to read it to understand how it works.  Some plugins may require information to be passed to the constructor, or may need to be manipulated after being loaded into Swift.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Example.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Load the plugin, and give it a name</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Example<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;SOME_NAME&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Continue working as normal</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span> <span class="sy0">...</span> <span class="br0">&#41;</span>;</pre>
+</div>

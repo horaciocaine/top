@@ -1,0 +1,1 @@
+<span class="re0">$connection</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getConnection</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;

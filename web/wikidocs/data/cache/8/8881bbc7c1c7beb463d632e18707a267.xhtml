@@ -1,0 +1,23 @@
+
+
+
+<h2><a name="i_ve_got_thousands_of_emails_to_send_how_should_i_do_it" id="i_ve_got_thousands_of_emails_to_send_how_should_i_do_it">I've got thousands of emails to send, how should I do it?</a></h2>
+<div class="level2">
+
+<p>
+ 99.9% of the time the best approach to doing this is to store all the emails and recipients in a database with a field marked as &ldquo;unsent&rdquo;. A cron script can run every few minutes pulling out more modest batch sizes of around 100 emails, then flagging those as &ldquo;sent&rdquo;.
+</p>
+
+<p>
+There are plugins such as AntiFlood and Throttler to aid in large batch sending but there&rsquo;s no substitute for running regular smaller batches.
+</p>
+
+<p>
+I have also taken the approach of running a command line <acronym title="Hypertext Preprocessor">PHP</acronym> script in the background with a perpetual while() loop int it, sleeping for a few seconds at the end of each loop.  This mimmicks cron&rsquo;s behaviour except that new processes are not spawned since the script runs once only.  Each iteration of the loop can pull out 50-100 emails and send them.
+</p>
+
+<p>
+If you really do have an extremely large number of emails to send you&rsquo;ll almost certainly have to pay for a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server, preferably several otherwise you&rsquo;re effectively going to DoS somebody else&rsquo;s server ;) 
+</p>
+
+</div>

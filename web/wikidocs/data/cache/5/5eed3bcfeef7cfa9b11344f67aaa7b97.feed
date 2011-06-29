@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v4:transports</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-14T09:04:39+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:22:50+00:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The Sendmail Transport (named Swift_SendmailTransport) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are ”/sbin/sendmail” or ”/usr/sbin/sendmail”.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:21:24+00:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The SMTP Transport class (named Swift_SmtpTransport) is used when you want to send messages using an SMTP server.  Before you decide to use this Transport method you first need to know the credentials to connect to an SMTP server from your web host.  Most web hosts provide an SMTP server to use, others do not.  Some SMTP servers will require the use of a username and password before you can send.</description>
+    </item>
+</rdf:RDF>

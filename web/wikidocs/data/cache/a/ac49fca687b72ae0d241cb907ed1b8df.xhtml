@@ -1,0 +1,33 @@
+
+
+
+<h1><a name="running_smtp_commands_using_swift" id="running_smtp_commands_using_swift">Running SMTP Commands using Swift</a></h1>
+<div class="level1">
+
+<p>
+
+Swift is based around the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> protocol.  Even the NativeMail connection has been written to speak <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> to Swift.  For this reason, it probably won&#039;t surprise you that there are mechanisms in place for running <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> commands through Swift yourself.
+</p>
+
+<p>
+The Swift::command() method returns a ResponseEvent object which holds information about the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> response from the server.
+</p>
+
+<p>
+If you just want to run a command and read the response, you simply need to pass the command string to command(), leaving off the trailing CRLF (line ending) and then check what&#039;s in the response.
+</p>
+<pre class="code php"><span class="re0">$response</span> <span class="sy0">=&amp;</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">command</span><span class="br0">&#40;</span><span class="st0">&quot;HELO&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//Check the full response</span>
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$response</span><span class="sy0">-&gt;</span><span class="me1">getString</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="co1">//Check the response code (e.g. 250)</span>
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$response</span><span class="sy0">-&gt;</span><span class="me1">getCode</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+<p>
+It&#039;s often critical that a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> response adheres to something you expect, otherwise you may need to issue a reset() command (RSET in <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>).  You can either check the response yourself from getCode() as shown above, or you can assert that an error should be thrown if a bad response is received.  This is more useful in PHP5 where exceptions are used, since excpetions are easily caught.
+</p>
+<pre class="code php"><span class="co1">//Throw an error if 250 is not the response code</span>
+<span class="re0">$response</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">command</span><span class="br0">&#40;</span><span class="st0">&quot;HELO&quot;</span><span class="sy0">,</span> <span class="nu0">250</span><span class="br0">&#41;</span>;</pre>
+<p>
+The exception used if the response is bad, is of type Swift_Connection_Exception.
+</p>
+
+</div>

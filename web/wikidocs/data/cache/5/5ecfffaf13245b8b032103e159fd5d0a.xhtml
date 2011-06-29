@@ -1,0 +1,174 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="clear">
+
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#smtp_transport_swift_smtptransport" class="toc">SMTP Transport (Swift_SmtpTransport)</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="#what_is_it_for" class="toc">What is it for?</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#how_do_you_use_it" class="toc">How do you use it?</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#examples" class="toc">Examples</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#troubleshooting" class="toc">Troubleshooting</a></span></div></li></ul>
+</li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h2><a name="smtp_transport_swift_smtptransport" id="smtp_transport_swift_smtptransport">SMTP Transport (Swift_SmtpTransport)</a></h2>
+<div class="level2">
+
+</div>
+<!-- SECTION "SMTP Transport (Swift_SmtpTransport)" [1-49] -->
+<h3><a name="what_is_it_for" id="what_is_it_for">What is it for?</a></h3>
+<div class="level3">
+
+<p>
+ The Sendmail Transport (named <code>Swift_SendmailTransport</code>) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are &ldquo;/sbin/sendmail&rdquo; or &ldquo;/usr/sbin/sendmail&rdquo;.
+</p>
+
+<p>
+Some hosts actively prevent the use of sendmail (i.e. they do not allow the program to be executed) so this transport may not work all the time.  It&rsquo;s also not available for use on Windows systems unless the system administrator has followed some advanced procedures to install a sendmail equivalent for windows.
+</p>
+
+<p>
+Sendmail is a mail transfer agent (MTA) which spools mail to disk in order to queue it.  It then tries periodically to run mail off the queue.  Several other programs exist which have superceded sendmail in terms of functionality.  Such programs as postfix, exim and qMail will still work with this transport since they typically provide compatibility options for sendmail.
+</p>
+
+</div>
+<!-- SECTION "What is it for?" [50-1046] -->
+<h3><a name="how_do_you_use_it" id="how_do_you_use_it">How do you use it?</a></h3>
+<div class="level3">
+
+<p>
+ The <code>Swift_SendmailTransport</code> class takes one (optional) parameter in its constructor.
+</p>
+
+<p>
+<strong>Synopsis</strong> 
+</p>
+<pre class="code">
+new Swift_SendmailTransport( [ $command ] )
+
+// or
+
+Swift_SendmailTransport::newInstance( [ $command ] )
+</pre>
+
+<p>
+<code>$command</code> is the path to sendmail along with any flags to use.  Swift Mailer supports the use of &ldquo;-bs&rdquo; flags and &ldquo;-t&rdquo;.  The recommended flags are simply &ldquo;-bs&rdquo; since sending in this mode offers the most verbose feedback about failures during sending.  The default <code>$command</code> is &ldquo;/usr/sbin/sendmail -bs&rdquo; if no other path is specified.
+</p>
+
+</div>
+<!-- SECTION "How do you use it?" [1047-1639] -->
+<h3><a name="examples" id="examples">Examples</a></h3>
+<div class="level3">
+
+</div>
+
+<h4><a name="instantiating_swift_sendmailtransport_with_the_default_settings" id="instantiating_swift_sendmailtransport_with_the_default_settings">Instantiating Swift_SendmailTransport with the default settings</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$sendmail</span> = <span class="kw2">new</span> Swift_Sendmail<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'My message body'</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'chris.corbyn@swiftmailer.org'</span> =&gt; <span class="st0">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'recipient@domain.tld'</span> =&gt; <span class="st0">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="instantiating_swift_sendmailtransport_for_-t_mode_operation" id="instantiating_swift_sendmailtransport_for_-t_mode_operation">Instantiating Swift_SendmailTransport for &quot;-t&quot; mode operation</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$sendmail</span> = <span class="kw2">new</span> Swift_Sendmail<span class="br0">&#40;</span><span class="st0">'/usr/sbin/sendmail -oi -t'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//$message supports a fluid interface everywhere in Swift</span>
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'My message body'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'chris.corbyn@swiftmailer.org'</span> =&gt; <span class="st0">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'recipient@domain.tld'</span> =&gt; <span class="st0">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="instantiating_swift_sendmailtransport_for_-bs_mode_operation" id="instantiating_swift_sendmailtransport_for_-bs_mode_operation">Instantiating Swift_SendmailTransport for &quot;-bs&quot; mode operation</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$sendmail</span> = <span class="kw2">new</span> Swift_Sendmail<span class="br0">&#40;</span><span class="st0">'/usr/sbin/sendmail -bs'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'My message body'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'chris.corbyn@swiftmailer.org'</span> =&gt; <span class="st0">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'recipient@domain.tld'</span> =&gt; <span class="st0">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="using_newinstance_to_create_sendmail" id="using_newinstance_to_create_sendmail">Using newInstance() to create $sendmail</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$sendmail</span> = Swift_Sendmail::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'/usr/sbin/sendmail -oi -t'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'My message body'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'chris.corbyn@swiftmailer.org'</span> =&gt; <span class="st0">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'recipient@domain.tld'</span> =&gt; <span class="st0">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="using_a_program_other_than_sendmail" id="using_a_program_other_than_sendmail">Using a program other than sendmail</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$sendmail</span> = Swift_Sendmail::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'/usr/sbin/exim -bs'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'My message body'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'chris.corbyn@swiftmailer.org'</span> =&gt; <span class="st0">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'recipient@domain.tld'</span> =&gt; <span class="st0">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="nesting_the_instantiation_of_swift_sendmailtransport_in_the_constructor_of_the_mailer" id="nesting_the_instantiation_of_swift_sendmailtransport_in_the_constructor_of_the_mailer">Nesting the instantiation of Swift_SendmailTransport in the constructor of the Mailer</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SendmailTransport<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'My subject'</span>, <span class="st0">'My message body'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'chris.corbyn@swiftmailer.org'</span> =&gt; <span class="st0">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'recipient@domain.tld'</span> =&gt; <span class="st0">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Examples" [1640-4160] -->
+<h3><a name="troubleshooting" id="troubleshooting">Troubleshooting</a></h3>
+<div class="level3">
+<table class="inline">
+	<tr>
+		<th> Problem </th><th> Possible solutions </th>
+	</tr>
+	<tr>
+		<td class="leftalign"> Receiving errors that the process could not be started  </td><td> The host&rsquo;s permissions may be preventing the use of sendmail or sendmail is not at the path specified.  Try a different path or contact your host. </td>
+	</tr>
+	<tr>
+		<td class="leftalign"> Experiencing hanging pages  </td><td> Something is preventing the process from reading or writing.  This is a cause, but Swift should report an error.  A hanging page is a bug which should be reported to myself </td>
+	</tr>
+	<tr>
+		<td> Messages are being received with extra line breaks </td><td> This should never happen, but in theory it can happen.  Please report this as a bug. </td>
+	</tr>
+	<tr>
+		<td class="leftalign"> Messages are never received  </td><td> Perhaps the queue interval for sendmail is set too high, or sendmail is not running.  Other causes may be spam blockers which are particularly problematic if you are sending from a dynamic IP address </td>
+	</tr>
+	<tr>
+		<td class="leftalign"> I get bounced messages but Swift thinks it worked  </td><td> This is normal.  Not all servers report failures at sending time.  However, if you&rsquo;re using &ldquo;-t&rdquo; mode instead of &ldquo;-bs&rdquo; mode you will get meaningless results at send time.  Use &ldquo;-bs&rdquo; mode if you can. </td>
+	</tr>
+</table>
+
+</div>
+<!-- SECTION "Troubleshooting" [4161-] -->

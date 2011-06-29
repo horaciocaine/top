@@ -1,0 +1,60 @@
+====== Dealing with Attachments ======
+
+**Synopsis:** ''//new Swift_Message_Attachment([mixed data [, string filename [, string content-type [, string encoding [, string disposition]]]]])//''
+
+An attachment yet again, another MIME document.  It's special because it contains any format of data such as a PDF, a Zip file or an executable.  In order for SMTP to proccess such data it gets encoded into a format which looks like plain-text (such as Base64).
+
+When you create an attachment, you have two means of providing the contents of the file; You can read them yourself using something like file_get_contents(), or you can pass a file object to the attachment to allow it to read the file itself.  We'll look at both approaches here and assess where either one is more suitable than the other.
+
+===== Attaching the file contents as a string read externally =====
+<code php>
+$message =& new Swift_Message("My subject");
+
+$file_data = file_get_contents("foo.pdf");
+$attachment =& new Swift_Message_Attachment($file_data, "foo.pdf");
+
+$message->attach($attachment);
+</code>
+
+When we attach the file as a string, the Attachment class does not know its filename so we need to re-confirm it by passing it as a parameter.  If we didn't do this, the Attachment class would give it a name like "file.1" which makes no sense to the recipient.
+
+I hesitate to go into the inner workings of the Attachment class here, but for the sake of clarification I'll touch on how the encoding works.  When you provide a string in this way, the attachment class takes the entire string and base64 encodes that data at the time the message is rendered.  You'll see why I've mentioned that after we look at the next approach to providing an attachment.
+
+===== Attaching the file contents using the Swift_File class =====
+<code php>
+$message =& new Swift_Message("My subject");
+
+$file =& new Swift_File("foo.pdf");
+$attachment =& new Swift_Message_Attachment($file);
+
+$message->attach($attachment);
+</code>
+
+Not much different then?  Well no, not really.  But it does have its advantages in certain scenarios.
+
+Swift_File does not read the entire file contents in one go, it reads the file in small chunks of bytes and therefore allows encoding in smaller portions.  This has two advantages when encoding:
+
+  -  It speeds up the encoding process (I've still not understood exactly "why", but my testing shows it does)
+  -  It saves a //considerable// amount memory
+
+PHP imposes a 8 megabyte memory limit on scripts by default (I believe this has been raised to 16MB in PHP 5.2.0).  This can very easily be exhausted when you use the first method of adding an attachment if you're attaching a file with a size of say, 2MB.  This is because you have a copy of the 2MB in memory, you then have a base64 encoded copy in memory which is 33% larger than the original (2.66MB) plus the overhead of the encoding process and a copy which is cached to reduce CPU cycles.  This soon uses a lot of memory.
+
+===== So which method do you use? =====
+
+By using Swift_File you save memory by not having the file contents in memory, and by not having such a large overhead in encoding.  This is the preferred method for attaching large files.
+
+Additionally, using Swift_File allows you to leave out the filename parameter in Swift_Message_Attachment since it provides the filename itself.
+
+**//So why provide the string method at all?//**
+
+Simple.  Imagine you create an image with GD or a PDF with the R&OS PDF library.  Do you want to have to write the file to the server only to read it and delete it again?  The string method of attaching files is designed to allow dynmically generated content to be attached.
+
+**NOTE:** The content-type defaults to application/octet-stream.  You'll probably want to specify the correct content-type yourself.  In the above example this would be "application/pdf".
+
+[TODO: List MIME types in the documentation]
+
+**TIP:** It's a little known secret that passing an instance of Swift_File to provide the data for the attachment is actually handled by the MIME layer itself.  Swift_Message, Swift_Message_Part and all the other MIME features extend this layer and thus, you can pass an instance of Swift_File to Swift_Message to create the message body from a text or HTML file.  Equally you can pass a file object to Swift_Message_Part to provide the message body.
+
+===== What's the content disposition for? =====
+
+Attachments are by default nested into an email with a tag to indicate they are "attachment" data.  This tag is known as its disposition.  You can alternatively attach a file as "inline" such as the case where you add an embedded image.  It's unlikely you'll ever need to specify the disposition manually, but the feature exists anyway.  Note that you can use setDisposition() if you'd rather not use the constructor.

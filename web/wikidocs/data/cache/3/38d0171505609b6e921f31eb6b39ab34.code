@@ -1,0 +1,2 @@
+<span class="re0">$log</span> <span class="sy0">=&amp;</span> Swift_LogContainer<span class="sy0">::</span><span class="me2">getLog</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$log</span><span class="sy0">-&gt;</span><span class="me1">dump</span><span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span>;

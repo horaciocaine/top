@@ -1,0 +1,40 @@
+
+
+
+<h1><a name="sending_a_html_e-mail" id="sending_a_html_e-mail">Sending a HTML E-Mail</a></h1>
+<div class="level1">
+
+<p>
+
+Sending a <acronym title="HyperText Markup Language">HTML</acronym> email with Swift is just as easy as sending a plain-text email.  You just need to tell the Message that&#039;s it&#039;s in <acronym title="HyperText Markup Language">HTML</acronym> format and everything else is the same as if you were sending plain-text.  <acronym title="HyperText Markup Language">HTML</acronym> has it&#039;s advantages in that it&#039;s easy to create a layout with images and styles, but not all mail clients will read it, and if you&#039;re not careful, you might be increasing the risk of being blocked as spam.  See <a href="/wikidocs/v3/tips_spam" class="wikilink1" title="v3:tips_spam">How to (legitimately) minimize being seen as spam</a>.
+</p>
+
+<p>
+A common pitfall is that people forget you need to use <code>&lt;br /&gt;</code> tags in place of real line breaks in <acronym title="HyperText Markup Language">HTML</acronym> emails.  I have had numerous support requests asking why everything was coming out on one line in the past ;)
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;server.tld&quot;</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Some subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Your message &lt;u&gt;here&lt;/u&gt;&quot;</span><span class="sy0">,</span> <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;recipient@domain.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@home.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message failed to send&quot;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//It's polite to do this when you're finished</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+<p>
+You can alternatively set the text/html type on the message by using the following method:
+</p>
+<pre class="code php"><span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Some subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Message goes here&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setContentType</span><span class="br0">&#40;</span><span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;</pre>
+</div>

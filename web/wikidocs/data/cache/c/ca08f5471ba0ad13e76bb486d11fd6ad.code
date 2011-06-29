@@ -1,0 +1,11 @@
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Multi.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+&nbsp;
+<span class="re0">$multi</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_Multi<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$multi</span><span class="sy0">-&gt;</span><span class="me1">addConnection</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$multi</span><span class="sy0">-&gt;</span><span class="me1">addConnection</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$multi</span><span class="br0">&#41;</span>;

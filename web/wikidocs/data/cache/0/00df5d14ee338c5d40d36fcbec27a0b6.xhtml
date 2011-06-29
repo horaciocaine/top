@@ -1,0 +1,24 @@
+
+
+
+<h2><a name="why_do_i_get_a_permission_denied_error_when_i_use_the_smtp_connection" id="why_do_i_get_a_permission_denied_error_when_i_use_the_smtp_connection">Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?</a></h2>
+<div class="level2">
+
+<p>
+
+This is more than likely die to a firewall rule that has been put in place by your hosting provider.  Though I have not verified this information I have also been informed that PhpSuExec can cuase problems establishing socket connections.
+</p>
+
+<p>
+The error comes from fsockopen(), not from Swift directly.  You should contact your hosting provider for further help.
+</p>
+
+<p>
+The following link may be of interest:
+</p>
+
+<p>
+<a href="http://www.linuxforums.org/forum/redhat-fedora-linux-help/46840-fsockopen-error-13-permission-denied.html" class="urlextern" title="http://www.linuxforums.org/forum/redhat-fedora-linux-help/46840-fsockopen-error-13-permission-denied.html"  rel="nofollow">http://www.linuxforums.org/forum/redhat-fedora-linux-help/46840-fsockopen-error-13-permission-denied.html</a>
+</p>
+
+</div>

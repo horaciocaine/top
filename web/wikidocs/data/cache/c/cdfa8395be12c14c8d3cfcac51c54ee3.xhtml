@@ -1,0 +1,260 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="clear">
+
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#swift_mailer_3" class="toc">Swift Mailer 3</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="#library_api_reference" class="toc">Library API Reference</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#installation" class="toc">Installation</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#tutorials" class="toc">Tutorials</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#the_connections" class="toc">The Connections</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#message_composition" class="toc">Message Composition</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#sending_recipients" class="toc">Sending &amp; Recipients</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#miscellaneous" class="toc">Miscellaneous</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#using_plugins" class="toc">Using Plugins</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#writing_plugins_advanced" class="toc">Writing Plugins (advanced)</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#tips_tricks" class="toc">Tips &amp; Tricks</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#frequently_asked_questions" class="toc">Frequently Asked Questions</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#project_developer_notes_for_version_4" class="toc">Project Developer Notes for Version 4</a></span></div></li></ul>
+</li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h2><a name="swift_mailer_3" id="swift_mailer_3">Swift Mailer 3</a></h2>
+<div class="level2">
+
+<p>
+ Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+</p>
+
+</div>
+<!-- SECTION "Swift Mailer 3" [1-113] -->
+<h3><a name="library_api_reference" id="library_api_reference">Library API Reference</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.swiftmailer.org/api/php4/index.html" class="urlextern" title="http://www.swiftmailer.org/api/php4/index.html"  rel="nofollow">PHP4 API Documentation</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.swiftmailer.org/api/php5/index.html" class="urlextern" title="http://www.swiftmailer.org/api/php5/index.html"  rel="nofollow">PHP5 API Documentation</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Library API Reference" [114-306] -->
+<h3><a name="installation" id="installation">Installation</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/installation/extracting" class="wikilink1" title="v3:installation:extracting">Extracting the archive</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/installation/uploading" class="wikilink1" title="v3:installation:uploading">Uploading to your web server</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/installation/testing" class="wikilink1" title="v3:installation:testing">Running the included tests</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Installation" [307-523] -->
+<h3><a name="tutorials" id="tutorials">Tutorials</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/basic" class="wikilink1" title="v3:tutorials:basic">Sending a basic email</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/html" class="wikilink1" title="v3:tutorials:html">Sending a HTML email</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/multipart" class="wikilink1" title="v3:tutorials:multipart">Sending a multipart email</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/recipients" class="wikilink1" title="v3:tutorials:recipients">Personalizing recipient names</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/exceptions" class="wikilink1" title="v3:tutorials:exceptions">Catching useful errors</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/attachments" class="wikilink1" title="v3:tutorials:attachments">Sending attachments</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/embedding_images" class="wikilink1" title="v3:tutorials:embedding_images">Embedding images in HTML emails</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/multirecipients" class="wikilink1" title="v3:tutorials:multirecipients">Sending to multiple recipients and/or copying to recipients</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/batch" class="wikilink1" title="v3:tutorials:batch">Sending a batch email without revealing all addresses</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tutorials/form2mail" class="wikilink1" title="v3:tutorials:form2mail">Sending an email from a form with Swift</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugin_decorator" class="wikilink1" title="v3:plugin_decorator">How to customize messages for each recipient in a batch</a></div>
+</li>
+<li class="level1"><div class="li"> [TODO: A mass-maling tutorial]</div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Tutorials" [524-1310] -->
+<h3><a name="the_connections" id="the_connections">The Connections</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/connections/smtp" class="wikilink1" title="v3:connections:smtp"> Swift_Connection_SMTP</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/connections/sendmail" class="wikilink1" title="v3:connections:sendmail">Swift_Connection_Sendmail</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/connections/nativemail" class="wikilink1" title="v3:connections:nativemail">Swift_Connection_NativeMail</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/connections/multi" class="wikilink1" title="v3:connections:multi">Swift_Connection_Multi</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/connections/rotator" class="wikilink1" title="v3:connections:rotator">Swift_Connection_Rotator</a></div>
+</li>
+<li class="level1"><div class="li"> <strong><a href="/wikidocs/v3/smtpauth" class="wikilink1" title="v3:smtpauth">SMTP Authentication</a></strong></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "The Connections" [1311-1666] -->
+<h3><a name="message_composition" id="message_composition">Message Composition</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/composition/basics" class="wikilink1" title="v3:composition:basics">Basics of the Swift_Message class</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/composition/multipart" class="wikilink1" title="v3:composition:multipart">Multi-Part messages in more detail</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/composition/attachments" class="wikilink1" title="v3:composition:attachments">Dealing with Attachments</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/composition/headers" class="wikilink1" title="v3:composition:headers">Manipulating MIME headers</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/composition/images_embedded" class="wikilink1" title="v3:composition:images_embedded">Embedding images</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugin_decorator" class="wikilink1" title="v3:plugin_decorator">Customizing Messages</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Message Composition" [1667-2052] -->
+<h3><a name="sending_recipients" id="sending_recipients">Sending &amp; Recipients</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/basics" class="wikilink1" title="v3:sending:basics">Sending a message to a recipient</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/multiple" class="wikilink1" title="v3:sending:multiple">Sending to multiple recipients</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/batch" class="wikilink1" title="v3:sending:batch">Sending a batch email or newsletter</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/iterators" class="wikilink1" title="v3:sending:iterators">Using iterators to provide lists (advanced)</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/failed_recipients" class="wikilink1" title="v3:sending:failed_recipients">Dealing with failed recipients</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/read_receipts" class="wikilink1" title="v3:sending:read_receipts">Requesting a Read-Receipt</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/message_ids" class="wikilink1" title="v3:sending:message_ids">Working with Message-IDs</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/message_priority" class="wikilink1" title="v3:sending:message_priority">Changing the message priority</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/sending/bounce_address" class="wikilink1" title="v3:sending:bounce_address">Setting the Bounce-detect or Return-path address</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Sending & Recipients" [2053-2668] -->
+<h3><a name="miscellaneous" id="miscellaneous">Miscellaneous</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/misc/logging" class="wikilink1" title="v3:misc:logging">Swift's logging system... find out what's going on</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/misc/caching" class="wikilink1" title="v3:misc:caching">A little about Swift's internal caching system</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/misc/php4errors" class="wikilink1" title="v3:misc:php4errors">PHP4 error handling - the exception hackaround</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/misc/commands" class="wikilink1" title="v3:misc:commands">Runing SMTP commands using Swift</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Miscellaneous" [2669-2979] -->
+<h3><a name="using_plugins" id="using_plugins">Using Plugins</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/loading" class="wikilink1" title="v3:plugins:loading">Loading new plugins into Swift</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/manipulating" class="wikilink1" title="v3:plugins:manipulating">Working with plugins after loading</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/antiflood" class="wikilink1" title="v3:plugins:antiflood">Swift_Plugin_AntiFlood</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/decorator" class="wikilink1" title="v3:plugins:decorator">Swift_Plugin_Decorator</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/verbose" class="wikilink1" title="v3:plugins:verbose">Swift_Plugin_VerboseSending</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/throttler" class="wikilink1" title="v3:plugins:throttler">Swift_Plugin_Throttler</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/bandwidthmonitor" class="wikilink1" title="v3:plugins:bandwidthmonitor">Swift_Plugin_BandwidthMonitor</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugins/fileembedder" class="wikilink1" title="v3:plugins:fileembedder">Swift_Plugin_FileEmbedder</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Using Plugins" [2980-3472] -->
+<h3><a name="writing_plugins_advanced" id="writing_plugins_advanced">Writing Plugins (advanced)</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/intro" class="wikilink1" title="v3:plugindev:intro">An introduction to the plugin API</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/connectevent" class="wikilink1" title="v3:plugindev:connectevent">Writing a ConnectListener plugin</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/disconnectevent" class="wikilink1" title="v3:plugindev:disconnectevent">Writing a DisconnectListener plugin</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/beforesendevent" class="wikilink1" title="v3:plugindev:beforesendevent">Writing a BeforeSendListener plugin</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/sendevent" class="wikilink1" title="v3:plugindev:sendevent">Writing a SendListener plugin</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/beforecommandevent" class="wikilink1" title="v3:plugindev:beforecommandevent">Writing a BeforeCommandListener plugin</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/commandevent" class="wikilink1" title="v3:plugindev:commandevent">Writing a CommandListener plugin</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/plugindev/responseevent" class="wikilink1" title="v3:plugindev:responseevent">Writing a ResponseListener plugin</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Writing Plugins (advanced)" [3473-4061] -->
+<h3><a name="tips_tricks" id="tips_tricks">Tips &amp; Tricks</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tips/memory" class="wikilink1" title="v3:tips:memory">Keep memory down to a minimum</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/tips/spam" class="wikilink1" title="v3:tips:spam">Minimize your risk of having your emails blocked as spam</a></div>
+</li>
+<li class="level1"><div class="li"> [TODO: Write more tips. Templating, mass-mailing...]</div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Tips & Tricks" [4062-4274] -->
+<h3><a name="frequently_asked_questions" id="frequently_asked_questions">Frequently Asked Questions</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/faq/parseerror" class="wikilink1" title="v3:faq:parseerror">I get parse errors, or I get a blank page when I include Swift?</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/faq/unittests" class="wikilink1" title="v3:faq:unittests">The unit tests are exiting with a memory exhaustion error. Huh?</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/faq/permissiondenied" class="wikilink1" title="v3:faq:permissiondenied">Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v3/faq/hugebatches" class="wikilink1" title="v3:faq:hugebatches">I've got 54,045,067,032,004 emails to send, how should I do this?</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Frequently Asked Questions" [4275-4689] -->
+<h3><a name="project_developer_notes_for_version_4" id="project_developer_notes_for_version_4">Project Developer Notes for Version 4</a></h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="/wikidocs/v4/notes/goals" class="wikilink1" title="v4:notes:goals">Development Goals for Version 4</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v4/notes/discussion" class="wikilink1" title="v4:notes:discussion">Discussion</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v4/notes/uml" class="wikilink1" title="v4:notes:uml">UML Diagrams</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/wikidocs/v4/notes/ideas" class="wikilink1" title="v4:notes:ideas">Send me your thoughts...</a></div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Project Developer Notes for Version 4" [4690-] -->

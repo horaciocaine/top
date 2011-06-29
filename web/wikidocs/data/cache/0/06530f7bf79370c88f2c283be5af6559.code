@@ -1,0 +1,8 @@
+<pre class="code php"><span class="re0">$smtp</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;some-host.tld&quot;</span>, <span class="nu0">25</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span>-&gt;<span class="me1">setTimeout</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span>;
+&nbsp;
+try <span class="br0">&#123;</span>
+    <span class="re0">$swift</span> = <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span> catch <span class="br0">&#40;</span>Swift_Connection_Exception <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$e</span>-&gt;<span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>

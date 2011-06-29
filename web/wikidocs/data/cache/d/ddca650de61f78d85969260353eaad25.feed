@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/styles/feed.css" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v3:tips</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-03-08T06:37:31+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips/spam?rev=1236058885"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips/start?rev=1236058885"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1236058885</link>
+        <description>If you’re sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips/spam?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>How to (legitimately) minimize being seen as spam</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips/spam?rev=1236058885</link>
+        <description>This is a BIG topic and seemingly one that many people are quite patchy on.  I’ll try to give you enough knowledge to make your own judgements and what you could do to minimize your risk.  You may finish up sad and disappointed by the end of this article though so don’t build your hopes up that there’s a quick-fix solution if you are being blocked as spam.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips/start?rev=1236058885">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Tips &amp; Tricks</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips/start?rev=1236058885</link>
+        <description>Tips &amp; Tricks
+
+	*  Keep memory down to a minimum
+	*  Minimize your risk of having your emails blocked as spam
+	*  [TODO: Write more tips. Templating, mass-mailing...]</description>
+    </item>
+</rdf:RDF>

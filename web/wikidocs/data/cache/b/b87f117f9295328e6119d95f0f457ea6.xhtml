@@ -1,0 +1,25 @@
+
+
+
+<h1><a name="embedding_images" id="embedding_images">Embedding images</a></h1>
+<div class="level1">
+
+<p>
+ When you send a <acronym title="HyperText Markup Language">HTML</acronym> format email you can of course include the <code>&lt;img /&gt;</code> tag.  Commonly, people will do something like: 
+</p>
+<pre class="code">&lt;img src=&quot;http://your-host.tld/images/foo.png&quot; alt=&quot;foo&quot; /&gt;</pre>
+
+<p>
+ However, because this links to a remote image you may find that your recipient does not see the image as the mail client may block remote images by default.  If you&rsquo;d prefer to send the image as part of the email you need to embed it.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$part</span> =&amp; <span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Here's an image &lt;img src=<span class="es0">\&quot;</span>&quot;</span> . <span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Image<span class="br0">&#40;</span>
+    <span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;images/foo.png&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> . <span class="st0">&quot;<span class="es0">\&quot;</span> alt=<span class="es0">\&quot;</span><span class="es0">\&quot;</span> /&gt; embedded&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$part</span><span class="br0">&#41;</span>;</pre>
+<p>
+This does have it&rsquo;s drawbacks however.  Some web-based email services like Yahoo <em>may</em> not display the image, and additonally, you will use extra bandwidth in sending the email. 
+</p>
+
+</div>

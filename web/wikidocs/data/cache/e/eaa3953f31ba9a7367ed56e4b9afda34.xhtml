@@ -1,0 +1,64 @@
+
+
+
+<h1><a name="swift_connection_sendmail" id="swift_connection_sendmail">Swift_Connection_Sendmail</a></h1>
+<div class="level1">
+
+<p>
+
+<strong><em class="u">Synopsis:</em></strong> <em><code>new Swift_Connection_Sendmail([string command])</code></em>
+</p>
+
+<p>
+Sendmail is a binary executable which runs on UNIX-like systems such as Linux and <acronym title="Operating System">OS</acronym> X.  The Swift_Connection_Sendmail class runs this executable in a standalone <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> mode and sends emails through it.  If you have sendmail available to you this will be much faster than using the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection to a remote server, however, it does have one drawback - load balancing.  If you use sendmail then your server is processing Swift instructions, and also sending out email directly.  Using <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> on the other hand spreads the load across two servers - hint hint! ;)
+</p>
+
+<p>
+Although using sendmail will make your script end faster, it&#039;s a common misconception that the email is going to be delivered faster.  Throw away any such misconceptions now.  Sendmail “spools” emails which means that they sit in a queue.  Typically it runs a batch off the queue every 15 minutes.  The rest of the process is <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>, just like what would have happened if you&#039;d used the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection in the first place.
+</p>
+
+<p>
+By default, the Sendmail connection will try to use a binary at /usr/sbin/sendmail with the ”-bs” flags set.  If your sendmail installation is found in another path you will need to inform the connection of its location by passing it as a constructor parameter.
+</p>
+
+<p>
+<strong>NOTE:</strong> When passing a value to the constructor, you must include the ”-bs” flags, or flags which invoke the same behaviour in your version of sendmail.  Support for ”-t” is experimental and is NOT officially supported.
+</p>
+
+<p>
+<strong>NOTE2:</strong> Even though this connection is named Sendmail it does work with other binary MTAs such as qMail, Postfix and Exim provided they can operate in <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> mode.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/EasySwift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Sendmail.php&quot;</span>;
+&nbsp;
+<span class="co1">//Try to connect using /usr/sbin/sendmail -bs</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> EasySwift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Sendmail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="co1">//Try to connect using a custom command</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> EasySwift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Sendmail<span class="br0">&#40;</span><span class="st0">&quot;/sbin/exim4 -bs&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Let the connection try to work out the path itself (PHP4)</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> EasySwift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Sendmail<span class="br0">&#40;</span>SWIFT_AUTO_DETECT<span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> You may also use the constants which Swift provides itself.
+</p>
+
+<p>
+Once a connection is established with sendmail you can use Swift in the same way as you&#039;d use any of the other connections.
+</p>
+
+<p>
+<strong>For the curious:</strong> Feel free to experiment with using this connection with the ”-t” flag set, but be aware that this probably not work very well and is not yet (if ever) officially supported.
+</p>
+
+<p>
+By default, the sendmail connection will time out after 10 seconds if the process takes a long time to respond.  This can be adjusted using the setTimeout() method:
+</p>
+<pre class="code php"><span class="re0">$sendmail</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_Sendmail<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$sendmail</span><span class="sy0">-&gt;</span><span class="me1">setTimeout</span><span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span>; <span class="co1">//3 seconds</span>
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> EasySwift<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;</pre>
+</div>

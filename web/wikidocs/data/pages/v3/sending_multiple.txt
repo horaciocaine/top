@@ -1,0 +1,22 @@
+====== Sending to mulitple recipients ======
+
+Sending to multiple recipients, or including Cc and Bcc recipients is handled by passing an instance of Swift_RecipientList as the recipient parameter in send().
+
+Swift_RecipientList() contains the methods addTo(), addCc() and addBcc() along with removeTo(), removeCc() etc.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My body");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("foo@bar.com", "Foo Bar");
+$recipients->addCc("zip@button.com", "Zip Button");
+
+$swift->send($message, $recipients, new Swift_Address("me@address.tld", "Me"));
+</code>
+
+When you send to multiple ''To:'' recipients in this way, all recipients will see each other's addresses in the ''To:'' field.  If you're sending out a batch email for marketing purposes, or a newsletter then you will want to perform the same process, but replace send() with [[v3:batch|batchSend()]].

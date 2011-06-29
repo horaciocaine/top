@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-01-14T18:14:55+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1211437714&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Caching Strategies - Overview</title>
+        <link>http://swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff</link>
+        <description>Caching Strategies - Overview
+
+
+Generating compliant MIME data (i.e. the email itself) is thirsty work, especially for non-ascii character sets.  Swift Mailer caches data where it can so that when sending the same email to lot of recipients things run a little faster.  There are two caching strategies offered by default in Swift Mailer.  One uses a PHP array to hold cached data.  The other writes data to disk.  It would be easy to extend Swift to support a new cache type if you have a reason to …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1211437714&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-22T08:28:34+01:00</dc:date>
+        <title>Just for Kicks!</title>
+        <link>http://swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1211437714&amp;do=diff</link>
+        <description>Just for Kicks!
+
+
+Swift Mailer Version 4 is very streamlined and aims to make typing the code as pain-free as possible.  One statement is less painful to write than 5 statements right?  I really don't expect anybody to do this, but just to show off how streamlined Swift can be, here's sending a message with an attachment using a single statement.</description>
+    </item>
+</rdf:RDF>

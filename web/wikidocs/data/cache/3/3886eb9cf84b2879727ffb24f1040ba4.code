@@ -1,0 +1,15 @@
+<span class="re0">$swift</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st_h">'localhost'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st_h">'My subject'</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Mime_Part<span class="br0">&#40;</span><span class="st_h">'Reports as requested man!'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st_h">'report-jan-mar-08.pdf'</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st_h">'report-jan-mar-08.pdf'</span><span class="sy0">,</span> <span class="st_h">'application/pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st_h">'report-mar-jun-08.pdf'</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st_h">'report-mar-jun-08.pdf'</span><span class="sy0">,</span> <span class="st_h">'application/pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st_h">'receiver@domain.tld'</span><span class="sy0">,</span> <span class="st_h">'Person'</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st_h">'you@domain.tld'</span><span class="sy0">,</span> <span class="st_h">'You'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;A problem occurred&quot;</span>;
+<span class="br0">&#125;</span>

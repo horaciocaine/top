@@ -1,0 +1,31 @@
+====== Throttler Plugin to restrict the speed ======
+
+If you want to run a batch send that's going to take a long time and don't want to hog the server's resources and/or bandwidth in the process perhaps this plugin is the solution.  Unlike the AntiFlood plugin, which offers a similar solution, the throttler works on the basis of restricting speed, not on the basis of minimizing the number of emails per-connection.
+
+You can set the speed in terms of bytes-per-minute or in terms of messages-per-minute.
+
+**NOTE:** Bytes-per-minute applies only to the outgoing traffic, but the incoming traffic negligible anyway (basic one-line responses)
+
+Using the plugin is simple.  Just create it, set the rate and then load it :)
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/Throttler.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.host.tld"));
+
+$throttler =& new Swift_Plugin_Throttler();
+$throttler->setBytesPerMinute(20000000); //Roughly 20MB
+
+$swift->attachPlugin($throttler, "throttler");
+
+//or maybe you want to set the number of messages per minute?
+
+$throttler->setEmailsPerMinute(30); //Max of 1 email every 2 seconds
+$swift->attachPlugin($throttler, "throttler");
+</code>
+
+This will work no matter what approach you take to send your emails, be it batchSend() or send().

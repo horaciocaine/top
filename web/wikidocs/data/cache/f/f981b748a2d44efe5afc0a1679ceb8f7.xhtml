@@ -1,0 +1,37 @@
+
+
+
+<h1><a name="swift_connection_nativemail" id="swift_connection_nativemail">Swift_Connection_NativeMail</a></h1>
+<div class="level1">
+
+<p>
+ <strong><em class="u">Synopsis:</em></strong> <em><code>new Swift_Connection_NativeMail( void )</code></em>
+</p>
+
+<p>
+This is probably the simplest of all the connections to get to grips with.  It uses <acronym title="Hypertext Preprocessor">PHP</acronym>&lsquo;s <a href="http://www.php.net/manual/en/ref.mail.php" class="urlextern" title="http://www.php.net/manual/en/ref.mail.php"  rel="nofollow">mail() function</a>.  It takes no constructor parameters and requires no configuration.
+</p>
+
+<p>
+<strong>NOTE:</strong> Due to differences between <a href="http://www.php.net/manual/en/ref.mail.php" class="urlextern" title="http://www.php.net/manual/en/ref.mail.php"  rel="nofollow">mail()</a> in Windows and mail() on UNIX-like systems there will be small inconsistencies between running this connection on Windows and Linux/<acronym title="Operating System">OS</acronym> X.  These are perfectly fine.
+</p>
+
+<p>
+<strong>NOTE2:</strong> If you use this connection you will not be able to run custom <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> commands, for obvious reasons ;)
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+As of version 3.2.5, you can specify what the 5th parameter of mail() is structured like by passing it to the constructor.  By default this is &ldquo;-oi -f %s&rdquo; where %s is replaced with the actual sender address using sprintf().  You can specify your own string by doing this for example.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="st0">&quot;-f%s&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> The above will only have any affect if safe_mode is turned <em>off</em> in php.ini. 
+</p>
+
+</div>

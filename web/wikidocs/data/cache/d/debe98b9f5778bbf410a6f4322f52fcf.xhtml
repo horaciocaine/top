@@ -1,0 +1,47 @@
+
+
+
+<h1><a name="sending_a_basic_email" id="sending_a_basic_email">Sending a basic email</a></h1>
+<div class="level1">
+
+<p>
+
+Sending an email with Swift Mailer is a simple process.  You basically create a new instance of Swift with a connection type of your choice, you then create a message and ask Swift to deliver it to one or more recipients.  Perhaps if you&#039;re not familiar with OOP this snippet may look a little daunting but it should hopefully soon become familiar to you and feel quite natural.  EasySwift, packaged inside the library when you download it, provides a wrapper which makes this even simpler - at the expense of flexibility.  Check the EasySwift documentation for more information.
+</p>
+
+<p>
+[TODO: Create EasySwift documentation]
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Load in the files we'll need</span>
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Start Swift</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.your-host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Now check if Swift actually sends it</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;foo@bar.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;me@mydomain.com&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent&quot;</span>;
+<span class="kw1">else</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Failed&quot;</span>;</pre>
+<p>
+This is the most basic way to send an email with Swift without using the EasySwift wrapper (which does make things simpler if you don&#039;t like OOP).  As we progress through these tutorials you&#039;ll see that you may want to do a little more error checking along the way.
+</p>
+
+<p>
+If you&#039;re using PHP5 (recommended, if you can) then there&#039;s no need to worry about using the reference operator.  It used in the example above merely for backwards compatibility with PHP4.
+</p>
+
+<p>
+Swift&#039;s send() method returns an integer which indicates how many recipients were accepted for delivery at the server.  If it returns zero, nothing was sent.
+</p>
+
+<p>
+<strong>NOTE:</strong> Just because your server accepts a message for delivery, it does NOT mean that the recipient is guaranteed to get the message.  The message will pass through various other servers by a similar process on its way to the intended recipient.  Any one of those servers could choose to reject the message.
+
+</p>
+
+</div>

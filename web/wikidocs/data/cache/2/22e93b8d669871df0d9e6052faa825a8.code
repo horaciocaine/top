@@ -1,0 +1,3 @@
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;foo&quot;</span>;</pre>

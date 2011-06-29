@@ -1,0 +1,108 @@
+====== Multi-Part Messages in Detail ======
+
+===== A potentially confusing preamble =====
+
+Hopefully, I won't confuse people here... if I do, just ignore this entire rambling and go straight to the bottom of the page... It's not important, it's just useful to think about.
+
+If we imagine representing an email as XML we'd have a document which looks something like this:
+
+<code xml>
+<email>
+    <headers>
+        <header name="Content-Type" value="text/plain" />
+        <header name="Subject" value="My subject" />
+    </headers>
+    <body>
+        This is my message body
+    </body>
+</email>
+</code>
+
+We have the email, a block of headers (in which there are many individual headers) and a body containing the bit you see.
+
+Now, following the same concept, we can replace what's in the ''<body>'' with another document, which will be parsed and displayed like a normal email.
+
+<code xml>
+<email>
+    <headers>
+        <header name="Content-Type" value="multipart" />
+        <header name="Subject" value="My subject" />
+    </headers>
+    <body>
+        <part>
+            <headers>
+                <header name="Content-Type" value="text/plain" />
+            </headers>
+            <body>
+                This is a plain text body
+            </body>
+        </part>
+    </body>
+</email>
+</code>
+
+Notice that ''<part>'' is structured in just the same way as ''<email>'' ?  I mean, it's got ''<headers>'' and ''<body>''.
+
+We could place several different ''<part>''s in the document and the mail client would not display them all, it would choose the most appropriate one.
+
+<code xml>
+<email>
+    <headers>
+        <header name="Content-Type" value="multipart" />
+        <header name="Subject" value="My subject" />
+    </headers>
+    <body>
+        <part>
+            <headers>
+                <header name="Content-Type" value="text/plain" />
+            </headers>
+            <body>
+                This is a plain text body
+            </body>
+        </part>
+        <part>
+            <headers>
+                <header name="Content-Type" value="text/html" />
+            </headers>
+            <body>
+                This is a <strong>HTML</strong> body
+            </body>
+        </part>
+    </body>
+</email>
+</code>
+
+===== Multipart and MIME in practice =====
+
+Now let's jump back to the real world of email :)
+
+Apart from the XML representation above, this is in actual fact **exactly** how multipart emails are formed.  Each MIME part is like a minature email in itself.  It has a set of headers, but those headers contain only structural information (no Subject or recipient details etc).  Because we can nest MIME parts inside the body of an email, why could we not nest MIME parts inside the body of another MIME part?  We can!  And in fact this is done in certain scenarios such as when embedded images are used.  It does get quite complicated once you start embeeding images, sending multiple parts and sending attachments all in the same email so luckily Swift does all the hard work for you! :)
+
+It's dead simple, forget the Swift class and the connections for a moment and just think about the email itself... All you need to do is work with the Swift_Message class and it's attach() method.  Use the Swift_Message_Part class to add MIME parts.  Swift_Message_Attachment, Swift_Message_EmbeddedFile and Swift_Message_Image are all classes which can be passed into attach().  attach() then works out where the part belongs in the overall email.
+
+<code php>
+$message =& new Swift_Message("My subject");
+$message->attach(new Swift_Message_Part("My plain part"));
+$message->attach(new Swift_Message_Part("My HTML part", "text/html"));
+$message->attach(new Swift_Message_Attachment(file_get_contents("foo.pdf")));
+</code>
+
+Easy! Right?
+
+Anything which extends Swift_Message_Mime (Swift_Message, Swift_Message_Part, Swift_Message_Attachment, Swift_Message_EmbeddedFile, Swift_Message_Image) contains a ''headers'' property.  This is an instance of [[v3:Swift_Message_Headers|Swift_Message_Headers]] and allows you to manipulate the internal headers of all MIME parts, attachments and the email itself of course.
+
+Each part contains an internal caching mechanism so that once Swift has asked the message to render itself it does not need to re-render itself (unless changes have been made subsequently) when asked again.  This mechanism is quite intelligent and will only re-render the smallest unit of the email which it needs to.
+
+If you want to dump the rendered version of the email after adding all its parts and attachments etc, you simply call it's build() method <del>which returns a string containing the message source as it will be sent over SMTP</del> which returns an instance of Swift_Cache_OutputStream (a memory saving technique).  You can then use readFull() to display it in your browser.
+
+<code php>
+$message =& new Swift_Message("My subject");
+$message->attach(new Swift_Message_Part("My plain part"));
+$message->attach(new Swift_Message_Part("My HTML part", "text/html"));
+$message->attach(new Swift_Message_Attachment(file_get_contents("foo.pdf")));
+
+$stream =& $message->build();
+echo $stream->readFull(); //Dumps the email contents
+</code>
+
+You should refer to the complete API in the docs folder of your Swift installation for all the methods available to you.  

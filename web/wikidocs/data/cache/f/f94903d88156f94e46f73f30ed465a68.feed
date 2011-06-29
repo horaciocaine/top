@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs /</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2011-06-04T11:04:47+02:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4?rev=1211435465&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-04-12T02:07:16+02:00</dc:date>
+        <title>Swift Mailer</title>
+        <link>http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff</link>
+        <description>Swift Mailer
+
+
+Version 3 is now deprecated.  Unless you absolutely cannot upgrade yet, please download version 4 and use the version 4 documentation instead.
+
+Download Version 4: &lt;http://swiftmailer.org/download&gt; 
+
+Documentation for Version 4: &lt;http://swiftmailer.org/docs&gt;</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4?rev=1211435465&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-22T07:51:05+02:00</dc:date>
+        <title>Swift Mailer Version 4</title>
+        <link>http://swiftmailer.org/wikidocs/v4?rev=1211435465&amp;do=diff</link>
+        <description>Swift Mailer Version 4
+
+General Information
+
+	*  What's changed in version 4?
+	*  Server environment requirements
+	*  Two editions, One project
+
+Overview of the project structure
+
+	*  Dependency Injection
+	*  Required files
+	*  Configurable preferences</description>
+    </item>
+</rdf:RDF>

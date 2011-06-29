@@ -1,0 +1,8 @@
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Authenticator/LOGIN.php&quot;</span>;
+&nbsp;
+<span class="re0">$conn</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn</span>-&gt;<span class="me1">attachAuthenticator</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Authenticator_LOGIN<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span> = <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$conn</span><span class="br0">&#41;</span>;</pre>

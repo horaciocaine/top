@@ -1,0 +1,21 @@
+====== Dealing with failed recipients ======
+
+SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in ''$swift->log->getFailedRecipients()'' as an array.
+
+<code php>
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+$swift->log->enable();
+
+$message =& new Swift_Message("My subject", "My body");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("foo@bar");
+$recipients->addTo("zip@button.tld", "Zip");
+
+$num_sent = $swift->send($message, $recipients, "me@my-domain.com");
+
+echo "Message sent to $num_sent of 2 recipients";
+
+echo "Failed recipients:<br />";
+echo implode(" ,", $swift->log->getFailedRecipients());
+</code>

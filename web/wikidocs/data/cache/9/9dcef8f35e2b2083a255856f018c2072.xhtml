@@ -1,0 +1,43 @@
+
+
+
+<h1><a name="catching_useful_errors" id="catching_useful_errors">Catching useful errors</a></h1>
+<div class="level1">
+
+</div>
+<!-- SECTION "Catching useful errors" [1-38] -->
+<h2><a name="this_page_applies_to_php5_only" id="this_page_applies_to_php5_only">THIS PAGE APPLIES TO PHP5 ONLY</a></h2>
+<div class="level2">
+
+<p>
+ Swift Mailer version 3 throws exceptions in PHP5.  These exceptions should ideally be caught so that you can recover from them if required.  It&rsquo;s not compulsory to catch exceptions but it is good practice and it does help.  The <acronym title="Application Programming Interface">API</acronym> documentation packaged in the &ldquo;docs&rdquo; folder indicates where exceptions are thrown.  The only time this should happen in practise, is if your mail server is not configured correctly or is unavailable, or if you try doing something illegal with the message object.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Load in the files we'll need</span>
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+try <span class="br0">&#123;</span>
+  <span class="co1">//Start Swift</span>
+  <span class="re0">$swift</span> = <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.your-host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+  <span class="co1">//Create the message</span>
+  <span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+  <span class="co1">//Now check if Swift actually sends it</span>
+  <span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="st0">&quot;foo@bar.tld&quot;</span>, <span class="st0">&quot;me@mydomain.com&quot;</span><span class="br0">&#41;</span>;
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent&quot;</span>;
+<span class="br0">&#125;</span> catch <span class="br0">&#40;</span>Swift_ConnectionException <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;There was a problem communicating with SMTP: &quot;</span> . <span class="re0">$e</span>-&gt;<span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span> catch <span class="br0">&#40;</span>Swift_Message_MimeException <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;There was an unexpected problem building the email:&quot;</span> . <span class="re0">$e</span>-&gt;<span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;</pre>
+<p>
+<strong>NOTE:</strong> In versions earlier than 3.3 Swift_ConnectionException was called Swift_Connection_Exception (extra underscore).
+</p>
+
+</div>
+<!-- SECTION "THIS PAGE APPLIES TO PHP5 ONLY" [39-] -->

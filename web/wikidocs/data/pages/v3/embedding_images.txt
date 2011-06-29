@@ -1,0 +1,75 @@
+====== Embedding images in HTML E-mails ======
+
+Once you have learned how to add attachments to an email with Swift, and how to send HTML emails with Swift, this will probably make sense.  Using HTML it's easy to add an ''<img .. />'' tag to the message and link it to a remote image on your web server.  However, you can attach the image and link to the attachment directly.  This has it benefits, as well as its drawbacks (bandwidth!).  Many mail clients now block remote images by default, so embedding images could mean that your image is more likely to be received.  However, not all mail clients actually support embedded imaging so your image may just appear as an attachment.
+
+Don't try to replace entire e-mails with images.  You'll risk being blocked as spam and you'll also be hindering accessibility to the intended recipient.
+
+To embed an image, it's a bit of a combination of the techniques you've seen for creating HTML emails and adding attachments.
+
+You need to know the path to the image on the disk of the server, not the path as it would be accessed over HTTP.
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$smtp =& new Swift_Connection_SMTP("your.smtp.tld", 25);
+
+$swift =& new Swift($smtp);
+
+$message =& new Swift_Message("Your subject");
+$message->attach(new Swift_Message_Part("This email contains this image:<br />
+<img src=\"" . $message->attach(new Swift_Message_Image(new Swift_File("/path/to/image.jpg"))) . "\" /><br />
+which is embedded", "text/html"));
+
+if ($swift->send($message, new Swift_Address("joe@bloggs.com", "Joe"), new Swift_Address("system@domain.tld", "System")))
+{
+    echo "Message sent";
+}
+else
+{
+    echo "Sending failed";
+}
+
+//recommended to do this
+$swift->disconnect();
+</code>
+
+If that looks all bunched up, it's basically the same as doing:
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$smtp =& new Swift_Connection_SMTP("your.smtp.tld", 25);
+
+$swift =& new Swift($smtp);
+
+$message =& new Swift_Message("Your subject");
+
+$img =& new Swift_Message_Image(new Swift_File("/path/to/image.jpg"));
+
+$src = $message->attach($img);
+
+$body =& new Swift_Message_Part("This email contains this image:<br />
+<img src=\"" . $src . "\" /><br />
+which is embedded", "text/html");
+
+
+$message->attach($body);
+
+if ($swift->send($message, new Swift_Address("joe@bloggs.com", "Joe"), new Swift_Address("system@domain.tld", "System")))
+{
+    echo "Message sent";
+}
+else
+{
+    echo "Sending failed";
+}
+
+//recommended to do this
+$swift->disconnect();
+</code>

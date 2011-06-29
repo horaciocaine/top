@@ -1,0 +1,2 @@
+<span class="re0">$bandwidth</span><span class="sy0">-&gt;</span><span class="me1">setBytesIn</span><span class="br0">&#40;</span><span class="nu19">0</span><span class="br0">&#41;</span>;
+<span class="re0">$bandwidth</span><span class="sy0">-&gt;</span><span class="me1">setBytesOut</span><span class="br0">&#40;</span><span class="nu19">0</span><span class="br0">&#41;</span>;

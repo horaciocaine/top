@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-28T14:20:15+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/php4errors?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc_php4errors?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_connection_smtp?rev=1171479790&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/exceptions?rev=1171479176&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/notes/goals?rev=1193917869&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/connections/smtp?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/exceptions?rev=1187127371&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/php4errors?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>PHP4 error handling - The alternative to exceptions</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/php4errors?rev=1236058883&amp;do=diff</link>
+        <description>In PHP5, Swift throws exceptions in places, which is fairly standard practise.  Exceptions of course, can be caught and dealt with.  PHP4 however, does not support exceptions (the use of the try/catch construct).  I could have triggered errors everywhere blindly and had you use set_error_handler() from PHP, but that's too intrusive and can easily conflict with other things happening in your application.  Instead, Swift dispatches error object, much like an exception from PHP5, to an error manage…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc_php4errors?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>PHP4 error handling - The alternative to exceptions</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc_php4errors?rev=1236058881&amp;do=diff</link>
+        <description>In PHP5, Swift throws exceptions in places, which is fairly standard practise.  Exceptions of course, can be caught and dealt with.  PHP4 however, does not support exceptions (the use of the try/catch construct).  I could have triggered errors everywhere blindly and had you use set_error_handler() from PHP, but that's too intrusive and can easily conflict with other things happening in your application.  Instead, Swift dispatches error object, much like an exception from PHP5, to an error manage…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_connection_smtp?rev=1171479790&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:03:10+00:00</dc:date>
+        <title>Swift_Connection_SMTP</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_connection_smtp?rev=1171479790&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_SMTP(string remote_host[, int remote_port [, int encryption_level]])
+
+Getting connected to SMTP
+
+
+The SMTP connection is probably the most heavily used connection, and almost certainly the most consistent and portable.  This connection opens up a socket with TCP and speaks “SMTP” to a remote SMTP server.  You need to have a SMTP server which is capable of relaying mail from the domain of your web server for this to work.  Some hosts provide a SMTP server for you as…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-04-12T00:07:16+00:00</dc:date>
+        <title>Swift Mailer</title>
+        <link>http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff</link>
+        <description>Swift Mailer
+
+
+Version 3 is now deprecated.  Unless you absolutely cannot upgrade yet, please download version 4 and use the version 4 documentation instead.
+
+Download Version 4: &lt;http://swiftmailer.org/download&gt; 
+
+Documentation for Version 4: &lt;http://swiftmailer.org/docs&gt;</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-14T21:34:50+00:00</dc:date>
+        <title>Miscellaneous</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff</link>
+        <description>Miscellaneous
+
+	*  Swift's logging system... find out what's going on
+	*  A little about Swift's internal caching system
+	*  PHP4 error handling - the exception hackaround
+	*  Runing SMTP commands using Swift</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/exceptions?rev=1171479176&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T18:52:56+00:00</dc:date>
+        <title>Catching useful errors</title>
+        <link>http://swiftmailer.org/wikidocs/v3/exceptions?rev=1171479176&amp;do=diff</link>
+        <description>THIS PAGE APPLIES TO PHP5 ONLY
+
+
+Swift Mailer version 3 throws exceptions in PHP5.  These exceptions should ideally be caught so that you can recover from them if required.  It's not compulsory to catch exceptions but it is good practice and it does help.  The API documentation packaged in the “docs” folder indicates where exceptions are thrown.  The only time this should happen in practise, is if your mail server is not configured correctly or is unavailable, or if you try doing something illeg…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/notes/goals?rev=1193917869&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-11-01T11:51:09+00:00</dc:date>
+        <title>Development Goals</title>
+        <link>http://swiftmailer.org/wikidocs/v4/notes/goals?rev=1193917869&amp;do=diff</link>
+        <description>Version 4 will be the first release of Swift Mailer which will be developed for PHP 5.2 and later.  The development of version 4 will be taken at a slow and steady pace (no release date until at least February 5th 2008) with an extreme amount of focus put on cutting down coupling between classes in the library as far as possible.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:22+00:00</dc:date>
+        <title>Manipulating MIME Headers</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff</link>
+        <description>Setting and getting headers
+
+
+Each component of a message contains a headers property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-09-21T07:54:30+00:00</dc:date>
+        <title>Swift Mailer 3</title>
+        <link>http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff</link>
+        <description>Swift Mailer 3
+
+
+Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+
+Library API Reference
+
+	*  PHP4 API Documentation
+	*  PHP5 API Documentation
+
+Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/connections/smtp?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift_Connection_SMTP</title>
+        <link>http://swiftmailer.org/wikidocs/v3/connections/smtp?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_SMTP(string remote_host[, int remote_port [, int encryption_level]])
+
+Getting connected to SMTP
+
+
+The SMTP connection is probably the most heavily used connection, and almost certainly the most consistent and portable.  This connection opens up a socket with TCP and speaks “SMTP” to a remote SMTP server.  You need to have a SMTP server which is capable of relaying mail from the domain of your web server for this to work.  Some hosts provide a SMTP server for you as…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/exceptions?rev=1187127371&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-14T21:36:11+00:00</dc:date>
+        <title>Catching useful errors</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/exceptions?rev=1187127371&amp;do=diff</link>
+        <description>THIS PAGE APPLIES TO PHP5 ONLY
+
+
+Swift Mailer version 3 throws exceptions in PHP5.  These exceptions should ideally be caught so that you can recover from them if required.  It's not compulsory to catch exceptions but it is good practice and it does help.  The API documentation packaged in the “docs” folder indicates where exceptions are thrown.  The only time this should happen in practise, is if your mail server is not configured correctly or is unavailable, or if you try doing something illeg…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:21:04+00:00</dc:date>
+        <title>Manipulating MIME Headers</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff</link>
+        <description>Setting and getting headers
+
+
+Each component of a message contains a headers property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.</description>
+    </item>
+</rdf:RDF>

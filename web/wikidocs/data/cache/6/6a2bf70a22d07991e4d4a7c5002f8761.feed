@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/styles/feed.css" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2008-12-05T18:00:18+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/caching/disk?rev=1211620786&amp;do=diff1211620786"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/caching/array?rev=1211620514&amp;do=diff1211620514"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1211619984&amp;do=diff1211619984"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/start?rev=1211596497&amp;do=diff1211596497"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff1211589594"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff1211530970"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff1211530884"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/caching/disk?rev=1211620786&amp;do=diff1211620786">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T09:19:46+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>The Disk Cache - created</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/caching/disk?rev=1211620786&amp;do=diff1211620786</link>
+        <description>The Disk Cache
+
+ The Disk cache is enabled by default, provided sys_get_temp_dir() exists.  Using disk caching provides speed improvements when sending large attachments and it provides a consistent level of memory use (roughly 1.68 MiB).
+
+To explicitly use disk caching place these lines anywhere before you send any messages.  There is no need to use this code in the same script multiple times; only call it once.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/caching/array?rev=1211620514&amp;do=diff1211620514">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T09:15:14+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>The Array Cache - created</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/caching/array?rev=1211620514&amp;do=diff1211620514</link>
+        <description>The Array Cache
+
+ It’s not advisable to use array caching if a writable directory exists on the filesystem (even /tmp).  However, the presence of a directory which PHP can write to is often not available.  Using the array cache will work on all systems without any specific cache settings.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1211619984&amp;do=diff1211619984">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T09:06:24+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>Caching Strategies - Overview - created</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/caching/overview?rev=1211619984&amp;do=diff1211619984</link>
+        <description>Caching Strategies - Overview
+
+ Generating compliant MIME data (i.e. the email itself) is thirsty work, especially for non-ascii character sets.  Swift Mailer caches data where it can so that when sending the same email to lot of recipients things run a little faster.  There are two caching strategies offered by default in Swift Mailer.  One uses a PHP array to hold cached data.  The other writes data to disk.  It would be easy to extend Swift to support a new cache type if you have a reason to …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/start?rev=1211596497&amp;do=diff1211596497">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T02:34:57+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>Swift Mailer Version 4</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/start?rev=1211596497&amp;do=diff1211596497</link>
+        <description>Swift Mailer Version 4
+
+ NOTE this documentation is a work in progress.
+
+General Information
+
+	*  What's changed in version 4?
+	*  Server environment requirements
+	*  Two editions, One project
+
+Overview of the project structure
+
+	*  Dependency Injection
+	*  Required files
+	*  Configurable preferences</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff1211589594">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T00:39:54+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>Sending a Multipart Email</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff1211589594</link>
+        <description>Sending a Multipart Email
+
+ First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, add some parts to it and send it with the Mailer.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff1211530970">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:22:50+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff1211530970</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+ The Sendmail Transport (named Swift_SendmailTransport) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are “/sbin/sendmail” or “/usr/sbin/sendmail”.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff1211530884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:21:24+00:00</dc:date>
+        <dc:creator>Chris Corbyn</dc:creator>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/transports/smtp?rev=1211530884&amp;do=diff1211530884</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+ The SMTP Transport class (named Swift_SmtpTransport) is used when you want to send messages using an SMTP server.  Before you decide to use this Transport method you first need to know the credentials to connect to an SMTP server from your web host.  Most web hosts provide an SMTP server to use, others do not.  Some SMTP servers will require the use of a username and password before you can send.</description>
+    </item>
+</rdf:RDF>

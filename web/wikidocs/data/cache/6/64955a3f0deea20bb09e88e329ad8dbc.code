@@ -1,0 +1,17 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Throttler.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$throttler</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Plugin_Throttler<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$throttler</span><span class="sy0">-&gt;</span><span class="me1">setBytesPerMinute</span><span class="br0">&#40;</span><span class="nu0">20000000</span><span class="br0">&#41;</span>; <span class="co1">//Roughly 20MB</span>
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="re0">$throttler</span><span class="sy0">,</span> <span class="st0">&quot;throttler&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//or maybe you want to set the number of messages per minute?</span>
+&nbsp;
+<span class="re0">$throttler</span><span class="sy0">-&gt;</span><span class="me1">setEmailsPerMinute</span><span class="br0">&#40;</span><span class="nu0">30</span><span class="br0">&#41;</span>; <span class="co1">//Max of 1 email every 2 seconds</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="re0">$throttler</span><span class="sy0">,</span> <span class="st0">&quot;throttler&quot;</span><span class="br0">&#41;</span>;

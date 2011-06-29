@@ -1,0 +1,25 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$smtp</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your.smtp.tld&quot;</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Your subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;This email contains this image:&lt;br /&gt;
+&lt;img src=<span class="es0">\&quot;</span>&quot;</span> <span class="sy0">.</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Image<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;/path/to/image.jpg&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="st0">&quot;<span class="es0">\&quot;</span> /&gt;&lt;br /&gt;
+which is embedded&quot;</span><span class="sy0">,</span> <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Joe&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;system@domain.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;System&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sending failed&quot;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//recommended to do this</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;

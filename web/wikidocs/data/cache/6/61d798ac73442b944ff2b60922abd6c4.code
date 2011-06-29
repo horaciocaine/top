@@ -1,0 +1,7 @@
+<span class="re0">$iterator</span> <span class="sy0">=&amp;</span> <span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">getIterator</span><span class="br0">&#40;</span><span class="st0">&quot;to&quot;</span><span class="br0">&#41;</span>; <span class="co1">//Or cc, bcc</span>
+<span class="kw1">while</span> <span class="br0">&#40;</span><span class="re0">$iterator</span><span class="sy0">-&gt;</span><span class="me1">hasNext</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="re0">$iterator</span><span class="sy0">-&gt;</span><span class="me1">next</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span class="re0">$address</span> <span class="sy0">=&amp;</span> <span class="re0">$iterator</span><span class="sy0">-&gt;</span><span class="me1">getValue</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+  <span class="co1">//and so on...</span>
+<span class="br0">&#125;</span>

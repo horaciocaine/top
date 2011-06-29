@@ -1,0 +1,16 @@
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'localhost'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My subject'</span><span class="sy0">,</span> <span class="st_h">'Reports as requested man!'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'you@domain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'You'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'receiver@domain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Person'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment<span class="sy0">::</span><span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st_h">'report-jan-mar-08.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment<span class="sy0">::</span><span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st_h">'report-mar-jun-08.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Message sent&quot;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+  <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;A problem occurred&quot;</span>;
+<span class="br0">&#125;</span>

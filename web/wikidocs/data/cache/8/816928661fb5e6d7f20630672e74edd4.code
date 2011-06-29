@@ -1,0 +1,4 @@
+<span class="re0">$sendmail</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_Sendmail<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$sendmail</span><span class="sy0">-&gt;</span><span class="me1">setTimeout</span><span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span>; <span class="co1">//3 seconds</span>
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> EasySwift<span class="br0">&#40;</span><span class="re0">$sendmail</span><span class="br0">&#41;</span>;

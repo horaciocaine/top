@@ -1,0 +1,2 @@
+<span class="co1">//Throw an error if 250 is not the response code</span>
+<span class="re0">$response</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">command</span><span class="br0">&#40;</span><span class="st0">&quot;HELO&quot;</span><span class="sy0">,</span> <span class="nu0">250</span><span class="br0">&#41;</span>;

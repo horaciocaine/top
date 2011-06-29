@@ -1,0 +1,189 @@
+
+
+
+<h2><a name="smtp_transport_swift_smtptransport" id="smtp_transport_swift_smtptransport">SMTP Transport (Swift_SmtpTransport)</a></h2>
+<div class="level2">
+
+</div>
+<!-- SECTION "SMTP Transport (Swift_SmtpTransport)" [1-49] -->
+<h3><a name="what_is_it_for" id="what_is_it_for">What is it for?</a></h3>
+<div class="level3">
+
+<p>
+
+The <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> Transport class (named <code>Swift_SmtpTransport</code>) is used when you want to send messages using an <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server.  Before you decide to use this Transport method you first need to know the credentials to connect to an <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server from your web host.  Most web hosts provide an <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server to use, others do not.  Some <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> servers will require the use of a username and password before you can send.
+</p>
+
+</div>
+<!-- SECTION "What is it for?" [50-481] -->
+<h3><a name="how_do_you_use_it" id="how_do_you_use_it">How do you use it?</a></h3>
+<div class="level3">
+
+<p>
+
+The <code>Swift_SmtpTransport</code> class take several (optional) parameters in its constructor.
+</p>
+
+<p>
+<strong>Synopsis</strong>
+
+</p>
+<pre class="code">
+new Swift_SmtpTransport( [ $host [, $port [, $security ] ] ] )
+
+// or
+
+Swift_SmtpTransport::newInstance( [ $host [, $port [, $security ] ] ] )
+</pre>
+
+<p>
+<code>$host</code> is the domain name of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server.  This is typically mail.isp.tld or smtp.isp.tld where “isp.tld” is your <acronym title="Internet Service Provider">ISP</acronym>&#039;s domain.  For example, BigPond here in Australia use the domain “bigpond.com.au” and their <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server is “mail.bigpond.com.au”.  The default value for <code>$host</code> is “localhost” and will work on some web hosts.
+</p>
+
+<p>
+<code>$port</code> is the port number you connect to the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server on.  The standard <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> port is 25.  <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> servers using <acronym title="Secure Sockets Layer">SSL</acronym> encryption will often use port 587 or port 465.  Swift will default to port 25 if no port number is specified.
+</p>
+
+<p>
+<code>$security</code> is an encryption setting.  If your <acronym title="Internet Service Provider">ISP</acronym> requires the use of <acronym title="Secure Sockets Layer">SSL</acronym> then you should specify “ssl” here.  If they require TLS then you should specify “tls” here.  Otherwise, a value of “none” indicates that no security layer is used.  Swift defaults to “none”.
+</p>
+
+</div>
+<!-- SECTION "How do you use it?" [482-1611] -->
+<h3><a name="if_your_smtp_server_requires_a_username_and_password" id="if_your_smtp_server_requires_a_username_and_password">If your SMTP server requires a username and password</a></h3>
+<div class="level3">
+
+<p>
+
+If your <acronym title="Internet Service Provider">ISP</acronym> have told you that you need to authenticate with the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server then you will need to tell Swift what username and password to use.  <code>$smtp→setUsername(“your username”)</code> and <code>$smtp→setPassword(“your password”)</code> are used for this.  You need to create <code>$smtp</code> into a variable first.  See the last few examples below…
+</p>
+
+</div>
+<!-- SECTION "If your SMTP server requires a username and password" [1612-2014] -->
+<h3><a name="examples" id="examples">Examples</a></h3>
+<div class="level3">
+
+</div>
+
+<h4><a name="instantiating_swift_smtptransport_for_a_known_smtp_server" id="instantiating_swift_smtptransport_for_a_known_smtp_server">Instantiating Swift_SmtpTransport for a known SMTP server</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$smtp</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'mail.bigpond.com.au'</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="using_newinstance_to_create_smtp" id="using_newinstance_to_create_smtp">Using newInstance() to create $smtp</a></h4>
+<div class="level4">
+<pre class="code php"><span class="co1">//You can use the newInstance() method instead of declaring &quot;new&quot;</span>
+<span class="re0">$smtp</span> <span class="sy0">=</span> Swift_SmtpTransport<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'mail.bigpond.com.au'</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="nesting_the_instantiation_of_swift_smtptransport_inside_the_constructor_of_the_mailer" id="nesting_the_instantiation_of_swift_smtptransport_inside_the_constructor_of_the_mailer">Nesting the instantiation of Swift_SmtpTransport inside the constructor of the Mailer</a></h4>
+<div class="level4">
+<pre class="code php"><span class="co1">//You can nest the instantiation of the SmtpTransport instead of creating a $smtp variable</span>
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'smtp.mycompany.com'</span><span class="sy0">,</span> <span class="nu0">587</span><span class="sy0">,</span> <span class="st_h">'ssl'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//You can set fields on $message fluidly everywhere in Swift</span>
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="using_the_default_settings_localhost_on_port_25" id="using_the_default_settings_localhost_on_port_25">Using the default settings (localhost on port 25)</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>; <span class="co1">//Default: localhost port 25</span>
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="specifying_a_username_and_password" id="specifying_a_username_and_password">Specifying a username and password</a></h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$smtp</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'smtp.mycompany.com'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Specify a username and password</span>
+<span class="re0">$smtp</span><span class="sy0">-&gt;</span><span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st_h">'n00bie'</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span><span class="sy0">-&gt;</span><span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st_h">'p4s5w0rd'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="specifying_a_username_and_password_using_the_fluid_interface" id="specifying_a_username_and_password_using_the_fluid_interface">Specifying a username and password using the fluid interface</a></h4>
+<div class="level4">
+<pre class="code php"><span class="co1">//Setting a username and password fluidly</span>
+<span class="re0">$smtp</span> <span class="sy0">=</span> Swift_SmtpTransport<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'smtp.mycompany.com'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st_h">'n00bie'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st_h">'p4s5w0rd'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+<h4><a name="nesting_the_instantiation_of_swift_smtptransport_in_the_constructor_of_the_mailer_using_a_username_and_password" id="nesting_the_instantiation_of_swift_smtptransport_in_the_constructor_of_the_mailer_using_a_username_and_password">Nesting the instantiation of Swift_SmtpTransport in the constructor of the Mailer using a username and password</a></h4>
+<div class="level4">
+<pre class="code php"><span class="co1">//When using the fluid interface you can nest an authenticated SmtpTransport</span>
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span>
+  Swift_SmtpTransport<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'smtp.mycompany.com'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st_h">'n00bie'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st_h">'p4s5w0rd'</span><span class="br0">&#41;</span>
+  <span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Examples" [2015-5515] -->
+<h3><a name="troubleshooting" id="troubleshooting">Troubleshooting</a></h3>
+<div class="level3">
+<table class="inline">
+	<tr class="row0">
+		<th class="col0"> Problem </th><th class="col1"> Possible solutions </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0 leftalign"> Receiving “relaying denied” error messages  </td><td class="col1"> <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server is not allowing emails to be sent to recipients in other domains.  Perhaps it requires a username and password. </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> Receiving “connection refused” error messages  </td><td class="col1"> Swift cannot connect to the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server because it is being blocked.  Perhaps a firewall rule is preventing the connection. </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> Receiving errors “must issue STARTTLS first”  </td><td class="col1"> The <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server requires a special form of elevated encryption during the session.  Swift mailer Standard Edition will not handle this, but Swift Mailer Enterprise Edition will work </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> Sending takes a long time  </td><td class="col1"> This is beyond Swift&#039;s control.  The <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server is responding slowly because it&#039;s under high-load, or network latency is slowing things down.  Consider setting up an asynchronous sending system (i.e. write mail to a database and send it in the background using cron) </td>
+	</tr>
+</table>
+
+</div>
+<!-- SECTION "Troubleshooting" [5516-] -->

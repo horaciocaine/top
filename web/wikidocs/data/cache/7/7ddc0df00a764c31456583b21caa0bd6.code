@@ -1,0 +1,28 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co4">/** THIS CODE REQUIRES Swift 3.1 OR HIGHER **/</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Decorator.php&quot;</span>;
+&nbsp;
+<span class="co1">//Instantiate Swift as usual</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your-server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message, using some unique variables to search for</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Hey {name}, what's up?&quot;</span><span class="sy0">,</span> <span class="st0">&quot;It's a bit {weather} today wouldn't you say?&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Specify the list of replacements as a 2-d array</span>
+<span class="re0">$replacements</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">&quot;joe@bloggs.com&quot;</span> <span class="sy0">=&gt;</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;{name}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Joe&quot;</span><span class="sy0">,</span> <span class="st0">&quot;{weather}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;chilly&quot;</span><span class="br0">&#41;</span><span class="sy0">,</span>
+    <span class="st0">&quot;fred@perry.com&quot;</span> <span class="sy0">=&gt;</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;{name}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Fred&quot;</span><span class="sy0">,</span> <span class="st0">&quot;{weather}&quot;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;muggy&quot;</span><span class="br0">&#41;</span>
+<span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Load the plugin with these replacements</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Decorator<span class="br0">&#40;</span><span class="re0">$replacements</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;decorator&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send messages</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;fred@perry.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;joe@bloggs.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;

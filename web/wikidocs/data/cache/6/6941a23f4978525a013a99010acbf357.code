@@ -1,0 +1,9 @@
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span> <span class="sy0">...</span> <span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//You change the cache class using this call...</span>
+Swift_CacheFactory<span class="sy0">::</span><span class="me2">setClassName</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Cache_Disk&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Then you set up the disk cache to write to a writable folder...</span>
+Swift_Cache_Disk<span class="sy0">::</span><span class="me2">setSavePath</span><span class="br0">&#40;</span><span class="st0">&quot;/home/username/tmp&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//then work as normal...</span>

@@ -1,0 +1,34 @@
+
+
+
+<h1><a name="using_the_antiflood_plugin" id="using_the_antiflood_plugin">Using the AntiFlood plugin</a></h1>
+<div class="level1">
+
+<p>
+
+<strong>Synopsis:</strong> <code><em>new Swift_Plugin_AntiFlood([int threshold [, int pause]])</em></code>
+</p>
+
+<p>
+The AntiFlood plugin is designed to help lessen the load on the <acronym title="Hyper Text Transfer Protocol">HTTP</acronym> server and the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server.  It can also be used to send out very large batches of emails when the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server has restrictions in place to limit the number of emails sent in one go.
+</p>
+
+<p>
+The plugin is given a threshold number of emails to allow through per-connection.  It then keeps a persistent connection open for that number of emails and restarts the connection each time that threshold is reached.  This plugin has been used with great success by a large number of developers sending out many thousands of emails over <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>.  It can be used with any of the available connectons - not just <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>.
+</p>
+
+<p>
+Not only does this plugin keep closing and restarting the connection when the threshold is reached, it also is capable of waiting for a given number of seconds before the connection is re-opened.  Even just a few seconds will give the servers a considerable chance to flush some memory and will likely give you a faster overall result compared with not using a pause.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/AntiFlood.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;remote-server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Reconnect after 100 emails</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_AntiFlood<span class="br0">&#40;</span><span class="nu0">100</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;anti-flood&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Reconnect after 200 emails, but wait for 10 seconds first</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_AntiFlood<span class="br0">&#40;</span><span class="nu0">200</span><span class="sy0">,</span> <span class="nu0">10</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;anti-flood&quot;</span><span class="br0">&#41;</span>;</pre>
+</div>

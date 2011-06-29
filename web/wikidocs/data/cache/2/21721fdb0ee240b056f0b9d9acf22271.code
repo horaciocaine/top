@@ -1,0 +1,15 @@
+<pre class="code php">&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> = <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My message body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> = <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.com&quot;</span>, <span class="st0">&quot;Foo Bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addCc</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addBcc</span><span class="br0">&#40;</span><span class="st0">&quot;lisa-smith@domain.tld&quot;</span>, <span class="st0">&quot;Lisa&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//The number of successful recipients is returned here (hopefully 3!)</span>
+<span class="re0">$number_sent</span> = <span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="st0">&quot;my-address@domain.tld&quot;</span><span class="br0">&#41;</span>;</pre>

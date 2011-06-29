@@ -1,0 +1,83 @@
+====== How to use BeforeSendListener ======
+
+The two event listeners in Swift which are likely to be the most heavily implemented are SendListener and BeforeSendListener.  BeforeSendListener is run **before** the message gets sent.  You will know who the recipients are and what the message is at this stage, but Swift will not yet have sent the message so you can change recipients and/or modify the message and then it will be sent.
+
+The event listener interface for BeforeSendEvent looks like this:
+
+<code php>
+/**
+ * Contains the list of methods a plugin requiring the use of a SendEvent before the message is sent must implement
+ * @package Swift_Events
+ * @author Chris Corbyn <chris@w3style.co.uk>
+ */
+interface Swift_Events_BeforeSendListener extends Swift_Events_Listener
+{
+	/**
+	 * Executes just before Swift sends a message
+	 * @param Swift_Events_SendEvent Information about the message being sent
+	 */
+	public function beforeSendPerformed(Swift_Events_SendEvent $e);
+}
+</code>
+
+If you were to write an empty plugin implementing this interface in PHP5 your code would look as a follows:
+
+<code php>
+class MyPlugin implements Swift_Events_BeforeSendListener
+{
+    public function beforeSendPerformed(Swift_Events_SendEvent $e) {}
+}
+</code>
+
+Whereas the PHP4 implementation is much looser:
+
+<code php>
+class MyPlugin extends Swift_Events_Listener
+{
+    function beforeSendPerformed(&$e) {}
+}
+</code>
+
+A good example is probably modifying the subject line of each message to include the name of the recipient.  This is actually quite easy.
+
+<code php>
+class PersonalisedSubjectPlugin implements Swift_Events_BeforeSendEvent
+{
+    protected $subject = "";
+    
+    public function __construct($subject)
+    {
+        $this->setSubject($subject);
+    }
+    
+    public function setSubject($subject)
+    {
+        $this->subject = (string) $subject;
+    }
+    
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+    
+    public function getSubjectReplaced($replacement)
+    {
+        return str_replace("{replace_me}", $replacement, $this->getSubject());
+    }
+    
+    public function beforeSendPerformed(Swift_Events_SendEvent $e)
+    {
+        $message = $e->getMessage();
+        $recipients = $e->getRecipients();
+        $to = $recipients->getTo();
+        //We can only set the name if there's only one To: recipient
+        if (count($to) == 1)
+        {
+            $element = array_pop($to);
+            $name = $element->getName();
+        }
+        else { $name = "Customer"; }
+        $message->setSubject($this->getSubjectReplaced($name));
+    }
+}
+</code>

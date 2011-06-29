@@ -1,0 +1,146 @@
+
+
+
+<h1><a name="running_the_included_tests" id="running_the_included_tests">Running the included tests</a></h1>
+<div class="level1">
+
+<p>
+
+Swift comes with a complete set of tests just to ensure everything works the way it&#039;s expect to.  There are three types of tests included with the library: Smoke Tests, Unit Tests and Benchmarks.  All of these are found in the “tests” directory.
+</p>
+
+<p>
+Smoke Tests are visual tests which you may run without much knowledge of testing in general.  You run the tests, a set of instructions is presented to you on-screen and you check a few visual requirements to ensure things look as expected - easy! :)
+</p>
+
+<p>
+Unit Tests go into much finer detail.  They analyze the internals of the library from many different angles and make lots of expectations about what is supposed to happen.  Several thousand expectations are made on this library and we want every single one of them to be satisfied.  You&#039;ll need <a href="http://sourceforge.net/projects/simpletest" class="urlextern" title="http://sourceforge.net/projects/simpletest"  rel="nofollow">SimpleTest</a> to run the Unit Tests.
+</p>
+
+<p>
+The Benchmarks simply measure memory usage and timescales to perform operations.  They use a <acronym title="Hypertext Preprocessor">PHP</acronym> extension called <a href="http://www.xdebug.org/" class="urlextern" title="http://www.xdebug.org/"  rel="nofollow">XDebug2</a>.
+</p>
+
+<p>
+Before you run either type of test, be sure to edit the “TestConfiguration.php” file in the “tests” directory.  You also need to set up the test environment by following the steps below.  The tests will not run otherwise.
+</p>
+
+</div>
+<!-- SECTION "Running the included tests" [1-1293] -->
+<h2><a name="setting_up_the_test_environment" id="setting_up_the_test_environment">Setting up the test environment</a></h2>
+<div class="level2">
+
+<p>
+
+This isn&#039;t too difficult really.  If all you want to do is run the unit tests then you just need to either:
+</p>
+
+<p>
+a)  Make tests/tmp/ writable to the web user (usually “noobody” or “apache”) (chmod 0777 will do this).
+b)  Provide a writable path such as /tmp/ in the TestConfiguration.php file
+</p>
+
+<p>
+Only some of the tests require this, but if you don&#039;t do it, you WILL get fails.
+</p>
+
+<p>
+The smoke tests also require this writable folder.
+</p>
+
+<p>
+The benchmarks have an additional requirement in that you first extract a set of files from an archive bundled in tests/files/extract_these_first.tar.bz2; this is mentioned in “Running the benchmarks” below.
+</p>
+
+<p>
+To run the benchmark tests, you will need to have XDebug2 installed on the server with Memory Limit support compiled into <acronym title="Hypertext Preprocessor">PHP</acronym>.  You can get XDebug2 by running
+
+</p>
+<pre class="code">#- $   pecl install xdebug-2.0.0RC3  #or whatever is the latest at the time</pre>
+
+<p>
+
+The benchmark tests also require a writable directory and the TestConfiguration.php file to be edited.
+</p>
+
+</div>
+<!-- SECTION "Setting up the test environment" [1294-2316] -->
+<h2><a name="running_the_smoke_tests" id="running_the_smoke_tests">Running the Smoke Tests</a></h2>
+<div class="level2">
+
+<p>
+
+To run the smoke tests, you need to do two things.  Provide a writable directory and edit the TestConfiguration.php file.
+</p>
+
+<p>
+If you don&#039;t provide a path to a writable directory in the TestConfiguration.php file, you will need to make tests/tmp/ writable.  Then edit the TestConfiguration.php file otherwise all the emails are going to arrive at my inbox (I get lots!).
+</p>
+
+<p>
+One you have performed the above steps, simply open the files in “tests/smokes” in your web browser.  A message will be sent for each test.  If the message sent successfully a green bar will appear and a set of instructions.  If the message did not send successfully a red bar will appear along with the set of instructions and an error message.
+</p>
+
+<p>
+Each smoke test contains an image to use as a guide to following the instructions.  Be aware that you may see subtle differences as various mail clients will render emails slightly differently.  This is perfectly normal.
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fsmoke_example.jpg" class="media" title="http://www.swiftmailer.org/wikiimages/smoke_example.jpg"><img src="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fsmoke_example.jpg" class="media" title="An example smoke test" alt="An example smoke test" /></a>
+</p>
+
+</div>
+<!-- SECTION "Running the Smoke Tests" [2317-3373] -->
+<h2><a name="running_the_unit_tests" id="running_the_unit_tests">Running the Unit Tests</a></h2>
+<div class="level2">
+
+<p>
+
+To run the unit tests you first need to download and extract the Unit Testing tool <a href="http://sourceforge.net/projects/simpletest" class="urlextern" title="http://sourceforge.net/projects/simpletest"  rel="nofollow">SimpleTest</a> onto the server where you will run the tests.  The Unit Tests provided will make use of this framework in order to make the many assertions as expectations they need.
+</p>
+
+<p>
+Once you have extracted simpletest, edit the TestConfiguration.php file in Swift&#039;s “tests” directory to point to your installtion of simpltest.
+</p>
+
+<p>
+You run the tests in your web browser.  <del>You can run all the tests at the same time by opening the “tests/units/runAllTests.php” file in your browser, or you can run the individual <acronym title="Hypertext Preprocessor">PHP</acronym> files in the “tests/units” directory.</del> You can run the tests in groups by running the files runAllCoreTests.php, runAllConnectionTests.php, runAllMimeTests.php and runAllAuthenticatorTests.php.  The individual test runners are also found in the tests/units/ directory.
+</p>
+
+<p>
+A green bar indicates that everything is working as expected.  A red bar indicates that something is not right.  If you get a red bar and you&#039;re sure you&#039;ve got the correct values in the TestConfiguration.php file let me know about it by using the contact form at <a href="http://www.swiftmailer.org/contact/" class="urlextern" title="http://www.swiftmailer.org/contact/"  rel="nofollow">http://www.swiftmailer.org/contact/</a>
+</p>
+
+<p>
+<em>An example of a passing Unit Test</em>
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_pass_example.jpeg" class="media" title="http://www.swiftmailer.org/wikiimages/unit_pass_example.jpeg"><img src="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_pass_example.jpeg" class="media" title="An example of a passing Unit Test" alt="An example of a passing Unit Test" /></a>
+</p>
+
+<p>
+<em>An example of a failing Unit Test</em>
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_fail_example.jpeg" class="media" title="http://www.swiftmailer.org/wikiimages/unit_fail_example.jpeg"><img src="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_fail_example.jpeg" class="media" title="An example of a failing Unit Test" alt="An example of a failing Unit Test" /></a>
+</p>
+
+</div>
+<!-- SECTION "Running the Unit Tests" [3374-4906] -->
+<h2><a name="running_the_benchmarks" id="running_the_benchmarks">Running the Benchmarks</a></h2>
+<div class="level2">
+
+<p>
+
+Once you have Xdebug2 installed as shown in the section “Setting up the test environment” above, all you need to do is edit the TestConfiguration.php file and provide a writable directory (or set test/tmp/ to be writable).
+</p>
+
+<p>
+The benchmarks are very minimal - they don&#039;t look pretty!  Just open the files in tests/benchmarks/ with your web browser and click the avaiable options.
+
+</p>
+
+</div>
+<!-- SECTION "Running the Benchmarks" [4907-] -->

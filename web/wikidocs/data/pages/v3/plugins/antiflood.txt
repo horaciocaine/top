@@ -1,0 +1,23 @@
+====== Using the AntiFlood plugin ======
+
+**Synopsis:** ''//new Swift_Plugin_AntiFlood([int threshold [, int pause]])//''
+
+The AntiFlood plugin is designed to help lessen the load on the HTTP server and the SMTP server.  It can also be used to send out very large batches of emails when the SMTP server has restrictions in place to limit the number of emails sent in one go.
+
+The plugin is given a threshold number of emails to allow through per-connection.  It then keeps a persistent connection open for that number of emails and restarts the connection each time that threshold is reached.  This plugin has been used with great success by a large number of developers sending out many thousands of emails over SMTP.  It can be used with any of the available connectons - not just SMTP.
+
+Not only does this plugin keep closing and restarting the connection when the threshold is reached, it also is capable of waiting for a given number of seconds before the connection is re-opened.  Even just a few seconds will give the servers a considerable chance to flush some memory and will likely give you a faster overall result compared with not using a pause.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/AntiFlood.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("remote-server.tld"));
+
+//Reconnect after 100 emails
+$swift->attachPlugin(new Swift_Plugin_AntiFlood(100), "anti-flood");
+
+//Reconnect after 200 emails, but wait for 10 seconds first
+$swift->attachPlugin(new Swift_Plugin_AntiFlood(200, 10), "anti-flood");
+</code>

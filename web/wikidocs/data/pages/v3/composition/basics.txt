@@ -1,0 +1,72 @@
+====== Basics of Swift_Message ======
+
+**__Synopsis:__** //''new Swift_Message([string subject [, mixed body [, string content-type [, string encoding [, string charset ]]]]])''//
+
+Unlike other email libraries, Swift is fully Object-oriented.  Message composition could be bundled into the main Swift class by all means... but it's not.  The EasySwift class does that if you really want it.  Swift itself doesn't do anything to do with the creation of emails.  Instead, there's a subset of classes included to allow you to do that.  All of these classes share an underlying MIME API so many of the same methods are available in each class... Essentially an attachment is nothing more than a MIME part which encodes data, while an Embedded Image is an attachment with slightly different headers.  They are all MIME components, just differently configured.  It's advised that you familiarise yourself with the API documentation (in the docs/ folder of swift) for Swift_Message_Mime so that you can gain the most flexibility when composing messages.  You can do that later however; for now, just keep reading ;)
+
+Swift_Message is the parent document for all messages passed through the Swift class.  It contains a set of headers, and a body.  Swift_Message is set up in a way which allows other components of the message to be "attached" to it.  That includes the textual content in a multipart message (plain text and/or HTML), embedded images, file attachments.  If you read the tutorials at the start of this documentation you will already have gathered that every time you want to send a message with swift you have to create an instance of Swift_Message.  You can modify this instance as many times as you need during script execution.
+
+A basic plain text message would be created by simply passing all the values you need to the constructor.
+
+<code php>
+$message =& new Swift_Message("My subject", "My body");
+</code>
+
+If you want a HTML email it's not much more complicated:
+
+<code php>
+$message =& new Swift_Message("My subject", "My <strong>bold body</strong>", "text/html");
+</code>
+
+**NOTE:** Don't forget that in HTML messages you want to use ''<br />'' for line breaks, not actual new lines.
+
+You can add custom headers to your message by manipulating the //headers// property of the object.  This is an instance of the Swift_Message_Headers class - another class you should probably familiarise yourself with in the API documentation if you want to gain the most flexibility from Swift.
+
+<code php>
+$message =& new Swift_Message("My subject", "My body");
+$message->headers->set("X-Foo", "something");
+$message->headers->set("X-Bar", "something else");
+</code>
+
+If you want to send a multipart email (i.e. one with a HTML part and an alternative plain-text part) you use a method in Swift_Message called attach().  This same method is used to add attachments, embed images and other things which form part of the message composition.
+
+<code php>
+$message =& new Swift_Message("My subject");
+$message->attach(new Swift_Message_Part("This is plain text"));
+$message->attach(new Swift_Message_Part("This is <em>HTML</em>", "text/html"));
+</code>
+
+By default, Swift will use the ISO-8859-1 character set.  If it detects UTF-8 in your message it will switch to UTF-8 mode, but any other character sets will **not** be automatically detected and thus, you must inform the Swift_Message class of the charset you're using or you will almost certainly finish up with a garbled message being displayed in the recipient's mail client.
+
+**IMPORTANT:** Don't forget, if you're loading a message from a database or from a file on the server, you need to also use the same encoding there.  Everywhere the message will go needs to be aware of the encoding.  It's common that people build contact forms which receive non-ascii characters but they forget to set the charset of their web page to utf-8.  If the form was submitted from a web page in ISO-8859-1 and you send the message through Swift as UTF-8 you could very well create a nice mess.
+
+<code php>
+//At construction
+$message =& new Swift_Message("Some subject", "My body", "text/plain", "8bit", "iso-8859-2");
+
+//Or after construction
+$message =& new Swift_Message("Some subject", "My body");
+$message->setCharset("iso-8859-2");
+</code>
+
+Because it's perfectly legal to have differing character sets in each MIME part of your document (email) you should tell Each individual mime part what charset you're using too:
+
+<code php>
+//At instantiation
+$message =& new Swift_Message("My subject");
+$message->attach(new Swift_Message_Part("Plain text part", "text/plain", "8bit", "iso-8859-2"));
+$message->attach(new Swift_Message_Part("HTML <em>Mime Part</em>", "text/html", "8bit", "windows-874"));
+
+//Or after construction
+$message =& new Swift_Message("My subject");
+
+$part1 =& new Swift_Message_Part("Plain text part");
+$part1->setCharset("iso-8859-2");
+$message->attach($part1);
+
+$part2 =& new Swift_Message_Part("My HTML <em>part</em>", "text/html");
+$part2->setCharset("windows-874");
+$message->attach($part2);
+</code>
+
+Swift_Message is the result of endless hours of listening to requests from users of Swift Mailer Version 2, planning, testing and refactoring.  Under the surface it does some useful things such as intelligent runtime caching of encoded data and checking for header-injection attacks.

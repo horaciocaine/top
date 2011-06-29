@@ -1,0 +1,21 @@
+===== Sending a Basic Email =====
+
+First you need to include the "swift_required.php" file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message and send it with the Mailer.
+
+<code php>
+<?php
+
+//Include this needed file
+require_once '/path/to/swift/lib/swift_required.php';
+
+//Start the mailer
+$mailer = new Swift_Mailer(new Swift_SmtpTransport('smtp.your-isp.tld'));
+
+//Create a message
+$message = Swift_Message::newInstance('Your subject', 'Your Message')
+  ->setFrom(array('your@address.tld' => 'Your Name'))
+  ->setTo(array('someone@address.tld' => 'Person name'));
+
+//Send it
+$mailer->send($message);
+</code>

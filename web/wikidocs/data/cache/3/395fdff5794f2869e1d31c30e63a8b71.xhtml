@@ -1,0 +1,112 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="#version_4_development_discussion" class="toc">Version 4 Development Discussion</a></span></div>
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#components_subpackages" class="toc">Components (subpackages)</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#timeline" class="toc">Timeline</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="#encoders_mime_library" class="toc">Encoders &amp; Mime Library</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#delivery_drivers" class="toc">Delivery Drivers</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#authenticators" class="toc">Authenticators</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#plugins" class="toc">Plugins</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#swift_class" class="toc">Swift class</a></span></div></li></ul>
+</li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h1><a name="version_4_development_discussion" id="version_4_development_discussion">Version 4 Development Discussion</a></h1>
+<div class="level1">
+
+<p>
+ A bit of a mish-mash of ramblings of the top of my head.
+</p>
+
+</div>
+<!-- SECTION "Version 4 Development Discussion" [1-106] -->
+<h2><a name="components_subpackages" id="components_subpackages">Components (subpackages)</a></h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Encoders</div>
+</li>
+<li class="level1"><div class="li"> Mime Library</div>
+</li>
+<li class="level1"><div class="li"> Delivery Drivers/connections</div>
+</li>
+<li class="level1"><div class="li"> Authenticators</div>
+</li>
+<li class="level1"><div class="li"> Plugins</div>
+</li>
+<li class="level1"><div class="li"> Central Swift class (adaptor for the Delivery Drivers) (?)</div>
+</li>
+</ul>
+
+</div>
+<!-- SECTION "Components (subpackages)" [107-302] -->
+<h2><a name="timeline" id="timeline">Timeline</a></h2>
+<div class="level2">
+
+<p>
+ I&rsquo;m not working to any deadlines on version 4.  It will be done right and it will be ready when it&rsquo;s ready.  It will <strong>definitely</strong> not be released before February 5th 2008, even if it is stable by then (see <a href="http://gophp5.org/" class="urlextern" title="http://gophp5.org/"  rel="nofollow">http://gophp5.org/</a>)
+</p>
+
+</div>
+<!-- SECTION "Timeline" [303-553] -->
+<h3><a name="encoders_mime_library" id="encoders_mime_library">Encoders &amp; Mime Library</a></h3>
+<div class="level3">
+
+<p>
+ The whole <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> system is by far the most complex thing to write, but equally the nicest code to work with.  The message building/Mime components will be developed as a standalone project with a <code>Swift_</code> prefix and will reach at least a beta phase before any further components are developed.
+</p>
+
+</div>
+<!-- SECTION "Encoders & Mime Library" [554-883] -->
+<h3><a name="delivery_drivers" id="delivery_drivers">Delivery Drivers</a></h3>
+<div class="level3">
+
+<p>
+ These are the components which power Swift Mailer.  Previously Swift has this whole concept of &lsquo;Connections&rsquo; but the <acronym title="Application Programming Interface">API</acronym> just doesn&rsquo;t do what it says it does when you&rsquo;re working with <code>sendmail</code> in <code>-t</code> mode or with the <code>mail()</code> function.  Version 4 will abstract the sending behaviour away from Swift itself and into a new feature known as <code>Delivery Drivers</code>.  Some of the Delivery Drivers (notably <acronym title="Simple Mail Transfer Protocol">SMTP</acronym>) will rely on a Connection resource but Swift itself need only know how to use the Driver.  These will be developed second.
+</p>
+
+</div>
+<!-- SECTION "Delivery Drivers" [884-1448] -->
+<h3><a name="authenticators" id="authenticators">Authenticators</a></h3>
+<div class="level3">
+
+<p>
+ Only really apply to <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connections so will likely be developed as a side-effect of developing the relevant Delivery Driver.
+</p>
+
+</div>
+<!-- SECTION "Authenticators" [1449-1602] -->
+<h3><a name="plugins" id="plugins">Plugins</a></h3>
+<div class="level3">
+
+<p>
+ The plugin <acronym title="Application Programming Interface">API</acronym> in version 3 was just about perfect, following an event-driven, observer style approach.  Version 4 will use the same implementation but may make some components outside of Swift pluggable, whereby the DI container provides the relevant plugins rather than direct coupling.
+</p>
+
+<p>
+One slight change to the standard Event object will be a way to set a <code>cancelled</code> flag to kill the event.
+</p>
+
+<p>
+All (official) plugins from Version 3 will still be available in version 4.
+</p>
+
+</div>
+<!-- SECTION "Plugins" [1603-2097] -->
+<h3><a name="swift_class" id="swift_class">Swift class</a></h3>
+<div class="level3">
+
+<p>
+ Unlike all previous versions the Swift class will hopefully be near to empty, simply acting as an adaptor for the appropriate Delivery Driver.  Effectively a Message is composed then a Delivery Driver started, and the message sent through the Delivery Driver by whatever means necessary.  It may even be that a central Swift class is pointless, although it does help to ensure a documented <acronym title="Application Programming Interface">API</acronym> is followed by all Drivers.
+</p>
+
+</div>
+<!-- SECTION "Swift class" [2098-] -->

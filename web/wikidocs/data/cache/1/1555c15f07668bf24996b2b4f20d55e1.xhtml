@@ -1,0 +1,76 @@
+
+
+
+<h1><a name="development_goals" id="development_goals">Development Goals</a></h1>
+<div class="level1">
+
+<p>
+
+Version 4 will be the first release of Swift Mailer which will be developed for <acronym title="Hypertext Preprocessor">PHP</acronym> 5.2 and later.  The development of version 4 will be taken at a slow and steady pace (no release date until at least February 5th 2008) with an extreme amount of focus put on cutting down coupling between classes in the library as far as possible.
+</p>
+
+</div>
+<!-- SECTION "Development Goals" [1-366] -->
+<h2><a name="dependency_injection" id="dependency_injection">Dependency Injection</a></h2>
+<div class="level2">
+
+<p>
+
+A lightweight dependency injection container will be developed to aid this process using setter-based injection via factory classes.
+</p>
+
+<p>
+Only factories for building instances through DI will know about the DI container; classes from the library should be capable of working without the container (with the exception of the <code>Swift</code> class).
+</p>
+
+<p>
+No type-hinting on concrete classes; type-hinting on interfaces only.
+</p>
+
+</div>
+<!-- SECTION "Dependency Injection" [367-810] -->
+<h2><a name="easily_portable" id="easily_portable">Easily portable</a></h2>
+<div class="level2">
+
+<p>
+
+As in portability between languages.  It&#039;s a serious consideration to translate the code into Java and possibly other OO languages.
+</p>
+
+</div>
+<!-- SECTION "Easily portable" [811-972] -->
+<h2><a name="looking_towards_php_6" id="looking_towards_php_6">Looking towards PHP 6</a></h2>
+<div class="level2">
+
+<p>
+
+PHP6 could have a serious impact on the current version of Swift (version 3).  The current version takes advantage of <acronym title="Hypertext Preprocessor">PHP</acronym>&#039;s broken string handling for multibyte encodings by reading byte-for-byte rather than character-for-character.  The encoding system in version 4 needs to be kept simple and highly encapsulated in order to allow a quick rewrite when PHP6 is stable enough to develop for.
+</p>
+
+<p>
+Namespaces will be available as of <acronym title="Hypertext Preprocessor">PHP</acronym> 5.3.  Though the PHP5 branch will not take advantage of this (for backwards compatibility reasons), I&#039;ll branch off a namespaced version in preparation for PHP6.
+</p>
+
+</div>
+<!-- SECTION "Looking towards PHP 6" [973-1602] -->
+<h2><a name="encoding_stability" id="encoding_stability">Encoding stability</a></h2>
+<div class="level2">
+
+<p>
+
+I hang my head in shame, Swift Mailer version 3 still has some big problems with QP encoding.  People have reported messages being truncated (now fixed) and garbled text (due to the difficulty encoding <acronym title="Megabyte">MB</acronym> encodings).  I will not release version 4 without ensuring a rock solid QP implementation; an external developer may be brought in to help with this (volunteers email chris.corbyn@sitepoint.com please).
+</p>
+
+</div>
+<!-- SECTION "Encoding stability" [1603-2043] -->
+<h2><a name="speed_and_performance" id="speed_and_performance">Speed and performance</a></h2>
+<div class="level2">
+
+<p>
+
+Swift has always been a leading <acronym title="Hypertext Preprocessor">PHP</acronym> mailer when it comes to speed and memory usage (at least, it scales well horizontally).  Version 4 <strong>must</strong> keep a focus on this selling point.
+
+</p>
+
+</div>
+<!-- SECTION "Speed and performance" [2044-] -->

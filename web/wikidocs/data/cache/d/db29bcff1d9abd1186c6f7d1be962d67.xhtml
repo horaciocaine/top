@@ -1,0 +1,114 @@
+
+
+
+<h1><a name="dealing_with_attachments" id="dealing_with_attachments">Dealing with Attachments</a></h1>
+<div class="level1">
+
+<p>
+
+<strong>Synopsis:</strong> <code><em>new Swift_Message_Attachment([mixed data [, string filename [, string content-type [, string encoding [, string disposition]]]]])</em></code>
+</p>
+
+<p>
+An attachment yet again, another <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> document.  It&#039;s special because it contains any format of data such as a <acronym title="Portable Document Format">PDF</acronym>, a Zip file or an executable.  In order for <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> to proccess such data it gets encoded into a format which looks like plain-text (such as Base64).
+</p>
+
+<p>
+When you create an attachment, you have two means of providing the contents of the file; You can read them yourself using something like file_get_contents(), or you can pass a file object to the attachment to allow it to read the file itself.  We&#039;ll look at both approaches here and assess where either one is more suitable than the other.
+</p>
+
+</div>
+<!-- SECTION "Dealing with Attachments" [1-797] -->
+<h2><a name="attaching_the_file_contents_as_a_string_read_externally" id="attaching_the_file_contents_as_a_string_read_externally">Attaching the file contents as a string read externally</a></h2>
+<div class="level2">
+<pre class="code php"><span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$file_data</span> <span class="sy0">=</span> <a href="http://www.php.net/file_get_contents"><span class="kw3">file_get_contents</span></a><span class="br0">&#40;</span><span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="re0">$file_data</span><span class="sy0">,</span> <span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$attachment</span><span class="br0">&#41;</span>;</pre>
+<p>
+When we attach the file as a string, the Attachment class does not know its filename so we need to re-confirm it by passing it as a parameter.  If we didn&#039;t do this, the Attachment class would give it a name like “file.1” which makes no sense to the recipient.
+</p>
+
+<p>
+I hesitate to go into the inner workings of the Attachment class here, but for the sake of clarification I&#039;ll touch on how the encoding works.  When you provide a string in this way, the attachment class takes the entire string and base64 encodes that data at the time the message is rendered.  You&#039;ll see why I&#039;ve mentioned that after we look at the next approach to providing an attachment.
+</p>
+
+</div>
+<!-- SECTION "Attaching the file contents as a string read externally" [798-1730] -->
+<h2><a name="attaching_the_file_contents_using_the_swift_file_class" id="attaching_the_file_contents_using_the_swift_file_class">Attaching the file contents using the Swift_File class</a></h2>
+<div class="level2">
+<pre class="code php"><span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$file</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="re0">$file</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$attachment</span><span class="br0">&#41;</span>;</pre>
+<p>
+Not much different then?  Well no, not really.  But it does have its advantages in certain scenarios.
+</p>
+
+<p>
+Swift_File does not read the entire file contents in one go, it reads the file in small chunks of bytes and therefore allows encoding in smaller portions.  This has two advantages when encoding:
+
+</p>
+<ol>
+<li class="level1"><div class="li">  It speeds up the encoding process (I&#039;ve still not understood exactly “why”, but my testing shows it does)</div>
+</li>
+<li class="level1"><div class="li">  It saves a <em>considerable</em> amount memory</div>
+</li>
+</ol>
+
+<p>
+
+<acronym title="Hypertext Preprocessor">PHP</acronym> imposes a 8 megabyte memory limit on scripts by default (I believe this has been raised to 16MB in <acronym title="Hypertext Preprocessor">PHP</acronym> 5.2.0).  This can very easily be exhausted when you use the first method of adding an attachment if you&#039;re attaching a file with a size of say, 2MB.  This is because you have a copy of the 2MB in memory, you then have a base64 encoded copy in memory which is 33% larger than the original (2.66MB) plus the overhead of the encoding process and a copy which is cached to reduce CPU cycles.  This soon uses a lot of memory.
+</p>
+
+</div>
+<!-- SECTION "Attaching the file contents using the Swift_File class" [1731-2970] -->
+<h2><a name="so_which_method_do_you_use" id="so_which_method_do_you_use">So which method do you use?</a></h2>
+<div class="level2">
+
+<p>
+
+By using Swift_File you save memory by not having the file contents in memory, and by not having such a large overhead in encoding.  This is the preferred method for attaching large files.
+</p>
+
+<p>
+Additionally, using Swift_File allows you to leave out the filename parameter in Swift_Message_Attachment since it provides the filename itself.
+</p>
+
+<p>
+<strong><em>So why provide the string method at all?</em></strong>
+</p>
+
+<p>
+Simple.  Imagine you create an image with GD or a <acronym title="Portable Document Format">PDF</acronym> with the R&amp;<acronym title="Operating System">OS</acronym> <acronym title="Portable Document Format">PDF</acronym> library.  Do you want to have to write the file to the server only to read it and delete it again?  The string method of attaching files is designed to allow dynmically generated content to be attached.
+</p>
+
+<p>
+<strong>NOTE:</strong> The content-type defaults to application/octet-stream.  You&#039;ll probably want to specify the correct content-type yourself.  In the above example this would be “application/pdf”.
+</p>
+
+<p>
+[TODO: List <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> types in the documentation]
+</p>
+
+<p>
+<strong>TIP:</strong> It&#039;s a little known secret that passing an instance of Swift_File to provide the data for the attachment is actually handled by the <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> layer itself.  Swift_Message, Swift_Message_Part and all the other <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> features extend this layer and thus, you can pass an instance of Swift_File to Swift_Message to create the message body from a text or <acronym title="HyperText Markup Language">HTML</acronym> file.  Equally you can pass a file object to Swift_Message_Part to provide the message body.
+</p>
+
+</div>
+<!-- SECTION "So which method do you use?" [2971-4360] -->
+<h2><a name="what_s_the_content_disposition_for" id="what_s_the_content_disposition_for">What&#039;s the content disposition for?</a></h2>
+<div class="level2">
+
+<p>
+
+Attachments are by default nested into an email with a tag to indicate they are “attachment” data.  This tag is known as its disposition.  You can alternatively attach a file as “inline” such as the case where you add an embedded image.  It&#039;s unlikely you&#039;ll ever need to specify the disposition manually, but the feature exists anyway.  Note that you can use setDisposition() if you&#039;d rather not use the constructor.
+
+</p>
+
+</div>
+<!-- SECTION "What's the content disposition for?" [4361-] -->

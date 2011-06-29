@@ -1,0 +1,5 @@
+==== Installation ====
+  * [[v3:installation:extracting|Extracting the archive]]
+  * [[v3:installation:uploading|Uploading to your web server]]
+  * [[v3:installation:testing|Running the included tests]]
+

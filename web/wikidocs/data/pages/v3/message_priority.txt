@@ -1,0 +1,20 @@
+====== Changing the message priority ======
+
+The message priority does little more than flag the message in the recipients INBOX as being important or not.  To set the priority, you make a change to the message itself.  You can provide an integer ranging from 1 (High) to 5 (Low) to indicate the priority.  By default, no priority is indicated which equates to a priority of 3 (Normal).  The class constants used in the example below map to the relevant integer values of the priority.
+
+PRIORITY_HIGH = 1
+PRIORITY_NORMAL = 3
+PRIORITY_LOW = 5
+
+**NOTE:** PHP4 does not support class constants so instead there are some global constants provided: SWIFT_MESSAGE_PRIORITY_LOW, SWIFT_MESSAGE_PRIORITY_NORMAL, SWIFT_MESSAGE_PRIORITY_HIGH.
+
+<code php>
+$message =& new Swift_Message("My subject", "My body");
+$message->setPriority(2);
+
+//Or use the class constants
+$message->setPriority(Swift_Message::PRIORITY_HIGH);
+
+//or
+$message->setPriority(Swift_Message::PRIORITY_NORMAL);
+</code>

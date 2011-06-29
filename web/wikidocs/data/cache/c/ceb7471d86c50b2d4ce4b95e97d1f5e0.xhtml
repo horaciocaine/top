@@ -1,0 +1,37 @@
+
+
+
+<h1><a name="swift_s_runtime_cache" id="swift_s_runtime_cache">Swift's Runtime Cache</a></h1>
+<div class="level1">
+
+<p>
+ Swift Mailer incorporates a runtime cache to help speed things up a lot.  Composing emails is a tough business.  You need to encode files, correct line endings, translate to formats laid out in the RFCs.  It&rsquo;s therefore easier if you can just do this once and once it&rsquo;s been done, re-use the results.  Swift caches various pieces of data (computed strings) on various different levels whilst it composes messages.  This is all handled by an abstracted caching layer.
+</p>
+
+<p>
+The abstract cache is named Swift_Cache and contains methods write(), read(), readFull(), clear() and has().  All but readFull() are abstract.
+</p>
+
+<p>
+By default, Swift will uses a Memory Cache, which essentially means it stores the encoded strings in variables which it can re-use.  The alternative is to write this data to disk and save that memory.  By writing the cache to disk, Swift should never use (much) more than about 1MB of memory, although this varies from system to system.
+</p>
+
+<p>
+You can easily write your own cache by extending the Swift_Cache class and implementing the abstract methods.  For examples, you could write a MySQL cache.  If you do write your own cache, just bear in mind that write() is buffered (i.e. it appends to the cache, it doesn&rsquo;t overwrite it) and read() is also buffered.  You may choose to ignore the buffered aspect of read() - see the Swift_Cache_Memory class for an example.
+</p>
+
+<p>
+Swift loads the cache by calling a factory named Swift_CacheFactory.  It&rsquo;s here that you can change the class which is instantiated in the factory.
+</p>
+<pre class="code php">Swift_CacheFactory::<span class="me2">setClassName</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Cache_MyCache&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+If you want to use the Disk Cache (strongly recommended) then make sure you have a writable directory on disk and run the follwing just after you instantiate Swift.
+</p>
+<pre class="code php"><span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span> ... <span class="br0">&#41;</span>;
+Swift_CacheFactory::<span class="me2">setClassName</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Cache_Disk&quot;</span><span class="br0">&#41;</span>;
+Swift_Cache_Disk::<span class="me2">setSavePath</span><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Changes made the the cache factory are global. Swift will only ever use one type of cache at a time.
+</p>
+
+</div>

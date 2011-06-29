@@ -1,0 +1,29 @@
+====== Development Goals ======
+
+Version 4 will be the first release of Swift Mailer which will be developed for PHP 5.2 and later.  The development of version 4 will be taken at a slow and steady pace (no release date until at least February 5th 2008) with an extreme amount of focus put on cutting down coupling between classes in the library as far as possible.
+
+===== Dependency Injection =====
+
+A lightweight dependency injection container will be developed to aid this process using setter-based injection via factory classes.
+
+Only factories for building instances through DI will know about the DI container; classes from the library should be capable of working without the container (with the exception of the ''Swift'' class).
+
+No type-hinting on concrete classes; type-hinting on interfaces only.
+
+===== Easily portable =====
+
+As in portability between languages.  It's a serious consideration to translate the code into Java and possibly other OO languages.
+
+===== Looking towards PHP 6 =====
+
+PHP6 could have a serious impact on the current version of Swift (version 3).  The current version takes advantage of PHP's broken string handling for multibyte encodings by reading byte-for-byte rather than character-for-character.  The encoding system in version 4 needs to be kept simple and highly encapsulated in order to allow a quick rewrite when PHP6 is stable enough to develop for.
+
+Namespaces will be available as of PHP 5.3.  Though the PHP5 branch will not take advantage of this (for backwards compatibility reasons), I'll branch off a namespaced version in preparation for PHP6.
+
+===== Encoding stability =====
+
+I hang my head in shame, Swift Mailer version 3 still has some big problems with QP encoding.  People have reported messages being truncated (now fixed) and garbled text (due to the difficulty encoding MB encodings).  I will not release version 4 without ensuring a rock solid QP implementation; an external developer may be brought in to help with this (volunteers email chris.corbyn@sitepoint.com please).
+
+===== Speed and performance =====
+
+Swift has always been a leading PHP mailer when it comes to speed and memory usage (at least, it scales well horizontally).  Version 4 **must** keep a focus on this selling point.

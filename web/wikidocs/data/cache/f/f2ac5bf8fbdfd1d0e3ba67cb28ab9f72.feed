@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v3:faq</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-13T14:48:56+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/faq/hugebatches?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/faq/parseerror?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/faq/start?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/faq/unittests?rev=1236058883&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/faq/hugebatches?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>I've got thousands of emails to send, how should I do it?</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/faq/hugebatches?rev=1236058883&amp;do=diff</link>
+        <description>I've got thousands of emails to send, how should I do it?
+
+
+99.9% of the time the best approach to doing this is to store all the emails and recipients in a database with a field marked as “unsent”. A cron script can run every few minutes pulling out more modest batch sizes of around 100 emails, then flagging those as “sent”.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/faq/parseerror?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Are you getting Parse Errors?</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/faq/parseerror?rev=1236058883&amp;do=diff</link>
+        <description>If you are getting parse errors upon including Swift Mailer in your code, it's almost definitely because you have downloaded the wrong version.  There are two releases of Swift.  One is for PHP4 and the other is for PHP5.  If you try using the PHP5 version in PHP4 you WILL get parse errors.  Make sure you are using the appropriate version.  The filenames all have the PHP version they were made for in them.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/faq/permissiondenied?rev=1236058883&amp;do=diff</link>
+        <description>Why do I get a &quot;Permission Denied&quot; error when I use the SMTP connection?
+
+
+This is more than likely die to a firewall rule that has been put in place by your hosting provider.  Though I have not verified this information I have also been informed that PhpSuExec can cuase problems establishing socket connections.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/faq/start?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Frequently Asked Questions</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/faq/start?rev=1236058883&amp;do=diff</link>
+        <description>Frequently Asked Questions
+
+	*  I get parse errors, or I get a blank page when I include Swift?
+	*  The unit tests are exiting with a memory exhaustion error. Huh?</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/faq/unittests?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>The Unit Tests are using too much Memory</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/faq/unittests?rev=1236058883&amp;do=diff</link>
+        <description>If you run the group tests, and you're unlucky you may be getting one of the following:
+
+
+	*  A blank page
+	*  Asked to download the php file
+	*  A memory exhaustion error
+
+
+This is due to the fact that the group tests are examining a lot of areas of Swift and in the process need to do things such as regexp over strings and create mock objects (dummy objects which act like the real thing).  This takes it toll on memory.  The tests have been split into 4 separate groups and the highest memory use…</description>
+    </item>
+</rdf:RDF>

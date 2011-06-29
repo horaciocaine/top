@@ -1,0 +1,6 @@
+<span class="co1">//If an attachment was sent, attach it</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$file_path</span> <span class="sy0">&amp;&amp;</span> <span class="re0">$file_name</span> <span class="sy0">&amp;&amp;</span> <span class="re0">$file_type</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>
+        <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="re0">$file_path</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="re0">$file_name</span><span class="sy0">,</span> <span class="re0">$file_type</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>

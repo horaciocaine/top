@@ -1,0 +1,27 @@
+====== Personalizing recipient names ======
+
+When you send an email with Swift you can just provide the address as a string.  However, if you want to send a personal name along with the address you will need to use the Swift_Address class*.  This class is simply making life easier for Swift to ensure addresses are given in the correct format when used in message headers and when sent to the SMTP server.  It's extremely basic and simply takes one or two arguments in the constructor.
+
+<code php>
+<?php
+
+//Load in the files we'll need
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+//Start Swift
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.your-host.tld"));
+
+//Create the message
+$message =& new Swift_Message("My subject", "My body");
+
+//Swift_Address can accept an email address and a name, or just an email address
+if ($swift->send($message, new Swift_Address("foo@bar.tld", "Foo Bar"), new Swift_Address("me@mydomain.com"))) echo "Sent";
+else echo "Failed";
+
+
+</code>
+
+* You cannot pass a string like
+  "Foo Bar <foo@bar.com>"
+to Swift as of version 3; you must use Swift_Address instead.

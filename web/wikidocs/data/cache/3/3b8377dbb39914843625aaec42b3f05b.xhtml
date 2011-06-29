@@ -1,0 +1,142 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="#sending_a_batch_email_or_newsletter" class="toc">Sending a batch email or newsletter</a></span></div>
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#using_the_batchmailer_component" class="toc">Using the BatchMailer component</a></span></div>
+<ul class="toc">
+<li class="level3"><div class="li"><span class="li"><a href="#setting_the_maximum_retries" class="toc">Setting the maximum retries</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#setting_the_maximum_successive_failure_allowance" class="toc">Setting the maximum successive failure allowance</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#pausing_on_errors" class="toc">Pausing on errors</a></span></div></li>
+<li class="level3"><div class="li"><span class="li"><a href="#checking_which_addresses_didn_t_deliver" class="toc">Checking which addresses didn't deliver</a></span></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><span class="li"><a href="#using_custom_list_iterators" class="toc">Using custom list iterators</a></span></div></li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h1><a name="sending_a_batch_email_or_newsletter" id="sending_a_batch_email_or_newsletter">Sending a batch email or newsletter</a></h1>
+<div class="level1">
+
+<p>
+ When you send out an email marketing campaign, newsletter or any other type of batch email you don&rsquo;t particularly want to reveal everybody&rsquo;s address to the recipients.  One nasty hack is to Bcc all the recipients and leave the <code>To:</code> field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.
+</p>
+
+<p>
+batchSend() has exactly the same semantics as send(), except it will ignore any Cc or Bcc recipients and just send to the <code>To:</code> addresses.  When it does this, it adjusts the headers of the email for each recipient so that they only see their own address and hence, it looks a lot more authentic and professional.
+</p>
+<pre class="code php"><span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Our newsletter&quot;</span>, <span class="st0">&quot;Some news&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> =&amp; <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;recipient1@address.tld&quot;</span>, <span class="st0">&quot;Recipient 1&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;recipient2@address.tld&quot;</span>, <span class="st0">&quot;Another recipient&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span>-&gt;<span class="me1">batchSend</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;company@domain.tld&quot;</span>, <span class="st0">&quot;Our Company&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+This does use a little more bandwidth and take a little longer since Swift needs to send a slightly different message to each recipient.  However, it is still pretty fast!
+</p>
+
+<p>
+The batchSend() approach to delivering mail actually handles errors internally, possibly restarting the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection if network issues arise for example.  You should be aware of this masking of errors in the case you are experiencing issues.  If you are experiencing issues and suspect errors are being masked from you, you can dump a log of what is going on.
+</p>
+
+<p>
+[TODO: Write the logging section]
+</p>
+
+</div>
+<!-- SECTION "Sending a batch email or newsletter" [1-1697] -->
+<h2><a name="using_the_batchmailer_component" id="using_the_batchmailer_component">Using the BatchMailer component</a></h2>
+<div class="level2">
+
+<p>
+ Although you can use $swift&rarr;batchSend() and still be a happy bunny, you gain some flexibility if you as a different class.  $swift&rarr;batchSend() is a lightweight, basic wrapper around another class called <code>Swift_BatchMailer</code>.
+</p>
+
+<p>
+To do perform this same basic task with the BatchMailer yourself you would quite literally substitute this line:
+</p>
+<pre class="code php"><span class="re0">$swift</span>-&gt;<span class="me1">batchSend</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="re0">$from</span><span class="br0">&#41;</span>;</pre>
+<p>
+With these lines:
+</p>
+<pre class="code php"><span class="re0">$batch</span> =&amp; <span class="kw2">new</span> Swift_BatchMailer<span class="br0">&#40;</span><span class="re0">$swift</span><span class="br0">&#41;</span>;
+<span class="re0">$batch</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="re0">$from</span><span class="br0">&#41;</span>;</pre>
+<p>
+The BatchMailer class contains some batch-mailing specific methods to aid you in your heavy duty sending work.  Error masking/handling was mentioned in the above section, such as in the case where the network connection dies briefly.  There are other useful features however.
+</p>
+
+</div>
+<!-- SECTION "Using the BatchMailer component" [1698-2556] -->
+<h3><a name="setting_the_maximum_retries" id="setting_the_maximum_retries">Setting the maximum retries</a></h3>
+<div class="level3">
+
+<p>
+ For an individual address, the BatchMailer will attempt no more than twice to send an email to it by default.  It&rsquo;s strongly recommended you keep this behaviour, but if you&rsquo;d like to change the number of retries you can call $batch&rarr;setMaxTries($n) where $n is the total number of attempts.
+</p>
+
+<p>
+<strong>NOTE:</strong> The number passed is the number of total attempts.  If you want 1 retry, this equates to 2 total attempts, not 1.
+</p>
+<pre class="code php"><span class="re0">$batch</span>-&gt;<span class="me1">setMaxTries</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Setting the maximum retries" [2557-3057] -->
+<h3><a name="setting_the_maximum_successive_failure_allowance" id="setting_the_maximum_successive_failure_allowance">Setting the maximum successive failure allowance</a></h3>
+<div class="level3">
+
+<p>
+ The BatchMailer component will keep sending even if errors occur in the transmission of <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> instructions.  It detects errors in the transmission (relatively common under high loads) and catches them, restarting the connection and continuing with the batch.  If transmission keeps throwing errors, the BatchMailer will by default just keep retrying to connection until the end of the batch is reached.  Obviously this could be extremely undesirable with very large batches and there&rsquo;s a good chance that after say, 10 successive failures without any success thing will likely not work at all.  You can limit the number of successive failures by calling $batch&rarr;setMaxSuccessiveFailures($n).
+</p>
+<pre class="code php"><span class="re0">$batch</span>-&gt;<span class="me1">setMaxSuccessiveFailures</span><span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Setting the maximum successive failure allowance" [3058-3868] -->
+<h3><a name="pausing_on_errors" id="pausing_on_errors">Pausing on errors</a></h3>
+<div class="level3">
+
+<p>
+ Errors often occur when the network is under heavy load.  The BatchMailer does deal with these but because it&rsquo;s possible your server, the network, or the remote server is under load in the event of an error you may wish to wait a few seconds before picking the batch back up again.  This is easily configured with $batch&rarr;setSleepTime($t) where $t is the number of seconds to pause for.  It&rsquo;s a simple sleep() call.
+</p>
+<pre class="code php"><span class="re0">$batch</span>-&gt;<span class="me1">setSleepTime</span><span class="br0">&#40;</span><span class="nu0">10</span><span class="br0">&#41;</span>; <span class="co1">//Sleep for 10 seconds if an error occurs</span></pre>
+</div>
+<!-- SECTION "Pausing on errors" [3869-4402] -->
+<h3><a name="checking_which_addresses_didn_t_deliver" id="checking_which_addresses_didn_t_deliver">Checking which addresses didn't deliver</a></h3>
+<div class="level3">
+
+<p>
+ If you&rsquo;re sending out a large batch (even just more than 100 addresses) it&rsquo;s highly unlikely that your <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server is going to successfully accept every single recipient.  That&rsquo;s fine, even under normal conditions (without batch sending) Swift will handle these errors.  You will probably want to know who failed however.  After you have sent a batch you can call $batch&rarr;getFailedRecipients() to get an array of those addresses to which Swift did not send a message.  This method returns an array containing just the address (no name) of the failed recipients.
+</p>
+<pre class="code php"><span class="re0">$num_sent</span> = <span class="re0">$batch</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="re0">$sender</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/print_r"><span class="kw3">print_r</span></a><span class="br0">&#40;</span><span class="re0">$batch</span>-&gt;<span class="me1">getFailedRecipients</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="coMULTI">/*
+Array (
+  0 =&gt; 'joe@bloggs.tld',
+  1 =&gt; 'user@domain.tld'
+)
+*/</span></pre>
+<p>
+If you are sending out more than one batch with the same instance of the BatchMailer you&rsquo;ll probably want to clear out this list of failures once you&rsquo;ve read from it.
+</p>
+<pre class="code php"><span class="re0">$batch</span>-&gt;<span class="me1">flushFailedRecipients</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "Checking which addresses didn't deliver" [4403-5423] -->
+<h2><a name="using_custom_list_iterators" id="using_custom_list_iterators">Using custom list iterators</a></h2>
+<div class="level2">
+
+<p>
+ I sometimes wonder if I&rsquo;ll ever stop refactoring Swift! ;)
+</p>
+
+<p>
+When you send a batch you use an instance of Swift_RecipientList to provide your recipients.  Internally, the BatchMailer does not read directly from your list, but rather the list provides an iterator.  The default implementation is that of iterating over an array in an object-oriented sense.  For large batch sizes this may seem a bit wasteful having to pre-load the array.  Luckily you can use a different iterator such as the MySQLResult iterator, or you can even write your own.  It&rsquo;s beyond the scope of this page to discuss the ins and outs of the iterators here but you should take a read of <a href="/wikidocs/v3/sending/iterators" class="wikilink1" title="v3:sending:iterators">Using iterators to provide lists</a>. 
+</p>
+
+</div>
+<!-- SECTION "Using custom list iterators" [5424-] -->

@@ -1,0 +1,5 @@
+<pre class="code php"><span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">has</span><span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">get</span><span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>

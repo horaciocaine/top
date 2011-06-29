@@ -1,0 +1,140 @@
+====== How to (legitimately) minimize being seen as spam ======
+
+This is a BIG topic and seemingly one that many people are quite patchy on.  I'll try to give you enough knowledge to make your own judgements and what you could do to minimize your risk.  You may finish up sad and disappointed by the end of this article though so don't build your hopes up that there's a quick-fix solution if you are being blocked as spam.
+
+===== Get a test server if you can =====
+
+If you can do so, I would strongly recommend setting up a test server running SA-Exim.  That's [[http://www.exim.org/|Exim]] with [[http://spamassassin.apache.org/|SpamAssassin]].  This will allow you to mock out the process of sending your newsletter or whatever else you're sending.  You can configure Exim to append a spam report on what it finds into your headers.  Most Linux distros will have some pre-packaged version for you.  If yours doesn't (ArchLinux doesn't as far as I know) then you'll have to roll your own.  How to do that is outside of the scope of this article unfortunately but essentially you need to install both Exim4 and SpamAssassin on the same server, then edit your exim.conf file to run a new router which looks for spam.
+
+Using a pre-packaged versions can be as easy as:
+
+**On Debian systems:**
+
+  apt-get update
+  apt-get install sa-exim
+
+
+Check your own distro's user forums if you're unsure.
+
+Once you have those installed, you simply need to create a user account on the server, set it as a MX record for one of your domains and then send emails to $user@$domain.  When you view the source code of the emails you'll see a section relating to spam filtering with some scores in it.  Usually it will tell you what the threshold is for being blocked as spam - 5 by default!  5.0 is a leniant score too... If you go over 2.5 I'd say something's not right.
+
+Look at the breakdown of where your points came from... usually they're quite self explanatory such as EMAIL_SUBJECT_TWICE or something like that.
+
+===== Be compliant with the RFCs =====
+
+The RFCs main involved here are RFC2822 and RFC2045.  You're lucky someone else already did all the hard work for you :)  That's what Swift is made for.  Endless hours of reading RFCs, sending to many different SMTP servers running different software and checking results.
+
+The RFCs cover things such as maximum line length (1000, but 78 is a safer option), the structure of headers, character sets which are valid etc.  If you were just using mail() you'd have a lot to think about but Swift does lots of things under-the-hood in terms of encoding, line shortening, building compliant headers, putting MIME sections in the correct places, identifying langauges and other important points.
+
+Spam checkers almost all look for incompliant emails.
+
+Basically, don't worry about this if you're using Swift, just remember that it's a factor in spam checking.
+
+===== Send from an email address which actually exists! =====
+
+This is REALLY important.  The most important thing is that the domain has a MX record which can be publically looked up.  The local part of the address is less important although I'd still recommend sending from a working email account.
+
+Check your MX records are working by using a tool such as DIG if you have access to a Linux server or a UNIX/OS X system.  You can probably get DIG for windows too.
+
+The command to run is
+
+  dig MX <domain-name.tld>
+
+You need an MX record for each subdomain too.  If you have joe@yourdomain.tld you need a MX record for yourdomain.tld, then if you have joe@users.yourdomain.tld you need a separate MX record for users.yourdomain.tld.
+
+Here's an example output if the MX record is working:
+
+  w3style:~ d11wtq$ dig MX gmail.com
+  
+  ; <<>> DiG 9.3.2 <<>> MX gmail.com
+  ;; global options:  printcmd
+  ;; Got answer:
+  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8709
+  ;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 0
+  
+  ;; QUESTION SECTION:
+  ;gmail.com.                     IN      MX
+  
+  ;; ANSWER SECTION:
+  gmail.com.              1192    IN      MX      10 alt1.gmail-smtp-in.l.google.com.
+  gmail.com.              1192    IN      MX      10 alt2.gmail-smtp-in.l.google.com.
+  gmail.com.              1192    IN      MX      50 gsmtp163.google.com.
+  gmail.com.              1192    IN      MX      50 gsmtp183.google.com.
+  gmail.com.              1192    IN      MX      5 gmail-smtp-in.l.google.com.
+  
+  ;; Query time: 18 msec
+  ;; SERVER: 194.168.4.100#53(194.168.4.100)
+  ;; WHEN: Thu Feb 15 10:07:03 2007
+  ;; MSG SIZE  rcvd: 158
+  
+  w3style:~ d11wtq$
+
+And here's the output if it's not working
+
+  w3style:~ d11wtq$ dig MX calendar.w3style.org
+  
+  ; <<>> DiG 9.3.2 <<>> MX calendar.w3style.org
+  ;; global options:  printcmd
+  ;; Got answer:
+  ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31483
+  ;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+  
+  ;; QUESTION SECTION:
+  ;calendar.w3style.org.          IN      MX
+  
+  ;; AUTHORITY SECTION:
+  w3style.org.            3600    IN      SOA     ns1.w3style.co.uk. admin.w3style.co.uk. 2007020801 28800 7200 604800 86400
+  
+  ;; Query time: 22 msec
+  ;; SERVER: 194.168.4.100#53(194.168.4.100)
+  ;; WHEN: Thu Feb 15 10:10:46 2007
+  ;; MSG SIZE  rcvd: 97
+  
+  w3style:~ d11wtq$
+
+If you don't have a MX record for the email address you're using then the email won't function in any case which suggests you never intended to use the mailbox.  If you decide to set up a MX record, remember that changes could take 24 hours or so to propogate around all the nameservers in the world.  Usually it's only a matter of a few hours these days though.  If you tried looking up your MX record immediately after you set it up and it wasn't found, you may be stuck for a while being provided with cached results from your DNS servers.  Just be patient and wait :)
+
+===== If you can do so, set up a SPF record (DNS setting) =====
+
+Some of the major email providers such as Hotmail actually penalize you to the point you stand very little chance of successfully delivering mail if you do not have a SPF record set up for the domain your are sending email from.  You can find out more about SPF at the official website: http://www.openspf.org/
+
+What SPF basically does is limits the number of locations people can send email from your address from.
+
+It's not as scary as it looks.  DNS records have differing types such as A, CNAME, MX, SOA, PTR and TXT.  It's a TXT record you need to set up.  The page linked to above explains how to do this better than I can - I admit that you may have to read it several times before it sinks in!
+
+If you're sending email from joe@yourdomain.tld then the TXT record needs to be set on yourdomain.tld, and if you send from joe@users.yourdomain.tld the TXT record needs to be set for users.yourdomain.tld.
+
+Remember that because this is a DNS setting you may have to wait up to 24 hours for your changes to have any effect.
+
+===== Don't just send HTML emails! =====
+
+If you're going to send a HTML email, great!  But always duplicate the same email in plain text and send the message as a multipart message.  Spam checkers, belive it or not, do penalize you for sending HTML-only emails.  Sending a multipart email not only lowers your spam score, it also increases the number of people who will be able to actually read the email since not all mail clients can read HTML.
+
+===== Don't just send a big image =====
+
+For aesthetic reasons, people sometimes will just send a big graphic done in Illustrator or similar software.  This is a definite no-no.  Some email clients won't display the image and more importantly it gets you almost definitely caught in a spam filter!
+
+===== Don't send really short messages =====
+
+I know it's stupid, but it does make a difference.  A short email (as in one sentence) is more likely be tagged as spam than a long one.
+
+===== Are you blacklisted? =====
+
+It may surprise you, but there's a chance - through no immediate fault of your own - that you may be on a blacklist.  Spam checkers can use a system called RBL (Real Time Blacklists).  These are huge online databases which keep track of suspected/known spammers.  They tag the IP address of the originating server and occassionally will tag an entire submask.  Shared servers often inevitably finish up on these lists because they become a high target for spammers who roam from one shared account to another.  Bottom line - **don't rely on shared hosting to deliver emails**.
+
+You can check if any of your IP addresses (hosting, and SMTP server) are in a blacklist by going here:
+
+http://www.robtex.com/rbls.html
+
+If you're unfortunate enough to find that you're on a blacklist there's sadly not a lot you can do apart from changing your IP address.
+
+I mentioned SPF records above... if you don't have an SPF record, your chance of appearing on a blacklist is increased since bots will try to use your email address as a MAIL FROM envelope (so they don't get a load of boucned email messages - you do!).  If you have your SMTP server set up as an open relay, well, you're just asking for it really :P
+
+**NOTE:** If you're trying to run a SMTP server on a dynamic IP - even with a domain name from dyndns or similar - you will almost definitly appear on the blacklists.  Dynamic IP addresses are usually blacklisted by default.  Get a static IP.
+
+
+===== And the obvious one.... =====
+
+The obvious thing that WILL get you stuck in a spam filter is sending junk.  People can pretty-up the term any way they like and call it a marketing campaign or whatever but i you're sending emails advertising something to people who didn't give you their email address you are spamming.
+
+Emails containing talk of millions or thousands of dollars/pounds, cracked software, pornographic text, drugs and any other obvious spam-type topics are just going to be tagged as spam.  Don't do it.

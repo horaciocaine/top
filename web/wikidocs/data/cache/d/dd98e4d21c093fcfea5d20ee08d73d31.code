@@ -1,0 +1,15 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Include this needed file</span>
+<span class="kw1">require_once</span> <span class="st_h">'/path/to/swift/lib/swift_required.php'</span>;
+&nbsp;
+<span class="co1">//Start the mailer</span>
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'smtp.your-isp.tld'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create a message</span>
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'Your subject'</span><span class="sy0">,</span> <span class="st_h">'Your Message'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'your@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Your Name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'someone@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Person name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send it</span>
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;

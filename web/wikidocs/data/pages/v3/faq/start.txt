@@ -1,0 +1,3 @@
+==== Frequently Asked Questions ====
+  * [[v3:faq:parseerror|I get parse errors, or I get a blank page when I include Swift?]]
+  * [[v3:faq:unittests|The unit tests are exiting with a memory exhaustion error. Huh?]]

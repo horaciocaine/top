@@ -1,0 +1,122 @@
+
+
+
+<h2><a name="sending_to_several_recipients" id="sending_to_several_recipients">Sending to Several Recipients</a></h2>
+<div class="level2">
+
+<p>
+ This is much the same as sending a basic email.  You simply add more addresses to the array of setTo().
+</p>
+
+<p>
+First you need to include the &ldquo;swift_required.php&rdquo; file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message and send it with the Mailer.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Include this needed file</span>
+<span class="kw1">require_once</span> <span class="st0">'/path/to/swift/lib/swift_required.php'</span>;
+&nbsp;
+<span class="co1">//Start the mailer</span>
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st0">'smtp.your-isp.tld'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create a message</span>
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'Your subject'</span>, <span class="st0">'Your Message'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'your@address.tld'</span> =&gt; <span class="st0">'Your Name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">'someone@address.tld'</span> =&gt; <span class="st0">'Person name'</span>,
+    <span class="st0">'other@address.tld'</span> =&gt; <span class="st0">'Other name'</span>,
+    <span class="st0">'more@address.tld'</span> =&gt; <span class="st0">'Yet another name'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send it</span>
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+<p>
+This will result in a single email being sent to all of those addresses, where the &ldquo;To:&rdquo; header shows all addresses.
+</p>
+<pre class="code">
+Subject: Your subject
+From: Your Name &lt;your@address.tld&gt;
+To: Person name &lt;someone@address.tld&gt;, Other name &lt;other@address.tld&gt;, Yet another name &lt;more@address.tld&gt;
+-------------------------------------
+
+Your message
+</pre>
+
+<p>
+If you want to include some Cc recipients then call setCc()...
+</p>
+<pre class="code php"><span class="co1">//Create a message</span>
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'Your subject'</span>, <span class="st0">'Your Message'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'your@address.tld'</span> =&gt; <span class="st0">'Your Name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">'someone@address.tld'</span> =&gt; <span class="st0">'Person name'</span>,
+    <span class="st0">'other@address.tld'</span> =&gt; <span class="st0">'Other name'</span>,
+    <span class="st0">'more@address.tld'</span> =&gt; <span class="st0">'Yet another name'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setCc</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">'copied@address.tld'</span> =&gt; <span class="st0">'Copied recipient'</span>,
+    <span class="st0">'another-copy@address.tld'</span> =&gt; <span class="st0">'Another copy'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+This results in the following message sent to all recipients:
+</p>
+<pre class="code">
+Subject: Your subject
+From: Your Name &lt;your@address.tld&gt;
+To: Person name &lt;someone@address.tld&gt;, Other name &lt;other@address.tld&gt;, Yet another name &lt;more@address.tld&gt;
+Cc: Copied recipient &lt;copied@address.tld&gt;, Another copy &lt;another-copy@address.tld&gt;
+-------------------------------------
+
+Your message
+</pre>
+
+<p>
+And finally, if you want to include some Bcc recipients you need to call setBcc()...
+</p>
+<pre class="code php"><span class="co1">//Create a message</span>
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'Your subject'</span>, <span class="st0">'Your Message'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'your@address.tld'</span> =&gt; <span class="st0">'Your Name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">'someone@address.tld'</span> =&gt; <span class="st0">'Person name'</span>,
+    <span class="st0">'other@address.tld'</span> =&gt; <span class="st0">'Other name'</span>,
+    <span class="st0">'more@address.tld'</span> =&gt; <span class="st0">'Yet another name'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setBcc</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st0">'copied@address.tld'</span> =&gt; <span class="st0">'Copied recipient'</span>,
+    <span class="st0">'another-copy@address.tld'</span> =&gt; <span class="st0">'Another copy'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Unlike Cc recipients, Bcc recipients are hidden from everyone but themselves so what happens here is that all recipients in the &ldquo;To:&rdquo; field get this message:
+</p>
+<pre class="code">
+Subject: Your subject
+From: Your Name &lt;your@address.tld&gt;
+To: Person name &lt;someone@address.tld&gt;, Other name &lt;other@address.tld&gt;, Yet another name &lt;more@address.tld&gt;
+-------------------------------------
+
+Your message
+</pre>
+
+<p>
+And each recipient in the Bcc field gets their own message:
+</p>
+<pre class="code">
+Subject: Your subject
+From: Your Name &lt;your@address.tld&gt;
+To: Person name &lt;someone@address.tld&gt;, Other name &lt;other@address.tld&gt;, Yet another name &lt;more@address.tld&gt;
+Bcc: Copied recipient &lt;copied@address.tld&gt;
+-------------------------------------
+
+Your message
+</pre>
+<pre class="code">
+Subject: Your subject
+From: Your Name &lt;your@address.tld&gt;
+To: Person name &lt;someone@address.tld&gt;, Other name &lt;other@address.tld&gt;, Yet another name &lt;more@address.tld&gt;
+Bcc: Yet another copy &lt;another-copy@address.tld&gt;
+-------------------------------------
+
+Your message
+</pre>
+
+</div>

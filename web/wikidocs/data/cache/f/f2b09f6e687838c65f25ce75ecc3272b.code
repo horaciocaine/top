@@ -1,0 +1,1 @@
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">removeProtocol</span><span class="br0">&#40;</span><span class="st_h">'ftp'</span><span class="br0">&#41;</span>; <span class="co1">//Disable FTP downloads</span>

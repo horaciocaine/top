@@ -1,0 +1,1 @@
+<pre class="code php"><span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;</pre>

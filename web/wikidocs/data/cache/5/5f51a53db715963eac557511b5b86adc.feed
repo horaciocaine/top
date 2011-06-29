@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-04-13T17:36:07+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/multirecipients?rev=1171450165&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/multirecipients?rev=1181248375&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/batch?rev=1171784105&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/batch?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/iterators?rev=1179422417&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending_batch?rev=1171481485&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending_multiple?rev=1171481391&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/multiple?rev=1174580242&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/multirecipients?rev=1171450165&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T10:49:25+00:00</dc:date>
+        <title>Sending to multiple recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/multirecipients?rev=1171450165&amp;do=diff</link>
+        <description>In the previous tutorials you may have read, we've been providing recipient addresses using a string, or using the Swift_Address class.  However, Swift can send to Bcc recipients, Cc recipients and multiple To recipients.  For this, we use the Swift_RecipientList class.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/multirecipients?rev=1181248375&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-06-07T20:32:55+00:00</dc:date>
+        <title>Sending to multiple recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/multirecipients?rev=1181248375&amp;do=diff</link>
+        <description>In the previous tutorials you may have read, we've been providing recipient addresses using a string, or using the Swift_Address class.  However, Swift can send to Bcc recipients, Cc recipients and multiple To recipients.  For this, we use the Swift_RecipientList class.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/batch?rev=1171784105&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-18T07:35:05+00:00</dc:date>
+        <title>Sending a batch email</title>
+        <link>http://swiftmailer.org/wikidocs/v3/batch?rev=1171784105&amp;do=diff</link>
+        <description>If you try to deliver an email to more than one recipient by using the Swift_RecipientList class in combination with Swift's send() method, you need to be aware that all the recipients of the message will be able to see each other's addresses in their mail clients.  This is fine for social/work emails, but if you were sending something like a newsletter or a marketing campaign it wouldn't look great and could even land you in trouble for breach of data protection.  To avoid any such problems, yo…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/batch?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Sending a batch email</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/batch?rev=1236058885&amp;do=diff</link>
+        <description>If you try to deliver an email to more than one recipient by using the Swift_RecipientList class in combination with Swift's send() method, you need to be aware that all the recipients of the message will be able to see each other's addresses in their mail clients.  This is fine for social/work emails, but if you were sending something like a newsletter or a marketing campaign it wouldn't look great and could even land you in trouble for breach of data protection.  To avoid any such problems, yo…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/iterators?rev=1179422417&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T17:20:17+00:00</dc:date>
+        <title>Using iterators to provide lists</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/iterators?rev=1179422417&amp;do=diff</link>
+        <description>As you have seen, you can make use of Swift_RecipientList to send a message to multiple recipients.  Up until now you've only seen the usage of addTo(), addCc() and addBcc().  You can completely by-pass these methods however.  Swift is provided with an iterator to loop over those addresses you have added and calling addTo() for example is simply pushing addresses onto an array.  By default Swift_RecipientList will provide an Array iterator so that the values added with addTo(), addCc() and addBc…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-18T18:04:16+00:00</dc:date>
+        <title>Sending a batch email or newsletter</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff</link>
+        <description>When you send out an email marketing campaign, newsletter or any other type of batch email you don't particularly want to reveal everybody's address to the recipients.  One nasty hack is to Bcc all the recipients and leave the To: field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-03-26T10:22:20+00:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending_batch?rev=1171481485&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:31:25+00:00</dc:date>
+        <title>Sending a batch email or newsletter</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending_batch?rev=1171481485&amp;do=diff</link>
+        <description>We you send out an email marketing campaign, newsletter or any other type of batch email you don't particularly want to reveal everybody's address to the recipients.  One nasty hack is to Bcc all the recipients and leave the To: field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:32:37+00:00</dc:date>
+        <title>Dealing with failed recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff</link>
+        <description>SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in $swift-&gt;log-&gt;getFailedRecipients() as an array.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending_multiple?rev=1171481391&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:29:51+00:00</dc:date>
+        <title>Sending to mulitple recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending_multiple?rev=1171481391&amp;do=diff</link>
+        <description>Sending to multiple recipients, or including Cc and Bcc recipients is handled by passing an instance of Swift_RecipientList as the recipient parameter in send().
+
+Swift_RecipientList() contains the methods addTo(), addCc() and addBcc() along with removeTo(), removeCc() etc.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/multiple?rev=1174580242&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-22T16:17:22+00:00</dc:date>
+        <title>Sending to mulitple recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/multiple?rev=1174580242&amp;do=diff</link>
+        <description>Sending to multiple recipients, or including Cc and Bcc recipients is handled by passing an instance of Swift_RecipientList as the recipient parameter in send().
+
+Swift_RecipientList() contains the methods addTo(), addCc() and addBcc() along with removeTo(), removeCc() etc.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-07T21:50:27+00:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T14:19:34+00:00</dc:date>
+        <title>Dealing with failed recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff</link>
+        <description>SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in $swift-&gt;log-&gt;getFailedRecipients() as an array.</description>
+    </item>
+</rdf:RDF>

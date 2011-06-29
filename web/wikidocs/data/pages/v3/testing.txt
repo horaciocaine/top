@@ -1,0 +1,70 @@
+====== Running the included tests ======
+
+Swift comes with a complete set of tests just to ensure everything works the way it's expect to.  There are three types of tests included with the library: Smoke Tests, Unit Tests and Benchmarks.  All of these are found in the "tests" directory.
+
+Smoke Tests are visual tests which you may run without much knowledge of testing in general.  You run the tests, a set of instructions is presented to you on-screen and you check a few visual requirements to ensure things look as expected - easy! :)
+
+Unit Tests go into much finer detail.  They analyze the internals of the library from many different angles and make lots of expectations about what is supposed to happen.  Several thousand expectations are made on this library and we want every single one of them to be satisfied.  You'll need [[http://sourceforge.net/projects/simpletest|SimpleTest]] to run the Unit Tests.
+
+The Benchmarks simply measure memory usage and timescales to perform operations.  They use a PHP extension called [[http://www.xdebug.org/|XDebug2]].
+
+Before you run either type of test, be sure to edit the "TestConfiguration.php" file in the "tests" directory.  You also need to set up the test environment by following the steps below.  The tests will not run otherwise.
+
+
+
+===== Setting up the test environment =====
+
+This isn't too difficult really.  If all you want to do is run the unit tests then you just need to either:
+
+a)  Make tests/tmp/ writable to the web user (usually "noobody" or "apache") (chmod 0777 will do this).
+b)  Provide a writable path such as /tmp/ in the TestConfiguration.php file
+
+Only some of the tests require this, but if you don't do it, you WILL get fails.
+
+The smoke tests also require this writable folder.
+
+The benchmarks have an additional requirement in that you first extract a set of files from an archive bundled in tests/files/extract_these_first.tar.bz2; this is mentioned in "Running the benchmarks" below.
+
+To run the benchmark tests, you will need to have XDebug2 installed on the server with Memory Limit support compiled into PHP.  You can get XDebug2 by running
+
+  #- $   pecl install xdebug-2.0.0RC3  #or whatever is the latest at the time
+
+The benchmark tests also require a writable directory and the TestConfiguration.php file to be edited.
+
+
+
+===== Running the Smoke Tests =====
+
+To run the smoke tests, you need to do two things.  Provide a writable directory and edit the TestConfiguration.php file.
+
+If you don't provide a path to a writable directory in the TestConfiguration.php file, you will need to make tests/tmp/ writable.  Then edit the TestConfiguration.php file otherwise all the emails are going to arrive at my inbox (I get lots!).
+
+One you have performed the above steps, simply open the files in "tests/smokes" in your web browser.  A message will be sent for each test.  If the message sent successfully a green bar will appear and a set of instructions.  If the message did not send successfully a red bar will appear along with the set of instructions and an error message.
+
+Each smoke test contains an image to use as a guide to following the instructions.  Be aware that you may see subtle differences as various mail clients will render emails slightly differently.  This is perfectly normal.
+
+{{http://www.swiftmailer.org/wikiimages/smoke_example.jpg|An example smoke test}}
+
+===== Running the Unit Tests =====
+
+To run the unit tests you first need to download and extract the Unit Testing tool [[http://sourceforge.net/projects/simpletest|SimpleTest]] onto the server where you will run the tests.  The Unit Tests provided will make use of this framework in order to make the many assertions as expectations they need.
+
+Once you have extracted simpletest, edit the TestConfiguration.php file in Swift's "tests" directory to point to your installtion of simpltest.
+
+You run the tests in your web browser.  <del>You can run all the tests at the same time by opening the "tests/units/runAllTests.php" file in your browser, or you can run the individual PHP files in the "tests/units" directory.</del> You can run the tests in groups by running the files runAllCoreTests.php, runAllConnectionTests.php, runAllMimeTests.php and runAllAuthenticatorTests.php.  The individual test runners are also found in the tests/units/ directory.
+
+A green bar indicates that everything is working as expected.  A red bar indicates that something is not right.  If you get a red bar and you're sure you've got the correct values in the TestConfiguration.php file let me know about it by using the contact form at http://www.swiftmailer.org/contact/
+
+//An example of a passing Unit Test//
+
+{{http://www.swiftmailer.org/wikiimages/unit_pass_example.jpeg|An example of a passing Unit Test}}
+
+//An example of a failing Unit Test//
+
+{{http://www.swiftmailer.org/wikiimages/unit_fail_example.jpeg|An example of a failing Unit Test}}
+
+===== Running the Benchmarks =====
+
+Once you have Xdebug2 installed as shown in the section "Setting up the test environment" above, all you need to do is edit the TestConfiguration.php file and provide a writable directory (or set test/tmp/ to be writable).
+
+The benchmarks are very minimal - they don't look pretty!  Just open the files in tests/benchmarks/ with your web browser and click the avaiable options.

@@ -1,0 +1,24 @@
+
+
+
+<h1><a name="working_with_plugins_after_loading" id="working_with_plugins_after_loading">Working with plugins after loading</a></h1>
+<div class="level1">
+
+<p>
+
+Plugins are held inside Swift by-reference and you can get a reference to that plugin yourself by using the getPlugin() method.  When you load a plugin into Swift you need to give it a name.  You use that name to retreive a reference to it.  This comes in particularly useful when you want to run methods in a plugin at runtime.
+</p>
+<pre class="code php"><span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Example<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;Example&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//do some other stuff if you want</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span> <span class="sy0">...</span> <span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Do something with the plugin</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">getPlugin</span><span class="br0">&#40;</span><span class="st0">&quot;Example&quot;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">doSomething</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> In PHP4 you cannot call a method from an object returned from a function/method directly.  In this case you first need to assign the plugin instance to a variable.  It&#039;s critical that you use the reference operator here otherwise the return plugin instance will be a copy of the original and any changes you make to it will not be seen inside Swift.
+</p>
+<pre class="code php"><span class="co1">//Do something with the plugin</span>
+<span class="re0">$plugin</span> <span class="sy0">=&amp;</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">getPlugin</span><span class="br0">&#40;</span><span class="st0">&quot;Example&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">doSomething</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+</div>

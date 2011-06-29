@@ -1,0 +1,15 @@
+<pre class="code php"><span class="co1">//At instantiation</span>
+<span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Plain text part&quot;</span>, <span class="st0">&quot;text/plain&quot;</span>, <span class="st0">&quot;8bit&quot;</span>, <span class="st0">&quot;iso-8859-2&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;HTML &lt;em&gt;Mime Part&lt;/em&gt;&quot;</span>, <span class="st0">&quot;text/html&quot;</span>, <span class="st0">&quot;8bit&quot;</span>, <span class="st0">&quot;windows-874&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Or after construction</span>
+<span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$part1</span> = <span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;Plain text part&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$part1</span>-&gt;<span class="me1">setCharset</span><span class="br0">&#40;</span><span class="st0">&quot;iso-8859-2&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$part1</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$part2</span> = <span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;My HTML &lt;em&gt;part&lt;/em&gt;&quot;</span>, <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$part2</span>-&gt;<span class="me1">setCharset</span><span class="br0">&#40;</span><span class="st0">&quot;windows-874&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="re0">$part2</span><span class="br0">&#41;</span>;</pre>

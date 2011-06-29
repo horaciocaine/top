@@ -1,0 +1,34 @@
+
+
+
+<h1><a name="personalizing_recipient_names" id="personalizing_recipient_names">Personalizing recipient names</a></h1>
+<div class="level1">
+
+<p>
+ When you send an email with Swift you can just provide the address as a string.  However, if you want to send a personal name along with the address you will need to use the Swift_Address class*.  This class is simply making life easier for Swift to ensure addresses are given in the correct format when used in message headers and when sent to the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server.  It&rsquo;s extremely basic and simply takes one or two arguments in the constructor.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Load in the files we'll need</span>
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Start Swift</span>
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.your-host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message</span>
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Swift_Address can accept an email address and a name, or just an email address</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;foo@bar.tld&quot;</span>, <span class="st0">&quot;Foo Bar&quot;</span><span class="br0">&#41;</span>, <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;me@mydomain.com&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Sent&quot;</span>;
+<span class="kw1">else</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Failed&quot;</span>;</pre>
+<p>
+* You cannot pass a string like
+</p>
+<pre class="code">&quot;Foo Bar &lt;foo@bar.com&gt;&quot;</pre>
+
+<p>
+to Swift as of version 3; you must use Swift_Address instead. 
+</p>
+
+</div>

@@ -1,0 +1,19 @@
+====== Loading new plugins into Swift ======
+
+Plugins in Swift are nothing more than event listeners (a sort of observer).  If you download a plugin, or want to load one of the packaged ones you first need to include the file in your script using the "include" or "require" keywords.  You then use the attachPlugin() method in Swift to pass an instance of the plugin to Swift.  Swift quite simply sends messages (events) to the plugin at relevent times.
+
+If the plugin comes with a little documentation, be sure to read it to understand how it works.  Some plugins may require information to be passed to the constructor, or may need to be manipulated after being loaded into Swift.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/NativeMail.php";
+require_once "lib/Swift/Plugin/Example.php";
+
+$swift =& new Swift(new Swift_Connection_NativeMail());
+
+//Load the plugin, and give it a name
+$swift->attachPlugin(new Swift_Plugin_Example(), "SOME_NAME");
+
+//Continue working as normal
+$swift->send( ... );
+</code>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-05-31T08:40:16+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugin_verbose?rev=1174510700&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1175092542&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugin_verbose?rev=1174510700&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-21T20:58:20+00:00</dc:date>
+        <title>Verbose Sending Plugin (Debug-use only)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugin_verbose?rev=1174510700&amp;do=diff</link>
+        <description>The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the SMTP connection.  It's unlikely you'll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1175092542&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-28T14:35:42+00:00</dc:date>
+        <title>Verbose Sending Plugin (Debug-use only)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1175092542&amp;do=diff</link>
+        <description>The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the SMTP connection.  It's unlikely you'll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).</description>
+    </item>
+</rdf:RDF>

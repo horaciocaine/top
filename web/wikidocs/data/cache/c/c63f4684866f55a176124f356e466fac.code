@@ -1,0 +1,15 @@
+<span class="co1">//Try sending the email</span>
+<span class="re0">$sent</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;your@address.tld&quot;</span><span class="sy0">,</span> <span class="re0">$sender</span><span class="br0">&#41;</span>;
+<span class="co1">//Disconnect from SMTP, we're done</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$sent</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./success.php&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=sending_failed&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>

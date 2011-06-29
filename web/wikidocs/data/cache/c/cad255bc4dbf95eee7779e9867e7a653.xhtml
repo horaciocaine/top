@@ -1,0 +1,29 @@
+
+
+
+<h1><a name="sending_a_batch_email_or_newsletter" id="sending_a_batch_email_or_newsletter">Sending a batch email or newsletter</a></h1>
+<div class="level1">
+
+<p>
+
+We you send out an email marketing campaign, newsletter or any other type of batch email you don&#039;t particularly want to reveal everybody&#039;s address to the recipients.  One nasty hack is to Bcc all the recipients and leave the <code>To:</code> field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.
+</p>
+
+<p>
+batchSend() has exactly the same semantics as send(), except it will ignore any Cc or Bcc recipients and just send to the <code>To:</code> addresses.  When it does this, it adjusts the headers of the email for each recipient so that they only see their own address and hence, it looks a lot more authentic and professional.
+</p>
+<pre class="code php"><span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Our newsletter&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Some news&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;recipient1@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Recipient 1&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;recipient2@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Another recipient&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">batchSend</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;company@domain.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Our Company&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+This does use a little more bandwidth and take a little longer since Swift needs to send a slightly different message to each recipient.  However, it is still pretty fast!
+
+</p>
+
+</div>

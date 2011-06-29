@@ -1,0 +1,1 @@
+<span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">addProtocol</span><span class="br0">&#40;</span><span class="st0">&quot;file&quot;</span><span class="br0">&#41;</span>; <span class="co1">// as in 'file:///foo/bar.txt' without the :// part</span>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-12-23T11:33:21+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-03-26T11:22:20+01:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-07T23:50:27+01:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-18T20:04:16+01:00</dc:date>
+        <title>Sending a batch email or newsletter</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff</link>
+        <description>When you send out an email marketing campaign, newsletter or any other type of batch email you don't particularly want to reveal everybody's address to the recipients.  One nasty hack is to Bcc all the recipients and leave the To: field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-24T18:16:59+01:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff</link>
+        <description>If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-04-21T23:18:27+01:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff</link>
+        <description>If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+</rdf:RDF>

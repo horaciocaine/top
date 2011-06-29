@@ -1,0 +1,75 @@
+
+
+
+<h1><a name="swift_connection_smtp" id="swift_connection_smtp">Swift_Connection_SMTP</a></h1>
+<div class="level1">
+
+<p>
+
+<strong><em class="u">Synopsis:</em></strong> <em><code>new Swift_Connection_<acronym title="Simple Mail Transfer Protocol">SMTP</acronym>(string remote_host[, int remote_port [, int encryption_level]])</code></em>
+</p>
+
+</div>
+<!-- SECTION "Swift_Connection_SMTP" [1-154] -->
+<h2><a name="getting_connected_to_smtp" id="getting_connected_to_smtp">Getting connected to SMTP</a></h2>
+<div class="level2">
+
+<p>
+
+The <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection is probably the most heavily used connection, and almost certainly the most consistent and portable.  This connection opens up a socket with TCP and speaks “<acronym title="Simple Mail Transfer Protocol">SMTP</acronym>” to a remote <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server.  You need to have a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server which is capable of relaying mail from the domain of your web server for this to work.  Some hosts provide a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server for you as part of your package.  You may also make use of Gmail&#039;s <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server if you have a Gmail account; however, they do impose a maximum limit of 50 emails in any one go.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Connect to localhost on port 25</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;localhost&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="co1">//Connect to an IP address on a non-standard port</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;217.147.94.117&quot;</span><span class="sy0">,</span> <span class="nu0">419</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="co1">//Connect to Gmail (PHP5)</span>
+<span class="re0">$swift</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span>
+    <span class="st0">&quot;smtp.gmail.com&quot;</span><span class="sy0">,</span> Swift_Connection_SMTP<span class="sy0">::</span><span class="me2">PORT_SECURE</span><span class="sy0">,</span> Swift_Connection_SMTP<span class="sy0">::</span><span class="me2">ENC_TLS</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Connect to Gmail (PHP4)</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span>
+    <span class="st0">&quot;smtp.gmail.com&quot;</span><span class="sy0">,</span> SWIFT_SMTP_PORT_SECURE<span class="sy0">,</span> SWIFT_SMTP_ENC_TLS<span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Note that to use encryption in PHP5 you should use the class constants ENC_OFF, ENC_<acronym title="Secure Sockets Layer">SSL</acronym> or ENC_TLS.  In PHP4, there is no such thing as Class Constants so instead, there are provided global constants SWIFT_<acronym title="Simple Mail Transfer Protocol">SMTP</acronym>_ENC_OFF, SWIFT_<acronym title="Simple Mail Transfer Protocol">SMTP</acronym>_ENC_TLS and SWIFT_<acronym title="Simple Mail Transfer Protocol">SMTP</acronym>_ENC_<acronym title="Secure Sockets Layer">SSL</acronym>.
+</p>
+
+</div>
+<!-- SECTION "Getting connected to SMTP" [155-1619] -->
+<h2><a name="if_you_need_to_use_authentication" id="if_you_need_to_use_authentication">If you need to use authentication</a></h2>
+<div class="level2">
+
+<p>
+
+The <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection may also use authentication (such as when using Gmail).  In such case you will need to provide a username and password to use.
+</p>
+<pre class="code php"><span class="re0">$smtp</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;some-host.tld&quot;</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span><span class="sy0">-&gt;</span><span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st0">&quot;user&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span><span class="sy0">-&gt;</span><span class="me1">setpassword</span><span class="br0">&#40;</span><span class="st0">&quot;pass&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;</pre>
+<p>
+See the documentation page on <a href="/wikidocs/v3/smtpauth" class="wikilink1" title="v3:smtpauth">using SMTP authentication</a> for more information about <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> authentication in Swift.
+</p>
+
+<p>
+The default timeout to wait for a connection, or to wait for a response with the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection is 15 seconds.  This can be adjusted by using the setTimeout() method.
+</p>
+<pre class="code php"><span class="re0">$smtp</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;some-host.tld&quot;</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span><span class="sy0">-&gt;</span><span class="me1">setTimeout</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>TIP:</strong> If you&#039;re using PHP5, try wrapping try/catch constructs around the areas where you create a connection.  It&#039;s possible that a Swift_Connection_Exception might be thrown if the server is down.
+
+</p>
+
+</div>
+<!-- SECTION "If you need to use authentication" [1620-] -->

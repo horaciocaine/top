@@ -1,0 +1,4 @@
+<pre class="code php"><span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'Your subject'</span>, Your HTML message<span class="st0">', '</span>text/html<span class="st0">')
+  -&gt;attach(new Swift_MimePart('</span>Your text message<span class="st0">', '</span>text/plain<span class="st0">'))
+  -&gt;setFrom(array('</span>your@address.tld<span class="st0">' =&gt; '</span>Your Name<span class="st0">'))
+  -&gt;setTo(array('</span>someone@address.tld<span class="st0">' =&gt; '</span>Person name<span class="st0">'));</span></pre>

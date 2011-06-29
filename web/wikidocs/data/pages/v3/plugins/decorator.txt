@@ -1,0 +1,149 @@
+====== Swift Message Decorator Plugin (For Customized Messages) ======
+
+===== Introduction to message decorating =====
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render only those bits which changed.
+
+For this reason, you need only create one instance of ''Swift_Message'' when sending to many recipients.  If you want to change the message for each recipient you can just loop over all the recipients and modify the message in the loop, for example:
+
+<code php>
+while ($row = mysql_fetch_assoc($result))
+{
+    $message->setSubject("Order no. " . $row["order"] . " has been processed");
+    $swift->send($message, $row["recipient"], $your_address);
+}
+</code>
+
+However, although it's logical, when you start adding attachments, mime part and other fancy bits and pieces this may just become a bit of an unneccessary (I never spell that right!) hassle.
+
+As of version 3.1, Swift includes a plugin called ''Swift_Plugin_Decorator''.  This plugin is intended to give you the flexibility to customize a single message for each individual recipient.  Whether you choose to use batchSend() or just send() inside a loop, this plugin will work regardless.
+
+===== Using the plugin =====
+
+The basic use of the plugin simply takes a 2-dimensional array of replacements, where each key in the first dimension is the address and the second dimension becomes a mapping of replacments.  To make this clear, let's look at a really obvious example:
+
+<code php>
+<?php
+
+/** THIS CODE REQUIRES Swift 3.1 OR HIGHER **/
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/Decorator.php";
+
+//Instantiate Swift as usual
+$swift =& new Swift(new Swift_Connection_SMTP("your-server.tld"));
+
+//Create the message, using some unique variables to search for
+$message =& new Swift_Message("Hey {name}, what's up?", "It's a bit {weather} today wouldn't you say?");
+
+//Specify the list of replacements as a 2-d array
+$replacements = array(
+    "joe@bloggs.com" => array("{name}" => "Joe", "{weather}" => "chilly"),
+    "fred@perry.com" => array("{name}" => "Fred", "{weather}" => "muggy")
+);
+
+//Load the plugin with these replacements
+$swift->attachPlugin(new Swift_Plugin_Decorator($replacements), "decorator");
+
+//Send messages
+$swift->send($message, "fred@perry.com", "you@your-address.com");
+$swift->send($message, "joe@bloggs.com", "you@your-address.com");
+
+$swift->disconnect();
+</code>
+
+In the above example we are doing nothing more than performing a basic send to two different recipients.  This is just the start, you can do a lot more with this plugin.
+
+The emails the two recipients will receive will looks like this:
+
+  Subject: Hey Fred, what's up?
+  --------------------------------
+  It's a bit muggy today wouldn't you say?
+
+  Subject: Hey Joe, what's up?
+  --------------------------------
+  It's a bit chilly today wouldn't you say?
+
+
+More than likely, if you're thinking of using this plugin it's becuase you have a more complicated requirement than this basic example so let's continue.
+
+If you attach parts, Swift will replace variables here too:
+
+<code php>
+$message->attach(new Swift_Message_Part("Order number: {order} sent on {date}"));
+$message->attach(new Swift_Message_Part("<strong>Order number:</strong> {order} sent on {date}", "text/html"));
+</code>
+
+And even tricky things like file attachments can have unique names:
+
+<code php>
+$message->attach(new Swift_Message_Attachment(
+    new Swift_File("generic_plan.pdf"), "{name}s_action_plan.pdf", "application/pdf"));
+</code>
+
+If you choose to use some other syntax for your variables this will work just fine because the plugin requires that you provide the full identifier of the variable anyway (i.e. "{foo}" not just "foo").  You may choose to use something like ''%foo%'' or even ''*&&^foo&*&'' if you're a bit nutty.
+
+In our first example, we'd get the exact same result if we used ''batchSend()'' to send the email to Joe and Fred.  Whatever method you use to send the email to the recipients, providing they are the main recipient (i.e. not a ''Cc'' or ''Bcc'' recipient) this plugin will just work.
+
+<code php>
+//Load the plugin with these replacements
+$swift->attachPlugin(new Swift_Plugin_Decorator($replacements), "decorator");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("joe@bloggs.com");
+$recipients->addTo("fred@perry.com");
+//Send with batchSend()
+$swift->batchSend($message, $recipients, "you@your-address.com");
+</code>
+
+
+===== Extending the replacement functionality (recommended for Database work) =====
+
+Filling a huge array with the replacements for all the recipients you're going to work with is probably not particularly appetising if you're sending to 1000 recipients.  The plugin was deliberately designed to make it easy to extend so you can hook it right into your database or use whatever means you need to retreive the replacements for each recipient.  Providing you are able to get the replacments you need if you are given the email address to retreive them for then this is going to be the most ideal solution for you.  By default, the plugin takes your array and gives it to a class called ''Swift_Plugin_Decorator_Replacements'', it's this class you need to extend.
+
+The only method you'll want to override out of neccessity is ''Swift_Plugin_Decroator_Replacements->getReplacementsFor()''.  This method takes the address as an argument and returns the map of replacements as an array.
+
+<code php>
+<?php
+
+/** THIS CODE REQUIRES Swift 3.1 OR HIGHER **/
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/Decorator.php";
+
+//Instantiate Swift as usual
+$swift =& new Swift(new Swift_Connection_SMTP("your-server.tld"));
+
+//Create the message, using some unique variables to search for
+$message =& new Swift_Message("Hey {name}, what's up?", "It's a bit {weather} today wouldn't you say?");
+
+//Extend the replacements class
+class Replacements extends Swift_Plugin_Decorator_Replacements {
+    function getReplacementsFor($address) {
+        $query = sprintf("select
+        name as `{name}`, weather as `{weather}`
+        from buddies
+        where email = '%s'", mysql_real_escape_string($address));
+        $result = mysql_query($query);
+        if (mysql_num_rows($result) > 0)
+        {
+            return mysql_fetch_assoc($result);
+        }
+    }
+}
+
+//Load the plugin with the extended replacements class
+$swift->attachPlugin(new Swift_Plugin_Decorator(new Replacements()), "decorator");
+
+//Send messages
+$swift->send($message, "fred@perry.com", "you@your-address.com");
+$swift->send($message, "joe@bloggs.com", "you@your-address.com");
+
+$swift->disconnect();
+</code>
+
+This plugin really does give you a lot of flexibility when sending to a list, getting to know it is fun :)
+
+Enjoy!

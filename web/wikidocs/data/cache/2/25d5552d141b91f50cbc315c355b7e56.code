@@ -1,0 +1,2 @@
+<pre class="code php"><span class="re0">$log</span> =&amp; Swift_LogContainer::<span class="me2">getLog</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$log</span>-&gt;<span class="me1">setLogLevel</span><span class="br0">&#40;</span><span class="re0">$whateve_level</span><span class="br0">&#41;</span>;</pre>

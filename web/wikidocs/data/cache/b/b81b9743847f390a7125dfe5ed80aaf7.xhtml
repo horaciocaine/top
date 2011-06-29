@@ -1,0 +1,43 @@
+
+
+
+<h1><a name="throttler_plugin_to_restrict_the_speed" id="throttler_plugin_to_restrict_the_speed">Throttler Plugin to restrict the speed</a></h1>
+<div class="level1">
+
+<p>
+ If you want to run a batch send that&rsquo;s going to take a long time and don&rsquo;t want to hog the server&rsquo;s resources and/or bandwidth in the process perhaps this plugin is the solution.  Unlike the AntiFlood plugin, which offers a similar solution, the throttler works on the basis of restricting speed, not on the basis of minimizing the number of emails per-connection.
+</p>
+
+<p>
+You can set the speed in terms of bytes-per-minute or in terms of messages-per-minute.
+</p>
+
+<p>
+<strong>NOTE:</strong> Bytes-per-minute applies only to the outgoing traffic, but the incoming traffic negligible anyway (basic one-line responses)
+</p>
+
+<p>
+Using the plugin is simple.  Just create it, set the rate and then load it :)
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/Throttler.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$throttler</span> =&amp; <span class="kw2">new</span> Swift_Plugin_Throttler<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$throttler</span>-&gt;<span class="me1">setBytesPerMinute</span><span class="br0">&#40;</span><span class="nu0">20000000</span><span class="br0">&#41;</span>; <span class="co1">//Roughly 20MB</span>
+&nbsp;
+<span class="re0">$swift</span>-&gt;<span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="re0">$throttler</span>, <span class="st0">&quot;throttler&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//or maybe you want to set the number of messages per minute?</span>
+&nbsp;
+<span class="re0">$throttler</span>-&gt;<span class="me1">setEmailsPerMinute</span><span class="br0">&#40;</span><span class="nu0">30</span><span class="br0">&#41;</span>; <span class="co1">//Max of 1 email every 2 seconds</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="re0">$throttler</span>, <span class="st0">&quot;throttler&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+This will work no matter what approach you take to send your emails, be it batchSend() or send().
+</p>
+
+</div>

@@ -1,0 +1,9 @@
+<span class="re0">$num_sent</span> <span class="sy0">=</span> <span class="re0">$batch</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="re0">$sender</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/print_r"><span class="kw3">print_r</span></a><span class="br0">&#40;</span><span class="re0">$batch</span><span class="sy0">-&gt;</span><span class="me1">getFailedRecipients</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="coMULTI">/*
+Array (
+  0 =&gt; 'joe@bloggs.tld',
+  1 =&gt; 'user@domain.tld'
+)
+*/</span>

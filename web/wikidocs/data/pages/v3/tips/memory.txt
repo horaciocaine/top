@@ -1,0 +1,64 @@
+====== Keep memory down to a minimum ======
+
+If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!
+
+Your typical default installation of PHP will have a memory limit of 8MB in the configuration.  This is more than enough for the average web page request.  However, when you start performing intensive tasks such as sending out HUGE amounts of emails you need to be aware of where you can shave off some memory.  Before going any further, if you need to send attachments larger than 2.5MB you should increase PHP's memory limit.
+
+I can quite clearly tell you where PHP uses memory, it's clear-cut, and using a tool like XDebug will clarify this.
+
+  - Encoding data
+  - Storing all variable data in original form
+  - Caching "rendered" data
+  - Logging network communication data
+
+You can shave a considerable amount of memory from your scripts by:
+
+  - Don't enable logging, or write a custom file/DB logger
+  - Encoding file data via a "streamed" mechanism by using a Swift_File object rather than a raw string
+
+Unlike version 2 of Swift Mailer, no logging is done unless you request it.  To request logging, use:
+
+<code php>
+$swift->log->enable();
+</code>
+
+By default, 50 log items will be stored.  This includes each SMTP line sent - which incidentally includes the message body.  It's advised to set the log size to a maximum length of 1, or disable it completely if you need to send a large batch.
+
+To do that:
+
+<code php>
+$swift->log->setMaxSize(1);
+</code>
+
+If you're sending attachments, it's advised that you don't read the file contents as a string and that you use the Swift_File class instead.  Using Swift_File streams data rather than copying it into memory.
+
+<code php>
+$attachment =& new Swift_Mesage_Attachment(new Swift_File("foo.zip"));
+</code>
+
+===== Spread the load =====
+
+If you use the Sendmail or NativeMail classes to connect, you have to remember where the email sending is being processed.  Swift issues the commands, and the same server does the sending.  Therefore you put a fairly high demand on the one server.  By using the SMTP connection class you spread the load over two servers because Swift tells the SMTP server what to do.  Even better still, take advantage of the Rotator connection which will spread the load over as many servers as you can get your hands on.
+
+**NOTE:** I wouldn't recommend using the rotator connection unless you're going to send a relatively large batch; You have to take into account the small amount of overhead involved in establishing the initial connection with each server.
+
+
+===== Use Disk Caching =====
+
+If you're sending attachments, this is definitely something you should do if you can.  Swift already uses caching under-the-hood.  By default it will cache to memory at runtime which of course, uses memory.  If you have an 8MB memory limit on your PHP install, you'll not likely send any attachments of more than about 3MB with this setup.  Luckily, Swift's caching system is abstract and there's a Disk Caching mechanism provided.  All you need to a writable directory somewhere on disk.  "/tmp" will usually be fine to use.  Swift will then create temporary files at runtime and delete them once it's finished.  This **drastically** lowers memory.  If you're sending attachments, you can send any size you like (say 100MB?) by using Swift_File when you add the attachment and Disk Caching.  Here's how you enable disk caching.
+
+<code php>
+$swift =& new Swift( ... );
+
+//You change the cache class using this call...
+Swift_CacheFactory::setClassName("Swift_Cache_Disk");
+
+//Then you set up the disk cache to write to a writable folder...
+Swift_Cache_Disk::setSavePath("/home/username/tmp");
+
+//then work as normal...
+</code>
+
+It may be tempting to think that caching to disk is slow.  It probably is when you compare the relative speeds with using memory, but think about it... Swift uses network connections... is the Disk Cache going to have an impact over the top of a network connection overhead?  No ;)
+
+**NOTE:** This has been proven to send a 100MB attachment and use just 1MB of memory on a PHP4 installation of Swift.  Use it if you can.

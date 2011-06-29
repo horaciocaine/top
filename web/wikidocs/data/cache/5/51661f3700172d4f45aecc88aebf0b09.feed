@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-06-29T07:58:50+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/basics?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_message?rev=1171474473&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/basics?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:22+00:00</dc:date>
+        <title>Basics of Swift_Message</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/basics?rev=1236058882&amp;do=diff</link>
+        <description>Synopsis: new Swift_Message([string subject [, mixed body [, string content-type [, string encoding [, string charset ]]]]])
+
+Unlike other email libraries, Swift is fully Object-oriented.  Message composition could be bundled into the main Swift class by all means... but it's not.  The EasySwift class does that if you really want it.  Swift itself doesn't do anything to do with the creation of emails.  Instead, there's a subset of classes included to allow you to do that.  All of these classes s…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_message?rev=1171474473&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T17:34:33+00:00</dc:date>
+        <title>Basics of Swift_Message</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_message?rev=1171474473&amp;do=diff</link>
+        <description>Synopsis: new Swift_Message([string subject [, mixed body [, string content-type [, string encoding [, string charset ]]]]])
+
+Unlike other email libraries, Swift is fully Object-oriented.  Message composition could be bundled into the main Swift class by all means... but it's not.  The EasySwift class does that if you really want it.  Swift itself doesn't do anything to do with the creation of emails.  Instead, there's a subset of classes included to allow you to do that.  All of these classes s…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:22+00:00</dc:date>
+        <title>Manipulating MIME Headers</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/headers?rev=1236058882&amp;do=diff</link>
+        <description>Setting and getting headers
+
+
+Each component of a message contains a headers property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:21:04+00:00</dc:date>
+        <title>Manipulating MIME Headers</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_message_headers?rev=1171480864&amp;do=diff</link>
+        <description>Setting and getting headers
+
+
+Each component of a message contains a headers property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+</rdf:RDF>

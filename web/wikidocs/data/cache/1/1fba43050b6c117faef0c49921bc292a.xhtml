@@ -1,0 +1,59 @@
+
+
+
+<h3><a name="swift_s_logging_system" id="swift_s_logging_system">Swift's Logging System</a></h3>
+<div class="level3">
+
+<p>
+ This page applies to version 3.3 and higher only.  The interface for this feature was considerably different in earlier versions.
+</p>
+
+<p>
+Swift contains a complete logging system with differing levels of reporting.  By default, this logging system is disabled for the sake of speed and memory, but if you&rsquo;re running into problems you may consider enabling it so you can find out what&rsquo;s going on.
+</p>
+
+<p>
+The logging system provides the following levels of log information: 
+</p>
+<pre class="code">0 = Off (Swift_Log::LOG_NOTHING or SWIFT_LOG_NOTHING in PHP4)
+1 = Errors only (Swift_Log::LOG_ERRORS or SWIFT_LOG_ERRORS in PHP4)
+2 = Failed deliveries (Swift_Log::LOG_FAILURES or SWIFT_LOG_FAILURES in PHP4)
+3 = Network commands (Swift_Log::LOG_NETWORK or SWIFT_LOG_NETWORK in PHP4)
+4 = Everything (Swift_Log::LOG_EVERYTHING or SWIFT_LOG_EVERYTHING in PHP4)</pre>
+
+<p>
+ Each succesive error level includes everything below it, so if you set an error level of &ldquo;3&rdquo; you&rsquo;ll also get log entries as levels 1 and 2 being logged.
+</p>
+
+<p>
+To set the log level:
+</p>
+<pre class="code php"><span class="re0">$log</span> =&amp; Swift_LogContainer::<span class="me2">getLog</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$log</span>-&gt;<span class="me1">setLogLevel</span><span class="br0">&#40;</span><span class="re0">$whatever_level</span><span class="br0">&#41;</span>;</pre>
+<p>
+The log level changes with immediate effect.  Remember to change it early on if you want lots of log information.
+</p>
+
+<p>
+To get data back out of the log:
+</p>
+<pre class="code php"><span class="re0">$log</span> =&amp; Swift_LogContainer::<span class="me2">getLog</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$log</span>-&gt;<span class="me1">dump</span><span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span>;</pre>
+<p>
+This can be particularly useful if you keep getting failed deliveries and you can&rsquo;t think what the cause is because with a high enough error level you&rsquo;ll see what Swift is doing and what the connection is doing.  Usually level 3 will be as high as you&rsquo;ll need to go.
+</p>
+
+<p>
+By default, the log truncates itself to a maximum of 50 entries so that memory is not completely wasted for large batches.  If you need even more log data than this, use $log&rarr;setMaxSize():
+</p>
+<pre class="code php"><span class="re0">$log</span> = Swift_LogContainer::<span class="me2">getLog</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$log</span>-&gt;<span class="me1">setMaxSize</span><span class="br0">&#40;</span><span class="nu0">200</span><span class="br0">&#41;</span>;</pre>
+<p>
+A maximum log size of 0 (zero) means that it will never be truncated at all.
+</p>
+
+<p>
+<strong>NOTE</strong>: In Versions 3.0, 3.1 and 3.2 logging did exist, but it was less useful, residing only as a property in $swift&rarr;log with only &ldquo;on&rdquo; or &ldquo;off&rdquo; states.  The <acronym title="Application Programming Interface">API</acronym> documentation for these earlier versions provides rudimentary documentation for usage. 
+</p>
+
+</div>

@@ -1,0 +1,48 @@
+====== Swift_Connection_Sendmail ======
+
+**__Synopsis:__** //''new Swift_Connection_Sendmail([string command])''//
+
+Sendmail is a binary executable which runs on UNIX-like systems such as Linux and OS X.  The Swift_Connection_Sendmail class runs this executable in a standalone SMTP mode and sends emails through it.  If you have sendmail available to you this will be much faster than using the SMTP connection to a remote server, however, it does have one drawback - load balancing.  If you use sendmail then your server is processing Swift instructions, and also sending out email directly.  Using SMTP on the other hand spreads the load across two servers - hint hint! ;)
+
+Although using sendmail will make your script end faster, it's a common misconception that the email is going to be delivered faster.  Throw away any such misconceptions now.  Sendmail "spools" emails which means that they sit in a queue.  Typically it runs a batch off the queue every 15 minutes.  The rest of the process is SMTP, just like what would have happened if you'd used the SMTP connection in the first place.
+
+By default, the Sendmail connection will try to use a binary at /usr/sbin/sendmail with the "-bs" flags set.  If your sendmail installation is found in another path you will need to inform the connection of its location by passing it as a constructor parameter.
+
+**NOTE:** When passing a value to the constructor, you must include the "-bs" flags, or flags which invoke the same behaviour in your version of sendmail.  Support for "-t" is experimental and is NOT officially supported.
+
+**NOTE2:** Even though this connection is named Sendmail it does work with other binary MTAs such as qMail, Postfix and Exim provided they can operate in SMTP mode.
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/Sendmail.php";
+
+//Try to connect using /usr/sbin/sendmail -bs
+$swift =& new Swift(new Swift_Connection_Sendmail());
+
+
+//Try to connect using a custom command
+$swift =& new Swift(new Swift_Connection_Sendmail("/sbin/exim4 -bs"));
+
+//Let the connection try to work out the path itself (PHP5)
+$swift = new Swift(new Swift_Connection_Sendmail(Swift_Connection_Sendmail::AUTO_DETECT));
+
+//Let the connection try to work out the path itself (PHP4)
+$swift =& new Swift(new Swift_Connection_Sendmail(SWIFT_SENDMAIL_AUTO_DETECT));
+</code>
+
+**NOTE:** To use auto-detection in PHP5 you use the class constant ''Swift_Connection_Sendmail::AUTO_DETECT''.  PHP4 does not support class constants so instead, a global constant ''SWIFT_SENDMAIL_AUTO_DETECT'' is provided.
+
+Once a connection is established with sendmail you can use Swift in the same way as you'd use any of the other connections.
+
+**For the curious:** Feel free to experiment with using this connection with the "-t" flag set, but be aware that this probably not work very well and is not yet (if ever) officially supported.
+
+By default, the sendmail connection will time out after 10 seconds if the process takes a long time to respond.  This can be adjusted using the setTimeout() method:
+
+<code php>
+$sendmail =& new Swift_Connection_Sendmail();
+$sendmail->setTimeout(3); //3 seconds
+
+$swift =& new Swift($sendmail);
+</code>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-05-29T22:59:07+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/logging?rev=1187163154&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/logging?rev=1187163154&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-15T07:32:34+00:00</dc:date>
+        <title>Swift's Logging System</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/logging?rev=1187163154&amp;do=diff</link>
+        <description>Swift's Logging System
+
+
+This page applies to version 3.3 and higher only.  The interface for this feature was considerably different in earlier versions.
+
+Swift contains a complete logging system with differing levels of reporting.  By default, this logging system is disabled for the sake of speed and memory, but if you're running into problems you may consider enabling it so you can find out what's going on.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-04-21T21:18:27+00:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tips/memory?rev=1208812707&amp;do=diff</link>
+        <description>If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-24T17:16:59+00:00</dc:date>
+        <title>Keep memory down to a minimum</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tips_memory?rev=1172337419&amp;do=diff</link>
+        <description>If you're sending out a large batch of emails (in the thousands of recipients) you probably need to think slightly more about your approach to delivering the emails.  In general, if you can send two emails in a loop using X amount of memory, you should only need a negligible amount more memory to send out ten thousand.  Obviously you need more time too!</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-02-03T01:07:20+00:00</dc:date>
+        <title>UML Diagrams for Version 4</title>
+        <link>http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff</link>
+        <description>Here's an up-to-date collection of UML diagrams used in project planning for Version 4.  These diagrams are not to be assumed as final, they merely act as memory joggers in preparation for development of a library where TDD will be the main driving force.  Given that Swift is now reaching it's 4th major version, there's enough knowledge about what works and what doesn't in the API to be able to get it roughly solid.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-09-21T07:54:30+00:00</dc:date>
+        <title>Swift Mailer 3</title>
+        <link>http://swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff</link>
+        <description>Swift Mailer 3
+
+
+Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+
+Library API Reference
+
+	*  PHP4 API Documentation
+	*  PHP5 API Documentation
+
+Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-04-12T00:07:16+00:00</dc:date>
+        <title>Swift Mailer</title>
+        <link>http://swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff</link>
+        <description>Swift Mailer
+
+
+Version 3 is now deprecated.  Unless you absolutely cannot upgrade yet, please download version 4 and use the version 4 documentation instead.
+
+Download Version 4: &lt;http://swiftmailer.org/download&gt; 
+
+Documentation for Version 4: &lt;http://swiftmailer.org/docs&gt;</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-08-14T21:34:50+00:00</dc:date>
+        <title>Miscellaneous</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/start?rev=1187127290&amp;do=diff</link>
+        <description>Miscellaneous
+
+	*  Swift's logging system... find out what's going on
+	*  A little about Swift's internal caching system
+	*  PHP4 error handling - the exception hackaround
+	*  Runing SMTP commands using Swift</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T14:19:34+00:00</dc:date>
+        <title>Dealing with failed recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/failed_recipients?rev=1179411574&amp;do=diff</link>
+        <description>SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in $swift-&gt;log-&gt;getFailedRecipients() as an array.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-18T18:04:16+00:00</dc:date>
+        <title>Sending a batch email or newsletter</title>
+        <link>http://swiftmailer.org/wikidocs/v3/sending/batch?rev=1179511456&amp;do=diff</link>
+        <description>When you send out an email marketing campaign, newsletter or any other type of batch email you don't particularly want to reveal everybody's address to the recipients.  One nasty hack is to Bcc all the recipients and leave the To: field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:32:37+00:00</dc:date>
+        <title>Dealing with failed recipients</title>
+        <link>http://swiftmailer.org/wikidocs/v3/failed_recipients?rev=1171481557&amp;do=diff</link>
+        <description>SMTP does occassionally reject recipient addresses due to malformity, domain conflicts, DNS issues and other problems.  If you want to track who got rejected you should enable Swift's logging facility so that these failures can be collected.  The failed addresses will be stored in $swift-&gt;log-&gt;getFailedRecipients() as an array.</description>
+    </item>
+</rdf:RDF>

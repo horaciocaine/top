@@ -1,0 +1,57 @@
+====== How to use BeforeCommandListener ======
+
+A plugin which implements the Swift_Events_BeforeCommandListener interface will be invoked every time Swift is about to issue an SMTP command.  The plugin will have access to the command being executed and any changes made to the command inside the plugin will be executed at the time when the command would normally execute.  Plugins which implement either the CommandListener or BeforeCommandListener are most likely listening for those event by means of tracking the progress of sending an email rather than watching the actual commands being issued, but either way, //every// command that's sent to the SMTP server will be first passed via any BeforeCommandListener's.
+
+The interface looks like this:
+
+<code php>
+/**
+ * Contains the list of methods a plugin requiring the use of a CommandEvent, before it is sent must implement
+ * @package Swift_Events
+ * @author Chris Corbyn <chris@w3style.co.uk>
+ */
+interface Swift_Events_BeforeCommandListener extends Swift_Events_Listener
+{
+	/**
+	 * Executes just before Swift sends a command
+	 * @param Swift_Events_CommandEvent Information about the being command sent
+	 */
+	public function beforeCommandSent(Swift_Events_CommandEvent $e);
+}
+</code>
+
+If you're going to make use of this plugin, I'll assume you understand a little about the SMTP protocol.  If you don't have the foggiest clue about how SMTP works then implementing the CommandListener or BeforeCommandListener probably isn't going to be of much use to you.  Neither will the following example.
+
+The example given below shows how you could use a BeforeCommandListener to copy **all** emails sent to yourself.  For those not familiar with SMTP, the "DATA" command is the last command to be issued before the email is sent, and the "RCPT TO" commands are the commands which specify the recipients.
+
+<code php>
+class CopyEmailsToSender implements Swift_Events_BeforeCommandListener
+{
+    protected $sender;
+    
+    public function __construct($sender)
+    {
+        $this->setSender($sender);
+    }
+
+    public function setSender(Swift_Address $sender)
+    {
+        $this->sender = $sender;
+    }
+    
+    public function getSender()
+    {
+        return $this->sender;
+    }
+    
+    public function beforeCommandSent(Swift_Events_CommandEvent $e)
+    {
+        $command = $e->getString();
+        if ($command == "DATA")
+        {
+            $swift = $e->getSwift();
+            $swift->command("RCPT TO: " . $this->getSender()->build(true));
+        }
+    }
+}
+</code>

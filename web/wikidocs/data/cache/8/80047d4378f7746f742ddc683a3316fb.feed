@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-09-30T22:10:42+02:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/wiki/syntax?rev=1236564133&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-03-26T11:22:20+02:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-07T23:50:27+02:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/wiki/syntax?rev=1236564133&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-09T03:02:13+02:00</dc:date>
+        <title>Formatting Syntax</title>
+        <link>http://swiftmailer.org/wikidocs/wiki/syntax?rev=1236564133&amp;do=diff</link>
+        <description>doku&gt;DokuWiki supports some simple markup language, which tries to make the datafiles to be as readable as possible. This page contains all possible syntax you may use when editing the pages. Simply have a look at the source of this page by pressing the Edit this page button at the top or bottom of the page. If you want to try something, just use the playground page. The simpler markup is easily accessible via quickbuttons, too.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-02-03T02:07:20+02:00</dc:date>
+        <title>UML Diagrams for Version 4</title>
+        <link>http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff</link>
+        <description>Here's an up-to-date collection of UML diagrams used in project planning for Version 4.  These diagrams are not to be assumed as final, they merely act as memory joggers in preparation for development of a library where TDD will be the main driving force.  Given that Swift is now reaching it's 4th major version, there's enough knowledge about what works and what doesn't in the API to be able to get it roughly solid.</description>
+    </item>
+</rdf:RDF>

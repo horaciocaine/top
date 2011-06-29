@@ -1,0 +1,9 @@
+<span class="co1">//You can nest the instantiation of the SmtpTransport instead of creating a $smtp variable</span>
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SmtpTransport<span class="br0">&#40;</span><span class="st_h">'smtp.mycompany.com'</span><span class="sy0">,</span> <span class="nu0">587</span><span class="sy0">,</span> <span class="st_h">'ssl'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//You can set fields on $message fluidly everywhere in Swift</span>
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;

@@ -1,0 +1,3 @@
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">headers</span><span class="sy0">-&gt;</span><span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;To&quot;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;zip@button.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="co1">//To: foo@bar.tld, zip@button.tld</span>

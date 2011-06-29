@@ -1,0 +1,4 @@
+==== Tips & Tricks ====
+  * [[v3:tips:memory|Keep memory down to a minimum]]
+  * [[v3:tips:spam|Minimize your risk of having your emails blocked as spam]]
+  * [TODO: Write more tips. Templating, mass-mailing...]

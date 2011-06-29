@@ -1,0 +1,5 @@
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setReturnPath</span><span class="br0">&#40;</span><span class="st0">&quot;bounces@company.tld&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//or</span>
+&nbsp;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">setReturnPath</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;bounces@company.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;

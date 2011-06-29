@@ -1,0 +1,40 @@
+====== Sending a multipart email ======
+
+When you use a mail client such as Thunderbird to send an email in both HTML and Plain-text you are asking it to send a multipart message.  This uses a standard called MIME.  The essence of what's actually being sent is that rather than just sending one body of text and one set of headers, the email contains a main set of headers which identify it as having more than one part, and the body is replaced with two smaller documents, each with their own headers and bodies.  The mail client then decides which one to display.
+
+When you want to send such a message with Swift, you will take advantage of the knowledge of how MIME/multipart actually works.  You create the message (without a body), then create some "Parts" and "attach" those parts to the message before sending.  We use the same conventions later for sending attachments and embedding images.
+
+The only thing you need to worry about is what content you want in each part, and what MIME type it has.  The common (and obvious) combination would be a text/plain part and a text/html part.
+
+**NOTE:** It is ill-advised to send completely different content in each part.  Spam blockers could easily cast your email away as spam.
+
+[TODO: provide a mime type list]
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.host.tld"));
+
+//Create a message
+$message =& new Swift_Message("My subject");
+
+//Add some "parts"
+$message->attach(new Swift_Message_Part("Part 1 of message"));
+$message->attach(new Swift_Message_Part("Part <strong>2</strong> of message", "text/html"));
+
+//And send like usual
+if ($swift->send($message, "joe@bloggs.tld", "me@my-address.com")) echo "Sent";
+else echo "Failed";
+
+</code>
+
+The only difference between sending a multipart message and sending a plain-text message is that we "attach" some MIME parts before we send the message.
+
+Once again, the use of the reference operator (=&) in the example above is merely for PHP4 users.  If you use PHP5, leave it out.
+
+If you want to test the appearance of both the HTML and the plain text email you will need to tell your mail client which part to view.  In Thunderbird you change this in the "View" menu on the toolbar.
+
+{{http://www.swiftmailer.org/wikiimages/multipart_mua_options.jpeg|Changing MIME parts}}

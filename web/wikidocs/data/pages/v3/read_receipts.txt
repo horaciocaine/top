@@ -1,0 +1,8 @@
+====== Requesting a Read-Receipt ======
+
+Read-Receipts are not very reliable since most emails clients will either prompt, or block them.  However, if you do desire to request a read-receipt you should set this in the message itself, before sending:
+
+<code php>
+$message =& new Swift_Message("My subject", "My body");
+$message->requestReadReceipt("your@address.tld");
+</code>

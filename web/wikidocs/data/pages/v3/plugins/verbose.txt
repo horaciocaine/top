@@ -1,0 +1,39 @@
+====== Verbose Sending Plugin (Debug-use only) ======
+
+The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the SMTP connection.  It's unlikely you'll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).
+
+<code php>
+<?php
+
+/** REQUIRES Swift 3.1 OR LATER **/
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/VerboseSending.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.host.tld"));
+
+$view =& new Swift_Plugin_VerboseSending_DefaultView();
+$swift->attachPlugin(new Swift_Plugin_VerboseSending($view), "verbose");
+
+//continue as normal
+
+?>
+</code>
+
+The DefaultView class displays a page which looks like so:
+
+
+{{http://www.swiftmailer.org/wikiimages/verbose_plugin.jpg|An example output of the plugin}}
+
+
+You can create your own view very simply by extending the ''Swift_Plugin_VerboseSending_AbstractView'' class and implementing the ''paintResult()'' method.
+
+<code php>
+class MyView extends Swift_Plugin_VerboseSending_AbstractView {
+    function paintResult($address, $result) {
+        if ($result == true) echo $address . " passed<br />";
+        else echo $address . " failed<br />";
+    }
+}
+</code>

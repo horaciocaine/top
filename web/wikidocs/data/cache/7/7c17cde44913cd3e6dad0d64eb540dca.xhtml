@@ -1,0 +1,77 @@
+
+
+
+<h1><a name="swift_connection_multi" id="swift_connection_multi">Swift_Connection_Multi</a></h1>
+<div class="level1">
+
+<p>
+
+<strong><em class="u">Synopsis:</em></strong> <em><code>new Swift_Connection_Multi( [array connections] )</code></em>
+</p>
+
+<p>
+The Multi connection is a mechanism which contains within itself any number of connections you give it.  These connections can be of any combination of types (<acronym title="Simple Mail Transfer Protocol">SMTP</acronym>, Sendmail, NativeMail, other instances of Multi etc etc).  It&#039;s a way of providing redundancy in the event that a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server is unavailable at the time of the request for example.
+</p>
+
+<p>
+Each connection is tried in turn until one is sucessfull.  If any fails, they are blacklisted for the duration of this request so even when disconnecting and reconnecting, dead connections will not be retried.
+</p>
+
+<p>
+<strong>NOTE:</strong> If you use <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> authentication on a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection, it is safe to have different usernames and passwords for different connections.  This behaviour was not observed in earlier versions of this library.
+</p>
+
+<p>
+You should populate the class with connections in order of preference, most preferable added first.
+</p>
+
+<p>
+<em>Providing an array of connections:</em>
+
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Multi.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+&nbsp;
+<span class="re0">$connections</span> <span class="sy0">=</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Start adding connections</span>
+<span class="re0">$conn1</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=&amp;</span> <span class="re0">$conn1</span>;
+&nbsp;
+<span class="co1">//It's safe to use authentication</span>
+<span class="re0">$conn2</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host2.tld&quot;</span><span class="sy0">,</span> <span class="nu0">465</span><span class="br0">&#41;</span>;
+<span class="re0">$conn2</span><span class="sy0">-&gt;</span><span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st0">&quot;my-user&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn2</span><span class="sy0">-&gt;</span><span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st0">&quot;mypass&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=&amp;</span> <span class="re0">$conn2</span>;
+&nbsp;
+<span class="co1">//It's probably a good idea to always fall back on mail() if all else fails</span>
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//And instantiate swift with these connections</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Multi<span class="br0">&#40;</span><span class="re0">$connections</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+There is also the addConnection() method if you need to throw in new connections at runtime.
+</p>
+
+<p>
+<em>Using addConnection()</em>
+
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Multi.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+&nbsp;
+<span class="re0">$multi</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_Multi<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$multi</span><span class="sy0">-&gt;</span><span class="me1">addConnection</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$multi</span><span class="sy0">-&gt;</span><span class="me1">addConnection</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$multi</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> The use of the reference operator (=&amp;) is for PHP4 compatibility only.  If you&#039;re using PHP5, leave it out.
+</p>
+
+</div>

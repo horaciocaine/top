@@ -1,0 +1,46 @@
+====== PHP4 error handling - The alternative to exceptions ======
+
+In PHP5, Swift throws exceptions in places, which is fairly standard practise.  Exceptions of course, can be caught and dealt with.  PHP4 however, does not support exceptions (the use of the try/catch construct).  I could have triggered errors everywhere blindly and had you use set_error_handler() from PHP, but that's too intrusive and can easily conflict with other things happening in your application.  Instead, Swift dispatches error object, much like an exception from PHP5, to an error manager.  It's using this error manager that will allow you to catch errors before they are ever triggered.  If you tell the error manager you are expecting an error, it will not throw it, but will instead copy it to a reference for you.  If you haven't specified that you are expecting an error, it will be triggered with trigger_error().
+
+When you look through the API documentation you will see that some methods have a @throws declaration.  You will need to know the class type of the exception which is going to be thrown.
+
+If a method (theMethod()) declares that it may throw an exception of type Swift_Connection_Exception for example, you could say that you expect it by doing this:
+
+<code php>
+Swift_Errors::expect($e, "Swift_Connection_Exception");
+$swift->theMethod();
+</code>
+
+If the exception was thrown, it will be assigned to $e, otherwise $e will be set to NULL.
+
+<code php>
+Swift_Errors::expect($e, "Swift_Connection_Exception");
+$swift->theMethod();
+if ($e !== null)
+{
+    echo "An error occurred" . $e->getMessage();
+}
+</code>
+
+If the error was not thrown, the error handler will still think you are expecting an error, and as such, could catch that same type error later, when in actuality, you only expected it here, not later.  You must therefore clear the expectation if it was not caught.
+
+<code php>
+Swift_Errors::expect($e, "Swift_Connection_Exception");
+$swift->theMethod();
+if ($e !== null)
+{
+    echo "An error occurred" . $e->getMessage();
+}
+else Swift_Errors::clear("Swift_Connection_Exception");
+</code>
+
+Without the expectation in place, if the error was thrown, nothing would catch it and Swift will then trigger a PHP error of type E_USER_ERROR.  Most of the time, this does indicate something critical has happened, so you should only ever see this if things are not running correctly on your server.  Just be aware that there is a mechanism provided for performing a cheap try/catch-like operation with the PHP4 version of Swift.
+
+**NOTE:** Swift_Errors::expect() is aware of type.  Swift_Connection_Exception is a subclass of Swift_Exception, therefore, the following will still catch a Swift_Connection_Exception.
+
+<code php>
+Swift_Errors::expect($e, "Swift_Exception");
+$swift->theMethod();
+</code>
+
+However, the reverse is not true.

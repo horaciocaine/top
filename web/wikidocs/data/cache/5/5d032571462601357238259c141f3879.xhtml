@@ -1,0 +1,46 @@
+
+
+
+<h1><a name="verbose_sending_plugin_debug-use_only" id="verbose_sending_plugin_debug-use_only">Verbose Sending Plugin (Debug-use only)</a></h1>
+<div class="level1">
+
+<p>
+
+The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> connection.  It&#039;s unlikely you&#039;ll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co4">/** REQUIRES Swift 3.1 OR LATER **/</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/VerboseSending.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$plugin_view</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Plugin_VerboseSending_DefaultView<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_VerboseSending<span class="br0">&#40;</span><span class="re0">$view</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;verbose&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//continue as normal</span>
+&nbsp;
+<span class="kw2">?&gt;</span></pre>
+<p>
+The DefaultView class displays a page which looks like so:
+</p>
+
+<p>
+
+<a href="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fverbose_plugin.jpg" class="media" title="http://www.swiftmailer.org/wikiimages/verbose_plugin.jpg"><img src="/wikidocs/lib/exe/fetch.php?media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fverbose_plugin.jpg" class="media" title="An example output of the plugin" alt="An example output of the plugin" /></a>
+</p>
+
+<p>
+
+You can create your own view very simply by extending the <code>Swift_Plugin_VerboseSending_AbstractView</code> class and implementing the <code>paintResult()</code> method.
+</p>
+<pre class="code php"><span class="kw2">class</span> MyView <span class="kw2">extends</span> Swift_Plugin_VerboseSending_AbstractView <span class="br0">&#123;</span>
+    <span class="kw2">function</span> paintResult<span class="br0">&#40;</span><span class="re0">$address</span><span class="sy0">,</span> <span class="re0">$result</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$result</span> <span class="sy0">==</span> <span class="kw2">true</span><span class="br0">&#41;</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$address</span> <span class="sy0">.</span> <span class="st0">&quot; passed&lt;br /&gt;&quot;</span>;
+        <span class="kw1">else</span> <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$address</span> <span class="sy0">.</span> <span class="st0">&quot; failed&lt;br /&gt;&quot;</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+</div>

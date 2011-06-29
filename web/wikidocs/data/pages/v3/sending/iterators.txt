@@ -1,0 +1,86 @@
+====== Using iterators to provide lists ======
+
+As you have seen, you can make use of Swift_RecipientList to send a message to multiple recipients.  Up until now you've only seen the usage of addTo(), addCc() and addBcc().  You can completely by-pass these methods however.  Swift is provided with an iterator to loop over those addresses you have added and calling addTo() for example is simply pushing addresses onto an array.  By default Swift_RecipientList will provide an Array iterator so that the values added with addTo(), addCc() and addBcc() can be used.
+
+The interface of this iterator is simply this:
+
+<code php>
+$iterator =& $recipients->getIterator("to"); //Or cc, bcc
+while ($iterator->hasNext())
+{
+  $iterator->next();
+  $address =& $iterator->getValue();
+  //and so on...
+}
+</code>
+
+So Swift is calling getIterator() with little regard for what you added initially.
+
+There's also a setIterator() method in Swift_RecipientList so you can specify your own.  For example, also packaged with the library is a MySQL iterator.
+
+<code php>
+require_once "lib/Swift/Iterator/MySQLResult.php";
+
+$query = "select email, name from users";
+$result = mysql_query($query);
+
+$it =& new Swift_Iterator_MySQLResult($result);
+
+$recipients =& new Swift_RecipientList();
+$recipients->setIterator($it, "to"); //or cc, bcc
+
+$swift->send($message, $recipients, $sender);
+</code>
+
+===== Writing your own Iterator =====
+
+Writing your own iterator is easy.  If you use PHP5, simply write a class which implements Swift_Iterator.  If you are using PHP4 you just need to be very careful to include the following methods in your iterator class:
+
+boolean hasNext( void );
+boolean next( void );
+boolean seekTo( int position );
+Swift_Address getValue( void );
+int getPosition( void );
+
+Your iterator should not return any value when getValue() is called unless next() was first called;  hasNext() simply returns true if there are remaining values in the list; next() moves one place forward in the list; seekTo() moves to the given numeric position in the list where 0 is the first item; getValue() returns a Swift_Address instance at the current list position; getPosition() returns the current list position where 0 is the start.
+
+Here's an example using an ADODB resultset with PHP5.
+
+<code php>
+class ADOIterator implements Swift_Iterator
+{
+  protected $rs;
+  
+  public function __construct($adoRs)
+  {
+    $this->rs = $adoRs;
+  }
+  
+  public function hasNext()
+  {
+    return !$this->rs->EOF;
+  }
+
+  public function next()
+  {
+    return $this->rs->MoveNext();
+  }
+  
+  public function seekTo($n)
+  {
+    return $this->rs->Move($n);
+  }
+  
+  public function getPosition()
+  {
+    return $this->rs->AbsolutePosition();
+  }
+  
+  public function getValue()
+  {
+    $row = array_values($this->rs->GetAssoc());
+    if (!empty($row[1])) return new Swift_Address($row[0], $row[1]); //email, name
+    else return new Swift_Address($row[0]); //Just email
+  }
+}
+</code>

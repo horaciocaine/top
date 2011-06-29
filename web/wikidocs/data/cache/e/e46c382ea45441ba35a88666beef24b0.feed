@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-06-28T12:37:43+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tips_spam?rev=1171540378&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tips/spam?rev=1202990081&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/faq/hugebatches?rev=1236058883&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc/commands?rev=1236058883&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Running SMTP Commands using Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/misc_commands?rev=1236058881&amp;do=diff</link>
+        <description>Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-23T08:22:50+00:00</dc:date>
+        <title>SMTP Transport (Swift_SmtpTransport)</title>
+        <link>http://swiftmailer.org/wikidocs/v4/transports/sendmail?rev=1211530970&amp;do=diff</link>
+        <description>SMTP Transport (Swift_SmtpTransport)
+
+What is it for?
+
+
+The Sendmail Transport (named Swift_SendmailTransport) is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are ”/sbin/sendmail” or ”/usr/sbin/sendmail”.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tips_spam?rev=1171540378&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-15T11:52:58+00:00</dc:date>
+        <title>How to (legitimately) minimize being seen as spam</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tips_spam?rev=1171540378&amp;do=diff</link>
+        <description>This is a BIG topic and seemingly one that many people are quite patchy on.  I'll try to give you enough knowledge to make your own judgements and what you could do to minimize your risk.  You may finish up sad and disappointed by the end of this article though so don't build your hopes up that there's a quick-fix solution if you are being blocked as spam.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tips/spam?rev=1202990081&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-02-14T11:54:41+00:00</dc:date>
+        <title>How to (legitimately) minimize being seen as spam</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tips/spam?rev=1202990081&amp;do=diff</link>
+        <description>This is a BIG topic and seemingly one that many people are quite patchy on.  I'll try to give you enough knowledge to make your own judgements and what you could do to minimize your risk.  You may finish up sad and disappointed by the end of this article though so don't build your hopes up that there's a quick-fix solution if you are being blocked as spam.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/faq/hugebatches?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>I've got thousands of emails to send, how should I do it?</title>
+        <link>http://swiftmailer.org/wikidocs/v3/faq/hugebatches?rev=1236058883&amp;do=diff</link>
+        <description>I've got thousands of emails to send, how should I do it?
+
+
+99.9% of the time the best approach to doing this is to store all the emails and recipients in a database with a field marked as “unsent”. A cron script can run every few minutes pulling out more modest batch sizes of around 100 emails, then flagging those as “sent”.</description>
+    </item>
+</rdf:RDF>

@@ -1,0 +1,105 @@
+====== Manipulating MIME Headers ======
+
+===== Setting and getting headers =====
+
+Each component of a message contains a ''headers'' property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.
+
+You can manipulate these headers by working with the ''headers'' property of the component.  For example, in Swift_Message we can change the subject using the setSubject() method for convenience:
+
+<code php>
+$message =& new Swift_Message();
+$message->setSubject("My subject");
+</code>
+
+However, that method is doing nothing more than working with the email headers so you could equivalently do this:
+
+<code php>
+$message =& new Swift_Message();
+$message->headers->set("Subject", "My subject");
+</code>
+
+You can make a header appear not to exist by setting it to NULL.  If you want it to truly not exist then you can remove it completely using remove(), although this is rarely neccessary.
+
+It's possible for an email header to be a collection of values separated by commas.  For example, when several email addresses are being set in the ''To:'' header.  You use an array to acheive this:
+
+<code php>
+$message =& new Swift_Message();
+$message->headers->set("To", array("foo@bar.tld", "zip@button.tld"));
+//To: foo@bar.tld, zip@button.tld
+</code>
+
+Equally, you can retreive the value of a particular header by calling the headers' get() method.
+
+<code php>
+$message =& new Swift_Message();
+$message->headers->set("To", array("foo@bar.tld", "zip@button.tld"));
+$message->headers->set("Subject" , "FooBar");
+
+print_r($message->headers->get("To"));
+//Array (
+//   [0] => foo@bar.tld,
+//   [1] => zip@button.tld
+//)
+
+echo $message->headers->get("Subject");
+//FooBar
+</code>
+
+===== Header attributes =====
+
+Headers may have attributes attached to them.  Take for example a ''Content-Type:'' header.  It may look something like this:
+
+  Content-Type: text/plain; charset=utf-8; format=flowed
+
+In the above, "text/plain" is the value of the header... "charset=utf-8" and "format=flowed" are attributes.  To set attributes in a header you use the setAttribute() method.
+
+<code php>
+$message =& new Swift_Message();
+$message->headers->set("Foo", "bar");
+$message->headers->setAttribute("Foo", "zip", "button");
+$message->headers->setAttribute("Foo", "animal", "cat");
+//Foo: bar; zip=button; animal=cat
+</code>
+
+Because setAttribute relies upon the header being set first, it will throw an exception of you try to set an attribute against a header which doesn't exist.  Again, you should use the has() method to prevent this.
+
+===== Swift thinks about encoding so you don't have to! =====
+
+Headers can only contain 7-bit ascii characters and must not be more than 76 characters per-line.  Don't worry, you needn't even think about this since Swift will encode the headers to ensure this behaviour is observed.  If you pass a UTF-8 string as a header or an attribute it will be encoded accordingly.  Equally, long lines and long attributes will be encoded in a special way.
+
+If you wish to get the "encoded" form of the headers you have set you should call the getEncoded() method.
+
+<code php>
+//yes, this applies to attachments and MIME parts too!
+$attachment =& new Swift_Message_Attachment();
+$attachment->headers->set("Foo", "bar");
+$attachment->headers->setAttribute("Foo", "zip", "some\nstring");
+
+echo $attachment->headers->getEncoded("Foo");
+//bar; zip*="'en-us'iso-8859-1'some%0Astring'"
+</code>
+
+===== International settings =====
+
+If your email is not in English, and you have non-english phrases in the headers, you may want to specify the language you're using.
+
+<code php>
+$message =& new Swift_Message();
+$message->headers->setLanguage("de");
+</code>
+
+Equally, if your headers are not in UTF-8 or ISO-8859-1 character format, you will need to specify the character set using setCharset():
+
+<code php>
+$message =& new Swift_Message();
+$message->headers->setCharset("windows-874");
+</code>
+
+Finally, if you want to dump the entire set of headers, you call their build() method like you do with MIME parts:
+
+<code php>
+$message =& new Swift_Message_Headers();
+echo $message->headers->build();
+</code>

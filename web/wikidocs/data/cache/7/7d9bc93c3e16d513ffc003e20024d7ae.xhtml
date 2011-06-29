@@ -1,0 +1,80 @@
+
+
+
+<h1><a name="an_introduction_to_swift_s_plugin_api" id="an_introduction_to_swift_s_plugin_api">An introduction to Swift&#039;s Plugin API</a></h1>
+<div class="level1">
+
+<p>
+
+Swift has come a leap forward from it&#039;s version 2 days where learning to use the plugin system was a confusing business unless you knew Swift&#039;s core inside-out.  In Version 3, things are clearer and simpler.  The entire basis of the plugin system is centered around the concept of event-driven programming.  Observers (Event Listeners) are plugged into Swift&#039;s core class.  Swift then dispatches Events (as objects) to these event listeners.
+</p>
+
+<p>
+If you&#039;re familiar with the observer pattern, you should be able to pick this up fairly easily.  Otherwise, you probably want to have a read of this page first:
+</p>
+
+<p>
+<a href="http://devzone.zend.com/node/view/id/5" class="urlextern" title="http://devzone.zend.com/node/view/id/5"  rel="nofollow">http://devzone.zend.com/node/view/id/5</a>
+</p>
+
+<p>
+There are subtle differences with how the system has been implemented in PHP5 and PHP4.  Mostly these differences are the use of type checking in PHP5…. PHP4 is simply duck-typed.
+</p>
+
+<p>
+There are a small number of events defined inside Swift.  Each event has a listener specific to the event:
+
+</p>
+<table class="inline">
+	<tr class="row0">
+		<th class="col0 leftalign"> Event              </th><th class="col1 leftalign"> Listener              </th><th class="col2 leftalign"> Listener Method                                  </th>
+	</tr>
+	<tr class="row1">
+		<td class="col0 leftalign"> ConnectEvent       </td><td class="col1 leftalign"> ConnectListener       </td><td class="col2 leftalign"> connectPerformed( <em>ConnectEvent</em> $e )          </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"> DisconnectEvent    </td><td class="col1 leftalign"> DisconnectListener    </td><td class="col2 leftalign"> disconnectPerformed( <em>DisconnectEvent</em> $e )    </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"> BeforeSendEvent    </td><td class="col1 leftalign"> BeforeSendListener    </td><td class="col2 leftalign"> beforeSendPerformed( <em>SendEvent</em> $e)     </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"> SendEvent          </td><td class="col1 leftalign"> SendListener          </td><td class="col2 leftalign"> sendPerformed( <em>SendEvent</em> $e )                </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> BeforeCommandEvent </td><td class="col1"> BeforeCommandListener </td><td class="col2 leftalign"> beforeCommandSent( <em>CommandEvent</em> $e )   </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> CommandEvent       </td><td class="col1 leftalign"> CommandListener       </td><td class="col2 leftalign"> commandSent( <em>CommandEvent</em> $e )               </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"> ResponseEvent      </td><td class="col1 leftalign"> ResponseListener      </td><td class="col2 leftalign"> responseReceived( <em>ResponseEvent</em> $e )         </td>
+	</tr>
+</table>
+
+<p>
+
+<strong>NOTE:</strong> I&#039;ve shortened the names for brevity on this page.  The class names are actually in the format Swift_Events_SendEvent and Swift_Events_SendListener.
+</p>
+
+<p>
+Any single plugin implements a listener for at least one of those events.  A plugin can implement more than one listener if it needs to.
+</p>
+
+<p>
+Each of the listeners listed above implements an interface with just one uniquely named method, we&#039;ll cover the actual methods used later in this documentation.  The methods receive the event object as an argument and this event object will always contain a getSwift() method which returns a reference to the instance of Swift it was fired from.  This gives you the ability to run methods in Swift from inside your plugin.  Additional methods such as getMessage() and getConnection() will be present in each of the events.
+</p>
+
+<p>
+When an event is fired, the following sequence occurs:
+</p>
+
+<p>
+Event generated –&gt; Listeners located → Listeners informed of event → Listeners carry out actions → Swift continues processing.
+</p>
+
+<p>
+The next few pages in this wiki will discuss how to use each of the events.
+</p>
+
+</div>

@@ -1,0 +1,21 @@
+====== Working with plugins after loading ======
+
+Plugins are held inside Swift by-reference and you can get a reference to that plugin yourself by using the getPlugin() method.  When you load a plugin into Swift you need to give it a name.  You use that name to retreive a reference to it.  This comes in particularly useful when you want to run methods in a plugin at runtime.
+
+<code php>
+$swift->attachPlugin(new Swift_Plugin_Example(), "Example");
+
+//do some other stuff if you want
+$swift->send( ... );
+
+//Do something with the plugin
+$swift->getPlugin("Example")->doSomething();
+</code>
+
+**NOTE:** In PHP4 you cannot call a method from an object returned from a function/method directly.  In this case you first need to assign the plugin instance to a variable.  It's critical that you use the reference operator here otherwise the return plugin instance will be a copy of the original and any changes you make to it will not be seen inside Swift.
+
+<code php>
+//Do something with the plugin
+$plugin =& $swift->getPlugin("Example");
+$plugin->doSomething();
+</code>

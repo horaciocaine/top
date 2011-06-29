@@ -1,0 +1,29 @@
+<span class="kw2">class</span> CopyEmailsToSender implements Swift_Events_BeforeCommandListener
+<span class="br0">&#123;</span>
+    protected <span class="re0">$sender</span>;
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="re0">$sender</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">setSender</span><span class="br0">&#40;</span><span class="re0">$sender</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> setSender<span class="br0">&#40;</span>Swift_Address <span class="re0">$sender</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">sender</span> <span class="sy0">=</span> <span class="re0">$sender</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getSender<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">sender</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> beforeCommandSent<span class="br0">&#40;</span>Swift_Events_CommandEvent <span class="re0">$e</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$command</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getString</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$command</span> <span class="sy0">==</span> <span class="st0">&quot;DATA&quot;</span><span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+            <span class="re0">$swift</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getSwift</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+            <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">command</span><span class="br0">&#40;</span><span class="st0">&quot;RCPT TO: &quot;</span> <span class="sy0">.</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getSender</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">build</span><span class="br0">&#40;</span><span class="kw2">true</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>

@@ -1,0 +1,42 @@
+====== Sending a message to a recipient ======
+
+Sending messages in Swift is extremely simple.  You call the send() method, which only has 3 parameters.  One is the message, one is the recipient, and the other is the sender.
+
+<code php>
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My body");
+
+$sent = $swift->send($message, "recipient@address.tld", "sender@address.tld");
+echo "Sent to $sent recipients";
+
+</code>
+
+send() returns the number of recipients it delivered to message to successfully.
+
+In the above example we used strings for the email addresses, however, using the Swift_Address class we have a little more flexibility over the format of the address.  We can have a personal name in the address like so: ''Foo <foo@bar.com>''.
+
+<code php>
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My body");
+
+$sent = $swift->send($message, new Swift_Address("recipient@address.tld", "Recipient"), "sender@address.tld");
+echo "Sent to $sent recipients";
+</code>
+
+We can also use the Swift_Address class for the sender parameter:
+
+<code php>
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("My subject", "My body");
+
+
+$sent = $swift->send(
+    $message, new Swift_Address("recipient@address.tld", "Recipient Name"),
+    new Swift_Address("sender@address.tld", "My Name"));
+echo "Sent to $sent recipients";
+</code>
+
+Simple right? :)

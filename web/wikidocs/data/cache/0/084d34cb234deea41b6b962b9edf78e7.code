@@ -1,0 +1,12 @@
+<span class="co1">//When using the fluid interface you can nest an authenticated SmtpTransport</span>
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span>
+  Swift_SmtpTransport<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'smtp.mycompany.com'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st_h">'n00bie'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st_h">'p4s5w0rd'</span><span class="br0">&#41;</span>
+  <span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My Subject'</span><span class="sy0">,</span> <span class="st_h">'My message body'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris.corbyn@swiftmailer.org'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'recipient@otherdomain.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Recipient name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;

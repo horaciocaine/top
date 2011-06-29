@@ -1,0 +1,14 @@
+===== Just for Kicks! =====
+
+Swift Mailer Version 4 is very streamlined and aims to make typing the code as pain-free as possible.  One statement is less painful to write than 5 statements right?  I really don't expect anybody to do this, but just to show off how streamlined Swift can be, here's sending a message with an attachment using a single statement.
+
+<code php>
+<?php
+
+Swift_Mailer::newInstance(new Swift_MailTransport())->send(
+  Swift_Message::newInstance('My subject', 'Some message')
+    ->attach(Swift_Attachment::fromPath('foo.pdf'))
+    ->setFrom('your@address.tld')
+    ->setTo('person@address.tld')
+);
+</code>

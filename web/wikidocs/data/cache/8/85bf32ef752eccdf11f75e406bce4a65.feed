@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-06-24T16:21:23+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/attachments?rev=1172337563&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/attachments?rev=1174579323&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/attachments?rev=1172337563&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-24T17:19:23+00:00</dc:date>
+        <title>Sending attachments</title>
+        <link>http://swiftmailer.org/wikidocs/v3/attachments?rev=1172337563&amp;do=diff</link>
+        <description>Luckily, attachments are much like MIME parts in a multipart message, expect they are not displayed by default and are encoded in a special way.  You attach files to an email using the attach() method in swift like you do when you add MIME parts, but you use the Swift_Message_Attachment class rather than the Swift_Message_Part class.  Swift then includes the message as an attachment, rather than a textual part of the email.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/attachments?rev=1174579323&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-22T16:02:03+00:00</dc:date>
+        <title>Sending attachments</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/attachments?rev=1174579323&amp;do=diff</link>
+        <description>Luckily, attachments are much like MIME parts in a multipart message, except they are not displayed by default and are encoded in a special way.  You attach files to an email using the attach() method in swift like you do when you add MIME parts, but you use the Swift_Message_Attachment class rather than the Swift_Message_Part class.  Swift then includes the message as an attachment, rather than a textual part of the email.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-02-03T01:07:20+00:00</dc:date>
+        <title>UML Diagrams for Version 4</title>
+        <link>http://swiftmailer.org/wikidocs/v4/notes/uml?rev=1202000840&amp;do=diff</link>
+        <description>Here's an up-to-date collection of UML diagrams used in project planning for Version 4.  These diagrams are not to be assumed as final, they merely act as memory joggers in preparation for development of a library where TDD will be the main driving force.  Given that Swift is now reaching it's 4th major version, there's enough knowledge about what works and what doesn't in the API to be able to get it roughly solid.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+</rdf:RDF>

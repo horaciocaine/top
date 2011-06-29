@@ -1,0 +1,26 @@
+
+
+
+<h1><a name="changing_the_message_priority" id="changing_the_message_priority">Changing the message priority</a></h1>
+<div class="level1">
+
+<p>
+ The message priority does little more than flag the message in the recipients INBOX as being important or not.  To set the priority, you make a change to the message itself.  You can provide an integer ranging from 1 (High) to 5 (Low) to indicate the priority.  By default, no priority is indicated which equates to a priority of 3 (Normal).  The class constants used in the example below map to the relevant integer values of the priority.
+</p>
+
+<p>
+PRIORITY_HIGH = 1 PRIORITY_NORMAL = 3 PRIORITY_LOW = 5
+</p>
+
+<p>
+<strong>NOTE:</strong> PHP4 does not support class constants so instead there are some global constants provided: SWIFT_MESSAGE_PRIORITY_LOW, SWIFT_MESSAGE_PRIORITY_NORMAL, SWIFT_MESSAGE_PRIORITY_HIGH.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">setPriority</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Or use the class constants</span>
+<span class="re0">$message</span>-&gt;<span class="me1">setPriority</span><span class="br0">&#40;</span>Swift_Message::<span class="me2">PRIORITY_HIGH</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//or</span>
+<span class="re0">$message</span>-&gt;<span class="me1">setPriority</span><span class="br0">&#40;</span>Swift_Message::<span class="me2">PRIORITY_NORMAL</span><span class="br0">&#41;</span>;</pre>
+</div>

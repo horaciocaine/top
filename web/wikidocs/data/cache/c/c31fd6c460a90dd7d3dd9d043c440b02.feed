@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/styles/feed.css" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs v3:plugins</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-03-07T14:32:17+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/antiflood?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/bandwidthmonitor?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/loading?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/manipulating?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/start?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/throttler?rev=1236058884"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1236058884"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/antiflood?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Using the AntiFlood plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/antiflood?rev=1236058884</link>
+        <description>Synopsis: new Swift_Plugin_AntiFlood([int threshold [, int pause]])
+
+The AntiFlood plugin is designed to help lessen the load on the HTTP server and the SMTP server.  It can also be used to send out very large batches of emails when the SMTP server has restrictions in place to limit the number of emails sent in one go.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/bandwidthmonitor?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Swift Bandwidth Monitoring/Tracking Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/bandwidthmonitor?rev=1236058884</link>
+        <description>Depending upon what you’re doing, or shoud I say, the scale of what you’re sending you may wish to keep track of how much bandwidth Swift is using.  This plugin measures the incoming and outgoing bandwidth through the connection.
+
+NOTE: The figures are from Swift’s point of view, not the server.  “Bytes in” refers to bytes from the SMTP server back into swift; “bytes out” refers to bytes sent from Swift to the SMTP server.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1236058884</link>
+        <description>Introduction to message decorating
+
+ Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something’s already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-rende…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1236058884</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/loading?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Loading new plugins into Swift</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/loading?rev=1236058884</link>
+        <description>Plugins in Swift are nothing more than event listeners (a sort of observer).  If you download a plugin, or want to load one of the packaged ones you first need to include the file in your script using the “include” or “require” keywords.  You then use the attachPlugin() method in Swift to pass an instance of the plugin to Swift.  Swift quite simply sends messages (events) to the plugin at relevent times.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/manipulating?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Working with plugins after loading</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/manipulating?rev=1236058884</link>
+        <description>Plugins are held inside Swift by-reference and you can get a reference to that plugin yourself by using the getPlugin() method.  When you load a plugin into Swift you need to give it a name.  You use that name to retreive a reference to it.  This comes in particularly useful when you want to run methods in a plugin at runtime.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/start?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Using Plugins</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/start?rev=1236058884</link>
+        <description>Using Plugins
+
+	*  Loading new plugins into Swift
+	*  Working with plugins after loading
+	*  Swift_Plugin_AntiFlood
+	*  Swift_Plugin_Decorator
+	*  Swift_Plugin_VerboseSending
+	*  Swift_Plugin_Throttler
+	*  Swift_Plugin_BandwidthMonitor
+	*  Swift_Plugin_FileEmbedder</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/throttler?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Throttler Plugin to restrict the speed</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/throttler?rev=1236058884</link>
+        <description>If you want to run a batch send that’s going to take a long time and don’t want to hog the server’s resources and/or bandwidth in the process perhaps this plugin is the solution.  Unlike the AntiFlood plugin, which offers a similar solution, the throttler works on the basis of restricting speed, not on the basis of minimizing the number of emails per-connection.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1236058884">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Verbose Sending Plugin (Debug-use only)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1236058884</link>
+        <description>The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the SMTP connection.  It’s unlikely you’ll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).</description>
+    </item>
+</rdf:RDF>

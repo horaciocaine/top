@@ -1,0 +1,36 @@
+====== Sending a HTML E-Mail ======
+
+Sending a HTML email with Swift is just as easy as sending a plain-text email.  You just need to tell the Message that's it's in HTML format and everything else is the same as if you were sending plain-text.  HTML has it's advantages in that it's easy to create a layout with images and styles, but not all mail clients will read it, and if you're not careful, you might be increasing the risk of being blocked as spam.  See [[v3:tips_spam]].
+
+A common pitfall is that people forget you need to use ''<br />'' tags in place of real line breaks in HTML emails.  I have had numerous support requests asking why everything was coming out on one line in the past ;)
+
+<code php>
+<?php
+
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("server.tld", 25));
+
+$message =& new Swift_Message("Some subject", "Your message <u>here</u>", "text/html");
+
+if ($swift->send($message, "recipient@domain.tld", "you@home.tld"))
+{
+    echo "Message sent";
+}
+else
+{
+    echo "Message failed to send";
+}
+
+//It's polite to do this when you're finished
+$swift->disconnect();
+
+</code>
+
+You can alternatively set the text/html type on the message by using the following method:
+
+<code php>
+$message =& new Swift_Message("Some subject", "Message goes here");
+$message->setContentType("text/html");
+</code>

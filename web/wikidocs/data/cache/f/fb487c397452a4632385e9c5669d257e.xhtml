@@ -1,0 +1,19 @@
+
+
+
+<h2><a name="just_for_kicks" id="just_for_kicks">Just for Kicks!</a></h2>
+<div class="level2">
+
+<p>
+
+Swift Mailer Version 4 is very streamlined and aims to make typing the code as pain-free as possible.  One statement is less painful to write than 5 statements right?  I really don&#039;t expect anybody to do this, but just to show off how streamlined Swift can be, here&#039;s sending a message with an attachment using a single statement.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+Swift_Mailer<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_MailTransport<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span>
+  Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'My subject'</span><span class="sy0">,</span> <span class="st_h">'Some message'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment<span class="sy0">::</span><span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st_h">'foo.pdf'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><span class="st_h">'your@address.tld'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><span class="st_h">'person@address.tld'</span><span class="br0">&#41;</span>
+<span class="br0">&#41;</span>;</pre>
+</div>

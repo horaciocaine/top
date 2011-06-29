@@ -1,0 +1,12 @@
+a:29:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:0;}i:2;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:1;}i:3;a:3:{i:0;s:12:"section_edit";i:1;a:4:{i:0;i:-1;i:1;i:0;i:2;i:1;i:3;s:0:"";}i:2;i:1;}i:4;a:3:{i:0;s:6:"header";i:1;a:3:{i:0;s:16:"Embedding images";i:1;i:1;i:2;i:1;}i:2;i:1;}i:5;a:3:{i:0;s:12:"section_open";i:1;a:1:{i:0;i:1;}i:2;i:1;}i:6;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:31;}i:7;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:17:"
+When you send a ";}i:2;i:32;}i:8;a:3:{i:0;s:7:"acronym";i:1;a:1:{i:0;s:4:"HTML";}i:2;i:49;}i:9;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:44:" format email you can of course include the ";}i:2;i:53;}i:10;a:3:{i:0;s:14:"monospace_open";i:1;a:0:{}i:2;i:97;}i:11;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:7:"<img />";}i:2;i:99;}i:12;a:3:{i:0;s:15:"monospace_close";i:1;a:0:{}i:2;i:106;}i:13;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:48:" tag.  Commonly, people will do something like:
+";}i:2;i:108;}i:14;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:156;}i:15;a:3:{i:0;s:12:"preformatted";i:1;a:1:{i:0;s:59:"<img src="http://your-host.tld/images/foo.png" alt="foo" />";}i:2;i:156;}i:16;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:156;}i:17;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:235:"
+However, because this links to a remote image you may find that your recipient does not see the image as the mail client may block remote images by default.  If you'd prefer to send the image as part of the email you need to embed it.";}i:2;i:219;}i:18;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:454;}i:19;a:3:{i:0;s:4:"code";i:1;a:2:{i:0;s:248:"
+$message =& new Swift_Message("My subject");
+
+$part =& new Swift_Message_Part("Here's an image <img src=\"" . $message->attach(new Swift_Message_Image(
+    new Swift_File("images/foo.png"))) . "\" alt=\"\" /> embedded");
+
+$message->attach($part);
+";i:1;s:3:"php";}i:2;i:461;}i:20;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:721;}i:21;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:81:"This does have it's drawbacks however.  Some web-based email services like Yahoo ";}i:2;i:723;}i:22;a:3:{i:0;s:13:"emphasis_open";i:1;a:0:{}i:2;i:804;}i:23;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:3:"may";}i:2;i:806;}i:24;a:3:{i:0;s:14:"emphasis_close";i:1;a:0:{}i:2;i:809;}i:25;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:92:" not display the image, and additonally, you will use extra bandwidth in sending the email.
+";}i:2;i:811;}i:26;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:902;}i:27;a:3:{i:0;s:13:"section_close";i:1;a:0:{}i:2;i:902;}i:28;a:3:{i:0;s:12:"document_end";i:1;a:0:{}i:2;i:902;}}

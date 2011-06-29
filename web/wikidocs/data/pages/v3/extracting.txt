@@ -1,0 +1,24 @@
+====== Extracting the archive ======
+
+Downloads of Swift Mailer come in two different archive formats.  There's a tarball (the one with .tar.gz) or a ZIP file (the one with .zip).  Both archives contain exactly the same files so it's up to you which one you download.
+
+===== Extracting the archives on Linux or Mac OS X =====
+
+Tarball:
+<file>
+  tar xvzf /path/to/Swift-<version>.tar.gz
+</file>
+
+ZIP file:
+<file>
+  unzip /path/to/Swift-<version>.zip
+</file>
+
+===== Extracting the archives on Windows =====
+
+Tarball:
+
+To extract the tarball under windows you will need to use an archiving tool which can do GZIP decompression.  WinZip can do this and is free to download.  WinRAR and other archive tools may also be suitable.
+
+Zip File:
+In windows, the Zip file can be extracted by double clicking in the ZIP icon and then copying the entire archive contents to another location.  You may use a tool such as WinZip if you prefer.

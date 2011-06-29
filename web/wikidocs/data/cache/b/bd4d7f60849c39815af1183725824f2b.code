@@ -1,0 +1,3 @@
+<span class="kw2">&lt;?php</span>
+&nbsp;
+Swift_Preferences<span class="sy0">::</span><span class="me2">getInstance</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">setCacheType</span><span class="br0">&#40;</span><span class="st_h">'disk'</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">setTempDir</span><span class="br0">&#40;</span><span class="st_h">'/tmp'</span><span class="br0">&#41;</span>;

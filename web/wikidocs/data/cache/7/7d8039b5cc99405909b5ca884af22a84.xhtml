@@ -1,0 +1,90 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="#running_the_included_tests" class="toc">Running the included tests</a></span></div>
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#running_the_smoke_tests" class="toc">Running the Smoke Tests</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#running_the_unit_tests" class="toc">Running the Unit Tests</a></span></div></li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h1><a name="running_the_included_tests" id="running_the_included_tests">Running the included tests</a></h1>
+<div class="level1">
+
+<p>
+ Swift comes with a complete set of tests just to ensure everything works the way it&rsquo;s expect to.  There are two types of tests included with the library: Smoke Tests and Unit Tests.  Both of these are found in the &ldquo;tests&rdquo; directory.
+</p>
+
+<p>
+Smoke Tests are visual tests which you may run without much knowledge of testing in general.  You run the tests, a set of instructions is presented to you on-screen and you check a few visual requirements to ensure things look as expected - easy! :)
+</p>
+
+<p>
+Unit Tests go into much finer detail.  They analyze the internals of the library from many different angles and make lots of expectations about what is supposed to happen.  Several thousand expectations are made on this library and we want every single one of them to be satisfied.  You&rsquo;ll need <a href="http://sourceforge.net/projects/simpletest" class="urlextern" title="http://sourceforge.net/projects/simpletest"  rel="nofollow">SimpleTest</a> to run the Unit Tests.
+</p>
+
+<p>
+Before you run either type of test, be sure to edit the &ldquo;TestConfiguration.php&rdquo; file in the &ldquo;tests&rdquo; directory.  You also need to set up the test environment by following the steps below.  The tests will not run otherwise.
+</p>
+
+</div>
+<!-- SECTION "Running the included tests" [1-1133] -->
+<h2><a name="running_the_smoke_tests" id="running_the_smoke_tests">Running the Smoke Tests</a></h2>
+<div class="level2">
+
+<p>
+ To run the smoke tests, simply edit the TestConfiguration.php file and then open the files in &ldquo;tests/smokes&rdquo; in your web browser.  A message will be sent for each test.  If the message sent successfully a green bar will appear and a set of instructions.  If the message did not send successfully a red bar will appear along with the set of instructions and an error message.
+</p>
+
+<p>
+Each smoke test contains an image to use as a guide to following the instructions.  Be aware that you may see subtle differences as various mail clients will render emails slightly differently.  This is perfectly normal.
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?cache=cache&amp;media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fsmoke_example.jpg" class="media" title="http://www.swiftmailer.org/wikiimages/smoke_example.jpg"><img src="/wikidocs/lib/exe/fetch.php?w=&amp;h=&amp;cache=cache&amp;media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Fsmoke_example.jpg" class="media" title="An example smoke test" alt="An example smoke test" /></a>
+</p>
+
+</div>
+<!-- SECTION "Running the Smoke Tests" [1134-1851] -->
+<h2><a name="running_the_unit_tests" id="running_the_unit_tests">Running the Unit Tests</a></h2>
+<div class="level2">
+
+<p>
+ To run the unit tests you first need to download and extract the Unit Testing tool <a href="http://sourceforge.net/projects/simpletest" class="urlextern" title="http://sourceforge.net/projects/simpletest"  rel="nofollow">SimpleTest</a> onto the server where you will run the tests.  The Unit Tests provided will make use of this framework in order to make the many assertions as expectations they need.
+</p>
+
+<p>
+Once you have extracted simpletest, edit the TestConfiguration.php file in Swift&rsquo;s &ldquo;tests&rdquo; directory to point to your installtion of simpltest.
+</p>
+
+<p>
+You run the tests in your web browser.  <del>You can run all the tests at the same time by opening the &ldquo;tests/units/runAllTests.php&rdquo; file in your browser, or you can run the individual <acronym title="Hypertext Preprocessor">PHP</acronym> files in the &ldquo;tests/units&rdquo; directory.</del> You can run the tests in groups by running the files runAllCoreTests.php, runAllConnectionTests.php, runAllMimeTests.php and runAllAuthenticatorTests.php.  The individual test runners are also found in the tests/units/ directory.
+</p>
+
+<p>
+A green bar indicates that everything is working as expected.  A red bar indicates that something is not right.  If you get a red bar and you&rsquo;re sure you&rsquo;ve got the correct values in the TestConfiguration.php file let me know about it by using the contact form at <a href="http://www.swiftmailer.org/contact/" class="urlextern" title="http://www.swiftmailer.org/contact/"  rel="nofollow">http://www.swiftmailer.org/contact/</a>
+</p>
+
+<p>
+<em>An example of a passing Unit Test</em>
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?cache=cache&amp;media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_pass_example.jpeg" class="media" title="http://www.swiftmailer.org/wikiimages/unit_pass_example.jpeg"><img src="/wikidocs/lib/exe/fetch.php?w=&amp;h=&amp;cache=cache&amp;media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_pass_example.jpeg" class="media" title="An example of a passing Unit Test" alt="An example of a passing Unit Test" /></a>
+</p>
+
+<p>
+<em>An example of a failing Unit Test</em>
+</p>
+
+<p>
+<a href="/wikidocs/lib/exe/fetch.php?cache=cache&amp;media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_fail_example.jpeg" class="media" title="http://www.swiftmailer.org/wikiimages/unit_fail_example.jpeg"><img src="/wikidocs/lib/exe/fetch.php?w=&amp;h=&amp;cache=cache&amp;media=http%3A%2F%2Fwww.swiftmailer.org%2Fwikiimages%2Funit_fail_example.jpeg" class="media" title="An example of a failing Unit Test" alt="An example of a failing Unit Test" /></a> 
+</p>
+
+</div>
+<!-- SECTION "Running the Unit Tests" [1852-] -->

@@ -1,0 +1,46 @@
+
+
+
+<h1><a name="swift_bandwidth_monitoringtracking_plugin" id="swift_bandwidth_monitoringtracking_plugin">Swift Bandwidth Monitoring/Tracking Plugin</a></h1>
+<div class="level1">
+
+<p>
+ Depending upon what you&rsquo;re doing, or shoud I say, the scale of what you&rsquo;re sending you may wish to keep track of how much bandwidth Swift is using.  This plugin measures the incoming and outgoing bandwidth through the connection.
+</p>
+
+<p>
+<strong>NOTE:</strong> The figures are from Swift&rsquo;s point of view, not the server.  &ldquo;Bytes in&rdquo; refers to bytes from the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server back into swift; &ldquo;bytes out&rdquo; refers to bytes sent from Swift to the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server.
+</p>
+
+<p>
+All you need to do is load the plugin and grab the figures at runtime.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Plugin/BandwidthMonitor.php&quot;</span>;
+&nbsp;
+<span class="co1">//Instantiate Swift</span>
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the instance of the plugin</span>
+<span class="re0">$bandwidth</span> =&amp; <span class="kw2">new</span> Swift_Plugin_BandwidthMonitor<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Load it</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="re0">$bandwidth</span>, <span class="st0">&quot;bwmon&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> = <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span> ... whatever ... <span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">foreach</span> <span class="br0">&#40;</span><span class="re0">$some_recipients</span> <span class="kw1">as</span> <span class="re0">$address</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$address</span>, <span class="re0">$your_address</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Bytes sent out so far: &quot;</span> . <span class="re0">$bandwidth</span>-&gt;<span class="me1">getBytesOut</span><span class="br0">&#40;</span><span class="br0">&#41;</span> . <span class="st0">&quot;&lt;br /&gt;&quot;</span>;
+    <a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="st0">&quot;Bytes received so far: &quot;</span> . <span class="re0">$bandwidth</span>-&gt;<span class="me1">getBytesIn</span><span class="br0">&#40;</span><span class="br0">&#41;</span> . <span class="st0">&quot;&lt;br /&gt;&quot;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+You can reset the counters at any point by calling for example:
+</p>
+<pre class="code php"><span class="re0">$bandwidth</span>-&gt;<span class="me1">setBytesIn</span><span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span>;
+<span class="re0">$bandwidth</span>-&gt;<span class="me1">setBytesOut</span><span class="br0">&#40;</span><span class="nu0">0</span><span class="br0">&#41;</span>;</pre>
+</div>

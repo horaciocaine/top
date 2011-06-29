@@ -1,0 +1,70 @@
+==== What's changed in Version 4? ====
+
+=== No more PHP 4 ===
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)
+
+=== Re-written, again ===
+
+Besides the system requirements, the interface of Swift has changed significantly in some areas.  To the "average" Swift user these changes will no doubt appear as nothing more than a few naming changes, but to those developers who had hacked the previous version of Swift to do add some custom behaviour the changes will jump out immediately.  Version 4 has been completely rewritten from the ground up.  That is to say, not a single line of code has been taken from Version 3.  It's taken me a long time to finish writing the library because of this fact, but the end result is something I'm extremely proud of.  It's fresh, it's flexible, it's test-friendly and I'd like to think that it's a great demonstration of just what PHP is capable of!
+
+=== Dependency Injection ===
+
+This version of Swift Mailer uses dependency injection everywhere below the surface.  For the most part this will be transparent to end-users since I have decorated the constructors where this injection occurs.  The dependency injection is one of the primary reasons the library is very test-friendly however.
+
+=== Focused on internationalization ===
+
+If you ever tried doing much with international character sets in version 3 there's a good chance you ran into a few hurdles.  Everywhere text processing happens in version 4, the charset is used to ensure text does not become garbled.  E-mail requires everything gets sent in 7-bit ascii and then transformed back into it's 8-bit form at the recipient's end.  Swift Mailer Version 4 includes a completely custom quoted-printable encoder following the rules specified in RFC 2045 to the word.  Believe me, meeting all requirements of that RFC is not easy ;)
+
+=== No more connections ===
+
+What! You say?  Well, I do have to wonder why I called the various mailing mechanisms in Version 3 "Connections".  Version 3 only spoke in SMTP, so to get Swift Mailer to send an email using the mail() function I had to write a class which conjured up a "fake" SMTP conversation just to make it work.  Version 4 takes the abstraction further and replaces all "Connection" classes with "Transport" classes.  Each Transport knows whatever language it needs to know; the main Mailer class itself only knows how to use a Transport.  What does this mean for you guys?  It means faster, more efficient sending, more accurate error messages AND FINALLY!  "sendmail -t" support!
+
+=== More streamlined message composition ===
+
+Rather than trying to explain this in writing, let me show you two comparisons sending an email with two attachments in version 3, then again in version 4.
+
+== Version 3 ==
+
+<code php>
+$swift = new Swift(new Swift_Connection_SMTP('localhost'));
+
+$message = new Swift_Message('My subject');
+$message->attach(new Swift_Mime_Part('Reports as requested man!'));
+$message->attach(new Swift_Message_Attachment(new Swift_File('report-jan-mar-08.pdf'), 'report-jan-mar-08.pdf', 'application/pdf'));
+$message->attach(new Swift_Message_Attachment(new Swift_File('report-mar-jun-08.pdf'), 'report-mar-jun-08.pdf', 'application/pdf'));
+
+if ($swift->send($message, new Swift_Address('receiver@domain.tld', 'Person'), new Swift_Address('you@domain.tld', 'You')))
+{
+  echo "Message sent";
+}
+else
+{
+  echo "A problem occurred";
+}
+</code>
+
+== Version 4 ==
+
+<code php>
+$mailer = new Swift_Mailer(new Swift_SmtpTransport('localhost'));
+
+$message = Swift_Message::newInstance('My subject', 'Reports as requested man!')
+  ->setFrom(array('you@domain.tld' => 'You'))
+  ->setTo(array('receiver@domain.tld' => 'Person'))
+  ->attach(Swift_Attachment::fromPath('report-jan-mar-08.pdf'))
+  ->attach(Swift_Attachment::fromPath('report-mar-jun-08.pdf'));
+
+if ($mailer->send($message))
+{
+  echo "Message sent";
+}
+else
+{
+  echo "A problem occurred";
+}
+</code>
+
+=== New Plugin API ===
+
+Version 4 comes with a new event-driven plugin API.  It's not vastly different from that in Version 3, but it does allow you to cancel events and is in theory faster; though I have not yet benchmarked it.

@@ -1,0 +1,16 @@
+<a href="http://www.php.net/print_r"><span class="kw3">print_r</span></a><span class="br0">&#40;</span><span class="re0">$plugin</span><span class="sy0">-&gt;</span><span class="me1">getTagDefinition</span><span class="br0">&#40;</span><span class="st0">&quot;img&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="coMULTI">/*
+Array (
+  'attributes' =&gt; Array (
+    0 =&gt; 'src'
+  ),
+  'extensions' =&gt; Array (
+    0 =&gt; 'gif',
+    1 =&gt; 'jpg',
+    2 =&gt; 'jpeg',
+    3 =&gt; 'pjpeg',
+    4 =&gt; 'png'
+  )
+)
+*/</span>

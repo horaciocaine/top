@@ -1,0 +1,32 @@
+
+
+
+<h1><a name="sending_to_mulitple_recipients" id="sending_to_mulitple_recipients">Sending to mulitple recipients</a></h1>
+<div class="level1">
+
+<p>
+
+Sending to multiple recipients, or including Cc and Bcc recipients is handled by passing an instance of Swift_RecipientList as the recipient parameter in send().
+</p>
+
+<p>
+Swift_RecipientList() contains the methods addTo(), addCc() and addBcc() along with removeTo(), removeCc() etc.
+</p>
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="sy0">,</span> <span class="st0">&quot;My body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Foo Bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">addCc</span><span class="br0">&#40;</span><span class="st0">&quot;zip@button.com&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Zip Button&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="re0">$recipients</span><span class="sy0">,</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="st0">&quot;me@address.tld&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Me&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+When you send to multiple <code>To:</code> recipients in this way, all recipients will see each other&#039;s addresses in the <code>To:</code> field.  If you&#039;re sending out a batch email for marketing purposes, or a newsletter then you will want to perform the same process, but replace send() with <a href="/wikidocs/v3/tutorials/batch" class="wikilink1" title="v3:tutorials:batch">batchSend()</a>.
+
+</p>
+
+</div>

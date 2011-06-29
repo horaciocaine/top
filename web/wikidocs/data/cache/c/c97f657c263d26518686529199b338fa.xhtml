@@ -1,0 +1,80 @@
+
+
+
+<h2><a name="caching_strategies_-_overview" id="caching_strategies_-_overview">Caching Strategies - Overview</a></h2>
+<div class="level2">
+
+<p>
+
+Generating compliant <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> data (i.e. the email itself) is thirsty work, especially for non-ascii character sets.  Swift Mailer caches data where it can so that when sending the same email to lot of recipients things run a little faster.  There are two caching strategies offered by default in Swift Mailer.  One uses a <acronym title="Hypertext Preprocessor">PHP</acronym> array to hold cached data.  The other writes data to disk.  It would be easy to extend Swift to support a new cache type if you have a reason to cache data somewhere other than on disk or in memory.
+</p>
+
+<p>
+Caching to disk is what Swift Mailer does by default, but only if it can find a temporary directory (i.e. if <code>sys_get_temp_dir()</code> is available).  You can override its default caching strategy however.
+</p>
+
+<p>
+Caching to disk offers one major advantage over the array cache - Memory usage!  If you use the array cache Swift Mailer will save all data in memory which is a big waste.  When using the disk cache Swift Mailer will perform file-streaming operations for complex algorithms such as encoding a large attachment file.  On a <acronym title="Hypertext Preprocessor">PHP</acronym> installation with an 8MB memory limit sending attachments would be very prohibited if disk caching was not available.
+</p>
+
+<p>
+The following chart shows the memory used when sending attachments ranging in size from 0MiB to 100MiB.  The blue line represents the Disk cache, and the red line represents the Array cache.
+</p>
+
+<p>
+<a href="/wikidocs/_detail/v4/caching/swiftmailerattachmentmemory2.png?id=v4%3Acaching%3Aoverview" class="media" title="v4:caching:swiftmailerattachmentmemory2.png"><img src="/wikidocs/_media/v4/caching/swiftmailerattachmentmemory2.png" class="media" title="Swift Mailer Memory Benchmark for Cache Types" alt="Swift Mailer Memory Benchmark for Cache Types" /></a>
+</p>
+
+<p>
+The code used to generate the benchmark results is shown below.  It generates binary files full of random data, attaches them and sends them whilst checking the peak memory used.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st_h">'../../lib/swift_required.php'</span>;
+&nbsp;
+<span class="co1">//Using sendmail, but SmtpTransport should be just the same</span>
+<span class="re0">$mailer</span> <span class="sy0">=</span> <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_SendmailTransport<span class="br0">&#40;</span><span class="st_h">'/usr/sbin/sendmail -bs'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Define a cache type</span>
+<span class="re0">$type</span> <span class="sy0">=</span> <span class="st_h">'array'</span>;
+&nbsp;
+<span class="co1">//Use the correct cache type</span>
+Swift_Preferences<span class="sy0">::</span><span class="me2">getInstance</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">setCacheType</span><span class="br0">&#40;</span><span class="re0">$type</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create a CSV log file</span>
+<span class="re0">$log</span> <span class="sy0">=</span> <a href="http://www.php.net/fopen"><span class="kw3">fopen</span></a><span class="br0">&#40;</span><span class="re0">$type</span> <span class="sy0">.</span> <span class="st_h">'-results.csv'</span><span class="sy0">,</span> <span class="st_h">'w'</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Write headings</span>
+<a href="http://www.php.net/fwrite"><span class="kw3">fwrite</span></a><span class="br0">&#40;</span><span class="re0">$log</span><span class="sy0">,</span> <span class="st_h">'&quot;Attachment Size (MiB)&quot;,&quot;Memory (MiB)&quot;'</span> <span class="sy0">.</span> <span class="st0">&quot;<span class="es0">\n</span>&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$increment</span> <span class="sy0">=</span> <span class="nu0">1</span>;
+&nbsp;
+<span class="kw1">for</span> <span class="br0">&#40;</span><span class="re0">$i</span> <span class="sy0">=</span> <span class="nu19">0</span>; <span class="re0">$i</span> <span class="sy0">&lt;=</span> <span class="nu0">100</span>; <span class="re0">$i</span> <span class="sy0">+=</span> <span class="re0">$increment</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="co1">//Non-linear scale</span>
+  <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$i</span> <span class="sy0">&gt;=</span> <span class="nu0">10</span><span class="br0">&#41;</span> <span class="re0">$increment</span> <span class="sy0">=</span> <span class="nu0">10</span>;
+&nbsp;
+  <span class="co1">//Create a file full of random binary</span>
+  `dd <span class="kw1">if</span><span class="sy0">=/</span>dev<span class="sy0">/</span>random of<span class="sy0">=</span>attach<span class="sy0">.</span>ext bs<span class="sy0">=</span><span class="nu0">1048576</span> <a href="http://www.php.net/count"><span class="kw3">count</span></a><span class="sy0">=</span><span class="re0">$i</span>`;
+&nbsp;
+  <span class="co1">//Create a message with the random binary attached</span>
+  <span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setSubject</span><span class="br0">&#40;</span><span class="st_h">'Swift Mailer Benchmark'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris@w3style.co.uk'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'chris@w3style.co.uk'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Chris Corbyn'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setBody</span><span class="br0">&#40;</span><span class="st0">&quot;Benchmark test&quot;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>Swift_Attachment<span class="sy0">::</span><span class="me2">fromPath</span><span class="br0">&#40;</span><span class="st_h">'attach.ext'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    ;
+&nbsp;
+  <span class="co1">//Send it with Sendmail</span>
+  <span class="re0">$mailer</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;
+&nbsp;
+  <span class="co1">//Record result</span>
+  <span class="re0">$usage</span> <span class="sy0">=</span> <a href="http://www.php.net/round"><span class="kw3">round</span></a><span class="br0">&#40;</span> memory_get_peak_usage<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">/</span> <span class="br0">&#40;</span><span class="nu0">1024</span> <span class="sy0">*</span> <span class="nu0">1024</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu0">2</span><span class="br0">&#41;</span>;
+  <a href="http://www.php.net/fwrite"><span class="kw3">fwrite</span></a><span class="br0">&#40;</span><span class="re0">$log</span><span class="sy0">,</span> <a href="http://www.php.net/sprintf"><span class="kw3">sprintf</span></a><span class="br0">&#40;</span><span class="st0">&quot;<span class="es0">\&quot;</span>%s<span class="es0">\&quot;</span>,<span class="es0">\&quot;</span>%s<span class="es0">\&quot;</span><span class="es0">\n</span>&quot;</span><span class="sy0">,</span> <span class="re0">$i</span><span class="sy0">,</span> <span class="re0">$usage</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+  <a href="http://www.php.net/printf"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;MEM @ {$i} MiB = %s MiB<span class="es0">\n</span>&quot;</span><span class="sy0">,</span> <span class="re0">$usage</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Close the CSV</span>
+<a href="http://www.php.net/fclose"><span class="kw3">fclose</span></a><span class="br0">&#40;</span><span class="re0">$log</span><span class="br0">&#41;</span>;</pre>
+</div>

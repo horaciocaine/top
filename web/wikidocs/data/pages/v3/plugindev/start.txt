@@ -1,0 +1,12 @@
+==== Writing Plugins (advanced) ====
+
+  * [[v3:plugindev:intro|An introduction to the plugin API]]
+  * [[v3:plugindev:connectevent|Writing a ConnectListener plugin]]
+  * [[v3:plugindev:disconnectevent|Writing a DisconnectListener plugin]]
+  * [[v3:plugindev:beforesendevent|Writing a BeforeSendListener plugin]]
+  * [[v3:plugindev:sendevent|Writing a SendListener plugin]]
+  * [[v3:plugindev:beforecommandevent|Writing a BeforeCommandListener plugin]]
+  * [[v3:plugindev:commandevent|Writing a CommandListener plugin]]
+  * [[v3:plugindev:responseevent|Writing a ResponseListener plugin]]
+
+

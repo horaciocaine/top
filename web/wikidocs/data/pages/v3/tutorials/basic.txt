@@ -1,0 +1,33 @@
+====== Sending a basic email ======
+
+Sending an email with Swift Mailer is a simple process.  You basically create a new instance of Swift with a connection type of your choice, you then create a message and ask Swift to deliver it to one or more recipients.  Perhaps if you're not familiar with OOP this snippet may look a little daunting but it should hopefully soon become familiar to you and feel quite natural.  EasySwift, packaged inside the library when you download it, provides a wrapper which makes this even simpler - at the expense of flexibility.  Check the EasySwift documentation for more information.
+
+[TODO: Create EasySwift documentation]
+
+<code php>
+<?php
+
+//Load in the files we'll need
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+//Start Swift
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.your-host.tld"));
+
+//Create the message
+$message =& new Swift_Message("My subject", "My body");
+
+//Now check if Swift actually sends it
+if ($swift->send($message, "foo@bar.tld", "me@mydomain.com")) echo "Sent";
+else echo "Failed";
+
+
+</code>
+
+This is the most basic way to send an email with Swift without using the EasySwift wrapper (which does make things simpler if you don't like OOP).  As we progress through these tutorials you'll see that you may want to do a little more error checking along the way.
+
+If you're using PHP5 (recommended, if you can) then there's no need to worry about using the reference operator.  It used in the example above merely for backwards compatibility with PHP4.
+
+Swift's send() method returns an integer which indicates how many recipients were accepted for delivery at the server.  If it returns zero, nothing was sent.
+
+**NOTE:** Just because your server accepts a message for delivery, it does NOT mean that the recipient is guaranteed to get the message.  The message will pass through various other servers by a similar process on its way to the intended recipient.  Any one of those servers could choose to reject the message.

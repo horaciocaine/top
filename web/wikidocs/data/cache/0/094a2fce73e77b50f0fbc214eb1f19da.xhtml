@@ -1,0 +1,79 @@
+
+
+
+<h1><a name="sending_to_multiple_recipients" id="sending_to_multiple_recipients">Sending to multiple recipients</a></h1>
+<div class="level1">
+
+<p>
+ In the previous tutorials you may have read, we&rsquo;ve been providing recipient addresses using a string, or using the Swift_Address class.  However, Swift can send to Bcc recipients, Cc recipients and multiple To recipients.  For this, we use the Swift_RecipientList class.
+</p>
+
+<p>
+The Swift_RecipientList class is just a nice container which allows you to add an remove Cc, To and Bcc recipients with ease... it makes Swift that tad fatser too since it doesn&rsquo;t need to worry about parsing out any delimited strings!
+</p>
+
+<p>
+<strong>NOTE:</strong> Using Bcc or Cc recipients is NOT the ideal way to deliver a marketing email or newsletter to multiple recipients.  Use <a href="/wikidocs/v3/tutorials/batch" class="wikilink1" title="v3:tutorials:batch">batchSend()</a> for that task.
+</p>
+
+<p>
+<strong>Sending to multiple To addresses:</strong> 
+</p>
+<pre class="code php">&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My message body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Start a new list</span>
+<span class="re0">$recipients</span> =&amp; <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.com&quot;</span>, <span class="st0">&quot;Foo Bar&quot;</span><span class="br0">&#41;</span>; <span class="co1">//We can give a name along with the address</span>
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.tld&quot;</span><span class="br0">&#41;</span>; <span class="co1">//or we can just add the address</span>
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;lisa-smith@domain.tld&quot;</span>, <span class="st0">&quot;Lisa&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//The number of successful recipients is returned here (hopefully 3!)</span>
+<span class="re0">$number_sent</span> = <span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="st0">&quot;my-address@domain.tld&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>Including some Cc recipients:</strong> 
+</p>
+<pre class="code php">&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My message body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> =&amp; <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.com&quot;</span>, <span class="st0">&quot;Foo Bar&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//Use addCc()</span>
+<span class="re0">$recipients</span>-&gt;<span class="me1">addCc</span><span class="br0">&#40;</span><span class="st0">&quot;fred@perry.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addCc</span><span class="br0">&#40;</span><span class="st0">&quot;lisa-smith@domain.tld&quot;</span>, <span class="st0">&quot;Lisa&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//The number of successful recipients is returned here (hopefully 3!)</span>
+<span class="re0">$number_sent</span> = <span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="st0">&quot;my-address@domain.tld&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>And Bcc recipients just the same way!</strong> 
+</p>
+<pre class="code php">&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;host.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span>, <span class="st0">&quot;My message body&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> =&amp; <span class="kw2">new</span> Swift_RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.com&quot;</span>, <span class="st0">&quot;Foo Bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addCc</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addBcc</span><span class="br0">&#40;</span><span class="st0">&quot;lisa-smith@domain.tld&quot;</span>, <span class="st0">&quot;Lisa&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//The number of successful recipients is returned here (hopefully 3!)</span>
+<span class="re0">$number_sent</span> = <span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="st0">&quot;my-address@domain.tld&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+The use of the reference operator (=&amp;) in the above example code applies only to PHP4.  If you&rsquo;re using PHP5, leave it out. 
+</p>
+
+</div>

@@ -1,0 +1,58 @@
+====== Swift_Connection_Multi ======
+
+**__Synopsis:__** //''new Swift_Connection_Multi( [array connections] )''//
+
+The Multi connection is a mechanism which contains within itself any number of connections you give it.  These connections can be of any combination of types (SMTP, Sendmail, NativeMail, other instances of Multi etc etc).  It's a way of providing redundancy in the event that a SMTP server is unavailable at the time of the request for example.
+
+Each connection is tried in turn until one is sucessfull.  If any fails, they are blacklisted for the duration of this request so even when disconnecting and reconnecting, dead connections will not be retried.
+
+**NOTE:** If you use SMTP authentication on a SMTP connection, it is safe to have different usernames and passwords for different connections.  This behaviour was not observed in earlier versions of this library.
+
+You should populate the class with connections in order of preference, most preferable added first.
+
+//Providing an array of connections://
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/Multi.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Connection/NativeMail.php";
+
+$connections = array();
+
+//Start adding connections
+$conn1 =& new Swift_Connection_SMTP("smtp.host.tld");
+$connections[] =& $conn1;
+
+//It's safe to use authentication
+$conn2 =& new Swift_Connection_SMTP("smtp.host2.tld", 465);
+$conn2->setUsername("my-user");
+$conn2->setPassword("mypass");
+$connections[] =& $conn2;
+
+//It's probably a good idea to always fall back on mail() if all else fails
+$connections[] =& new Swift_Connection_NativeMail();
+
+//And instantiate swift with these connections
+$swift =& new Swift(new Swift_Connection_Multi($connections));
+
+</code>
+
+There is also the addConnection() method if you need to throw in new connections at runtime.
+
+//Using addConnection()//
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/Multi.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Connection/NativeMail.php";
+
+$multi =& new Swift_Connection_Multi();
+
+$multi->addConnection(new Swift_Connection_SMTP("host.tld"));
+$multi->addConnection(new Swift_Connection_NativeMail());
+
+$swift =& new Swift($multi);
+
+</code>
+
+**NOTE:** The use of the reference operator (=&) is for PHP4 compatibility only.  If you're using PHP5, leave it out.

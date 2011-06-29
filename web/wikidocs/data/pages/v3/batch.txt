@@ -1,0 +1,51 @@
+====== Sending a batch email ======
+
+If you try to deliver an email to more than one recipient by using the Swift_RecipientList class in combination with Swift's send() method, you need to be aware that all the recipients of the message will be able to see each other's addresses in their mail clients.  This is fine for social/work emails, but if you were sending something like a newsletter or a marketing campaign it wouldn't look great and could even land you in trouble for breach of data protection.  To avoid any such problems, you want to send your email using batchSend() rather than send().  You still use the Swift_RecipientList class, but only the ''To:'' recipients are actually used.
+
+**NOTE:** This uses slightly more bandwidth than send() because a different email needs to be sent to each recipient.  It should by no means be a slow process unless the server is already processing a heavy load however.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.host.tld"));
+
+$message =& new Swift_Message("My subject", "My body");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("joe@bloggs.tld");
+$recipients->addTo("zip@button.tld");
+//NOTE that Cc and Bcc recipients are IGNORED in a batch send
+
+$swift->batchSend($message, $recipients, "my@address.com");
+</code>
+
+batchSend() returns an integer indicating how many recipients were accepted for delivery at the server.
+
+**TIP:** I'm an idiot for even bringing this up*, but you can deliver your email really fast -- as in //really fast// to thousands of recipients if you specify the ''To:'' address as ''undisclosed-recipients:;'' then use send().
+
+  undisclosed-recipients:;
+
+Note the colon-semi-colon ending!
+
+Here's how you do that.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("smtp.host.tld"));
+
+$message =& new Swift_Message("My subject", "My body");
+
+//HERE'S THE TRICK!
+$message->setTo("undisclosed-recipients:;");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("joe@bloggs.tld");
+$recipients->addTo("zip@button.tld");
+
+$swift->send($message, $recipients, "my@address.com");
+</code>
+
+* **Why am I an idiot?** Because it's bad ;)  You shouldn't do it and you may be upset when you find messages disappearing into people's Junk folders.  A better approach may be to set the ''To:'' header to something which exists, but the safest option is just to include the actual recipient's address in the headers which is what happens by default.

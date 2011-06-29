@@ -1,0 +1,2 @@
+<span class="re0">$log</span> <span class="sy0">=</span> Swift_LogContainer<span class="sy0">::</span><span class="me2">getLog</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$log</span><span class="sy0">-&gt;</span><span class="me1">setMaxSize</span><span class="br0">&#40;</span><span class="nu0">200</span><span class="br0">&#41;</span>;

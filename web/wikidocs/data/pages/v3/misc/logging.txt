@@ -1,0 +1,44 @@
+==== Swift's Logging System ====
+
+This page applies to version 3.3 and higher only.  The interface for this feature was considerably different in earlier versions.
+
+Swift contains a complete logging system with differing levels of reporting.  By default, this logging system is disabled for the sake of speed and memory, but if you're running into problems you may consider enabling it so you can find out what's going on.
+
+The logging system provides the following levels of log information:
+
+  0 = Off (Swift_Log::LOG_NOTHING or SWIFT_LOG_NOTHING in PHP4)
+  1 = Errors only (Swift_Log::LOG_ERRORS or SWIFT_LOG_ERRORS in PHP4)
+  2 = Failed deliveries (Swift_Log::LOG_FAILURES or SWIFT_LOG_FAILURES in PHP4)
+  3 = Network commands (Swift_Log::LOG_NETWORK or SWIFT_LOG_NETWORK in PHP4)
+  4 = Everything (Swift_Log::LOG_EVERYTHING or SWIFT_LOG_EVERYTHING in PHP4)
+
+Each succesive error level includes everything below it, so if you set an error level of "3" you'll also get log entries as levels 1 and 2 being logged.
+
+To set the log level:
+
+<code php>
+$log =& Swift_LogContainer::getLog();
+$log->setLogLevel($whatever_level);
+</code>
+
+The log level changes with immediate effect.  Remember to change it early on if you want lots of log information.
+
+To get data back out of the log:
+
+<code php>
+$log =& Swift_LogContainer::getLog();
+echo $log->dump(true);
+</code>
+
+This can be particularly useful if you keep getting failed deliveries and you can't think what the cause is because with a high enough error level you'll see what Swift is doing and what the connection is doing.  Usually level 3 will be as high as you'll need to go.
+
+By default, the log truncates itself to a maximum of 50 entries so that memory is not completely wasted for large batches.  If you need even more log data than this, use $log->setMaxSize():
+
+<code php>
+$log = Swift_LogContainer::getLog();
+$log->setMaxSize(200);
+</code>
+
+A maximum log size of 0 (zero) means that it will never be truncated at all.
+
+**NOTE**: In Versions 3.0, 3.1 and 3.2 logging did exist, but it was less useful, residing only as a property in $swift->log with only "on" or "off" states.  The API documentation for these earlier versions provides rudimentary documentation for usage.

@@ -1,0 +1,23 @@
+====== UML Diagrams for Version 4 ======
+
+Here's an up-to-date collection of UML diagrams used in project planning for Version 4.  These diagrams are not to be assumed as final, they merely act as memory joggers in preparation for development of a library where TDD will be the main driving force.  Given that Swift is now reaching it's 4th major version, there's enough knowledge about what works and what doesn't in the API to be able to get it roughly solid.
+
+===== Class Diagrams =====
+
+A collection of class diagrams brainstorming the API.
+
+==== Encoders ====
+
+{{v4:notes:swiftmailer_v4_encoders3.png?800|Encoder API, draft 3}}
+
+==== Mime Library ====
+
+{{v4:notes:swiftmailer_v4_mimelibrary6.png?800|The Mime Library API, draft 6}}
+
+==== Delivery Drivers ====
+
+{{v4:notes:swiftmailer_v4_deliverydrivers4.png?800|The Delivery Driver System, draft 4}}
+
+==== Logging API ====
+
+{{v4:notes:swiftmailer_v4_logging.png|The Logging API, draft 1}}

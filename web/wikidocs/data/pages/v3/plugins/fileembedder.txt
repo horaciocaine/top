@@ -1,0 +1,120 @@
+====== Swift Automatic File Embedding Plugin ======
+
+Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/SMTP.php";
+require_once "lib/Swift/Plugin/FileEmbedder.php";
+
+$swift =& new Swift(new Swift_Connection_SMTP("localhost"));
+
+//Attach the plugin
+$swift->attachPlugin(new Swift_Plugin_FileEmbedder(), "file_embedder");
+
+$message =& new Swift_Message("Your subject");
+$message->attach(new Swift_Message_Part('This is going to be embedded<br />
+<img src="http://www.server.tld/images/some-image.gif" /> rather than linked to.', 'text/html'));
+
+$swift->send($message, 'someone@somewhere.com', 'sender@domain.tld');
+</code>
+
+**IMPORTANT:** You cannot embed files into messages successfully unless you set the body as an instance of Swift_Message_Part.  Make sure your body has been added with attach(new Swift_Message_Part()) rather than $message->setBody().
+
+The plugin is smart enough to know not to download and embed the same image more than once so you do not need to worry about using the same image multiple times to create layouts for example.
+
+By default the plugin will use the following rules and nothing else:
+
+  * Find <img> tags with ''src'' attributes and extensions ending in one of gif, jpg, jpeg, pjpeg, png.
+  * Find <script> tags with ''src'' attributes and extensions ending in js.
+  * Find <link> tags with ''href'' attributes and extensions ending in css.
+
+It will also try to use protocols http, https and ftp.
+
+There's a fairly good chance you'll want to change this.
+
+===== Changing the rules =====
+
+If you start the plugin before you attach it to $swift you can make some changes in the rules first.  We'll look at how you add and remove rules for which tags to scan for and which protocols to use.
+
+
+==== Adding or ammending a tag rule ====
+
+The setTagDefinition() method allows you to specify how tags are searched.
+
+<code php>
+$plugin =& new Swift_Plugin_FileEmbedder();
+//Add a new rule (parameter order: tag, attributes, extensions)
+// This would find for example
+// <body background="foo.gif">
+$plugin->setTagDefinition("body", "background", array("gif", "png"));
+//Overwrite an existing rule (same as above)
+// This rule will only find <img> tags containing .jpg files.
+$plugin->setTagDefinition("img", "src", "jpg");
+</code>
+
+You can specify multiple values for the attributes and/or the extensions by simply passing an array for those parameters
+<code php>
+$plugin->setTagDefinition("tagname", array("src", "href"), array("ext1", "ext2", "ext3"));
+</code>
+
+I've yet to see a tag which has multiple attributes for remote files however ;)
+
+==== Checking a tag rule ====
+
+Checking a tag rule is just a case of calling getTagDefintion($tagName).
+
+<code php>
+print_r($plugin->getTagDefinition("img"));
+
+/*
+Array (
+  'attributes' => Array (
+    0 => 'src'
+  ),
+  'extensions' => Array (
+    0 => 'gif',
+    1 => 'jpg',
+    2 => 'jpeg',
+    3 => 'pjpeg',
+    4 => 'png'
+  )
+)
+*/
+</code>
+
+==== Deleting a tag rule ====
+
+The removeTagDefintion() method removes a rule completely.
+
+<code php>
+$plugin->removeTagDefinition("script"); //Disable Embedded JS files
+</code>
+
+==== Adding a protocol to use when downloading files ====
+
+By default, the plugin will only download a file and embed it if the file will be downloaded over HTTP, HTTPS or FTP.  If you'd like to add a new protocol to this list simply call addProtocol().
+
+<code php>
+$plugin->addProtocol("file"); // as in 'file:///foo/bar.txt' without the :// part
+</code>
+
+==== Removing a protocol ====
+
+Removing a protocol is done through removeProtocol().
+
+<code php>
+$plugin->removeProtocol('ftp'); //Disable FTP downloads
+</code>
+
+===== Local and remote files =====
+
+The plugin will actually detect paths inside the permitted tags within your filesystem.  For example:
+
+<code>
+<img src="/path/to/image.gif" />
+</code>
+
+For this to work you need to specify an absolute path to the file, starting with a forward slash.
+
+You can disable remote and/or local file embedding by using $plugin->setEmbedRemoteFiles(false) and/or $plugin->setEmbedLocalFiles(false).

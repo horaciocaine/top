@@ -1,0 +1,26 @@
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Multi.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>;
+&nbsp;
+<span class="re0">$connections</span> = <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Start adding connections</span>
+<span class="re0">$conn1</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> = <span class="re0">$conn1</span>;
+&nbsp;
+<span class="co1">//It's safe to use authentication</span>
+<span class="re0">$conn2</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host2.tld&quot;</span>, <span class="nu0">465</span><span class="br0">&#41;</span>;
+<span class="re0">$conn2</span>-&gt;<span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st0">&quot;my-user&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn2</span>-&gt;<span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st0">&quot;mypass&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> = <span class="re0">$conn2</span>;
+&nbsp;
+<span class="co1">//It's probably a good idea to always fall back on mail() if all else fails</span>
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> = <span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//And instantiate swift with these connections</span>
+try <span class="br0">&#123;</span>
+    <span class="re0">$swift</span> = <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Multi<span class="br0">&#40;</span><span class="re0">$connections</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span> catch <span class="br0">&#40;</span>Swift_Connection_Exception <span class="re0">$e</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="co1">//try/catch is optional, but advised</span>
+<span class="br0">&#125;</span></pre>

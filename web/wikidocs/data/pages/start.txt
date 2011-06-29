@@ -1,0 +1,98 @@
+===== Swift Mailer =====
+
+**Version 3 is now deprecated**.  Unless you absolutely cannot upgrade yet, **please download version 4** and use the version 4 documentation instead.
+
+Download Version 4: http://swiftmailer.org/download \\
+Documentation for Version 4: http://swiftmailer.org/docs
+
+//This wiki remains only for the purpose of users who need access to documentation for version 3//
+
+==== Installation ====
+  * [[v3:installation:extracting|Extracting the archive]]
+  * [[v3:installation:uploading|Uploading to your web server]]
+  * [[v3:installation:testing|Running the included tests]]
+
+
+==== Tutorials ====
+  * [[v3:tutorials:basic|Sending a basic email]]
+  * [[v3:tutorials:html|Sending a HTML email]]
+  * [[v3:tutorials:multipart|Sending a multipart email]]
+  * [[v3:tutorials:recipients|Personalizing recipient names]]
+  * [[v3:tutorials:exceptions|Catching useful errors]]
+  * [[v3:tutorials:attachments|Sending attachments]]
+  * [[v3:tutorials:embedding_images|Embedding images in HTML emails]]
+  * [[v3:tutorials:multirecipients|Sending to multiple recipients and/or copying to recipients]]
+  * [[v3:tutorials:batch|Sending a batch email without revealing all addresses]]
+  * [[v3:tutorials:form2mail|Sending an email from a form with Swift]]
+  * [[v3:plugin_decorator|How to customize messages for each recipient in a batch]]
+
+
+==== The Connections ====
+  * [[v3:connections:smtp| Swift_Connection_SMTP]]
+  * [[v3:connections:sendmail|Swift_Connection_Sendmail]]
+  * [[v3:connections:nativemail|Swift_Connection_NativeMail]]
+  * [[v3:connections:multi|Swift_Connection_Multi]]
+  * [[v3:connections:rotator|Swift_Connection_Rotator]]
+  * **[[v3:smtpauth|SMTP Authentication]]**
+
+
+==== Message Composition ====
+  * [[v3:composition:basics|Basics of the Swift_Message class]]
+  * [[v3:composition:multipart|Multi-Part messages in more detail]]
+  * [[v3:composition:attachments|Dealing with Attachments]]
+  * [[v3:composition:headers|Manipulating MIME headers]]
+  * [[v3:composition:images_embedded|Embedding images]]
+  * [[v3:plugin_decorator|Customizing Messages]]
+
+
+==== Sending & Recipients ====
+  * [[v3:sending:basics|Sending a message to a recipient]]
+  * [[v3:sending:multiple|Sending to multiple recipients]]
+  * [[v3:sending:batch|Sending a batch email or newsletter]]
+  * [[v3:sending:iterators|Using iterators to provide lists (advanced)]]
+  * [[v3:sending:failed_recipients|Dealing with failed recipients]]
+  * [[v3:sending:read_receipts|Requesting a Read-Receipt]]
+  * [[v3:sending:message_ids|Working with Message-IDs]]
+  * [[v3:sending:message_priority|Changing the message priority]]
+  * [[v3:sending:bounce_address|Setting the Bounce-detect or Return-path address]]
+
+==== Miscellaneous ====
+  * [[v3:misc:logging|Swift's logging system... find out what's going on]]
+  * [[v3:misc:caching|A little about Swift's internal caching system]]
+  * [[v3:misc:php4errors|PHP4 error handling - the exception hackaround]]
+  * [[v3:misc:commands|Runing SMTP commands using Swift]]
+
+
+
+==== Using Plugins ====
+  * [[v3:plugins:loading|Loading new plugins into Swift]]
+  * [[v3:plugins:manipulating|Working with plugins after loading]]
+  * [[v3:plugins:antiflood|Swift_Plugin_AntiFlood]]
+  * [[v3:plugins:decorator|Swift_Plugin_Decorator]]
+  * [[v3:plugins:verbose|Swift_Plugin_VerboseSending]]
+  * [[v3:plugins:throttler|Swift_Plugin_Throttler]]
+  * [[v3:plugins:bandwidthmonitor|Swift_Plugin_BandwidthMonitor]]
+  * [[v3:plugins:fileembedder|Swift_Plugin_FileEmbedder]]
+
+
+
+==== Writing Plugins (advanced) ====
+
+  * [[v3:plugindev:intro|An introduction to the plugin API]]
+  * [[v3:plugindev:connectevent|Writing a ConnectListener plugin]]
+  * [[v3:plugindev:disconnectevent|Writing a DisconnectListener plugin]]
+  * [[v3:plugindev:beforesendevent|Writing a BeforeSendListener plugin]]
+  * [[v3:plugindev:sendevent|Writing a SendListener plugin]]
+  * [[v3:plugindev:beforecommandevent|Writing a BeforeCommandListener plugin]]
+  * [[v3:plugindev:commandevent|Writing a CommandListener plugin]]
+  * [[v3:plugindev:responseevent|Writing a ResponseListener plugin]]
+
+==== Tips & Tricks ====
+  * [[v3:tips:memory|Keep memory down to a minimum]]
+  * [[v3:tips:spam|Minimize your risk of having your emails blocked as spam]]
+
+==== Frequently Asked Questions ====
+  * [[v3:faq:parseerror|I get parse errors, or I get a blank page when I include Swift?]]
+  * [[v3:faq:unittests|The unit tests are exiting with a memory exhaustion error. Huh?]]
+  * [[v3:faq:permissiondenied|Why do I get a "Permission Denied" error when I use the SMTP connection?]]
+  * [[v3:faq:hugebatches|I've got 54,045,067,032,004 emails to send, how should I do this?]]

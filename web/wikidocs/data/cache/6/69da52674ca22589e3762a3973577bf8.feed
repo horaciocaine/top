@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://www.swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://www.swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-05-19T13:27:22+00:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_verbose?rev=1174510700&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_manipulating?rev=1171482021&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/manipulating?rev=1236058884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1175092542&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/antiflood?rev=1236058884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_antiflood?rev=1171482062&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/start?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins_loading?rev=1171481868&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/connectevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/loading?rev=1236058884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_connectevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_throttler?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/intro?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/start?rev=1179422562&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugin_bandwidthmonitor?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_intro?rev=1171575971&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/throttler?rev=1236058884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugins/bandwidthmonitor?rev=1236058884&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_beforecommandevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_disconnectevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/beforecommandevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/disconnectevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/easy/swift_connection_rotator?rev=1236058880&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/swift_connection_rotator?rev=1171467632&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/commandevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_responseevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/responseevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_commandevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/tutorials/start?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev/beforesendevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/composition/start?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v3/plugindev_beforesendevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://www.swiftmailer.org/wikidocs/</link>
+        <url>http://www.swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-07T21:50:27+00:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-03-26T10:22:20+00:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T17:18:50+00:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-09-21T07:54:30+00:00</dc:date>
+        <title>Swift Mailer 3</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/start?rev=1190361270&amp;do=diff</link>
+        <description>Swift Mailer 3
+
+
+Version 3 is the latest release.  It offers many beneficial changes over Version 2.
+
+Library API Reference
+
+	*  PHP4 API Documentation
+	*  PHP5 API Documentation
+
+Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-04-12T00:07:16+00:00</dc:date>
+        <title>Swift Mailer</title>
+        <link>http://www.swiftmailer.org/wikidocs/start?rev=1239494836&amp;do=diff</link>
+        <description>Swift Mailer
+
+
+Version 3 is now deprecated.  Unless you absolutely cannot upgrade yet, please download version 4 and use the version 4 documentation instead.
+
+Download Version 4: &lt;http://swiftmailer.org/download&gt; 
+
+Documentation for Version 4: &lt;http://swiftmailer.org/docs&gt;</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_verbose?rev=1174510700&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-21T20:58:20+00:00</dc:date>
+        <title>Verbose Sending Plugin (Debug-use only)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_verbose?rev=1174510700&amp;do=diff</link>
+        <description>The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the SMTP connection.  It's unlikely you'll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_manipulating?rev=1171482021&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:40:21+00:00</dc:date>
+        <title>Working with plugins after loading</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_manipulating?rev=1171482021&amp;do=diff</link>
+        <description>Plugins are held inside Swift by-reference and you can get a reference to that plugin yourself by using the getPlugin() method.  When you load a plugin into Swift you need to give it a name.  You use that name to retreive a reference to it.  This comes in particularly useful when you want to run methods in a plugin at runtime.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/manipulating?rev=1236058884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Working with plugins after loading</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/manipulating?rev=1236058884&amp;do=diff</link>
+        <description>Plugins are held inside Swift by-reference and you can get a reference to that plugin yourself by using the getPlugin() method.  When you load a plugin into Swift you need to give it a name.  You use that name to retreive a reference to it.  This comes in particularly useful when you want to run methods in a plugin at runtime.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1175092542&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-28T14:35:42+00:00</dc:date>
+        <title>Verbose Sending Plugin (Debug-use only)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/verbose?rev=1175092542&amp;do=diff</link>
+        <description>The verbose sending plugin dumps out green and red bars during the sending of batches in order to allow you to quickly identify recipients who are not going through the SMTP connection.  It's unlikely you'll need to use this plugin for anything other than debugging.  Usage is simple, all you have to do is load it into Swift along with the View class it uses (or one of your own).</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/antiflood?rev=1236058884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Using the AntiFlood plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/antiflood?rev=1236058884&amp;do=diff</link>
+        <description>Synopsis: new Swift_Plugin_AntiFlood([int threshold [, int pause]])
+
+The AntiFlood plugin is designed to help lessen the load on the HTTP server and the SMTP server.  It can also be used to send out very large batches of emails when the SMTP server has restrictions in place to limit the number of emails sent in one go.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_antiflood?rev=1171482062&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:41:02+00:00</dc:date>
+        <title>Using the AntiFlood plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_antiflood?rev=1171482062&amp;do=diff</link>
+        <description>Synopsis: new Swift_Plugin_AntiFlood([int threshold [, int pause]])
+
+The AntiFlood plugin is designed to help lessen the load on the HTTP server and the SMTP server.  It can also be used to send out very large batches of emails when the SMTP server has restrictions in place to limit the number of emails sent in one go.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/start?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Writing Plugins (advanced)</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/start?rev=1236058883&amp;do=diff</link>
+        <description>Writing Plugins (advanced)
+
+	*  An introduction to the plugin API
+	*  Writing a ConnectListener plugin
+	*  Writing a DisconnectListener plugin
+	*  Writing a BeforeSendListener plugin
+	*  Writing a SendListener plugin
+	*  Writing a BeforeCommandListener plugin
+	*  Writing a CommandListener plugin
+	*  Writing a ResponseListener plugin</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins_loading?rev=1171481868&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:37:48+00:00</dc:date>
+        <title>Loading new plugins into Swift</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins_loading?rev=1171481868&amp;do=diff</link>
+        <description>Plugins in Swift are nothing more than event listeners (a sort of observer).  If you download a plugin, or want to load one of the packaged ones you first need to include the file in your script using the “include” or “require” keywords.  You then use the attachPlugin() method in Swift to pass an instance of the plugin to Swift.  Swift quite simply sends messages (events) to the plugin at relevent times.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-15T21:34:59+00:00</dc:date>
+        <title>How to use SendListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you're plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/connectevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Writing a ConnectListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/connectevent?rev=1236058883&amp;do=diff</link>
+        <description>As the name suggests, a ConnectListener will be notified every time Swift connects to the SMTP server or other MTA.  A plugin which implements the Swift_Events_ConnectListener interface will be passed an instance of Swift_Events_ConnectEvent when a connection is established.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>How to use SendListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you're plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/loading?rev=1236058884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Loading new plugins into Swift</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/loading?rev=1236058884&amp;do=diff</link>
+        <description>Plugins in Swift are nothing more than event listeners (a sort of observer).  If you download a plugin, or want to load one of the packaged ones you first need to include the file in your script using the “include” or “require” keywords.  You then use the attachPlugin() method in Swift to pass an instance of the plugin to Swift.  Swift quite simply sends messages (events) to the plugin at relevent times.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_connectevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Writing a ConnectListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_connectevent?rev=1236058881&amp;do=diff</link>
+        <description>As the name suggests, a ConnectListener will be notified every time Swift connects to the SMTP server or other MTA.  A plugin which implements the Swift_Events_ConnectListener interface will be passed an instance of Swift_Events_ConnectEvent when a connection is established.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_throttler?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Throttler Plugin to restrict the speed</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_throttler?rev=1236058881&amp;do=diff</link>
+        <description>If you want to run a batch send that's going to take a long time and don't want to hog the server's resources and/or bandwidth in the process perhaps this plugin is the solution.  Unlike the AntiFlood plugin, which offers a similar solution, the throttler works on the basis of restricting speed, not on the basis of minimizing the number of emails per-connection.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/intro?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>An introduction to Swift's Plugin API</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/intro?rev=1236058883&amp;do=diff</link>
+        <description>Swift has come a leap forward from it's version 2 days where learning to use the plugin system was a confusing business unless you knew Swift's core inside-out.  In Version 3, things are clearer and simpler.  The entire basis of the plugin system is centered around the concept of event-driven programming.  Observers (Event Listeners) are plugged into Swift's core class.  Swift then dispatches Events (as objects) to these event listeners.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/start?rev=1179422562&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T17:22:42+00:00</dc:date>
+        <title>Using Plugins</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/start?rev=1179422562&amp;do=diff</link>
+        <description>Using Plugins
+
+	*  Loading new plugins into Swift
+	*  Working with plugins after loading
+	*  Swift_Plugin_AntiFlood
+	*  Swift_Plugin_Decorator
+	*  Swift_Plugin_VerboseSending
+	*  Swift_Plugin_Throttler
+	*  Swift_Plugin_BandwidthMonitor
+	*  Swift_Plugin_FileEmbedder</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugin_bandwidthmonitor?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Swift Bandwidth Monitoring/Tracking Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugin_bandwidthmonitor?rev=1236058881&amp;do=diff</link>
+        <description>Depending upon what you're doing, or shoud I say, the scale of what you're sending you may wish to keep track of how much bandwidth Swift is using.  This plugin measures the incoming and outgoing bandwidth through the connection.
+
+NOTE: The figures are from Swift's point of view, not the server.  “Bytes in” refers to bytes from the SMTP server back into swift; “bytes out” refers to bytes sent from Swift to the SMTP server.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_intro?rev=1171575971&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-15T21:46:11+00:00</dc:date>
+        <title>An introduction to Swift's Plugin API</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_intro?rev=1171575971&amp;do=diff</link>
+        <description>Swift has come a leap forward from it's version 2 days where learning to use the plugin system was a confusing business unless you knew Swift's core inside-out.  In Version 3, things are clearer and simpler.  The entire basis of the plugin system is centered around the concept of event-driven programming.  Observers (Event Listeners) are plugged into Swift's core class.  Swift then dispatches Events (as objects) to these event listeners.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/throttler?rev=1236058884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Throttler Plugin to restrict the speed</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/throttler?rev=1236058884&amp;do=diff</link>
+        <description>If you want to run a batch send that's going to take a long time and don't want to hog the server's resources and/or bandwidth in the process perhaps this plugin is the solution.  Unlike the AntiFlood plugin, which offers a similar solution, the throttler works on the basis of restricting speed, not on the basis of minimizing the number of emails per-connection.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugins/bandwidthmonitor?rev=1236058884&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:24+00:00</dc:date>
+        <title>Swift Bandwidth Monitoring/Tracking Plugin</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugins/bandwidthmonitor?rev=1236058884&amp;do=diff</link>
+        <description>Depending upon what you're doing, or shoud I say, the scale of what you're sending you may wish to keep track of how much bandwidth Swift is using.  This plugin measures the incoming and outgoing bandwidth through the connection.
+
+NOTE: The figures are from Swift's point of view, not the server.  “Bytes in” refers to bytes from the SMTP server back into swift; “bytes out” refers to bytes sent from Swift to the SMTP server.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_beforecommandevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>How to use BeforeCommandListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_beforecommandevent?rev=1236058881&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_BeforeCommandListener interface will be invoked every time Swift is about to issue an SMTP command.  The plugin will have access to the command being executed and any changes made to the command inside the plugin will be executed at the time when the command would normally execute.  Plugins which implement either the CommandListener or BeforeCommandListener are most likely listening for those event by means of tracking the progress of sending an email r…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_disconnectevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>Writing a DisconnectListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_disconnectevent?rev=1236058881&amp;do=diff</link>
+        <description>A DisconnectListener will be notified every time Swift disconnects from the SMTP server or local MTA.  A plugin which implements the Swift_Events_DisconnectListener interface will be passed an instance of Swift_Events_DisconnectEvent when a disconnection occurs.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/beforecommandevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>How to use BeforeCommandListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/beforecommandevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_BeforeCommandListener interface will be invoked every time Swift is about to issue an SMTP command.  The plugin will have access to the command being executed and any changes made to the command inside the plugin will be executed at the time when the command would normally execute.  Plugins which implement either the CommandListener or BeforeCommandListener are most likely listening for those event by means of tracking the progress of sending an email r…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/disconnectevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Writing a DisconnectListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/disconnectevent?rev=1236058883&amp;do=diff</link>
+        <description>A DisconnectListener will be notified every time Swift disconnects from the SMTP server or local MTA.  A plugin which implements the Swift_Events_DisconnectListener interface will be passed an instance of Swift_Events_DisconnectEvent when a disconnection occurs.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/easy/swift_connection_rotator?rev=1236058880&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:20+00:00</dc:date>
+        <title>Swift_Connection_Rotator</title>
+        <link>http://www.swiftmailer.org/wikidocs/easy/swift_connection_rotator?rev=1236058880&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Rotator( [array connections] )
+
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+
+You provide it with a collection of different connections (possibly including some other rotating ones if you're crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as “dead” internally and will not be retried. …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>Swift_Connection_Rotator</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/connections/rotator?rev=1236058883&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Rotator( [array connections] )
+
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+
+You provide it with a collection of different connections (possibly including some other rotating ones if you're crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as “dead” internally and will not be retried. …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/swift_connection_rotator?rev=1171467632&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T15:40:32+00:00</dc:date>
+        <title>Swift_Connection_Rotator</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/swift_connection_rotator?rev=1171467632&amp;do=diff</link>
+        <description>Synopsis: new Swift_Connection_Rotator( [array connections] )
+
+Much like the Multi connection, the Rotator connection also provides redundancy.  However, in addition it also provides a fairly unintelligent way to load balance between connections.
+
+You provide it with a collection of different connections (possibly including some other rotating ones if you're crazy enough to do so ;)) and it tries each one in turn until one works, the rest are marked as “dead” internally and will not be retried. …</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/commandevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>How to use CommandListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/commandevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_CommandListener interface will be invoked whenever Swift has sent a command.  The CommandEvent object which is passed is the same object as the one a plugin implementing BeforeCommandListener would have already seen.  Therefore, any changes made before the command is issued will be also seen here after the command has been issued.  More often than not, BeforeCommandListener will be more useful than CommandListener.  We could use something like this to m…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_responseevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>How to use ResponseListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_responseevent?rev=1236058881&amp;do=diff</link>
+        <description>A plugin which implements Swift_Events_ResponseListener will be invoked every time Swift receives a new response from the connection.  This can come in useful if used in combination with a CommandListener because if you know what response codes to expect, you can “correct” problems by issuing the RSET command or whatever other action may be appropriate.  It probably helps to know a little about the SMTP protocol before attempting such things however.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/responseevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>How to use ResponseListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/responseevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements Swift_Events_ResponseListener will be invoked every time Swift receives a new response from the connection.  This can come in useful if used in combination with a CommandListener because if you know what response codes to expect, you can “correct” problems by issuing the RSET command or whatever other action may be appropriate.  It probably helps to know a little about the SMTP protocol before attempting such things however.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_commandevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>How to use CommandListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_commandevent?rev=1236058881&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_CommandListener interface will be invoked whenever Swift has sent a command.  The CommandEvent object which is passed is the same object as the one a plugin implementing BeforeCommandListener would have already seen.  Therefore, any changes made before the command is issued will be also seen here after the command has been issued.  More often than not, BeforeCommandListener will be more useful than CommandListener.  We could use something like this to m…</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/tutorials/start?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Tutorials</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/tutorials/start?rev=1236058885&amp;do=diff</link>
+        <description>Tutorials
+
+	*  Sending a basic email
+	*  Sending a HTML email
+	*  Sending a multipart email
+	*  Personalizing recipient names
+	*  Catching useful errors
+	*  Sending attachments
+	*  Embedding images in HTML emails
+	*  Sending to multiple recipients and/or copying to recipients
+	*  Sending a batch email without revealing all addresses
+	*  Sending an email from a form with Swift
+	*  How to customize messages for each recipient in a batch
+	*  [TODO: A mass-maling tutorial]</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev/beforesendevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:23+00:00</dc:date>
+        <title>How to use BeforeSendListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev/beforesendevent?rev=1236058883&amp;do=diff</link>
+        <description>The two event listeners in Swift which are likely to be the most heavily implemented are SendListener and BeforeSendListener.  BeforeSendListener is run before the message gets sent.  You will know who the recipients are and what the message is at this stage, but Swift will not yet have sent the message so you can change recipients and/or modify the message and then it will be sent.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/composition/start?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:22+00:00</dc:date>
+        <title>Message Composition</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/composition/start?rev=1236058882&amp;do=diff</link>
+        <description>Message Composition
+
+	*  Basics of the Swift_Message class
+	*  Multi-Part messages in more detail
+	*  Dealing with Attachments
+	*  Manipulating MIME headers
+	*  Embedding images
+	*  Customizing Messages</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v3/plugindev_beforesendevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:21+00:00</dc:date>
+        <title>How to use BeforeSendListener</title>
+        <link>http://www.swiftmailer.org/wikidocs/v3/plugindev_beforesendevent?rev=1236058881&amp;do=diff</link>
+        <description>The two event listeners in Swift which are likely to be the most heavily implemented are SendListener and BeforeSendListener.  BeforeSendListener is run before the message gets sent.  You will know who the recipients are and what the message is at this stage, but Swift will not yet have sent the message so you can change recipients and/or modify the message and then it will be sent.</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+    <item rdf:about="http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T05:41:25+00:00</dc:date>
+        <title>Version 4 Development Discussion</title>
+        <link>http://www.swiftmailer.org/wikidocs/v4/notes/discussion?rev=1236058885&amp;do=diff</link>
+        <description>A bit of a mish-mash of ramblings of the top of my head.
+
+Components (subpackages)
+
+	*  Encoders
+	*  Mime Library
+	*  Delivery Drivers/connections
+	*  Authenticators
+	*  Plugins
+	*  Central Swift class (adaptor for the Delivery Drivers) (?)
+
+Timeline
+
+
+I'm not working to any deadlines on version 4.  It will be done right and it will be ready when it's ready.  It will definitely not be released before February 5th 2008, even if it is stable by then (see &lt;http://gophp5.org/&gt;)</description>
+    </item>
+</rdf:RDF>

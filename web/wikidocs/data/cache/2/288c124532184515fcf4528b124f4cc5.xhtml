@@ -1,0 +1,126 @@
+
+
+
+<h1><a name="how_to_use_sendlistener" id="how_to_use_sendlistener">How to use SendListener</a></h1>
+<div class="level1">
+
+<p>
+
+A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you&#039;re plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is sent and still see those changes after the message was sent.
+</p>
+
+<p>
+Here&#039;s the interface:
+</p>
+<pre class="code php"><span class="co4">/**
+ * Contains the list of methods a plugin requiring the use of a SendEvent must implement
+ * @package Swift_Events
+ * @author Chris Corbyn &lt;chris@w3style.co.uk&gt;
+ */</span>
+<span class="kw2">interface</span> Swift_Events_SendListener <span class="kw2">extends</span> Swift_Events_Listener
+<span class="br0">&#123;</span>
+	<span class="co4">/**
+	 * Executes when Swift sends a message
+	 * @param Swift_Events_SendEvent Information about the message being sent
+	 */</span>
+	<span class="kw2">public</span> <span class="kw2">function</span> sendPerformed<span class="br0">&#40;</span>Swift_Events_SendEvent <span class="re0">$e</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+Let&#039;s do something semi-useful and write a plugin which sends an email report to you after an email has been sent.  It will tell you who the recipients were and how many recipients were rejected.  The obvious concern here is that we will be calling Swift&#039;s send() method from a SendListener which means we risk a never ending recursion if we don&#039;t think about what we&#039;re doing!
+</p>
+
+<p>
+The SendEvent object contains methods for getRecipients(), getMessage() and getSender() – as with <strong>all</strong> Swift events it also contains getSwift() so you can work with the instance of Swift which triggered the event.
+</p>
+
+<p>
+Here&#039;s an example of the plugin which sends you a report.
+</p>
+<pre class="code php"><span class="kw2">class</span> SwiftReportGeneratorPlugin implements Swift_Events_SendListener
+<span class="br0">&#123;</span>
+    protected <span class="re0">$address</span>;
+    protected <span class="re0">$message</span>;
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="re0">$your_address</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">setAddress</span><span class="br0">&#40;</span><span class="re0">$your_address</span><span class="br0">&#41;</span>;
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">setMessage</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Swift Mailer Report&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> setMessage<span class="br0">&#40;</span>Swift_Message <span class="re0">$message</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">message</span> <span class="sy0">=</span> <span class="re0">$message</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getMessage<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">message</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> setAddress<span class="br0">&#40;</span>Swift_Address <span class="re0">$address</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">address</span> <span class="sy0">=</span> <span class="re0">$address</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getAddress<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">address</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getTemplate<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="co3">&lt;&lt;&lt;TEMPLATE
+This message is a report generated by the report generator plugin in Swift.
+&nbsp;
+A message was sent to the following recipients on {date}:
+&nbsp;
+{recipients}
+&nbsp;
+Of the above recipients, {num_sent} were accpeted for delivery.
+&nbsp;
+A copy of the message source is shown below:
+&nbsp;
+---------
+{source}
+---------
+&nbsp;
+TEMPLATE</span>;
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> sendPerformed<span class="br0">&#40;</span>Swift_Events_SendEvent <span class="re0">$e</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="co1">//make sure we're not generating a report for our own message</span>
+        <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">===</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="kw1">return</span>;
+&nbsp;
+        <span class="re0">$num_sent</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getNumSent</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$message</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$date</span> <span class="sy0">=</span> <a href="http://www.php.net/date"><span class="kw3">date</span></a><span class="br0">&#40;</span><span class="st0">&quot;r&quot;</span><span class="sy0">,</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">getDate</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        <span class="re0">$source</span> <span class="sy0">=</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">build</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$recipient_str</span> <span class="sy0">=</span> <span class="st0">&quot;&quot;</span>;
+        <span class="re0">$recipients</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getRecipients</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="co1">//The keys are the addresses</span>
+        <span class="re0">$to</span> <span class="sy0">=</span> <a href="http://www.php.net/array_keys"><span class="kw3">array_keys</span></a><span class="br0">&#40;</span><span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">getTo</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        <span class="re0">$recipient_str</span> <span class="sy0">.=</span> <span class="st0">&quot;Recipients in the To: field:<span class="es0">\r</span><span class="es0">\n</span>&quot;</span> <span class="sy0">.</span>
+            <a href="http://www.php.net/implode"><span class="kw3">implode</span></a><span class="br0">&#40;</span><span class="st0">&quot;,<span class="es0">\r</span><span class="es0">\n</span>&quot;</span><span class="sy0">,</span> <span class="re0">$to</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="st0">&quot;<span class="es0">\r</span><span class="es0">\n</span>&quot;</span>;
+        <span class="re0">$cc</span> <span class="sy0">=</span> <a href="http://www.php.net/array_keys"><span class="kw3">array_keys</span></a><span class="br0">&#40;</span><span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">getCc</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        <span class="re0">$recipient_str</span> <span class="sy0">.=</span> <span class="st0">&quot;Recipients in the Cc: field:<span class="es0">\r</span><span class="es0">\n</span>&quot;</span> <span class="sy0">.</span>
+            <a href="http://www.php.net/implode"><span class="kw3">implode</span></a><span class="br0">&#40;</span><span class="st0">&quot;,<span class="es0">\r</span><span class="es0">\n</span>&quot;</span><span class="sy0">,</span> <span class="re0">$cc</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="st0">&quot;<span class="es0">\r</span><span class="es0">\n</span>&quot;</span>;
+        <span class="re0">$bcc</span> <span class="sy0">=</span> <a href="http://www.php.net/array_keys"><span class="kw3">array_keys</span></a><span class="br0">&#40;</span><span class="re0">$recipients</span><span class="sy0">-&gt;</span><span class="me1">getBcc</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+        <span class="re0">$recipient_str</span> <span class="sy0">.=</span> <span class="st0">&quot;Recipients in the Bcc: field:<span class="es0">\r</span><span class="es0">\n</span>&quot;</span> <span class="sy0">.</span>
+            <a href="http://www.php.net/implode"><span class="kw3">implode</span></a><span class="br0">&#40;</span><span class="st0">&quot;,<span class="es0">\r</span><span class="es0">\n</span>&quot;</span><span class="sy0">,</span> <span class="re0">$bcc</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="st0">&quot;<span class="es0">\r</span><span class="es0">\n</span>&quot;</span>;
+&nbsp;
+        <span class="re0">$report</span> <span class="sy0">=</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$report</span><span class="sy0">-&gt;</span><span class="me1">setBody</span><span class="br0">&#40;</span>
+            <a href="http://www.php.net/strtr"><span class="kw3">strtr</span></a><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getTemplate</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;{date}&quot;</span> <span class="sy0">=&gt;</span> <span class="re0">$date</span><span class="sy0">,</span> <span class="st0">&quot;{recipients}&quot;</span> <span class="sy0">=&gt;</span> <span class="re0">$recipient_str</span><span class="sy0">,</span> 
+                         <span class="st0">&quot;{num_sent}&quot;</span> <span class="sy0">=&gt;</span> <span class="re0">$num_sent</span> <span class="sy0">,</span> <span class="st0">&quot;{source}&quot;</span> <span class="sy0">=&gt;</span> <span class="re0">$source</span> <span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+        <span class="re0">$swift</span> <span class="sy0">=</span> <span class="re0">$e</span><span class="sy0">-&gt;</span><span class="me1">getSwift</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+        <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$report</span><span class="sy0">,</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">getAddress</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="st0">&quot;reporter@domain.tld&quot;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<p>
+Although it&#039;s long(ish) it should be logical.  Writing plugins never gets much twistier than this :)
+
+</p>
+
+</div>

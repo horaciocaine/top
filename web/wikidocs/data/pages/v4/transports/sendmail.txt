@@ -1,0 +1,112 @@
+===== SMTP Transport (Swift_SmtpTransport) ====
+
+==== What is it for? ====
+
+The Sendmail Transport (named ''Swift_SendmailTransport'') is for UNIX/Linux systems which use sendmail to send emails.  You will need to know where sendmail is installed in the server to use this class.  The typical locations for it are "/sbin/sendmail" or "/usr/sbin/sendmail".
+
+Some hosts actively prevent the use of sendmail (i.e. they do not allow the program to be executed) so this transport may not work all the time.  It's also not available for use on Windows systems unless the system administrator has followed some advanced procedures to install a sendmail equivalent for windows.
+
+Sendmail is a mail transfer agent (MTA) which spools mail to disk in order to queue it.  It then tries periodically to run mail off the queue.  Several other programs exist which have superceded sendmail in terms of functionality.  Such programs as postfix, exim and qMail will still work with this transport since they typically provide compatibility options for sendmail.
+
+==== How do you use it? ====
+
+The ''Swift_SendmailTransport'' class takes one (optional) parameter in its constructor.
+
+**Synopsis**
+<code>
+new Swift_SendmailTransport( [ $command ] )
+
+// or
+
+Swift_SendmailTransport::newInstance( [ $command ] )
+</code>
+
+''$command'' is the path to sendmail along with any flags to use.  Swift Mailer supports the use of "-bs" flags and "-t".  The recommended flags are simply "-bs" since sending in this mode offers the most verbose feedback about failures during sending.  The default ''$command'' is "/usr/sbin/sendmail -bs" if no other path is specified.
+
+==== Examples ====
+
+=== Instantiating Swift_SendmailTransport with the default settings ===
+<code php>
+$sendmail = new Swift_Sendmail();
+
+$mailer = new Swift_Mailer($sendmail);
+
+$message = new Swift_Message('My subject', 'My message body');
+$message->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'));
+$message->setTo(array('recipient@domain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Instantiating Swift_SendmailTransport for "-t" mode operation ===
+<code php>
+$sendmail = new Swift_Sendmail('/usr/sbin/sendmail -oi -t');
+
+$mailer = new Swift_Mailer($sendmail);
+
+//$message supports a fluid interface everywhere in Swift
+$message = Swift_Message::newInstance('My subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@domain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Instantiating Swift_SendmailTransport for "-bs" mode operation ===
+<code php>
+$sendmail = new Swift_Sendmail('/usr/sbin/sendmail -bs');
+
+$mailer = new Swift_Mailer($sendmail);
+
+$message = Swift_Message::newInstance('My subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@domain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Using newInstance() to create $sendmail ===
+<code php>
+$sendmail = Swift_Sendmail::newInstance('/usr/sbin/sendmail -oi -t');
+
+$mailer = new Swift_Mailer($sendmail);
+
+$message = Swift_Message::newInstance('My subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@domain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Using a program other than sendmail ===
+<code php>
+$sendmail = Swift_Sendmail::newInstance('/usr/sbin/exim -bs');
+
+$mailer = new Swift_Mailer($sendmail);
+
+$message = Swift_Message::newInstance('My subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@domain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Nesting the instantiation of Swift_SendmailTransport in the constructor of the Mailer ===
+<code php>
+$mailer = new Swift_Mailer(new Swift_SendmailTransport());
+
+$message = Swift_Message::newInstance('My subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@domain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+==== Troubleshooting ====
+
+^ Problem ^ Possible solutions ^
+| Receiving errors that the process could not be started  | The host's permissions may be preventing the use of sendmail or sendmail is not at the path specified.  Try a different path or contact your host. |
+| Experiencing hanging pages  | Something is preventing the process from reading or writing.  This is a cause, but Swift should report an error.  A hanging page is a bug which should be reported to myself |
+| Messages are being received with extra line breaks | This should never happen, but in theory it can happen.  Please report this as a bug. |
+| Messages are never received  | Perhaps the queue interval for sendmail is set too high, or sendmail is not running.  Other causes may be spam blockers which are particularly problematic if you are sending from a dynamic IP address |
+| I get bounced messages but Swift thinks it worked  | This is normal.  Not all servers report failures at sending time.  However, if you're using "-t" mode instead of "-bs" mode you will get meaningless results at send time.  Use "-bs" mode if you can. |

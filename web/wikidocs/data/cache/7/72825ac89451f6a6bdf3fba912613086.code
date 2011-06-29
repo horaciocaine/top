@@ -1,0 +1,3 @@
+<pre class="code php"><span class="re0">$batch</span> =&amp; <span class="kw2">new</span> Swift_BatchMailer<span class="br0">&#40;</span><span class="re0">$swift</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$batch</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="re0">$from</span><span class="br0">&#41;</span>;</pre>

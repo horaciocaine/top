@@ -1,0 +1,12 @@
+<span class="co1">//Create a message</span>
+<span class="re0">$message</span> <span class="sy0">=</span> Swift_Message<span class="sy0">::</span><span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st_h">'Your subject'</span><span class="sy0">,</span> <span class="st_h">'Your Message'</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st_h">'your@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Your Name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st_h">'someone@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Person name'</span><span class="sy0">,</span>
+    <span class="st_h">'other@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Other name'</span><span class="sy0">,</span>
+    <span class="st_h">'more@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Yet another name'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>
+  <span class="sy0">-&gt;</span><span class="me1">setBcc</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span>
+    <span class="st_h">'copied@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Copied recipient'</span><span class="sy0">,</span>
+    <span class="st_h">'another-copy@address.tld'</span> <span class="sy0">=&gt;</span> <span class="st_h">'Another copy'</span>
+  <span class="br0">&#41;</span><span class="br0">&#41;</span>;

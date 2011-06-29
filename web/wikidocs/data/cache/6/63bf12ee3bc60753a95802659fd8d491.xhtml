@@ -1,0 +1,53 @@
+
+
+
+<h1><a name="sending_attachments" id="sending_attachments">Sending attachments</a></h1>
+<div class="level1">
+
+<p>
+ Luckily, attachments are much like <a href="/wikidocs/v3/multipart" class="wikilink1" title="v3:multipart">MIME parts in a multipart message</a>, expect they are not displayed by default and are encoded in a special way.  You attach files to an email using the attach() method in swift like you do when you add <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> parts, but you use the Swift_Message_Attachment class rather than the Swift_Message_Part class.  Swift then includes the message as an attachment, rather than a textual part of the email.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>; <span class="co1">//There are various connections to use</span>
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;I have attached a file to this message!&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span>
+  <a href="http://www.php.net/file_get_contents"><span class="kw3">file_get_contents</span></a><span class="br0">&#40;</span><span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>, <span class="st0">&quot;foo.pdf&quot;</span>, <span class="st0">&quot;application/pdf&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="st0">&quot;my-friend@host.tld&quot;</span>, <span class="st0">&quot;me@my-domain.tld&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>TIP:</strong> Notice that in the above example the attachment has been created using the file&rsquo;s contents.  This is how older versions of Swift used to handle attachments and it&rsquo;s not brilliant for large files because much memory gets used whilst encoding the file and reading it.
+</p>
+
+<p>
+To keep memory down we can make a small adjustment and make use of the Swift_File class.  The Swift_File class doesn&rsquo;t just blindly load in all the file&rsquo;s data, then pass it to an encoder, instead, it &ldquo;streams&rdquo; the file&rsquo;s data through the encoder keeping a maximum of 8192 bytes from the original file in memory at any one time - massively reducing the load on your script and speeding things up a bit.  Make use of it!
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/NativeMail.php&quot;</span>; <span class="co1">//There are various connections to use</span>
+&nbsp;
+<span class="re0">$swift</span> =&amp; <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_NativeMail<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="st0">&quot;I have attached a file to this message!&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Use the Swift_File class</span>
+<span class="re0">$message</span>-&gt;<span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span>
+  <span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;foo.pdf&quot;</span><span class="br0">&#41;</span>, <span class="st0">&quot;foo.pdf&quot;</span>, <span class="st0">&quot;application/pdf&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="st0">&quot;my-friend@host.tld&quot;</span>, <span class="st0">&quot;me@my-domain.tld&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>TIP:</strong> Swift_File can be used as a substitute for passing strings into a message body too.  Say for example, you have an email template saved as email.html, you can create a mime part by doing:
+</p>
+<pre class="code php"><span class="re0">$part</span> =&amp; <span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="st0">&quot;email.html&quot;</span><span class="br0">&#41;</span>, <span class="st0">&quot;text/html&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+<strong>NOTE:</strong> Be sure to read the notes about Disk Caching in the tips and tricks section: <a href="/wikidocs/v3/tips_memory" class="wikilink1" title="v3:tips_memory">Keep memory down to a minimum</a>
+</p>
+
+</div>

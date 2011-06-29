@@ -1,0 +1,17 @@
+==== Using Plugins ====
+  * [[v3:plugins:loading|Loading new plugins into Swift]]
+  * [[v3:plugins:manipulating|Working with plugins after loading]]
+  * [[v3:plugins:antiflood|Swift_Plugin_AntiFlood]]
+  * [[v3:plugins:decorator|Swift_Plugin_Decorator]]
+  * [[v3:plugins:verbose|Swift_Plugin_VerboseSending]]
+  * [[v3:plugins:throttler|Swift_Plugin_Throttler]]
+  * [[v3:plugins:bandwidthmonitor|Swift_Plugin_BandwidthMonitor]]
+  * [[v3:plugins:fileembedder|Swift_Plugin_FileEmbedder]]
+
+
+
+
+
+
+
+

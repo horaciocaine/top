@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2009-12-25T18:05:02+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/multipart_detail?rev=1172336876&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/multipart?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/basics?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_message?rev=1171474473&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/attachments?rev=1174579323&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/attachments?rev=1172337563&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/embedding_images?rev=1173265512&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/embedding_images?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/message_attachments?rev=1171479065&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/multipart?rev=1171458349&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/tutorials/multipart?rev=1178577797&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/attachments?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/composition/images_embedded?rev=1236058882&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/swift_message_image?rev=1171481052&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1211437714&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/multipart_detail?rev=1172336876&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-24T18:07:56+01:00</dc:date>
+        <title>Multi-Part Messages in Detail</title>
+        <link>http://swiftmailer.org/wikidocs/v3/multipart_detail?rev=1172336876&amp;do=diff</link>
+        <description>A potentially confusing preamble
+
+
+Hopefully, I won't confuse people here... if I do, just ignore this entire rambling and go straight to the bottom of the page... It's not important, it's just useful to think about.
+
+If we imagine representing an email as XML we'd have a document which looks something like this:</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-12T15:19:01+01:00</dc:date>
+        <title>Sending an e-mail from a form with Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/form2mail?rev=1173709141&amp;do=diff</link>
+        <description>Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: &lt;http://www.w3schools.com/php/php_forms.asp&gt;.  The only thing Swift will do is create the email for you and send it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/multipart?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:22+01:00</dc:date>
+        <title>Multi-Part Messages in Detail</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/multipart?rev=1236058882&amp;do=diff</link>
+        <description>A potentially confusing preamble
+
+
+Hopefully, I won't confuse people here... if I do, just ignore this entire rambling and go straight to the bottom of the page... It's not important, it's just useful to think about.
+
+If we imagine representing an email as XML we'd have a document which looks something like this:</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Sending an e-mail from a form with Swift</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/form2mail?rev=1236058885&amp;do=diff</link>
+        <description>Ok, so Swift isn't going to write the form and handle user input for you.  I'll assume you already know how to deal with forms in PHP.  If you don't, you might want to read here first: &lt;http://www.w3schools.com/php/php_forms.asp&gt;.  The only thing Swift will do is create the email for you and send it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/basics?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:22+01:00</dc:date>
+        <title>Basics of Swift_Message</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/basics?rev=1236058882&amp;do=diff</link>
+        <description>Synopsis: new Swift_Message([string subject [, mixed body [, string content-type [, string encoding [, string charset ]]]]])
+
+Unlike other email libraries, Swift is fully Object-oriented.  Message composition could be bundled into the main Swift class by all means... but it's not.  The EasySwift class does that if you really want it.  Swift itself doesn't do anything to do with the creation of emails.  Instead, there's a subset of classes included to allow you to do that.  All of these classes s…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_message?rev=1171474473&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T18:34:33+01:00</dc:date>
+        <title>Basics of Swift_Message</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_message?rev=1171474473&amp;do=diff</link>
+        <description>Synopsis: new Swift_Message([string subject [, mixed body [, string content-type [, string encoding [, string charset ]]]]])
+
+Unlike other email libraries, Swift is fully Object-oriented.  Message composition could be bundled into the main Swift class by all means... but it's not.  The EasySwift class does that if you really want it.  Swift itself doesn't do anything to do with the creation of emails.  Instead, there's a subset of classes included to allow you to do that.  All of these classes s…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/attachments?rev=1174579323&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-22T17:02:03+01:00</dc:date>
+        <title>Sending attachments</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/attachments?rev=1174579323&amp;do=diff</link>
+        <description>Luckily, attachments are much like MIME parts in a multipart message, except they are not displayed by default and are encoded in a special way.  You attach files to an email using the attach() method in swift like you do when you add MIME parts, but you use the Swift_Message_Attachment class rather than the Swift_Message_Part class.  Swift then includes the message as an attachment, rather than a textual part of the email.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/attachments?rev=1172337563&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-24T18:19:23+01:00</dc:date>
+        <title>Sending attachments</title>
+        <link>http://swiftmailer.org/wikidocs/v3/attachments?rev=1172337563&amp;do=diff</link>
+        <description>Luckily, attachments are much like MIME parts in a multipart message, expect they are not displayed by default and are encoded in a special way.  You attach files to an email using the attach() method in swift like you do when you add MIME parts, but you use the Swift_Message_Attachment class rather than the Swift_Message_Part class.  Swift then includes the message as an attachment, rather than a textual part of the email.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/embedding_images?rev=1173265512&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-03-07T12:05:12+01:00</dc:date>
+        <title>Embedding images in HTML E-mails</title>
+        <link>http://swiftmailer.org/wikidocs/v3/embedding_images?rev=1173265512&amp;do=diff</link>
+        <description>Once you have learned how to add attachments to an email with Swift, and how to send HTML emails with Swift, this will probably make sense.  Using HTML it's easy to add an &lt;img .. /&gt; tag to the message and link it to a remote image on your web server.  However, you can attach the image and link to the attachment directly.  This has it benefits, as well as its drawbacks (bandwidth!).  Many mail clients now block remote images by default, so embedding images could mean that your image is more like…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>What's changed in Version 4?</title>
+        <link>http://swiftmailer.org/wikidocs/v4/changes?rev=1236058885&amp;do=diff</link>
+        <description>What's changed in Version 4?
+
+No more PHP 4
+
+
+Version 4 introduces a number of massive changes.  Probably the most significant change to end-users is the fact that Swift Mailer Version 4 does not work with PHP 4 at all.  I have no plans to support PHP 4 so please do not email me and beg me to do so ;)</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/embedding_images?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Embedding images in HTML E-mails</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/embedding_images?rev=1236058885&amp;do=diff</link>
+        <description>Once you have learned how to add attachments to an email with Swift, and how to send HTML emails with Swift, this will probably make sense.  Using HTML it's easy to add an &lt;img .. /&gt; tag to the message and link it to a remote image on your web server.  However, you can attach the image and link to the attachment directly.  This has it benefits, as well as its drawbacks (bandwidth!).  Many mail clients now block remote images by default, so embedding images could mean that your image is more like…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-17T19:18:50+01:00</dc:date>
+        <title>Swift Automatic File Embedding Plugin</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/fileembedder?rev=1179422330&amp;do=diff</link>
+        <description>Although Swift provides tools to embed files (such as images) into your emails, the interface through which you do this may not be convenient if you have been sent an email from a source beyond your control, already containing references to images over the web.  The Swift_Plugin_FileEmbedder class scans over an email before it is sent and embeds images (and other files) according to a set of rules.  The most basic use of the class simply involves loading it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/message_attachments?rev=1171479065&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T19:51:05+01:00</dc:date>
+        <title>Dealing with Attachments</title>
+        <link>http://swiftmailer.org/wikidocs/v3/message_attachments?rev=1171479065&amp;do=diff</link>
+        <description>Synopsis: new Swift_Message_Attachment([mixed data [, string filename [, string content-type [, string encoding [, string disposition]]]]])
+
+An attachment yet again, another MIME document.  It's special because it contains any format of data such as a PDF, a Zip file or an executable.  In order for SMTP to proccess such data it gets encoded into a format which looks like plain-text (such as Base64).</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-03-26T11:22:20+01:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugin_decorator?rev=1206526940&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/multipart?rev=1171458349&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T14:05:49+01:00</dc:date>
+        <title>Sending a multipart email</title>
+        <link>http://swiftmailer.org/wikidocs/v3/multipart?rev=1171458349&amp;do=diff</link>
+        <description>When you use a mail client such as Thunderbird to send an email in both HTML and Plain-text you are asking it to send a multipart message.  This uses a standard called MIME.  The essence of what's actually being sent is that rather than just sending one body of text and one set of headers, the email contains a main set of headers which identify it as having more than one part, and the body is replaced with two smaller documents, each with their own headers and bodies.  The mail client then decid…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/tutorials/multipart?rev=1178577797&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-08T00:43:17+01:00</dc:date>
+        <title>Sending a multipart email</title>
+        <link>http://swiftmailer.org/wikidocs/v3/tutorials/multipart?rev=1178577797&amp;do=diff</link>
+        <description>When you use a mail client such as Thunderbird to send an email in both HTML and Plain-text you are asking it to send a multipart message.  This uses a standard called MIME.  The essence of what's actually being sent is that rather than just sending one body of text and one set of headers, the email contains a main set of headers which identify it as having more than one part, and the body is replaced with two smaller documents, each with their own headers and bodies.  The mail client then decid…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/attachments?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:22+01:00</dc:date>
+        <title>Dealing with Attachments</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/attachments?rev=1236058882&amp;do=diff</link>
+        <description>Synopsis: new Swift_Message_Attachment([mixed data [, string filename [, string content-type [, string encoding [, string disposition]]]]])
+
+An attachment yet again, another MIME document.  It's special because it contains any format of data such as a PDF, a Zip file or an executable.  In order for SMTP to proccess such data it gets encoded into a format which looks like plain-text (such as Base64).</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-24T02:39:54+01:00</dc:date>
+        <title>Sending a Multipart Email</title>
+        <link>http://swiftmailer.org/wikidocs/v4/examples/multipart?rev=1211589594&amp;do=diff</link>
+        <description>Sending a Multipart Email
+
+
+First you need to include the “swift_required.php” file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, add some parts to it and send it with the Mailer.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-07T23:50:27+01:00</dc:date>
+        <title>Swift Message Decorator Plugin (For Customized Messages)</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugins/decorator?rev=1178574627&amp;do=diff</link>
+        <description>Introduction to message decorating
+
+
+Swift Mailer uses a caching system which operates on small units of the e-mail you compose.  If something's already been encoded/rendered and you try to encode/render it again swift reads the cache.  This offers a huge performance boost when sending the same message to many recipients.  Even once the message has been cached, you can change items such as the subject, body or transfer-encoding and Swift will use most of the message from the cache and re-render …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:25+01:00</dc:date>
+        <title>Caching Strategies - Overview</title>
+        <link>http://swiftmailer.org/wikidocs/v4/caching/overview?rev=1236058885&amp;do=diff</link>
+        <description>Caching Strategies - Overview
+
+
+Generating compliant MIME data (i.e. the email itself) is thirsty work, especially for non-ascii character sets.  Swift Mailer caches data where it can so that when sending the same email to lot of recipients things run a little faster.  There are two caching strategies offered by default in Swift Mailer.  One uses a PHP array to hold cached data.  The other writes data to disk.  It would be easy to extend Swift to support a new cache type if you have a reason to …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/composition/images_embedded?rev=1236058882&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:22+01:00</dc:date>
+        <title>Embedding images</title>
+        <link>http://swiftmailer.org/wikidocs/v3/composition/images_embedded?rev=1236058882&amp;do=diff</link>
+        <description>When you send a HTML format email you can of course include the &lt;img /&gt; tag.  Commonly, people will do something like:
+
+&lt;img src=&quot;http://your-host.tld/images/foo.png&quot; alt=&quot;foo&quot; /&gt;
+
+However, because this links to a remote image you may find that your recipient does not see the image as the mail client may block remote images by default.  If you'd prefer to send the image as part of the email you need to embed it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/swift_message_image?rev=1171481052&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-14T20:24:12+01:00</dc:date>
+        <title>Embedding images</title>
+        <link>http://swiftmailer.org/wikidocs/v3/swift_message_image?rev=1171481052&amp;do=diff</link>
+        <description>When you send a HTML format email you can of course include the &lt;img /&gt; tag.  Commonly, people will do something like:
+
+&lt;img src=&quot;http://your-host.tld/images/foo.png&quot; alt=&quot;foo&quot; /&gt;
+
+However, because this links to a remote image you may find that your recipient does not see the image as the mail client may block remote images by default.  If you'd prefer to send the image as part of the email you need to embed it.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1211437714&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2008-05-22T08:28:34+01:00</dc:date>
+        <title>Just for Kicks!</title>
+        <link>http://swiftmailer.org/wikidocs/v4/examples/fluid_showoff?rev=1211437714&amp;do=diff</link>
+        <description>Just for Kicks!
+
+
+Swift Mailer Version 4 is very streamlined and aims to make typing the code as pain-free as possible.  One statement is less painful to write than 5 statements right?  I really don't expect anybody to do this, but just to show off how streamlined Swift can be, here's sending a message with an attachment using a single statement.</description>
+    </item>
+</rdf:RDF>

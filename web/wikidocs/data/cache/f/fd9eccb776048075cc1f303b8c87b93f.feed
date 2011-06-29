@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generator="FeedCreator 1.7.2-ppt DokuWiki" -->
+<?xml-stylesheet href="http://swiftmailer.org/wikidocs/lib/exe/css.php?s=feed" type="text/css"?>
+<rdf:RDF
+    xmlns="http://purl.org/rss/1.0/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel rdf:about="http://swiftmailer.org/wikidocs/feed.php">
+        <title>SwiftMailer Docs</title>
+        <description></description>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <image rdf:resource="http://swiftmailer.org/wikidocs/lib/images/favicon.ico" />
+       <dc:date>2010-03-08T15:32:48+01:00</dc:date>
+        <items>
+            <rdf:Seq>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/wiki/syntax?rev=1236564133&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_beforecommandevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_beforesendevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_disconnectevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_connectevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_commandevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev_responseevent?rev=1236058881&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/commandevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/responseevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/disconnectevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/connectevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/beforecommandevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/plugindev/beforesendevent?rev=1236058883&amp;do=diff"/>
+                <rdf:li rdf:resource="http://swiftmailer.org/wikidocs/v3/smtpauth?rev=1179869903&amp;do=diff"/>
+            </rdf:Seq>
+        </items>
+    </channel>
+    <image rdf:about="http://swiftmailer.org/wikidocs/lib/images/favicon.ico">
+        <title>SwiftMailer Docs</title>
+        <link>http://swiftmailer.org/wikidocs/</link>
+        <url>http://swiftmailer.org/wikidocs/lib/images/favicon.ico</url>
+    </image>
+    <item rdf:about="http://swiftmailer.org/wikidocs/wiki/syntax?rev=1236564133&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-09T03:02:13+01:00</dc:date>
+        <title>Formatting Syntax</title>
+        <link>http://swiftmailer.org/wikidocs/wiki/syntax?rev=1236564133&amp;do=diff</link>
+        <description>doku&gt;DokuWiki supports some simple markup language, which tries to make the datafiles to be as readable as possible. This page contains all possible syntax you may use when editing the pages. Simply have a look at the source of this page by pressing the Edit this page button at the top or bottom of the page. If you want to try something, just use the playground page. The simpler markup is easily accessible via quickbuttons, too.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_beforecommandevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:21+01:00</dc:date>
+        <title>How to use BeforeCommandListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_beforecommandevent?rev=1236058881&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_BeforeCommandListener interface will be invoked every time Swift is about to issue an SMTP command.  The plugin will have access to the command being executed and any changes made to the command inside the plugin will be executed at the time when the command would normally execute.  Plugins which implement either the CommandListener or BeforeCommandListener are most likely listening for those event by means of tracking the progress of sending an email r…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_beforesendevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:21+01:00</dc:date>
+        <title>How to use BeforeSendListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_beforesendevent?rev=1236058881&amp;do=diff</link>
+        <description>The two event listeners in Swift which are likely to be the most heavily implemented are SendListener and BeforeSendListener.  BeforeSendListener is run before the message gets sent.  You will know who the recipients are and what the message is at this stage, but Swift will not yet have sent the message so you can change recipients and/or modify the message and then it will be sent.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_disconnectevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:21+01:00</dc:date>
+        <title>Writing a DisconnectListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_disconnectevent?rev=1236058881&amp;do=diff</link>
+        <description>A DisconnectListener will be notified every time Swift disconnects from the SMTP server or local MTA.  A plugin which implements the Swift_Events_DisconnectListener interface will be passed an instance of Swift_Events_DisconnectEvent when a disconnection occurs.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-02-15T22:34:59+01:00</dc:date>
+        <title>How to use SendListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_sendevent?rev=1171575299&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you're plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_connectevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:21+01:00</dc:date>
+        <title>Writing a ConnectListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_connectevent?rev=1236058881&amp;do=diff</link>
+        <description>As the name suggests, a ConnectListener will be notified every time Swift connects to the SMTP server or other MTA.  A plugin which implements the Swift_Events_ConnectListener interface will be passed an instance of Swift_Events_ConnectEvent when a connection is established.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_commandevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:21+01:00</dc:date>
+        <title>How to use CommandListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_commandevent?rev=1236058881&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_CommandListener interface will be invoked whenever Swift has sent a command.  The CommandEvent object which is passed is the same object as the one a plugin implementing BeforeCommandListener would have already seen.  Therefore, any changes made before the command is issued will be also seen here after the command has been issued.  More often than not, BeforeCommandListener will be more useful than CommandListener.  We could use something like this to m…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev_responseevent?rev=1236058881&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:21+01:00</dc:date>
+        <title>How to use ResponseListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev_responseevent?rev=1236058881&amp;do=diff</link>
+        <description>A plugin which implements Swift_Events_ResponseListener will be invoked every time Swift receives a new response from the connection.  This can come in useful if used in combination with a CommandListener because if you know what response codes to expect, you can “correct” problems by issuing the RSET command or whatever other action may be appropriate.  It probably helps to know a little about the SMTP protocol before attempting such things however.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/commandevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>How to use CommandListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/commandevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_CommandListener interface will be invoked whenever Swift has sent a command.  The CommandEvent object which is passed is the same object as the one a plugin implementing BeforeCommandListener would have already seen.  Therefore, any changes made before the command is issued will be also seen here after the command has been issued.  More often than not, BeforeCommandListener will be more useful than CommandListener.  We could use something like this to m…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/responseevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>How to use ResponseListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/responseevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements Swift_Events_ResponseListener will be invoked every time Swift receives a new response from the connection.  This can come in useful if used in combination with a CommandListener because if you know what response codes to expect, you can “correct” problems by issuing the RSET command or whatever other action may be appropriate.  It probably helps to know a little about the SMTP protocol before attempting such things however.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>How to use SendListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/sendevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_SendListener interface will be invoked every time Swift has sent a message to a recipient.  The event passed is of type Swift_Events_SendEvent, just like the BeforeSendListener.  In fact, the event you get passed is actually a reference to that same event you would have already seen if your plugin implements BeforeSendListener!  So if you're plugin implements both SendListener and BeforeSendListener, you could change the SendEvent before the message is …</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/disconnectevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>Writing a DisconnectListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/disconnectevent?rev=1236058883&amp;do=diff</link>
+        <description>A DisconnectListener will be notified every time Swift disconnects from the SMTP server or local MTA.  A plugin which implements the Swift_Events_DisconnectListener interface will be passed an instance of Swift_Events_DisconnectEvent when a disconnection occurs.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/connectevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>Writing a ConnectListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/connectevent?rev=1236058883&amp;do=diff</link>
+        <description>As the name suggests, a ConnectListener will be notified every time Swift connects to the SMTP server or other MTA.  A plugin which implements the Swift_Events_ConnectListener interface will be passed an instance of Swift_Events_ConnectEvent when a connection is established.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/beforecommandevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>How to use BeforeCommandListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/beforecommandevent?rev=1236058883&amp;do=diff</link>
+        <description>A plugin which implements the Swift_Events_BeforeCommandListener interface will be invoked every time Swift is about to issue an SMTP command.  The plugin will have access to the command being executed and any changes made to the command inside the plugin will be executed at the time when the command would normally execute.  Plugins which implement either the CommandListener or BeforeCommandListener are most likely listening for those event by means of tracking the progress of sending an email r…</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/plugindev/beforesendevent?rev=1236058883&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2009-03-03T06:41:23+01:00</dc:date>
+        <title>How to use BeforeSendListener</title>
+        <link>http://swiftmailer.org/wikidocs/v3/plugindev/beforesendevent?rev=1236058883&amp;do=diff</link>
+        <description>The two event listeners in Swift which are likely to be the most heavily implemented are SendListener and BeforeSendListener.  BeforeSendListener is run before the message gets sent.  You will know who the recipients are and what the message is at this stage, but Swift will not yet have sent the message so you can change recipients and/or modify the message and then it will be sent.</description>
+    </item>
+    <item rdf:about="http://swiftmailer.org/wikidocs/v3/smtpauth?rev=1179869903&amp;do=diff">
+        <dc:format>text/html</dc:format>
+        <dc:date>2007-05-22T23:38:23+01:00</dc:date>
+        <title>SMTP Authentication</title>
+        <link>http://swiftmailer.org/wikidocs/v3/smtpauth?rev=1179869903&amp;do=diff</link>
+        <description>The SMTP connection in Swift provides a mechanism to use SMTP authentication against a remote server.  You use the setUsername() and setPassword() methods of the Swift_Connection_SMTP class to acheive this:
+
+
+$smtp =&amp; new Swift_Connection_SMTP(&quot;smtp.host.tld&quot;);
+$smtp-&gt;setUsername(&quot;foo&quot;);
+$smtp-&gt;setPassword(&quot;bar&quot;);</description>
+    </item>
+</rdf:RDF>

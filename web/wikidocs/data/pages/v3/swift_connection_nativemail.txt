@@ -1,0 +1,16 @@
+====== Swift_Connection_NativeMail ======
+
+**__Synopsis:__** //''new Swift_Connection_NativeMail( void )''//
+
+This is probably the simplest of all the connections to get to grips with.  It uses PHP's [[http://www.php.net/manual/en/ref.mail.php|mail() function]].  It takes no constructor parameters and requires no configuration.
+
+**NOTE:** Due to differences between [[http://www.php.net/manual/en/ref.mail.php|mail()]] in Windows and mail() on UNIX-like systems there will be small inconsistencies between running this connection on Windows and Linux/OS X.  These are perfectly fine.
+
+**NOTE2:** If you use this connection you will not be able to run custom SMTP commands, for obvious reasons ;)
+
+<code php>
+require_once "lib/Swift.php";
+require_once "lib/Swift/Connection/NativeMail.php";
+
+$swift =& new Swift(new Swift_Connection_NativeMail());
+</code>

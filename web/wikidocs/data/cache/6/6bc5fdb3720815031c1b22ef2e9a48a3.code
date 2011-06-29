@@ -1,0 +1,12 @@
+<span class="co1">//Copy into global variables</span>
+<span class="re0">$name</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_name&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$email</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_email&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$title</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_title&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$body</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_body&quot;</span><span class="br0">&#93;</span>;
+&nbsp;
+<span class="co1">//Validate the email address using a regex (I suggest you use a better one than this!!)</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/preg_match"><span class="kw3">preg_match</span></a><span class="br0">&#40;</span><span class="st0">&quot;/[a-zA-Z0-9_<span class="es0">\\</span>.-]+@[a-zA-Z0-9_<span class="es0">\\</span>.-]+/&quot;</span><span class="sy0">,</span> <span class="re0">$email</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=invalid_email&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>

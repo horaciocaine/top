@@ -1,0 +1,5 @@
+<span class="re0">$smtp</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;some-host.tld&quot;</span><span class="sy0">,</span> <span class="nu0">25</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span><span class="sy0">-&gt;</span><span class="me1">setTimeout</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span>;
+&nbsp;
+&nbsp;
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="re0">$smtp</span><span class="br0">&#41;</span>;

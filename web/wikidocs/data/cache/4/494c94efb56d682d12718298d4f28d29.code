@@ -1,0 +1,23 @@
+<pre class="code php"><span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/Rotator.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Populate an array if you want to provide connections at instantiation</span>
+<span class="re0">$connections</span> = <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$conn1</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host1.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn1</span>-&gt;<span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st0">&quot;user&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$conn1</span>-&gt;<span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st0">&quot;pass&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> = <span class="re0">$conn1</span>;
+&nbsp;
+<span class="re0">$conn2</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host2.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$connections</span><span class="br0">&#91;</span><span class="br0">&#93;</span> = <span class="re0">$conn2</span>;
+&nbsp;
+<span class="co1">//Start swift as normal</span>
+<span class="re0">$swift</span> = <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_Rotator<span class="br0">&#40;</span><span class="re0">$connections</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Do some stuff</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span>, <span class="st0">&quot;Body&quot;</span><span class="br0">&#41;</span>, <span class="st0">&quot;foo@bar.com&quot;</span>, <span class="st0">&quot;me@home.tld&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Feel free to throw in new connections at run-time</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">connection</span>-&gt;<span class="me1">addConnection</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host3.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>

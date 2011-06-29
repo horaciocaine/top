@@ -1,0 +1,41 @@
+====== Version 4 Development Discussion ======
+
+A bit of a mish-mash of ramblings of the top of my head.
+
+===== Components (subpackages) =====
+
+  * Encoders
+  * Mime Library
+  * Delivery Drivers/connections
+  * Authenticators
+  * Plugins
+  * Central Swift class (adaptor for the Delivery Drivers) (?)
+
+===== Timeline =====
+
+I'm not working to any deadlines on version 4.  It will be done right and it will be ready when it's ready.  It will **definitely** not be released before February 5th 2008, even if it is stable by then (see http://gophp5.org/)
+
+==== Encoders & Mime Library ====
+
+The whole MIME system is by far the most complex thing to write, but equally the nicest code to work with.  The message building/Mime components will be developed as a standalone project with a ''Swift_'' prefix and will reach at least a beta phase before any further components are developed.
+
+==== Delivery Drivers ====
+
+These are the components which power Swift Mailer.  Previously Swift has this whole concept of 'Connections' but the API just doesn't do what it says it does when you're working with ''sendmail'' in ''-t'' mode or with the ''mail()'' function.  Version 4 will abstract the sending behaviour away from Swift itself and into a new feature known as ''Delivery Drivers''.  Some of the Delivery Drivers (notably SMTP) will rely on a Connection resource but Swift itself need only know how to use the Driver.  These will be developed second.
+
+==== Authenticators ====
+
+Only really apply to SMTP connections so will likely be developed as a side-effect of developing the relevant Delivery Driver.
+
+==== Plugins ====
+
+The plugin API in version 3 was just about perfect, following an event-driven, observer style approach.  Version 4 will use the same implementation but may make some components outside of Swift pluggable, whereby the DI container provides the relevant plugins rather than direct coupling.
+
+One slight change to the standard Event object will be a way to set a ''cancelled'' flag to kill the event.
+
+All (official) plugins from Version 3 will still be available in version 4.
+
+==== Swift class ====
+
+Unlike all previous versions the Swift class will hopefully be near to empty, simply acting as an adaptor for the appropriate Delivery Driver.  Effectively a Message is composed then a Delivery Driver started, and the message sent through the Delivery Driver by whatever means necessary.  It may even be that a central Swift class is pointless, although it does help to ensure a documented API is followed by all Drivers.
+

@@ -1,0 +1,102 @@
+====== Sending a batch email or newsletter ======
+
+When you send out an email marketing campaign, newsletter or any other type of batch email you don't particularly want to reveal everybody's address to the recipients.  One nasty hack is to Bcc all the recipients and leave the ''To:'' field undisclosed.  However, Swift provides a method specially for the purpose of sending out batch emails.
+
+batchSend() has exactly the same semantics as send(), except it will ignore any Cc or Bcc recipients and just send to the ''To:'' addresses.  When it does this, it adjusts the headers of the email for each recipient so that they only see their own address and hence, it looks a lot more authentic and professional.
+
+<code php>
+$swift =& new Swift(new Swift_Connection_SMTP("host.tld"));
+
+$message =& new Swift_Message("Our newsletter", "Some news");
+
+$recipients =& new Swift_RecipientList();
+$recipients->addTo("recipient1@address.tld", "Recipient 1");
+$recipients->addTo("recipient2@address.tld", "Another recipient");
+
+$swift->batchSend($message, $recipients, new Swift_Address("company@domain.tld", "Our Company"));
+</code>
+
+This does use a little more bandwidth and take a little longer since Swift needs to send a slightly different message to each recipient.  However, it is still pretty fast!
+
+The batchSend() approach to delivering mail actually handles errors internally, possibly restarting the SMTP connection if network issues arise for example.  You should be aware of this masking of errors in the case you are experiencing issues.  If you are experiencing issues and suspect errors are being masked from you, you can dump a log of what is going on.
+
+[TODO: Write the logging section]
+
+
+===== Using the BatchMailer component =====
+
+Although you can use $swift->batchSend() and still be a happy bunny, you gain some flexibility if you as a different class.  $swift->batchSend() is a lightweight, basic wrapper around another class called ''Swift_BatchMailer''.
+
+To do perform this same basic task with the BatchMailer yourself you would quite literally substitute this line:
+
+<code php>
+$swift->batchSend($message, $recipients, $from);
+</code>
+
+With these lines:
+
+<code php>
+$batch =& new Swift_BatchMailer($swift);
+$batch->send($message, $recipients, $from);
+</code>
+
+The BatchMailer class contains some batch-mailing specific methods to aid you in your heavy duty sending work.  Error masking/handling was mentioned in the above section, such as in the case where the network connection dies briefly.  There are other useful features however.
+
+
+==== Setting the maximum retries ====
+
+For an individual address, the BatchMailer will attempt no more than twice to send an email to it by default.  It's strongly recommended you keep this behaviour, but if you'd like to change the number of retries you can call $batch->setMaxTries($n) where $n is the total number of attempts.
+
+**NOTE:** The number passed is the number of total attempts.  If you want 1 retry, this equates to 2 total attempts, not 1.
+
+<code php>
+$batch->setMaxTries(2);
+</code>
+
+
+==== Setting the maximum successive failure allowance ====
+
+The BatchMailer component will keep sending even if errors occur in the transmission of SMTP instructions.  It detects errors in the transmission (relatively common under high loads) and catches them, restarting the connection and continuing with the batch.  If transmission keeps throwing errors, the BatchMailer will by default just keep retrying to connection until the end of the batch is reached.  Obviously this could be extremely undesirable with very large batches and there's a good chance that after say, 10 successive failures without any success thing will likely not work at all.  You can limit the number of successive failures by calling $batch->setMaxSuccessiveFailures($n).
+
+<code php>
+$batch->setMaxSuccessiveFailures(3);
+</code>
+
+
+
+==== Pausing on errors ====
+
+Errors often occur when the network is under heavy load.  The BatchMailer does deal with these but because it's possible your server, the network, or the remote server is under load in the event of an error you may wish to wait a few seconds before picking the batch back up again.  This is easily configured with $batch->setSleepTime($t) where $t is the number of seconds to pause for.  It's a simple sleep() call.
+
+<code php>
+$batch->setSleepTime(10); //Sleep for 10 seconds if an error occurs
+</code>
+
+==== Checking which addresses didn't deliver ====
+
+If you're sending out a large batch (even just more than 100 addresses) it's highly unlikely that your SMTP server is going to successfully accept every single recipient.  That's fine, even under normal conditions (without batch sending) Swift will handle these errors.  You will probably want to know who failed however.  After you have sent a batch you can call $batch->getFailedRecipients() to get an array of those addresses to which Swift did not send a message.  This method returns an array containing just the address (no name) of the failed recipients.
+
+<code php>
+$num_sent = $batch->send($message, $recipients, $sender);
+print_r($batch->getFailedRecipients());
+
+/*
+Array (
+  0 => 'joe@bloggs.tld',
+  1 => 'user@domain.tld'
+)
+*/
+</code>
+
+If you are sending out more than one batch with the same instance of the BatchMailer you'll probably want to clear out this list of failures once you've read from it.
+
+<code php>
+$batch->flushFailedRecipients();
+</code>
+
+
+===== Using custom list iterators =====
+
+I sometimes wonder if I'll ever stop refactoring Swift! ;)
+
+When you send a batch you use an instance of Swift_RecipientList to provide your recipients.  Internally, the BatchMailer does not read directly from your list, but rather the list provides an iterator.  The default implementation is that of iterating over an array in an object-oriented sense.  For large batch sizes this may seem a bit wasteful having to pre-load the array.  Luckily you can use a different iterator such as the MySQLResult iterator, or you can even write your own.  It's beyond the scope of this page to discuss the ins and outs of the iterators here but you should take a read of [[v3:sending:iterators]].

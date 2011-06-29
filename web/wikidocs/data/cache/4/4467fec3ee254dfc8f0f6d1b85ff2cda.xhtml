@@ -1,0 +1,131 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="#manipulating_mime_headers" class="toc">Manipulating MIME Headers</a></span></div>
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#setting_and_getting_headers" class="toc">Setting and getting headers</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#header_attributes" class="toc">Header attributes</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#swift_thinks_about_encoding_so_you_don_t_have_to" class="toc">Swift thinks about encoding so you don't have to!</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#international_settings" class="toc">International settings</a></span></div></li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h1><a name="manipulating_mime_headers" id="manipulating_mime_headers">Manipulating MIME Headers</a></h1>
+<div class="level1">
+
+</div>
+<!-- SECTION "Manipulating MIME Headers" [1-41] -->
+<h2><a name="setting_and_getting_headers" id="setting_and_getting_headers">Setting and getting headers</a></h2>
+<div class="level2">
+
+<p>
+ Each component of a message contains a <code>headers</code> property which is an instance of Swift_Message_Headers.  Such components include Swift_Message, Swift_Message_Part and Swift_Message_Attachment.
+</p>
+
+<p>
+The headers contain vital information about the structure of that component.  Each component will have a different set of headers depending upon what the component does.
+</p>
+
+<p>
+You can manipulate these headers by working with the <code>headers</code> property of the component.  For example, in Swift_Message we can change the subject using the setSubject() method for convenience:
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">setSubject</span><span class="br0">&#40;</span><span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+However, that method is doing nothing more than working with the email headers so you could equivalently do this:
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span>, <span class="st0">&quot;My subject&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+You can make a header appear not to exist by setting it to NULL.  If you want it to truly not exist then you can remove it completely using remove(), although this is rarely neccessary.
+</p>
+
+<p>
+It&rsquo;s possible for an email header to be a collection of values separated by commas.  For example, when several email addresses are being set in the <code>To:</code> header.  You use an array to acheive this:
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;To&quot;</span>, <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.tld&quot;</span>, <span class="st0">&quot;zip@button.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="co1">//To: foo@bar.tld, zip@button.tld</span></pre>
+<p>
+Equally, you can retreive the value of a particular header by calling the headers&rsquo; get() method.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;To&quot;</span>, <a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">&quot;foo@bar.tld&quot;</span>, <span class="st0">&quot;zip@button.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span> , <span class="st0">&quot;FooBar&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<a href="http://www.php.net/print_r"><span class="kw3">print_r</span></a><span class="br0">&#40;</span><span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">get</span><span class="br0">&#40;</span><span class="st0">&quot;To&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="co1">//Array (</span>
+<span class="co1">//   [0] =&gt; foo@bar.tld,</span>
+<span class="co1">//   [1] =&gt; zip@button.tld</span>
+<span class="co1">//)</span>
+&nbsp;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">get</span><span class="br0">&#40;</span><span class="st0">&quot;Subject&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//FooBar</span></pre>
+</div>
+<!-- SECTION "Setting and getting headers" [42-1920] -->
+<h2><a name="header_attributes" id="header_attributes">Header attributes</a></h2>
+<div class="level2">
+
+<p>
+ Headers may have attributes attached to them.  Take for example a <code>Content-Type:</code> header.  It may look something like this: 
+</p>
+<pre class="code">Content-Type: text/plain; charset=utf-8; format=flowed</pre>
+
+<p>
+ In the above, &ldquo;text/plain&rdquo; is the value of the header... &ldquo;charset=utf-8&rdquo; and &ldquo;format=flowed&rdquo; are attributes.  To set attributes in a header you use the setAttribute() method.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setAttribute</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;zip&quot;</span>, <span class="st0">&quot;button&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setAttribute</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;animal&quot;</span>, <span class="st0">&quot;cat&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//Foo: bar; zip=button; animal=cat</span></pre>
+<p>
+Because setAttribute relies upon the header being set first, it will throw an exception of you try to set an attribute against a header which doesn&rsquo;t exist.  Again, you should use the has() method to prevent this.
+</p>
+
+</div>
+<!-- SECTION "Header attributes" [1921-2767] -->
+<h2><a name="swift_thinks_about_encoding_so_you_don_t_have_to" id="swift_thinks_about_encoding_so_you_don_t_have_to">Swift thinks about encoding so you don't have to!</a></h2>
+<div class="level2">
+
+<p>
+ Headers can only contain 7-bit ascii characters and must not be more than 76 characters per-line.  Don&rsquo;t worry, you needn&rsquo;t even think about this since Swift will encode the headers to ensure this behaviour is observed.  If you pass a UTF-8 string as a header or an attribute it will be encoded accordingly.  Equally, long lines and long attributes will be encoded in a special way.
+</p>
+
+<p>
+If you wish to get the &ldquo;encoded&rdquo; form of the headers you have set you should call the getEncoded() method.
+</p>
+<pre class="code php"><span class="co1">//yes, this applies to attachments and MIME parts too!</span>
+<span class="re0">$attachment</span> =&amp; <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">set</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$attachment</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setAttribute</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span>, <span class="st0">&quot;zip&quot;</span>, <span class="st0">&quot;some<span class="es0">\n</span>string&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$attachment</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">getEncoded</span><span class="br0">&#40;</span><span class="st0">&quot;Foo&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//bar; zip*=&quot;'en-us'iso-8859-1'some%0Astring'&quot;</span></pre>
+</div>
+<!-- SECTION "Swift thinks about encoding so you don't have to!" [2768-3645] -->
+<h2><a name="international_settings" id="international_settings">International settings</a></h2>
+<div class="level2">
+
+<p>
+ If your email is not in English, and you have non-english phrases in the headers, you may want to specify the language you&rsquo;re using.
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setLanguage</span><span class="br0">&#40;</span><span class="st0">&quot;de&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Equally, if your headers are not in UTF-8 or <acronym title="International Organization for Standardization">ISO</acronym>-8859-1 character format, you will need to specify the character set using setCharset():
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">setCharset</span><span class="br0">&#40;</span><span class="st0">&quot;windows-874&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Finally, if you want to dump the entire set of headers, you call their build() method like you do with <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> parts:
+</p>
+<pre class="code php"><span class="re0">$message</span> =&amp; <span class="kw2">new</span> Swift_Message_Headers<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<a href="http://www.php.net/echo"><span class="kw3">echo</span></a> <span class="re0">$message</span>-&gt;<span class="me1">headers</span>-&gt;<span class="me1">build</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;</pre>
+</div>
+<!-- SECTION "International settings" [3646-] -->

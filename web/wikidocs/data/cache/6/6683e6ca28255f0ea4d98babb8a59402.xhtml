@@ -1,0 +1,25 @@
+
+
+
+<h2><a name="sending_a_html_email" id="sending_a_html_email">Sending a HTML Email</a></h2>
+<div class="level2">
+
+<p>
+ First you need to include the &ldquo;swift_required.php&rdquo; file, then you create an instance of the Mailer using any of the Transports (probably Swift_SmtpTransport, Swift_SendmailTransport or Swift_MailTransport).  Then you create a a message, specifying &ldquo;text/html&rdquo; as a content type and send it with the Mailer.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Include this needed file</span>
+<span class="kw1">require_once</span> <span class="st0">'/path/to/swift/lib/swift_required.php'</span>;
+&nbsp;
+<span class="co1">//Start the mailer</span>
+<span class="re0">$mailer</span> = <span class="kw2">new</span> Swift_Mailer<span class="br0">&#40;</span><span class="kw2">new</span> Swift_MailTransport<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create a message</span>
+<span class="re0">$message</span> = Swift_Message::<span class="me2">newInstance</span><span class="br0">&#40;</span><span class="st0">'Your subject'</span>, <span class="st0">'Your Message'</span>, <span class="st0">'text/html'</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setFrom</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'your@address.tld'</span> =&gt; <span class="st0">'Your Name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+  -&gt;<span class="me1">setTo</span><span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a><span class="br0">&#40;</span><span class="st0">'someone@address.tld'</span> =&gt; <span class="st0">'Person name'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Send it</span>
+<span class="re0">$mailer</span>-&gt;<span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="br0">&#41;</span>;</pre>
+</div>

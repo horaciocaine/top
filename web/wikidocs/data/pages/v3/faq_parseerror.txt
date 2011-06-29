@@ -1,0 +1,5 @@
+====== Are you getting Parse Errors? ======
+
+If you are getting parse errors upon including Swift Mailer in your code, it's almost definitely because you have downloaded the wrong version.  There are two releases of Swift.  One is for PHP4 and the other is for PHP5.  If you try using the PHP5 version in PHP4 you **WILL** get parse errors.  Make sure you are using the appropriate version.  The filenames all have the PHP version they were made for in them.
+
+**NOTE:** The PHP4 version is backward compatible with PHP5, however, it's not recommended that you use it in PHP5 if you can use the PHP5 version instead.

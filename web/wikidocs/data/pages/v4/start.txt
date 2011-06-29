@@ -1,0 +1,76 @@
+===== Swift Mailer Version 4 =====
+
+**NOTE** this documentation is a work in progress.
+
+==== General Information ====
+
+  * [[v4:changes|What's changed in version 4?]]
+  * [[v4:requirements|Server environment requirements]]
+  * [[v4:enterprise|Two editions, One project]]
+
+==== Overview of the project structure ====
+
+  * [[v4:dependency_injection|Dependency Injection]]
+  * [[v4:autoloading|Required files]]
+  * [[v4:preferences|Configurable preferences]]
+
+
+==== Short Examples ====
+
+  * [[v4:examples:basics|Sending a basic email]]
+  * [[v4:examples:html|Sending a HTML email]]
+  * [[v4:examples:multipart|Sending a multipart email (HTML and text)]]
+  * [[v4:examples:images|Sending a message containing images]]
+  * [[v4:examples:multiple_recipients|Sending to several recipients]]
+  * [[v4:examples:batch_recipients|Sending to several separate recipients]]
+  * [[v4:examples:attachments|Sending an attachment]]
+  * [[v4:examples:fluid_showoff|Just for kicks]]
+
+==== Full Tutorials ====
+
+  * [[v4:tutorials:basic_form|The classic basic contact form]]
+  * [[v4:tutorials:attachment_form|A form which allows an attachment]]
+  * [[v4:tutorials:mass_mailing|Mass mailing, Aynchronously]]
+
+==== The Transports in Detail ====
+
+  * [[v4:transports:overview|Overview of the Transport System]]
+  * [[v4:transports:smtp|SMTP Transport]]
+  * [[v4:transports:sendmail|The Sendmail Transport]]
+  * [[v4:transports:mail|The Mail Transport]]
+  * [[v4:transports:failover|The Failover Transport]]
+  * [[v4:transports:load_balanced|The Load Balanced Transport]]
+
+==== Message and MIME Components in Detail ====
+
+  * [[v4:mime:overview|Overview of the MIME System]]
+  * [[v4:mime:message|The Message class]]
+  * [[v4:mime:part|The MimePart class]]
+  * [[v4:mime:attachment|The Attachment class]]
+  * [[v4:mime:embedded_file|The EmbeddedFile class]]
+  * [[v4:mime:image|The Image class]]
+  * [[v4:mime:headers|Working with Headers]]
+  * [[v4:mime:tostring|Generating a string from a Message]]
+  * [[v4:mime:optimization|Making the most of a single instance (an Optimization)]]
+
+==== Working with the Mailer (Putting it Together) ====
+
+  * [[v4:mailer:overview|Overview of the Mailer class]]
+  * [[v4:mailer:plugins|Adding Plugins]]
+  * [[v4:mailer:sending|Sending Messages]]
+  * [[v4:mailer:iterators|Using Recipient Iterators (an Optimization)]]
+  * [[v4:mailer:failures|Capturing and Dealing with Failed Recipients]]
+
+==== Character Sets and Content-Encoding ====
+
+==== Caching Strategies ====
+
+  * [[v4:caching:overview|Overview of the Cache System]]
+  * [[v4:caching:array|The Array Cache]]
+  * [[v4:caching:disk|The Disk Cache]]
+
+==== Plugins ====
+
+==== Extending and Customizing Swift ====
+
+==== Frequently Asked Questions ====

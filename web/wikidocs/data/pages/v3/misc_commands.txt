@@ -1,0 +1,24 @@
+====== Running SMTP Commands using Swift ======
+
+Swift is based around the SMTP protocol.  Even the NativeMail connection has been written to speak SMTP to Swift.  For this reason, it probably won't surprise you that there are mechanisms in place for running SMTP commands through Swift yourself.
+
+The Swift::command() method returns a ResponseEvent object which holds information about the SMTP response from the server.
+
+If you just want to run a command and read the response, you simply need to pass the command string to command(), leaving off the trailing CRLF (line ending) and then check what's in the response.
+
+<code php>
+$response =& $swift->command("HELO");
+//Check the full response
+echo $response->getString();
+//Check the response code (e.g. 250)
+echo $response->getCode();
+</code>
+
+It's often critical that a SMTP response adheres to something you expect, otherwise you may need to issue a reset() command (RSET in SMTP).  You can either check the response yourself from getCode() as shown above, or you can assert that an error should be thrown if a bad response is received.  This is more useful in PHP5 where exceptions are used, since excpetions are easily caught.
+
+<code php>
+//Throw an error if 250 is not the response code
+$response = $swift->command("HELO", 250);
+</code>
+
+The exception used if the response is bad, is of type Swift_Connection_Exception.

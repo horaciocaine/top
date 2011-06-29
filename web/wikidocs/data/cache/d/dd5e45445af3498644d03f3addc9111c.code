@@ -1,0 +1,3 @@
+<pre class="code php"><span class="re0">$smtp</span> = <span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;smtp.host.tld&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span>-&gt;<span class="me1">setUsername</span><span class="br0">&#40;</span><span class="st0">&quot;foo&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$smtp</span>-&gt;<span class="me1">setPassword</span><span class="br0">&#40;</span><span class="st0">&quot;bar&quot;</span><span class="br0">&#41;</span>;</pre>

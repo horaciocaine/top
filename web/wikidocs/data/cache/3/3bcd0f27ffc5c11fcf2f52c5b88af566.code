@@ -1,0 +1,8 @@
+<pre class="code php"><span class="co1">//Load the plugin with these replacements</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">attachPlugin</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Plugin_Decorator<span class="br0">&#40;</span><span class="re0">$replacement</span><span class="br0">&#41;</span>, <span class="st0">&quot;decorator&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="re0">$recipients</span> =&amp; <span class="kw2">new</span> RecipientList<span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;joe@bloggs.com&quot;</span><span class="br0">&#41;</span>;
+<span class="re0">$recipients</span>-&gt;<span class="me1">addTo</span><span class="br0">&#40;</span><span class="st0">&quot;fred@perry.com&quot;</span><span class="br0">&#41;</span>;
+<span class="co1">//Send with batchSend()</span>
+<span class="re0">$swift</span>-&gt;<span class="me1">batchSend</span><span class="br0">&#40;</span><span class="re0">$message</span>, <span class="re0">$recipients</span>, <span class="st0">&quot;you@your-address.com&quot;</span><span class="br0">&#41;</span>;</pre>

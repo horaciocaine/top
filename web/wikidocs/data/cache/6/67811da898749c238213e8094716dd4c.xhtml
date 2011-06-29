@@ -1,0 +1,363 @@
+
+
+
+<h1><a name="sending_an_e-mail_from_a_form_with_swift" id="sending_an_e-mail_from_a_form_with_swift">Sending an e-mail from a form with Swift</a></h1>
+<div class="level1">
+
+<p>
+
+Ok, so Swift isn&#039;t going to write the form and handle user input for you.  I&#039;ll assume you already know how to deal with forms in <acronym title="Hypertext Preprocessor">PHP</acronym>.  If you don&#039;t, you might want to read here first: <a href="http://www.w3schools.com/php/php_forms.asp" class="urlextern" title="http://www.w3schools.com/php/php_forms.asp"  rel="nofollow">http://www.w3schools.com/php/php_forms.asp</a>.  The only thing Swift will do is create the email for you and send it.
+</p>
+
+<p>
+The tutorial I&#039;ll take you through here will explain how to use Swift to create a contact form which allows an attachment to be sent to your address.  A bit like the contact form on the SwiftMailer website.
+</p>
+
+<p>
+You&#039;ll need to write three files for this.  One for the form, one for processing the form, and a really simple page to display a success message.
+</p>
+
+<p>
+We&#039;ll start by creating the form itself.  This form will need some work later on so that it can handle problems if the user enters something we don&#039;t want to handle, but in terms of sending data ready for Swift to use, the code below will be enough.
+</p>
+
+</div>
+<!-- SECTION "Sending an e-mail from a form with Swift" [1-963] -->
+<h2><a name="the_basis_of_the_form" id="the_basis_of_the_form">The basis of the form</a></h2>
+<div class="level2">
+
+<p>
+
+All we want for this example is an email address to send the message from, the name of the sender, a title, a comment and (optionally) an attached file.  Remember that to send files over <acronym title="Hyper Text Transfer Protocol">HTTP</acronym> you need to specify the <code>enctype</code> attribute of the form to be “multipart/form-data”.
+</p>
+
+<p>
+I&#039;ve called it <strong>form.php</strong> – not sure why ;)
+</p>
+<pre class="code html4strict"><span class="sc2">&lt;<a href="http://december.com/html/4/element/form.html"><span class="kw2">form</span></a> <span class="kw3">action</span><span class="sy0">=</span><span class="st0">&quot;handle_form.php&quot;</span> <span class="kw3">method</span><span class="sy0">=</span><span class="st0">&quot;post&quot;</span> <span class="kw3">enctype</span><span class="sy0">=</span><span class="st0">&quot;multipart/form-data&quot;</span>&gt;</span>
+    <span class="sc2">&lt;<a href="http://december.com/html/4/element/table.html"><span class="kw2">table</span></a>&gt;</span>
+        <span class="sc2">&lt;<a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;label&quot;</span>&gt;</span>Name<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;text&quot;</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;sender_name&quot;</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">&quot;&quot;</span> <span class="sy0">/</span>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+        <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+        <span class="sc2">&lt;<a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;label&quot;</span>&gt;</span>E-mail address<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;text&quot;</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;sender_email&quot;</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">&quot;&quot;</span> <span class="sy0">/</span>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+        <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+        <span class="sc2">&lt;<a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;label&quot;</span>&gt;</span>Title<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;text&quot;</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;comment_title&quot;</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">&quot;&quot;</span> <span class="sy0">/</span>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+        <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+        <span class="sc2">&lt;<a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a> <span class="kw3">class</span><span class="sy0">=</span><span class="st0">&quot;label&quot;</span>&gt;</span>Attachment (optional)<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;file&quot;</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;attachment&quot;</span> <span class="sy0">/</span>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+        <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+        <span class="sc2">&lt;<a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a> <span class="kw3">colspan</span><span class="sy0">=</span><span class="st0">&quot;2&quot;</span>&gt;</span>Comment<span class="sc2">&lt;<a href="http://december.com/html/4/element/br.html"><span class="kw2">br</span></a> <span class="sy0">/</span>&gt;</span>
+                <span class="sc2">&lt;<a href="http://december.com/html/4/element/textarea.html"><span class="kw2">textarea</span></a> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;comment_body&quot;</span> <span class="kw3">rows</span><span class="sy0">=</span><span class="st0">&quot;10&quot;</span> <span class="kw3">cols</span><span class="sy0">=</span><span class="st0">&quot;30&quot;</span>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/textarea.html"><span class="kw2">textarea</span></a>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+        <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+        <span class="sc2">&lt;<a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+            <span class="sc2">&lt;<a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a> <span class="kw3">colspan</span><span class="sy0">=</span><span class="st0">&quot;2&quot;</span>&gt;&lt;<a href="http://december.com/html/4/element/input.html"><span class="kw2">input</span></a> <span class="kw3">type</span><span class="sy0">=</span><span class="st0">&quot;submit&quot;</span> <span class="kw3">name</span><span class="sy0">=</span><span class="st0">&quot;submit&quot;</span> <span class="kw3">value</span><span class="sy0">=</span><span class="st0">&quot;Submit&quot;</span> <span class="sy0">/</span>&gt;&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/td.html"><span class="kw2">td</span></a>&gt;</span>
+        <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/tr.html"><span class="kw2">tr</span></a>&gt;</span>
+    <span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/table.html"><span class="kw2">table</span></a>&gt;</span>
+<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/form.html"><span class="kw2">form</span></a>&gt;</span></pre>
+<p>
+Nothing new here, it should be fairly self explanatory.  The form uses POST to send the information, and the information will be sent to <strong>handle_form.php</strong>.
+</p>
+
+</div>
+<!-- SECTION "The basis of the form" [964-2453] -->
+<h2><a name="the_form_handler_backend" id="the_form_handler_backend">The form handler backend</a></h2>
+<div class="level2">
+
+<p>
+
+Now we&#039;ll start with the backend code in handle_form.php which will process the form data and send an email if it&#039;s all ok.  We sent the data using POST so the variables will come through in $_POST and the file information will come through in $_FILES.  We wanted <em>Name</em>, <em>E-mail</em>, <em>Title</em>, and <em>Comments</em> to be required fields.  The attachment is optional.  First we check if everything was sent that was required, and if it&#039;s not, we redirect back to the form so the user can do it again – properly ;)
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Check if the required fields were sent</span>
+<span class="co1">// Redirect back to the form if not</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_name&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_email&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_title&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_body&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="co1">//redirect back to form</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php&quot;</span><span class="br0">&#41;</span>; <span class="co1">//This should really be an absolute URL if you know it</span>
+<span class="br0">&#125;</span></pre>
+<p>
+If you&#039;re wondering where the ending tag for <acronym title="Hypertext Preprocessor">PHP</acronym> is, there isn&#039;t one.  It&#039;s not needed and Zend actually say not to use it.  The reasons are beyond the scope of this tutorial; add the closing tag if you wish.
+</p>
+
+<p>
+This form includes an email address.  It&#039;s usually a good idea to at the very lest confirm that the address looks like an email address.  We&#039;ll use a regular expression to do this here.  The one I&#039;m using in this example is extremely basic purely to save confusing people.  If you search the web you&#039;ll find loads of better ones for validating email addresses.
+</p>
+<pre class="code php"><span class="co1">//Copy into global variables</span>
+<span class="re0">$name</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_name&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$email</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_email&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$title</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_title&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$body</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_body&quot;</span><span class="br0">&#93;</span>;
+&nbsp;
+<span class="co1">//Validate the email address using a regex (I suggest you use a better one than this!!)</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/preg_match"><span class="kw3">preg_match</span></a><span class="br0">&#40;</span><span class="st0">&quot;/[a-zA-Z0-9_<span class="es0">\\</span>.-]+@[a-zA-Z0-9_<span class="es0">\\</span>.-]+/&quot;</span><span class="sy0">,</span> <span class="re0">$email</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=invalid_email&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+The last check we need to make in terms of what was uploaded to the handle_form.php file is if the attachment was sent, and if it was, did it fail?  The file attachment data is contained in $_FILES[“attachment”]. “tmp_name” is the location of the temporary file on the server.
+</p>
+<pre class="code php"><span class="co1">//Check if an attachment was uploaded</span>
+<span class="re0">$file_path</span> <span class="sy0">=</span> <span class="kw2">false</span>;
+<span class="re0">$file_name</span> <span class="sy0">=</span> <span class="kw2">false</span>;
+<span class="re0">$file_type</span> <span class="sy0">=</span> <span class="kw2">false</span>;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;tmp_name&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;error&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="co1">//Redirect if the upload has failed</span>
+        <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=upload_failed&quot;</span><span class="br0">&#41;</span>;
+        <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+    <span class="re0">$file_path</span> <span class="sy0">=</span> <span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;tmp_name&quot;</span><span class="br0">&#93;</span>;
+    <span class="re0">$file_name</span> <span class="sy0">=</span> <span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;name&quot;</span><span class="br0">&#93;</span>;
+    <span class="re0">$file_type</span> <span class="sy0">=</span> <span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;type&quot;</span><span class="br0">&#93;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+If we have checked everything we&#039;ve checked so far, then we&#039;re good to go with Swift.  You may read in other tutorials all this stuff about header injection and filtering.  Add such things if you want – yes it is important, but Swift luckily does that for you.  The encoding it performs will safely prevent header injection attacks.
+</p>
+
+<p>
+Because we may be dealing with attachments here, we&#039;ll make use of the /tmp directory on the server if it&#039;s there and it&#039;s writable.  Swift can filestream via disk if we tell it to.  Any writable folder can be used.
+</p>
+<pre class="code php"><span class="co1">//Everything looks ok, we can start Swift</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Enable disk caching if we can</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/is_writable"><span class="kw3">is_writable</span></a><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    Swift_CacheFactory<span class="sy0">::</span><span class="me2">setClassName</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Cache_Disk&quot;</span><span class="br0">&#41;</span>;
+    Swift_Cache_Disk<span class="sy0">::</span><span class="me2">setSavePath</span><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Create a Swift instance</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your_smtp_server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Now we can start to build our message.  We know the sender is the person submitting the form so we can define this too.
+</p>
+<pre class="code php"><span class="co1">//Create the sender from the details we've been given</span>
+<span class="re0">$sender</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="re0">$email</span><span class="sy0">,</span> <span class="re0">$name</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message to send</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;New comment: &quot;</span> <span class="sy0">.</span> <span class="re0">$title</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="re0">$body</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</pre>
+<p>
+Earlier, we ran some checks to see if an attachment was uploaded.  We created variables and set them to FALSE.  If the attachment was uploaded these variables will now contain values so we can attach the file here if we need to:
+</p>
+<pre class="code php"><span class="co1">//If an attachment was sent, attach it</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$file_path</span> <span class="sy0">&amp;&amp;</span> <span class="re0">$file_name</span> <span class="sy0">&amp;&amp;</span> <span class="re0">$file_type</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>
+        <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="re0">$file_path</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="re0">$file_name</span><span class="sy0">,</span> <span class="re0">$file_type</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+All that&#039;s left to do now is send the email to your own address and either go to a success page, or back to the form if we fail.
+</p>
+<pre class="code php"><span class="co1">//Try sending the email</span>
+<span class="re0">$sent</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;your@address.tld&quot;</span><span class="sy0">,</span> <span class="re0">$sender</span><span class="br0">&#41;</span>;
+<span class="co1">//Disconnect from SMTP, we're done</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$sent</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./success.php&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=sending_failed&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+Your success page can be simple.  It doesn&#039;t have to actually “do” anything, it just displays a message saying something along of the lines of “Thanks for your comments.”.  However, I noted earlier that our form page was just the basis upon which to build.  At this point we have a working, functional form-to-mail script, but what&#039;s it&#039;s lacking is user-friendliness.  If something goes wrong the user simply gets bounced back to the form again.  We&#039;ll change this to show them some error messages which explain why they&#039;ve come back to the form.  If you have the time, you&#039;ll probably want to go further than I&#039;m going here and actually store the form values in the session and pre-opulate the form upon returning to it.  For simplicity&#039;s sake however, we&#039;ll just display an error message.
+</p>
+
+<p>
+Every time we redirected back to the form from handle_form.php we passed an argument through the <acronym title="Uniform Resource Locator">URL</acronym> which can be accessed via $_GET.  A simple switch() statment will suffice to display errors.
+</p>
+<pre class="code php">//Display an error if something went wrong
+if (!empty($_GET[&quot;error&quot;]))
+{
+    switch ($_GET[&quot;error&quot;])
+    {
+        case &quot;not_enough_info&quot;: ?&gt;
+            &lt;strong style=&quot;color: red;&quot;&gt;You need to complete all fields marked *&lt;strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;invalid_email&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Please provide a valid email address&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;upload_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;The file you uploaded failed to attach, this could be a temporary problem.
+            Please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;sending_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Temporary problem, please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<p>
+So putting that all together we have <strong>form.php</strong>
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Display an error if something went wrong</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st0">&quot;error&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">switch</span> <span class="br0">&#40;</span><span class="re0">$_GET</span><span class="br0">&#91;</span><span class="st0">&quot;error&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="kw1">case</span> <span class="st0">&quot;not_enough_info&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;You need to complete all fields marked *&lt;strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;invalid_email&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Please provide a valid email address&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;upload_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;The file you uploaded failed to attach, this could be a temporary problem.
+            Please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+        <span class="kw1">case</span> <span class="st0">&quot;sending_failed&quot;</span><span class="sy0">:</span> <span class="kw2">?&gt;</span>
+            &lt;strong style=&quot;color: red;&quot;&gt;Temporary problem, please try later.&lt;/strong&gt;<span class="kw2">&lt;?php</span>
+            <span class="kw1">break</span>;
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">?&gt;</span>
+&nbsp;
+&lt;form action=&quot;handle_form.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;Name *&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;sender_name&quot; value=&quot;&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;E-mail address *&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;sender_email&quot; value=&quot;&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;Title *&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;text&quot; name=&quot;comment_title&quot; value=&quot;&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td class=&quot;label&quot;&gt;Attachment (optional)&lt;/td&gt;
+            &lt;td&gt;&lt;input type=&quot;file&quot; name=&quot;attachment&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;Comment *&lt;br /&gt;
+                &lt;textarea name=&quot;comment_body&quot; rows=&quot;10&quot; cols=&quot;30&quot;&gt;&lt;/textarea&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan=&quot;2&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/form&gt;</pre>
+<p>
+We have our backend script, <strong>handle_form.php</strong> utilising Swift.
+</p>
+<pre class="code php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="co1">//Check if the required fields were sent</span>
+<span class="co1">// Redirect back to the form if not</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_name&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_email&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_title&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span> || <a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_body&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="co1">//redirect back to form</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=not_enough_info&quot;</span><span class="br0">&#41;</span>; <span class="co1">//This should really be an absolute URL if you know it</span>
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Copy into global variables</span>
+<span class="re0">$name</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_name&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$email</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;sender_email&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$title</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_title&quot;</span><span class="br0">&#93;</span>;
+<span class="re0">$body</span> <span class="sy0">=</span> <span class="re0">$_POST</span><span class="br0">&#91;</span><span class="st0">&quot;comment_body&quot;</span><span class="br0">&#93;</span>;
+&nbsp;
+<span class="co1">//Validate the email address using a regex (I suggest you use a better one than this!!)</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/preg_match"><span class="kw3">preg_match</span></a><span class="br0">&#40;</span><span class="st0">&quot;/[a-zA-Z0-9_<span class="es0">\\</span>.-]+@[a-zA-Z0-9_<span class="es0">\\</span>.-]+/&quot;</span><span class="sy0">,</span> <span class="re0">$email</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=invalid_email&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Check if an attachment was uploaded</span>
+<span class="re0">$file_path</span> <span class="sy0">=</span> <span class="kw2">false</span>;
+<span class="re0">$file_name</span> <span class="sy0">=</span> <span class="kw2">false</span>;
+<span class="re0">$file_type</span> <span class="sy0">=</span> <span class="kw2">false</span>;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span><a href="http://www.php.net/empty"><span class="kw3">empty</span></a><span class="br0">&#40;</span><span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;tmp_name&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;error&quot;</span><span class="br0">&#93;</span><span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="co1">//Redirect if the upload has failed</span>
+        <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=upload_failed&quot;</span><span class="br0">&#41;</span>;
+        <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+    <span class="br0">&#125;</span>
+    <span class="re0">$file_path</span> <span class="sy0">=</span> <span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;tmp_name&quot;</span><span class="br0">&#93;</span>;
+    <span class="re0">$file_name</span> <span class="sy0">=</span> <span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;name&quot;</span><span class="br0">&#93;</span>;
+    <span class="re0">$file_type</span> <span class="sy0">=</span> <span class="re0">$_FILES</span><span class="br0">&#91;</span><span class="st0">&quot;attachment&quot;</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="st0">&quot;type&quot;</span><span class="br0">&#93;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Everything looks ok, we can start Swift</span>
+&nbsp;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift.php&quot;</span>;
+<span class="kw1">require_once</span> <span class="st0">&quot;lib/Swift/Connection/SMTP.php&quot;</span>;
+&nbsp;
+<span class="co1">//Enable disk caching if we can</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><a href="http://www.php.net/is_writable"><span class="kw3">is_writable</span></a><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    Swift_CacheFactory<span class="sy0">::</span><span class="me2">setClassName</span><span class="br0">&#40;</span><span class="st0">&quot;Swift_Cache_Disk&quot;</span><span class="br0">&#41;</span>;
+    Swift_Cache_Disk<span class="sy0">::</span><span class="me2">setSavePath</span><span class="br0">&#40;</span><span class="st0">&quot;/tmp&quot;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Create a Swift instance</span>
+<span class="re0">$swift</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift<span class="br0">&#40;</span><span class="kw2">new</span> Swift_Connection_SMTP<span class="br0">&#40;</span><span class="st0">&quot;your_smtp_server.tld&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the sender from the details we've been given</span>
+<span class="re0">$sender</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Address<span class="br0">&#40;</span><span class="re0">$email</span><span class="sy0">,</span> <span class="re0">$name</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//Create the message to send</span>
+<span class="re0">$message</span> <span class="sy0">=&amp;</span> <span class="kw2">new</span> Swift_Message<span class="br0">&#40;</span><span class="st0">&quot;New comment: &quot;</span> <span class="sy0">.</span> <span class="re0">$title</span><span class="br0">&#41;</span>;
+<span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span><span class="kw2">new</span> Swift_Message_Part<span class="br0">&#40;</span><span class="re0">$body</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="co1">//If an attachment was sent, attach it</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$file_path</span> <span class="sy0">&amp;&amp;</span> <span class="re0">$file_name</span> <span class="sy0">&amp;&amp;</span> <span class="re0">$file_type</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">attach</span><span class="br0">&#40;</span>
+        <span class="kw2">new</span> Swift_Message_Attachment<span class="br0">&#40;</span><span class="kw2">new</span> Swift_File<span class="br0">&#40;</span><span class="re0">$file_path</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="re0">$file_name</span><span class="sy0">,</span> <span class="re0">$file_type</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">//Try sending the email</span>
+<span class="re0">$sent</span> <span class="sy0">=</span> <span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">send</span><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">,</span> <span class="st0">&quot;your@address.tld&quot;</span><span class="sy0">,</span> <span class="re0">$sender</span><span class="br0">&#41;</span>;
+<span class="co1">//Disconnect from SMTP, we're done</span>
+<span class="re0">$swift</span><span class="sy0">-&gt;</span><span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$sent</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./success.php&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span>
+<span class="kw1">else</span>
+<span class="br0">&#123;</span>
+    <a href="http://www.php.net/header"><span class="kw3">header</span></a><span class="br0">&#40;</span><span class="st0">&quot;Location: ./form.php?error=sending_failed&quot;</span><span class="br0">&#41;</span>;
+    <a href="http://www.php.net/exit"><span class="kw3">exit</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span>;
+<span class="br0">&#125;</span></pre>
+<p>
+And we have a success page (basic).
+</p>
+<pre class="code html4strict"><span class="sc2">&lt;<a href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a>&gt;</span>Thanks for you comments, your message sent successfully.<span class="sc2">&lt;<span class="sy0">/</span><a href="http://december.com/html/4/element/div.html"><span class="kw2">div</span></a>&gt;</span></pre>
+<p>
+So there you have it!  Forms with attachments using Swift :)
+
+</p>
+
+</div>
+<!-- SECTION "The form handler backend" [2454-] -->

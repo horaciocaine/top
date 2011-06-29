@@ -1,0 +1,138 @@
+===== SMTP Transport (Swift_SmtpTransport) ====
+
+==== What is it for? ====
+
+The SMTP Transport class (named ''Swift_SmtpTransport'') is used when you want to send messages using an SMTP server.  Before you decide to use this Transport method you first need to know the credentials to connect to an SMTP server from your web host.  Most web hosts provide an SMTP server to use, others do not.  Some SMTP servers will require the use of a username and password before you can send.
+
+==== How do you use it? ====
+
+The ''Swift_SmtpTransport'' class take several (optional) parameters in its constructor.
+
+**Synopsis**
+<code>
+new Swift_SmtpTransport( [ $host [, $port [, $security ] ] ] )
+
+// or
+
+Swift_SmtpTransport::newInstance( [ $host [, $port [, $security ] ] ] )
+</code>
+
+''$host'' is the domain name of the SMTP server.  This is typically mail.isp.tld or smtp.isp.tld where "isp.tld" is your ISP's domain.  For example, BigPond here in Australia use the domain "bigpond.com.au" and their SMTP server is "mail.bigpond.com.au".  The default value for ''$host'' is "localhost" and will work on some web hosts.
+
+''$port'' is the port number you connect to the SMTP server on.  The standard SMTP port is 25.  SMTP servers using SSL encryption will often use port 587 or port 465.  Swift will default to port 25 if no port number is specified.
+
+''$security'' is an encryption setting.  If your ISP requires the use of SSL then you should specify "ssl" here.  If they require TLS then you should specify "tls" here.  Otherwise, a value of "none" indicates that no security layer is used.  Swift defaults to "none".
+
+==== If your SMTP server requires a username and password ====
+
+If your ISP have told you that you need to authenticate with the SMTP server then you will need to tell Swift what username and password to use.  ''$smtp->setUsername("your username")'' and ''$smtp->setPassword("your password")'' are used for this.  You need to create ''$smtp'' into a variable first.  See the last few examples below...
+
+==== Examples ====
+
+=== Instantiating Swift_SmtpTransport for a known SMTP server ===
+<code php>
+$smtp = new Swift_SmtpTransport('mail.bigpond.com.au', 25);
+
+$mailer = new Swift_Mailer($smtp);
+
+$message = new Swift_Message('My Subject', 'My message body');
+$message->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'));
+$message->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Using newInstance() to create $smtp ===
+<code php>
+//You can use the newInstance() method instead of declaring "new"
+$smtp = Swift_SmtpTransport::newInstance('mail.bigpond.com.au', 25);
+
+$mailer = new Swift_Mailer($smtp);
+
+$message = new Swift_Message('My Subject', 'My message body');
+$message->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'));
+$message->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Nesting the instantiation of Swift_SmtpTransport inside the constructor of the Mailer ===
+<code php>
+//You can nest the instantiation of the SmtpTransport instead of creating a $smtp variable
+$mailer = new Swift_Mailer(new Swift_SmtpTransport('smtp.mycompany.com', 587, 'ssl'));
+
+//You can set fields on $message fluidly everywhere in Swift
+$message = Swift_Message::newInstance('My Subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Using the default settings (localhost on port 25) ===
+<code php>
+$mailer = new Swift_Mailer(new Swift_SmtpTransport()); //Default: localhost port 25
+
+$message = Swift_Message::newInstance('My Subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Specifying a username and password ===
+<code php>
+$smtp = new Swift_SmtpTransport('smtp.mycompany.com');
+
+//Specify a username and password
+$smtp->setUsername('n00bie');
+$smtp->setPassword('p4s5w0rd');
+
+$mailer = new Swift_Mailer($smtp);
+
+$message = Swift_Message::newInstance('My Subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Specifying a username and password using the fluid interface ===
+<code php>
+//Setting a username and password fluidly
+$smtp = Swift_SmtpTransport::newInstance('smtp.mycompany.com')
+  ->setUsername('n00bie')
+  ->setPassword('p4s5w0rd');
+
+$mailer = new Swift_Mailer($smtp);
+
+$message = Swift_Message::newInstance('My Subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+=== Nesting the instantiation of Swift_SmtpTransport in the constructor of the Mailer using a username and password ===
+<code php>
+//When using the fluid interface you can nest an authenticated SmtpTransport
+$mailer = new Swift_Mailer(
+  Swift_SmtpTransport::newInstance('smtp.mycompany.com')
+    ->setUsername('n00bie')
+    ->setPassword('p4s5w0rd')
+  );
+
+$message = Swift_Message::newInstance('My Subject', 'My message body')
+  ->setFrom(array('chris.corbyn@swiftmailer.org' => 'Chris Corbyn'))
+  ->setTo(array('recipient@otherdomain.tld' => 'Recipient name'));
+
+$mailer->send($message);
+</code>
+
+==== Troubleshooting ====
+
+^ Problem ^ Possible solutions ^
+| Receiving "relaying denied" error messages  | SMTP server is not allowing emails to be sent to recipients in other domains.  Perhaps it requires a username and password. |
+| Receiving "connection refused" error messages  | Swift cannot connect to the SMTP server because it is being blocked.  Perhaps a firewall rule is preventing the connection. |
+| Receiving errors "must issue STARTTLS first"  | The SMTP server requires a special form of elevated encryption during the session.  Swift mailer Standard Edition will not handle this, but Swift Mailer Enterprise Edition will work |
+| Sending takes a long time  | This is beyond Swift's control.  The SMTP server is responding slowly because it's under high-load, or network latency is slowing things down.  Consider setting up an asynchronous sending system (i.e. write mail to a database and send it in the background using cron) |

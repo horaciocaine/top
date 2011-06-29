@@ -1,0 +1,13 @@
+==== Tutorials ====
+  * [[v3:tutorials:basic|Sending a basic email]]
+  * [[v3:tutorials:html|Sending a HTML email]]
+  * [[v3:tutorials:multipart|Sending a multipart email]]
+  * [[v3:tutorials:recipients|Personalizing recipient names]]
+  * [[v3:tutorials:exceptions|Catching useful errors]]
+  * [[v3:tutorials:attachments|Sending attachments]]
+  * [[v3:tutorials:embedding_images|Embedding images in HTML emails]]
+  * [[v3:tutorials:multirecipients|Sending to multiple recipients and/or copying to recipients]]
+  * [[v3:tutorials:batch|Sending a batch email without revealing all addresses]]
+  * [[v3:tutorials:form2mail|Sending an email from a form with Swift]]
+  * [[v3:plugin_decorator|How to customize messages for each recipient in a batch]]
+  * [TODO: A mass-maling tutorial]

@@ -1,0 +1,255 @@
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="level1"><div class="li"><span class="li"><a href="#how_to_legitimately_minimize_being_seen_as_spam" class="toc">How to (legitimately) minimize being seen as spam</a></span></div>
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#get_a_test_server_if_you_can" class="toc">Get a test server if you can</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#be_compliant_with_the_rfcs" class="toc">Be compliant with the RFCs</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#send_from_an_email_address_which_actually_exists" class="toc">Send from an email address which actually exists!</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#if_you_can_do_so_set_up_a_spf_record_dns_setting" class="toc">If you can do so, set up a SPF record (DNS setting)</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#don_t_just_send_html_emails" class="toc">Don't just send HTML emails!</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#don_t_just_send_a_big_image" class="toc">Don't just send a big image</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#don_t_send_really_short_messages" class="toc">Don't send really short messages</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#are_you_blacklisted" class="toc">Are you blacklisted?</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#and_the_obvious_one" class="toc">And the obvious one....</a></span></div></li></ul>
+</li></ul>
+</div>
+</div>
+
+
+
+<h1><a name="how_to_legitimately_minimize_being_seen_as_spam" id="how_to_legitimately_minimize_being_seen_as_spam">How to (legitimately) minimize being seen as spam</a></h1>
+<div class="level1">
+
+<p>
+ This is a BIG topic and seemingly one that many people are quite patchy on.  I&rsquo;ll try to give you enough knowledge to make your own judgements and what you could do to minimize your risk.  You may finish up sad and disappointed by the end of this article though so don&rsquo;t build your hopes up that there&rsquo;s a quick-fix solution if you are being blocked as spam.
+</p>
+
+</div>
+<!-- SECTION "How to (legitimately) minimize being seen as spam" [1-425] -->
+<h2><a name="get_a_test_server_if_you_can" id="get_a_test_server_if_you_can">Get a test server if you can</a></h2>
+<div class="level2">
+
+<p>
+ If you can do so, I would strongly recommend setting up a test server running SA-Exim.  That&rsquo;s <a href="http://www.exim.org/" class="urlextern" title="http://www.exim.org/"  rel="nofollow">Exim</a> with <a href="http://spamassassin.apache.org/" class="urlextern" title="http://spamassassin.apache.org/"  rel="nofollow">SpamAssassin</a>.  This will allow you to mock out the process of sending your newsletter or whatever else you&rsquo;re sending.  You can configure Exim to append a spam report on what it finds into your headers.  Most Linux distros will have some pre-packaged version for you.  If yours doesn&rsquo;t (ArchLinux doesn&rsquo;t as far as I know) then you&rsquo;ll have to roll your own.  How to do that is outside of the scope of this article unfortunately but essentially you need to install both Exim4 and SpamAssassin on the same server, then edit your exim.conf file to run a new router which looks for spam.
+</p>
+
+<p>
+Using a pre-packaged versions can be as easy as:
+</p>
+
+<p>
+<strong>On Debian systems:</strong> 
+</p>
+<pre class="code">apt-get update
+apt-get install sa-exim</pre>
+
+<p>
+Check your own distro&rsquo;s user forums if you&rsquo;re unsure.
+</p>
+
+<p>
+Once you have those installed, you simply need to create a user account on the server, set it as a MX record for one of your domains and then send emails to $user@$domain.  When you view the source code of the emails you&rsquo;ll see a section relating to spam filtering with some scores in it.  Usually it will tell you what the threshold is for being blocked as spam - 5 by default!  5.0 is a leniant score too... If you go over 2.5 I&rsquo;d say something&rsquo;s not right.
+</p>
+
+<p>
+Look at the breakdown of where your points came from... usually they&rsquo;re quite self explanatory such as EMAIL_SUBJECT_TWICE or something like that.
+</p>
+
+</div>
+<!-- SECTION "Get a test server if you can" [426-2001] -->
+<h2><a name="be_compliant_with_the_rfcs" id="be_compliant_with_the_rfcs">Be compliant with the RFCs</a></h2>
+<div class="level2">
+
+<p>
+ The RFCs main involved here are RFC2822 and RFC2045.  You&rsquo;re lucky someone else already did all the hard work for you :)  That&rsquo;s what Swift is made for.  Endless hours of reading RFCs, sending to many different <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> servers running different software and checking results.
+</p>
+
+<p>
+The RFCs cover things such as maximum line length (1000, but 78 is a safer option), the structure of headers, character sets which are valid etc.  If you were just using mail() you&rsquo;d have a lot to think about but Swift does lots of things under-the-hood in terms of encoding, line shortening, building compliant headers, putting <acronym title="Multipurpose Internet Mail Extension">MIME</acronym> sections in the correct places, identifying langauges and other important points.
+</p>
+
+<p>
+Spam checkers almost all look for incompliant emails.
+</p>
+
+<p>
+Basically, don&rsquo;t worry about this if you&rsquo;re using Swift, just remember that it&rsquo;s a factor in spam checking.
+</p>
+
+</div>
+<!-- SECTION "Be compliant with the RFCs" [2002-2896] -->
+<h2><a name="send_from_an_email_address_which_actually_exists" id="send_from_an_email_address_which_actually_exists">Send from an email address which actually exists!</a></h2>
+<div class="level2">
+
+<p>
+ This is REALLY important.  The most important thing is that the domain has a MX record which can be publically looked up.  The local part of the address is less important although I&rsquo;d still recommend sending from a working email account.
+</p>
+
+<p>
+Check your MX records are working by using a tool such as DIG if you have access to a Linux server or a UNIX/<acronym title="Operating System">OS</acronym> X system.  You can probably get DIG for windows too.
+</p>
+
+<p>
+The command to run is 
+</p>
+<pre class="code">dig MX &lt;domain-name.tld&gt;</pre>
+
+<p>
+ You need an MX record for each subdomain too.  If you have joe@yourdomain.tld you need a MX record for yourdomain.tld, then if you have joe@users.yourdomain.tld you need a separate MX record for users.yourdomain.tld.
+</p>
+
+<p>
+Here&rsquo;s an example output if the MX record is working: 
+</p>
+<pre class="code">w3style:~ d11wtq$ dig MX gmail.com
+
+; &lt;&lt;&gt;&gt; DiG 9.3.2 &lt;&lt;&gt;&gt; MX gmail.com
+;; global options:  printcmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 8709
+;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;gmail.com.                     IN      MX
+
+;; ANSWER SECTION:
+gmail.com.              1192    IN      MX      10 alt1.gmail-smtp-in.l.google.com.
+gmail.com.              1192    IN      MX      10 alt2.gmail-smtp-in.l.google.com.
+gmail.com.              1192    IN      MX      50 gsmtp163.google.com.
+gmail.com.              1192    IN      MX      50 gsmtp183.google.com.
+gmail.com.              1192    IN      MX      5 gmail-smtp-in.l.google.com.
+
+;; Query time: 18 msec
+;; SERVER: 194.168.4.100#53(194.168.4.100)
+;; WHEN: Thu Feb 15 10:07:03 2007
+;; MSG SIZE  rcvd: 158
+
+w3style:~ d11wtq$</pre>
+
+<p>
+ And here&rsquo;s the output if it&rsquo;s not working 
+</p>
+<pre class="code">w3style:~ d11wtq$ dig MX calendar.w3style.org
+
+; &lt;&lt;&gt;&gt; DiG 9.3.2 &lt;&lt;&gt;&gt; MX calendar.w3style.org
+;; global options:  printcmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 31483
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;calendar.w3style.org.          IN      MX
+
+;; AUTHORITY SECTION:
+w3style.org.            3600    IN      SOA     ns1.w3style.co.uk. admin.w3style.co.uk. 2007020801 28800 7200 604800 86400
+
+;; Query time: 22 msec
+;; SERVER: 194.168.4.100#53(194.168.4.100)
+;; WHEN: Thu Feb 15 10:10:46 2007
+;; MSG SIZE  rcvd: 97
+
+w3style:~ d11wtq$</pre>
+
+<p>
+ If you don&rsquo;t have a MX record for the email address you&rsquo;re using then the email won&rsquo;t function in any case which suggests you never intended to use the mailbox.  If you decide to set up a MX record, remember that changes could take 24 hours or so to propogate around all the nameservers in the world.  Usually it&rsquo;s only a matter of a few hours these days though.  If you tried looking up your MX record immediately after you set it up and it wasn&rsquo;t found, you may be stuck for a while being provided with cached results from your <acronym title="Domain Name Server">DNS</acronym> servers.  Just be patient and wait :)
+</p>
+
+</div>
+<!-- SECTION "Send from an email address which actually exists!" [2897-5870] -->
+<h2><a name="if_you_can_do_so_set_up_a_spf_record_dns_setting" id="if_you_can_do_so_set_up_a_spf_record_dns_setting">If you can do so, set up a SPF record (DNS setting)</a></h2>
+<div class="level2">
+
+<p>
+ Some of the major email providers such as Hotmail actually penalize you to the point you stand very little chance of successfully delivering mail if you do not have a SPF record set up for the domain your are sending email from.  You can find out more about SPF at the official website: <a href="http://www.openspf.org/" class="urlextern" title="http://www.openspf.org/"  rel="nofollow">http://www.openspf.org/</a>
+</p>
+
+<p>
+What SPF basically does is limits the number of locations people can send email from your address from.
+</p>
+
+<p>
+It&rsquo;s not as scary as it looks.  <acronym title="Domain Name Server">DNS</acronym> records have differing types such as A, CNAME, MX, SOA, PTR and TXT.  It&rsquo;s a TXT record you need to set up.  The page linked to above explains how to do this better than I can - I admit that you may have to read it several times before it sinks in!
+</p>
+
+<p>
+If you&rsquo;re sending email from joe@yourdomain.tld then the TXT record needs to be set on yourdomain.tld, and if you send from joe@users.yourdomain.tld the TXT record needs to be set for users.yourdomain.tld.
+</p>
+
+<p>
+Remember that because this is a <acronym title="Domain Name Server">DNS</acronym> setting you may have to wait up to 24 hours for your changes to have any effect.
+</p>
+
+</div>
+<!-- SECTION "If you can do so, set up a SPF record (DNS setting)" [5871-6963] -->
+<h2><a name="don_t_just_send_html_emails" id="don_t_just_send_html_emails">Don't just send HTML emails!</a></h2>
+<div class="level2">
+
+<p>
+ If you&rsquo;re going to send a <acronym title="HyperText Markup Language">HTML</acronym> email, great!  But always duplicate the same email in plain text and send the message as a multipart message.  Spam checkers, belive it or not, do penalize you for sending <acronym title="HyperText Markup Language">HTML</acronym>-only emails.  Sending a multipart email not only lowers your spam score, it also increases the number of people who will be able to actually read the email since not all mail clients can read <acronym title="HyperText Markup Language">HTML</acronym>.
+</p>
+
+</div>
+<!-- SECTION "Don't just send HTML emails!" [6964-7412] -->
+<h2><a name="don_t_just_send_a_big_image" id="don_t_just_send_a_big_image">Don't just send a big image</a></h2>
+<div class="level2">
+
+<p>
+ For aesthetic reasons, people sometimes will just send a big graphic done in Illustrator or similar software.  This is a definite no-no.  Some email clients won&rsquo;t display the image and more importantly it gets you almost definitely caught in a spam filter!
+</p>
+
+</div>
+<!-- SECTION "Don't just send a big image" [7413-7711] -->
+<h2><a name="don_t_send_really_short_messages" id="don_t_send_really_short_messages">Don't send really short messages</a></h2>
+<div class="level2">
+
+<p>
+ I know it&rsquo;s stupid, but it does make a difference.  A short email (as in one sentence) is more likely be tagged as spam than a long one.
+</p>
+
+</div>
+<!-- SECTION "Don't send really short messages" [7712-7895] -->
+<h2><a name="are_you_blacklisted" id="are_you_blacklisted">Are you blacklisted?</a></h2>
+<div class="level2">
+
+<p>
+ It may surprise you, but there&rsquo;s a chance - through no immediate fault of your own - that you may be on a blacklist.  Spam checkers can use a system called RBL (Real Time Blacklists).  These are huge online databases which keep track of suspected/known spammers.  They tag the IP address of the originating server and occassionally will tag an entire submask.  Shared servers often inevitably finish up on these lists because they become a high target for spammers who roam from one shared account to another.  Bottom line - <strong>don&rsquo;t rely on shared hosting to deliver emails</strong>.
+</p>
+
+<p>
+You can check if any of your IP addresses (hosting, and <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server) are in a blacklist by going here:
+</p>
+
+<p>
+<a href="http://www.robtex.com/rbls.html" class="urlextern" title="http://www.robtex.com/rbls.html"  rel="nofollow">http://www.robtex.com/rbls.html</a>
+</p>
+
+<p>
+If you&rsquo;re unfortunate enough to find that you&rsquo;re on a blacklist there&rsquo;s sadly not a lot you can do apart from changing your IP address.
+</p>
+
+<p>
+I mentioned SPF records above... if you don&rsquo;t have an SPF record, your chance of appearing on a blacklist is increased since bots will try to use your email address as a MAIL FROM envelope (so they don&rsquo;t get a load of boucned email messages - you do!).  If you have your <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server set up as an open relay, well, you&rsquo;re just asking for it really :P
+</p>
+
+<p>
+<strong>NOTE:</strong> If you&rsquo;re trying to run a <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server on a dynamic IP - even with a domain name from dyndns or similar - you will almost definitly appear on the blacklists.  Dynamic IP addresses are usually blacklisted by default.  Get a static IP.
+</p>
+
+</div>
+<!-- SECTION "Are you blacklisted?" [7896-9377] -->
+<h2><a name="and_the_obvious_one" id="and_the_obvious_one">And the obvious one....</a></h2>
+<div class="level2">
+
+<p>
+ The obvious thing that WILL get you stuck in a spam filter is sending junk.  People can pretty-up the term any way they like and call it a marketing campaign or whatever but i you&rsquo;re sending emails advertising something to people who didn&rsquo;t give you their email address you are spamming.
+</p>
+
+<p>
+Emails containing talk of millions or thousands of dollars/pounds, cracked software, pornographic text, drugs and any other obvious spam-type topics are just going to be tagged as spam.  Don&rsquo;t do it. 
+</p>
+
+</div>
+<!-- SECTION "And the obvious one...." [9378-] -->
