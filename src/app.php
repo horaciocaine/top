@@ -21,11 +21,8 @@ $app->register(new TwigExtension(), array(
 ));
 $app->register(new DoctrineExtension(), array(
     'db.options' => array(
-        'driver'   => 'pdo_mysql',
-        'dbname'   => 'dbswiftmailer',
-        'host'     => 'localhost',
-        'user'     => 'root',
-        'password' => null,
+        'driver' => 'pdo_sqlite',
+        'path'   => __DIR__.'/../swiftmailer.db',
     )
 ));
 $app['twig.configure'] = $app->protect(function ($twig) use ($app) {

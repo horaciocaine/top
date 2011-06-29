@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # --dry-run
-rsync --exclude=".git" --exclude="cache" --exclude="web/wikidocs" --exclude="web/wikiimages" --exclude=".git" --progress -azC --force --delete ./ hippo:/var/www/production/swiftmailer/www
+rsync --exclude="cache" --exclude=".git" --progress -azC --force --delete ./ symfony:/var/www/swiftmailer.org
