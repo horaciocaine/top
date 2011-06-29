@@ -4,7 +4,6 @@ require_once __DIR__.'/../vendor/silex/vendor/Symfony/Component/ClassLoader/Univ
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 
-// Autoloading
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
     'Symfony\\Bridge'  => __DIR__.'/../vendor',

@@ -29,36 +29,8 @@ $app->register(new DoctrineExtension(), array(
     )
 ));
 $app['twig.configure'] = $app->protect(function ($twig) use ($app) {
-    $twig->addExtension(new SwiftmailerTwigExtension($app));
     $twig->addGlobal('currentDownload', $app['download_manager']->getCurrentStableDownload());
 });
-
-class SwiftmailerTwigExtension extends \Twig_Extension
-{
-    protected $app;
-
-    public function __construct($app)
-    {
-        $this->app = $app;
-    }
-
-    public function getFunctions()
-    {
-        return array(
-            'download_path' => new Twig_Function_Method($this, 'getDownloadPath'),
-        );
-    }
-
-    public function getDownloadPath($filename)
-    {
-        
-    }
-
-    public function getName()
-    {
-        return 'swiftmailer';
-    }
-}
 
 $app['download_manager'] = function ($app) {
     return new DownloadManager($app['db']);

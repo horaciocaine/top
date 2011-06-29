@@ -121,9 +121,9 @@ class DownloadManager
     {
         $sth = $this->db->executeQuery($sql, $params);
         $sth->setFetchMode(\PDO::FETCH_CLASS, 'Download');
-        $hash = $sth->fetch();
+        $download = $sth->fetch();
 
-        return $hash ? $this->fixDownload($hash) : false;
+        return $download ? $this->fixDownload($download) : false;
     }
 
     protected function fixDownload($download)
