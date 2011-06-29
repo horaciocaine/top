@@ -39,16 +39,19 @@ $app->get('/bugs', function() use ($app) {
     return $app['twig']->render('bugs.html');
 })->bind('bugs');
 
+$app->get('/docs', function() use ($app) {
+    return new RedirectResponse('/docs/introduction');
+});
+
 $app->get('/docs/{page}', function($page) use ($app) {
-    if ('introduction' == $page) {
-        $page = 'index.html';
+    if (!preg_match('/\.html$/', $page)) {
+        return new RedirectResponse('/docs/'.$page.'.html');
     }
 
     try {
         return $app['twig']->render('_build/'.$page, array());
     } catch (\Exception $e) {
-throw $e;
-        throw new NotFoundHttpException('Page not found', $e);
+        return new RedirectResponse('/docs/introduction');
     }
 })->bind('doc');
 

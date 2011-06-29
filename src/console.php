@@ -15,8 +15,6 @@ $console
     ))
     ->setDescription('Releases a new version of Swiftmailer')
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
-        
-
         $download = new Download();
         $download->filename = 'Swift-'.$input->getArgument('version').'.tar.gz';
         $download->time_created = time();
