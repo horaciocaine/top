@@ -51,7 +51,7 @@ $app->get('/docs/{page}', function($page) use ($app) {
     try {
         return $app['twig']->render('_build/'.$page, array());
     } catch (\Exception $e) {
-        return new RedirectResponse('/docs/introduction');
+        return new RedirectResponse('/docs/index.html');
     }
 })->bind('doc');
 
