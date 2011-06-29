@@ -22,12 +22,12 @@
 
 {% block sidepanel %}
       <div id="downloadbox" class="supplementary iconbox corners top right bottom left">
-        <a href="{{ path('download_file', {'filename': currentDownload.filename}) }}"><img src="/images/download.png" alt="download" /></a>
+        <a class="download-file" href="{{ path('download_file', {'filename': currentDownload.filename}) }}"><img src="/images/download.png" alt="download" /></a>
         <dl>
-          <dt><a rel="nofollow" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">{{ currentDownload.filename }}</a></dt>
+          <dt><a class="download-file" rel="nofollow" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">{{ currentDownload.filename }}</a></dt>
           <dd>
             <div class="releasedate">{{ currentDownload.time_created|date('j F Y') }}</div>
-            <a rel="nofollow" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">Download</a>
+            <a class="download-file" rel="nofollow" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">Download</a>
           </dd>
         </dl>
       </div>

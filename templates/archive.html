@@ -21,7 +21,7 @@
               <tbody>
                   {% for download in downloads %}
                       <tr id="download_{{ download.id }}">
-                        <td><a href="{{ path('download_file', {'filename': download.filename}) }}">{{ download.filename }}</a></td>
+                        <td><a class="download-file" href="{{ path('download_file', {'filename': download.filename}) }}">{{ download.filename }}</a></td>
                         <td>{{ download.version }}</td>
                         <td>{{ download.time_created|date('j F Y') }}</td>
                       </tr>

@@ -15,8 +15,8 @@
         
             <div class="downloadinfo">
               <dl>
-                <dt class="filename"><a rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">Current Stable Version</a>:</dt>
-                <dd class="filename"><a rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">{{ stableDownload.filename }}</a></dd>
+                <dt class="filename"><a class="download-file" rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">Current Stable Version</a>:</dt>
+                <dd class="filename"><a class="download-file" rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">{{ stableDownload.filename }}</a></dd>
           
                 <dt class="description">Details</dt>
                 <dd class="description">The current stable version available for download is {{ stableDownload.version }}</dd>
@@ -25,11 +25,11 @@
                 <dd class="releasedate">{{ stableDownload.time_created|date('j F Y') }}</dd>
           
                 <dt class="download">Download</dt>
-                <dd class="download"><a rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">Download Now</a></dd>
+                <dd class="download"><a class="download-file" rel="nofollow" href="{{ path('download_file', {'filename': stableDownload.filename}) }}">Download Now</a></dd>
               </dl>
             </div>
         
-            <a href="{{ path('download_file', {'filename': stableDownload.filename}) }}"><img src="/images/download.png" alt="download" /></a>
+            <a class="download-file" href="{{ path('download_file', {'filename': stableDownload.filename}) }}"><img src="/images/download.png" alt="download" /></a>
         
             <br class="clear" />
           </div>
