@@ -13,10 +13,10 @@ $app->get('/download_file/{filename}', function($filename) use ($app) {
         throw new NotFoundHttpException('Download does not exist');
     }
 
-    if ('github' == $download['source']) {
-        $url = sprintf('http://cloud.github.com/downloads/swiftmailer/swiftmailer/%s', $download['filename']);
+    if ('github' == $download->source) {
+        $url = sprintf('http://cloud.github.com/downloads/swiftmailer/swiftmailer/%s', $download->filename);
     } else {
-        $url = sprintf('http://sourceforge.net/projects/swiftmailer/files/SwiftMailer/PHP4%%20%s/%s/download', $download['version'], $download['filename']);
+        $url = sprintf('http://sourceforge.net/projects/swiftmailer/files/SwiftMailer/PHP4%%20%s/%s/download', $download->version, $download->filename);
     }
 
     return new RedirectResponse($url);

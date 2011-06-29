@@ -18,6 +18,7 @@ $console
         $download = new Download();
         $download->filename = 'Swift-'.$input->getArgument('version').'.tar.gz';
         $download->time_created = time();
+        $download->source = 'github';
         $download->revoked = 0;
         $download->stable = !$input->getOption('unstable');
         $download->computeVersionNumber();

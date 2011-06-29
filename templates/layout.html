@@ -12,7 +12,7 @@
         <link href="/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="/css/doc.css" media="screen" rel="stylesheet" type="text/css" />
 
-        <script type="text/javascript" src="/js/jquery-1.3.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
 
         <!--[if IE]>
         <link rel="stylesheet" type="text/css" href="/css/ie.css" />
@@ -22,6 +22,14 @@
         <![endif]-->
 
         <title>{% block title '' %} &#8211; Swift Mailer</title>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("a.download-file").click(function () {
+                    _gaq.push(['_trackEvent', 'Downloads', 'Swiftmailer', $("a.download-file").attr('href')]);
+                });
+            });
+        </script>
   </head>
   <body>
     <div id="layoutcontainer">
@@ -39,7 +47,7 @@
               <li><a href="{{ path('doc', {'page': 'introduction'}) }}">documentation</a></li>
               <li><a href="{{ path('bugs') }}">bugs</a></li>
               <li><a href="http://blog.swiftmailer.org/">blog</a></li>
-              <li class="tab corners top right left"><a href="{{ path('download_file', {'filename': currentDownload.filename}) }}">current {{ currentDownload.version }}</a></li>
+              <li class="tab corners top right left"><a class="download-file" href="{{ path('download_file', {'filename': currentDownload.filename}) }}">current {{ currentDownload.version }}</a></li>
             </ul>
           </div>
         </div>
