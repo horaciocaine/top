@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <r xmlns="http://pear.php.net/dtd/rest.release" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://pear.php.net/dtd/rest.release http://pear.php.net/dtd/rest.release.xsd">
-  <p xlink:href="/rest/p/swift">Swift</p>
-  <c>pear.swiftmailer.org</c>
-  <v>4.1.0RC1</v>
-  <st>beta</st>
-  <l>LGPL</l>
-  <m>fabpot</m>
-  <s>Free Feature-rich PHP Mailer.</s>
-  <d>Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.</d>
-  <da>2011-06-17 08:25:12</da>
-  <n>
+    <p xlink:href="/rest/p/swift">Swift</p>
+    <c>pear.swiftmailer.org</c>
+    <v>4.1.0RC1</v>
+    <st>beta</st>
+    <l>LGPL</l>
+    <m>fabpot</m>
+    <s>Free Feature-rich PHP Mailer.</s>
+    <d>Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.</d>
+    <da>2011-06-17 08:25:12</da>
+    <n>
 -
  </n>
-  <f>86056</f>
-  <g>http://pear.swiftmailer.org//get/Swift-4.1.0RC1</g>
-  <x xlink:href="package.4.1.0RC1.xml"/>
+    <f>86056</f>
+    <g>http://pear.swiftmailer.org//get/Swift-4.1.0RC1</g>
+    <x xlink:href="package.4.1.0RC1.xml"/>
 </r>

@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <f xmlns="http://pear.php.net/dtd/rest.categorypackageinfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://pear.php.net/dtd/rest.categorypackageinfo     http://pear.php.net/dtd/rest.categorypackageinfo.xsd">
-  <pi>
-    <p>
-      <n>Swift</n>
-      <c>pear.swiftmailer.org</c>
-      <ca xlink:href="/rest/c/Default">Default</ca>
-      <l>LGPL</l>
-      <s>Free Feature-rich PHP Mailer.</s>
-      <d>Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.</d>
-      <r xlink:href="/rest/r/swift" />
-    </p>
+    <pi>
+        <p>
+            <n>Swift</n>
+            <c>pear.swiftmailer.org</c>
+            <ca xlink:href="/rest/c/Default">Default</ca>
+            <l>LGPL</l>
+            <s>Free Feature-rich PHP Mailer.</s>
+            <d>Swift Mailer integrates into any web app written in PHP 5, offering a flexible and elegant object-oriented approach to sending emails with a multitude of features.</d>
+            <r xlink:href="/rest/r/swift" />
+        </p>
 
-    <a>
-      <r>
-        <v>4.1.0RC1</v>
-        <s>beta</s>
-      </r>
-      <r>
-        <v>4.0.7</v>
-        <s>stable</s>
-      </r>
-      <r>
-        <v>4.0.6</v>
-        <s>stable</s>
-      </r>
-      <r>
-        <v>4.0.5</v>
-        <s>stable</s>
-      </r>
+        <a>
+            <r>
+                <v>4.1.0</v>
+                <s>stable</s>
+            </r>
+            <r>
+                <v>4.1.0RC1</v>
+                <s>beta</s>
+            </r>
+            <r>
+                <v>4.0.7</v>
+                <s>stable</s>
+            </r>
+            <r>
+                <v>4.0.6</v>
+                <s>stable</s>
+            </r>
+            <r>
+                <v>4.0.5</v>
+                <s>stable</s>
+            </r>
 
-    </a>
+        </a>
 
-    <deps>
-      <v>4.1.0RC1</v>
-      <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
-    </deps>
-    <deps>
-      <v>4.0.7</v>
-      <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
-    </deps>
-    <deps>
-      <v>4.0.6</v>
-      <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
-    </deps>
-    <deps>
-      <v>4.0.5</v>
-      <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
-    </deps>
+        <deps>
+            <v>4.1.0</v>
+            <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
+        </deps>
+        <deps>
+            <v>4.1.0RC1</v>
+            <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
+        </deps>
+        <deps>
+            <v>4.0.7</v>
+            <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
+        </deps>
+        <deps>
+            <v>4.0.6</v>
+            <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
+        </deps>
+        <deps>
+            <v>4.0.5</v>
+            <d>a:1:{s:8:"required";a:2:{s:3:"php";a:1:{s:3:"min";s:5:"5.2.4";}s:13:"pearinstaller";a:1:{s:3:"min";s:5:"1.4.0";}}}</d>
+        </deps>
 
-  </pi>
+    </pi>
 </f>
