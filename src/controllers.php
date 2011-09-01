@@ -55,14 +55,10 @@ $app->get('/docs/{page}', function($page) use ($app) {
     }
 })->bind('doc');
 
-$app->error(function (\Exception $e) use ($app) {
-    $error = null;
-    if ($e instanceof NotFoundHttpException || in_array($app['request']->server->get('REMOTE_ADDR'), array('127.0.0.1', '::1'))) {
-        $error = $e->getMessage();
+$app->error(function (\Exception $e, $code) use ($app) {
+    if ($app['debug']) {
+        return;
     }
 
-    return new Response(
-        $app['twig']->render('error.html', array('error' => $error)),
-        $e instanceof HttpExceptionInterface ? $e->getStatusCode() : 500
-    );
+    return new Response($app['twig']->render('error.html', array('code' => $code)), $code);
 });

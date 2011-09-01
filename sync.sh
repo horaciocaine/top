@@ -1,4 +1,4 @@
 #!/bin/sh
 
 # --dry-run
-rsync --exclude="cache" --exclude=".git" --progress -azC --force --delete ./ symfony:/var/www/swiftmailer.org
+rsync --exclude="web/index_dev.php" --exclude="cache" --exclude=".git" --progress -azC --force --delete ./ symfony:/var/www/swiftmailer.org
