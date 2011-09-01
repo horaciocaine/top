@@ -5,20 +5,20 @@
         <meta name="keywords" content="swift mailer, swiftmailer, swiftmail, php mailer, phpmailer, oop mailer, bulk emailing" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <link href="/css/global.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/css/homepage.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/css/download.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
-        <link href="/css/doc.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{{ app.request.basepath }}/css/global.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{{ app.request.basepath }}/css/homepage.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{{ app.request.basepath }}/css/download.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{{ app.request.basepath }}/css/documentation.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{{ app.request.basepath }}/css/pygments.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="{{ app.request.basepath }}/css/doc.css" media="screen" rel="stylesheet" type="text/css" />
 
-        <script type="text/javascript" src="/js/jquery-1.6.1.min.js"></script>
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/jquery-1.6.1.min.js"></script>
 
         <!--[if IE]>
-        <link rel="stylesheet" type="text/css" href="/css/ie.css" />
-        <script type="text/javascript" src="/js/DD_roundies_0.0.2a-min.js"></script>
-        <script type="text/javascript" src="/js/DD_belatedPNG_0.0.7a-min.js"></script>
-        <script type="text/javascript" src="/js/ie.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ app.request.basepath }}/css/ie.css" />
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/DD_roundies_0.0.2a-min.js"></script>
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/DD_belatedPNG_0.0.7a-min.js"></script>
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/ie.js"></script>
         <![endif]-->
 
         <title>{% block title '' %} &#8211; Swift Mailer</title>
@@ -49,7 +49,7 @@
       
       <div id="header" class="corners top right left">
         <div id="headercontent">
-          <img id="logo" src="/images/logo.png" alt="Swift Mailer" />
+          <img id="logo" src="{{ app.request.basepath }}/images/logo.png" alt="Swift Mailer" />
           
           <div id="navigation">
             <ul>

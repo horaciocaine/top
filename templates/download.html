@@ -29,7 +29,7 @@
               </dl>
             </div>
         
-            <a class="download-file" href="{{ path('download_file', {'filename': stableDownload.filename}) }}"><img src="/images/download.png" alt="download" /></a>
+            <a class="download-file" href="{{ path('download_file', {'filename': stableDownload.filename}) }}"><img src="{{ app.request.basepath }}/images/download.png" alt="download" /></a>
         
             <br class="clear" />
           </div>
