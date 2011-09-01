@@ -1,10 +1,6 @@
-RewriteEngine On
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-RewriteCond %{REQUEST_FILENAME} -s [OR]
-RewriteCond %{REQUEST_FILENAME} -l [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteCond %{REQUEST_URI} !^/docs
-RewriteRule ^.*$ - [NC,L]
-RewriteRule ^.*$ /app.php [NC,L]
-
-AddDefaultCharset utf-8
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
