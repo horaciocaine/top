@@ -1,8 +1,5 @@
 <?php
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Silex\Application;
 use Silex\Extension\TwigExtension;
 use Silex\Extension\UrlGeneratorExtension;
