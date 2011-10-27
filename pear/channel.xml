@@ -6,10 +6,10 @@
     <servers>
         <primary>
             <rest>
-                <baseurl type="REST1.0">http://pear.swiftmailer.org//rest/</baseurl>
-                <baseurl type="REST1.1">http://pear.swiftmailer.org//rest/</baseurl>
-                <baseurl type="REST1.2">http://pear.swiftmailer.org//rest/</baseurl>
-                <baseurl type="REST1.3">http://pear.swiftmailer.org//rest/</baseurl>
+                <baseurl type="REST1.0">http://pear.swiftmailer.org/rest/</baseurl>
+                <baseurl type="REST1.1">http://pear.swiftmailer.org/rest/</baseurl>
+                <baseurl type="REST1.2">http://pear.swiftmailer.org/rest/</baseurl>
+                <baseurl type="REST1.3">http://pear.swiftmailer.org/rest/</baseurl>
             </rest>
         </primary>
     </servers>
